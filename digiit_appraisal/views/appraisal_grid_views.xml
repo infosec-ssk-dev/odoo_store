@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_appraisal_grid_list" model="ir.ui.view">
+        <field name="name">digiit.model.appraisal_grid.list</field>
+        <field name="model">digiit.model.appraisal_grid</field>
+        <field name="arch" type="xml">
+            <list editable="bottom" multi_edit="1">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_appraisal_grid" model="ir.actions.act_window">
+        <field name="name">Grilles d'évaluation</field>
+        <field name="res_model">digiit.model.appraisal_grid</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>

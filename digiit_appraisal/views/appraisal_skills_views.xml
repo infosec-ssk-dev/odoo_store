@@ -1,0 +1,56 @@
+<odoo>
+    <record id="view_appraisal_skill_list" model="ir.ui.view">
+        <field name="name">digiit.model.appraisal.skill.list</field>
+        <field name="model">digiit.model.appraisal.skill</field>
+        <field name="arch" type="xml">
+            <list string="Compétences liées à l'évaluation" editable="bottom" default_order="type_id">
+                <field name="appraisal_id" column_invisible="1"/>
+                <field name="type_id" width="100"/>
+                <field name="tag_id" width="200" domain="[('type_id', '=', type_id)]"/>
+                <field name="level_id" width="100" domain="[('type_id', '=', type_id)]"/>
+                <field name="progression" width="100" widget="progressbar"/>
+                <field name="justification" width="400"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_appraisal_skill_form" model="ir.ui.view">
+        <field name="name">digiit.model.appraisal.skill.form</field>
+        <field name="model">digiit.model.appraisal.skill</field>
+        <field name="arch" type="xml">
+            <form string="Compétence de l'évaluation">
+                <sheet>
+                    <group>
+                        <field name="appraisal_id" readonly="1"/>
+                        <field name="type_id"/>
+                        <field name="tag_id" domain="[('type_id', '=', type_id)]"/>
+                        <field name="level_id" domain="[('type_id', '=', type_id)]"/>
+                        <field name="justification"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_appraisal_skill_search" model="ir.ui.view">
+        <field name="name">digiit.model.appraisal.skill.search</field>
+        <field name="model">digiit.model.appraisal.skill</field>
+        <field name="arch" type="xml">
+            <search string="Recherche de Compétences">
+                <!-- Fields to search -->
+                <field name="appraisal_id" string="Évaluation"/>
+                <field name="type_id" string="Type de compétence"/>
+                <field name="tag_id" string="Compétence"/>
+                <field name="level_id" string="Niveau"/>
+                <separator/>
+
+                <!-- Group By options -->
+
+                <filter name="group_by_type" string="Par Type"
+                        context="{'group_by': 'type_id'}"/>
+                <filter name="group_by_tag" string="Par Compétence"
+                        context="{'group_by': 'tag_id'}"/>
+                <filter name="group_by_level" string="Par Niveau"
+                        context="{'group_by': 'level_id'}"/>
+            </search>
+        </field>
+    </record>
+</odoo>

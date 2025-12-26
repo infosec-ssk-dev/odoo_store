@@ -1,0 +1,158 @@
+<odoo>
+    <!-- Appraisal Analysis Views - Only Comptage measure -->
+    <record id="view_appraisal_analysis_pivot" model="ir.ui.view">
+        <field name="name">digiit.model.appraisal.analysis.pivot</field>
+        <field name="model">digiit.model.appraisal.analysis</field>
+        <field name="arch" type="xml">
+            <pivot string="Analyse des évaluations">
+                <field name="date_evaluation" type="row" interval="month"/>
+                <field name="department_id" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_appraisal_analysis_graph" model="ir.ui.view">
+        <field name="name">digiit.model.appraisal.analysis.graph</field>
+        <field name="model">digiit.model.appraisal.analysis</field>
+        <field name="arch" type="xml">
+            <graph string="Analyse des évaluations" type="bar">
+                <field name="date_evaluation" interval="month"/>
+                <!-- Default count measure -->
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_appraisal_analysis_list" model="ir.ui.view">
+        <field name="name">digiit.model.appraisal.analysis.list</field>
+        <field name="model">digiit.model.appraisal.analysis</field>
+        <field name="arch" type="xml">
+            <list string="Analyse des évaluations" create="false" edit="false" delete="false">
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="job_title" optional="hide"/>
+                <field name="date_evaluation"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_appraisal_analysis_search" model="ir.ui.view">
+        <field name="name">digiit.model.appraisal.analysis.search</field>
+        <field name="model">digiit.model.appraisal.analysis</field>
+        <field name="arch" type="xml">
+            <search string="Analyse des évaluations">
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="date_evaluation"/>
+
+                <filter name="completed" string="Terminées" domain="[('status', '=', 'done')]"/>
+                <filter name="late" string="En retard" domain="[('is_late', '=', True)]"/>
+
+
+                <filter name="group_date" string="Date d'évaluation"
+                        context="{'group_by': 'date_evaluation'}"/>
+                <filter name="group_department" string="Département" context="{'group_by': 'department_id'}"/>
+                <filter name="group_status" string="Statut" context="{'group_by': 'status'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Skill Evolution Report Views - Fixed to match first screenshot format -->
+    <record id="view_skill_evolution_list" model="ir.ui.view">
+        <field name="name">digiit.model.skill.evolution.report.list</field>
+        <field name="model">digiit.model.skill.evolution.report</field>
+        <field name="arch" type="xml">
+            <list string="Évolution des compétences" create="false" edit="false" delete="false">
+                <field name="employee_id"/>
+                <field name="type_id" string="Type de compétences"/>
+                <field name="tag_id" string="Compétence"/>
+                <field name="previous_level_id" string="Niveau précédent"/>
+                <field name="level_id" string="Niveau actuel"/>
+                <field name="previous_progression" string="Progrès précédent (%)" widget="percentage"/>
+                <field name="progression" string="Progrès actuels (%)" widget="percentage"/>
+                <field name="progression_evolution" string="Évolution des progrès" widget="percentage"/>
+                <field name="justification"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_skill_evolution_pivot" model="ir.ui.view">
+        <field name="name">digiit.model.skill.evolution.report.pivot</field>
+        <field name="model">digiit.model.skill.evolution.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Rapport d'évaluation des compétences">
+                <field name="date_evaluation" type="row" interval="month"/>
+                <field name="employee_id" type="row"/>
+                <field name="type_id" type="row"/>
+                <!-- Use average instead of sum for percentage fields -->
+                <field name="previous_progression" type="measure" string="Progrès précédent (%)"/>
+                <field name="progression" type="measure" string="Progrès actuels (%)"/>
+                <field name="progression_evolution" type="measure" string="Évolution des progrès"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_skill_evolution_graph" model="ir.ui.view">
+        <field name="name">digiit.model.skill.evolution.report.graph</field>
+        <field name="model">digiit.model.skill.evolution.report</field>
+        <field name="arch" type="xml">
+            <graph string="Évolution des compétences" type="line">
+                <field name="date_evaluation" interval="month"/>
+                <field name="progression" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <!-- Calendar View for Appraisal Analysis -->
+    <record id="view_appraisal_analysis_calendar" model="ir.ui.view">
+        <field name="name">digiit.model.appraisal.analysis.calendar</field>
+        <field name="model">digiit.model.appraisal.analysis</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendrier des évaluations" date_start="date_evaluation">
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="status"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_skill_evolution_search" model="ir.ui.view">
+        <field name="name">digiit.model.skill.evolution.report.search</field>
+        <field name="model">digiit.model.skill.evolution.report</field>
+        <field name="arch" type="xml">
+            <search string="Évolution des compétences">
+                <field name="employee_id"/>
+                <field name="type_id"/>
+                <field name="tag_id"/>
+                <filter name="group_date" string="Date d'évaluation"
+                        context="{'group_by': 'date_evaluation'}"/>
+                <filter name="group_employee" string="Employé" context="{'group_by': 'employee_id'}"/>
+                <filter name="group_type" string="Type de compétences" context="{'group_by': 'type_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_appraisal_analysis" model="ir.actions.act_window">
+        <field name="name">Analyse des évaluations</field>
+        <field name="res_model">digiit.model.appraisal.analysis</field>
+        <field name="view_mode">graph,calendar,pivot</field>
+        <field name="context">{
+            'search_default_group_date': 1,
+            'search_default_group_department': 2
+            }
+        </field>
+    </record>
+
+    <record id="action_skill_evolution_report" model="ir.actions.act_window">
+        <field name="name">Rapport d'évaluation des compétences</field>
+        <field name="res_model">digiit.model.skill.evolution.report</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="context">{
+            'search_default_group_date': 1,
+            'search_default_group_employee': 2,
+            'search_default_group_type': 3
+            }
+        </field>
+    </record>
+
+</odoo>

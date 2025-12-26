@@ -1,0 +1,102 @@
+<odoo>
+    <!-- Simplified Participant Views -->
+    <record id="view_feedback360_participant_list" model="ir.ui.view">
+        <field name="name">digiit.model.feedback360.participant.list</field>
+        <field name="model">digiit.model.feedback360.participant</field>
+        <field name="arch" type="xml">
+            <list string="Participants feedback 360">
+                <field name="partner_id"/>
+                <field name="email"/>
+                <field name="invitation_sent" string="Invitation envoyée" widget="boolean_toggle"/>
+                <field name="invitation_date" optional="hide"/>
+                <button name="action_send_invitation" type="object" string="Envoyer"
+                        icon="fa-paper-plane" invisible="invitation_sent"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_feedback360_participant_form" model="ir.ui.view">
+        <field name="name">digiit.model.feedback360.participant.form</field>
+        <field name="model">digiit.model.feedback360.participant</field>
+        <field name="arch" type="xml">
+            <form string="Participant feedback 360">
+                <header>
+                    <button name="action_send_invitation" type="object" string="Envoyer invitation"
+                            class="btn-primary" invisible="invitation_sent"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                            <field name="invitation_sent"/>
+                            <field name="invitation_date" invisible="not invitation_sent"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Simplified Survey Form Extension -->
+    <record id="view_survey_form_feedback360" model="ir.ui.view">
+        <field name="name">survey.survey.form.feedback360</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='users_login_required']" position="after">
+                <field name="is_feedback360_template" widget="boolean_toggle"/>
+                <field name="feedback360_appraisal_id" readonly="1" invisible="not is_feedback360"/>
+                <div class="alert alert-info" role="alert" invisible="not is_feedback360">
+                    <strong>Enquête Feedback 360 Anonyme:</strong>
+                    Cette enquête garantit l'anonymat complet.
+                    Aucun lien n'est conservé entre les répondants et leurs réponses.
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_survey_feedback360_templates" model="ir.actions.act_window">
+        <field name="name">Modèles Feedback 360</field>
+        <field name="res_model">survey.survey</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_feedback360_template', '=', True)]</field>
+        <field name="context">{
+            'default_is_feedback360': True,
+            'default_is_feedback360_template': True,
+            'default_access_mode': 'token',
+            'default_users_login_required': False,
+            'default_users_can_signup': False,
+            'default_is_attempts_limited': True,
+            'default_attempts_limit': 1
+            }
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créez votre premier modèle d'enquête de feedback 360 !
+            </p>
+        </field>
+    </record>
+
+    <record id="action_survey_feedback360" model="ir.actions.act_window">
+        <field name="name">Enquêtes Feedback 360</field>
+        <field name="res_model">survey.survey</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_feedback360', '=', True)]</field>
+        <field name="context">{'default_is_feedback360': True, 'default_attempts_limit': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créez votre première enquête de feedback 360 !
+            </p>
+            <p>
+                Les enquêtes de feedback 360 permettent de collecter des retours
+                de différentes parties prenantes avec anonymat complet garanti.
+                Aucun lien n'est conservé entre les répondants et leurs réponses.
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,24 @@
+<odoo>
+    <data noupdate="1">
+        <record id="appraisal_grid_1" model="digiit.model.appraisal_grid">
+            <field name="name">A besoin d'amélioration</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="appraisal_grid_2" model="digiit.model.appraisal_grid">
+            <field name="name">Correspond aux attentes</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="appraisal_grid_3" model="digiit.model.appraisal_grid">
+            <field name="name">Dépasse les attentes</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="appraisal_grid_4" model="digiit.model.appraisal_grid">
+            <field name="name">Dépasse largement les attentes</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="appraisal_grid_5" model="digiit.model.appraisal_grid">
+            <field name="name">Good</field>
+            <field name="sequence">5</field>
+        </record>
+    </data>
+</odoo>
