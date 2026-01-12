@@ -29,6 +29,7 @@
         "data/survey_feedback_360_complete.xml",
         "views/appraisal_menu.xml",
     ],
+    'images': ['static/description/cover.png'],
     "installable": True,
     "application": True,
     'license': 'LGPL-3',
