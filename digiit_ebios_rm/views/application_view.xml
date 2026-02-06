@@ -1,0 +1,40 @@
+
+<odoo>
+    <record id="application_view_list" model="ir.ui.view">
+        <field name="name">Application list</field>
+        <field name="model">digiit.ebios_rm.application</field>
+        <field name="arch" type="xml">
+            <list class="list-custom">
+                <field name="name" string=""/>
+            </list>
+        </field>  
+    </record>
+    <record id="application_view_form" model="ir.ui.view">
+        <field name="name">application Form</field>
+        <field name="model">digiit.ebios_rm.application</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" string=""/>
+                    </group>
+                </sheet>
+            </form>
+        </field>  
+    </record>
+
+    <record id="action_application_list_view" model="ir.actions.act_window">
+        <field name="name">Applications</field>
+        <field name="res_model">digiit.ebios_rm.application</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="application_view_list"/>
+    </record>
+
+    
+    <!-- <menuitem
+        id="application_menu_item"
+        name="Applications"
+        parent="ebios_risk_manager_root_menu"
+        action="action_application_list_view"
+        /> -->
+</odoo>

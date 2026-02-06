@@ -1,0 +1,43 @@
+
+<odoo>
+    <record id="scale_threat_level_view_list" model="ir.ui.view">
+        <field name="name">Liste des niveaux de menace</field>
+        <field name="model">digiit.ebios_rm.scale.threat.level</field>
+        <field name="arch" type="xml">
+            <list class="list-custom">
+                <field name="threat_zone" string="Zone de risque"/>
+                <field name="description" string="Description"/>
+            </list>
+        </field>  
+    </record>
+    <record id="scale_threat_level_view_form" model="ir.ui.view">
+        <field name="name">Formulaire niveau de menace</field>
+        <field name="model">digiit.ebios_rm.scale.threat.level</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="threat_zone" string="Zone de risque"/>
+                        <field name="color" string="Couleur" widget="color_picker"/>
+                        <field name="description" string="Description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>  
+    </record>
+
+    <record id="action_scale_threat_level_list_view" model="ir.actions.act_window">
+        <field name="name">Niveaux de menace</field>
+        <field name="res_model">digiit.ebios_rm.scale.threat.level</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="scale_threat_level_view_list"/>
+    </record>
+
+    
+    <!-- <menuitem
+        id="scale_threat_level_menu_item"
+        name="Scale Threat Levels"
+        parent="échelles"
+        action="action_scale_threat_level_list_view"
+        /> -->
+</odoo>

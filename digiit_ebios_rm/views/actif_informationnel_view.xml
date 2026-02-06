@@ -1,0 +1,47 @@
+
+<odoo>
+    <record id="actif_informationnel_view_list" model="ir.ui.view">
+        <field name="name">Actif Informationnel list</field>
+        <field name="model">digiit.ebios_rm.actif.informationnel</field>
+        <field name="arch" type="xml">
+            <list class="list-custom" editable="bottom">
+                <field name="name" string="Nom de l'actif"/>
+                <field name="classification" string="Classification"/>
+                <field name="description" string="Description"/>
+                <field name="personne_proprietaire" string="Entité/ Personne Propriétaire"/>
+            </list>
+        </field>  
+    </record>
+    <record id="actif_informationnel_view_form" model="ir.ui.view">
+        <field name="name">actif_informationnel Form</field>
+        <field name="model">digiit.ebios_rm.actif.informationnel</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" string="Nom de l'actif"/>
+                        <field name="classification" string="Classification"/>
+                        <field name="description" string="Description"/>
+                        <field name="personne_proprietaire" string="Entité/ Personne Propriétaire"/>
+                    </group>
+                    
+                </sheet>
+            </form>
+        </field>  
+    </record>
+
+    <record id="action_actif_informationnel_list_view" model="ir.actions.act_window">
+        <field name="name">Actif Informationnels</field>
+        <field name="res_model">digiit.ebios_rm.actif.informationnel</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="actif_informationnel_view_list"/>
+    </record>
+
+    
+    <!-- <menuitem
+        id="actif_informationnel_menu_item"
+        name="Actif Informationnels"
+        parent="main_menu"
+        action="action_actif_informationnel_list_view"
+        /> -->
+</odoo>

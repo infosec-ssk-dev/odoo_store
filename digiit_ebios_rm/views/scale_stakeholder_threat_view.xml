@@ -1,0 +1,41 @@
+
+<odoo>
+    <record id="scale_stakeholder_threat_view_list" model="ir.ui.view">
+        <field name="name">Scale Stakeholder Threat list</field>
+        <field name="model">digiit.ebios_rm.scale.stakeholder.threat</field>
+        <field name="arch" type="xml">
+            <list class="list-custom">
+                <field name="name" string="Nom"/>
+            </list>
+        </field>  
+    </record>
+    <record id="scale_stakeholder_threat_view_form" model="ir.ui.view">
+        <field name="name">scale_stakeholder_threat Form</field>
+        <field name="model">digiit.ebios_rm.scale.stakeholder.threat</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" string="Nom"/>
+                        <field name="pivot" string="Descriptions"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>  
+    </record>
+
+    <record id="action_scale_stakeholder_threat_list_view" model="ir.actions.act_window">
+        <field name="name">Scale Stakeholder Threats</field>
+        <field name="res_model">digiit.ebios_rm.scale.stakeholder.threat</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="scale_stakeholder_threat_view_list"/>
+    </record>
+
+    
+    <!-- <menuitem
+        id="scale_stakeholder_threat_menu_item"
+        name="Échelle des menaces pesant sur les parties prenantes"
+        parent="échelles"
+        action="action_scale_stakeholder_threat_list_view"
+        /> -->
+</odoo>

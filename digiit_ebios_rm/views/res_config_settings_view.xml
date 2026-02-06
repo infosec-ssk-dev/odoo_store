@@ -1,0 +1,61 @@
+
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res_config_settings Form</field>
+        <field name="model">res.config.settings</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="app_settings_block" string="Custom Settings">
+                    
+                    <h2>Motivations</h2>
+                    <field name="motivation_ids">
+                        <list>
+                            <field name="number" string="Niveau"/>
+                            <field name="name" string="Nom"/>
+                        </list>
+                    </field>
+
+                    <h2>Ressources</h2>
+                    <field name="ressource_ids">
+                        <list>
+                            <field name="number" string="Niveau"/>
+                            <field name="name" string="Nom"/>
+                        </list>
+                    </field>
+
+                    <h2>Pertinences</h2>
+                    <field name="pertinence_ids">
+                        <list>
+                            <field name="number" string="Niveau"/>
+                            <field name="name" string="Nom"/>
+                            <field name="retenu" string="Retenu?"/>
+                        </list>
+                    </field>
+
+                    <h2>Mappings des Motivations et Ressources </h2>
+                    <field name="pertinence_matrix">
+                        <list>
+                            <field name="motivation_id"/>
+                            <field name="ressource_id"/>
+                            <field name="pertinence_id"/>
+                        </list>
+                    </field>
+                </div>
+            </form>
+        </field>  
+    </record>
+
+    <!-- <record id="action_res_config_settings_list_view" model="ir.actions.act_window">
+        <field name="name">Res Config Settingss</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="res_config_settings_view_list"/>
+    </record>
+
+    <menuitem
+    id="res_config_settings_menu_item"
+    name="Matrices"
+    parent="main_menu"
+    action="action_res_config_settings_list_view"
+    /> -->
+</odoo>

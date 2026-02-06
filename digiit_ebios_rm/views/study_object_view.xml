@@ -1,0 +1,40 @@
+
+<odoo>
+    <record id="study_object_view_list" model="ir.ui.view">
+        <field name="name">Liste des objets d'étude</field>
+        <field name="model">digiit.ebios_rm.study.object</field>
+        <field name="arch" type="xml">
+            <list class="list-custom">
+                <field name="name" string=""/>
+            </list>
+        </field>  
+    </record>
+    <record id="study_object_view_form" model="ir.ui.view">
+        <field name="name">Formulaire d'objet d'étude</field>
+        <field name="model">digiit.ebios_rm.study.object</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" string=""/>
+                    </group>
+                </sheet>
+            </form>
+        </field>  
+    </record>
+
+    <record id="action_study_object_list_view" model="ir.actions.act_window">
+        <field name="name">Objets d'étude</field>
+        <field name="res_model">digiit.ebios_rm.study.object</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="study_object_view_list"/>
+    </record>
+
+    
+    <!-- <menuitem
+        id="study_object_menu_item"
+        name="Study Objects"
+        parent="main_menu"
+        action="action_study_object_list_view"
+        /> -->
+</odoo>

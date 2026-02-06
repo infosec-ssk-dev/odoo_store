@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="digiit_ebios_rm.RiskDashboard" owl="1">
+        <div class="risk-dashboard-container">
+            <!-- Header Panel -->
+            <div class="control-panel p-2 bg-light border-bottom d-flex align-items-center justify-content-between">
+                <button class="btn btn-secondary" t-on-click="goBack">
+                    <i class="fa fa-arrow-left me-1"></i>Retour
+                </button>
+
+                <span class="fw-bold fs-4">Graphiques de Scénarios Stratégiques</span>
+
+                <button class="btn btn-primary" t-on-click="captureAllConnections"
+                        t-att-disabled="state.isCapturing">
+                    <i class="fa fa-camera me-1" t-if="!state.isCapturing"></i>
+                    <i class="fa fa-spinner fa-spin me-1" t-if="state.isCapturing"></i>
+                    <t t-if="!state.isCapturing">Capturer Tout</t>
+                    <t t-if="state.isCapturing">Capture en cours...</t>
+                </button>
+            </div>
+
+            <div class="risk-dashboard p-2">
+                <!-- Pour chaque connexion menace-actif unique -->
+                <div t-foreach="state.connections" t-as="connection" t-key="connection.id"
+                     class="connection-container"
+                     t-att-id="'connection-' + connection.id">
+                    <!-- Header de la connexion -->
+                    <div class="connection-header">
+                        <div class="connection-title">
+                            <span class="connection-objective">Objectif visé : <t t-esc="connection.objectif"/></span>
+                            <div class="connection-er">
+                                <span class="connection-objective"><span class="threat-title">ER:</span> <t t-esc="connection.threat.er"/></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contenu de la connexion -->
+                    <div class="connection-row">
+                        <!-- Source de risque container -->
+                        <div class="threat-container section-container">
+                            <div class="section-label">SOURCE DE RISQUE</div>
+                            <div class="threat section-content">
+                                <img t-att-src="connection.threat ? connection.threat.icon_url : '/digiit_ebios_rm/static/src/img/threat_icon.png'" class="threat-icon"/>
+                                <span class="threat-name">
+                                    <t t-esc="connection.threat ? connection.threat.name : 'Unknown Threat'"/>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="scenarios-container section-container">
+                            <div class="section-label">ÉCOSYSTÈME</div>
+                            <!-- Pour chaque scénario dans cette connexion -->
+                            <div t-foreach="connection.scenarios" t-as="scenario" t-key="scenario.id" class="scenario">
+                                <div class="arrow-container">
+                                    <!-- Pour les attaques directes (un seul segment) -->
+                                    <div t-if="scenario.is_direct_attack"
+                                         t-attf-class="arrow-segment arrow-direct direct-attack"
+                                         t-on-mouseover="() => this.showScenarioDetails(scenario)"
+                                         t-on-mouseout="() => this.hideScenarioDetails()">
+                                        <div class="attack-type-indicator">
+                                            <span class="attack-type direct">Direct</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Pour les attaques indirectes (avec PP) -->
+                                    <t t-if="!scenario.is_direct_attack">
+                                        <!-- Premier segment (menace vers PP) -->
+                                        <div class="arrow-segment arrow-first pp-involved"
+                                             t-on-mouseover="() => this.showScenarioDetails(scenario)"
+                                             t-on-mouseout="() => this.hideScenarioDetails()">
+                                        </div>
+
+                                        <!-- PP au milieu -->
+                                        <div class="pp-container">
+                                            <div class="pp section-content">
+                                                <div class="pp-header">
+                                                    <t t-esc="scenario.pp ? scenario.pp.name : 'Unknown Stakeholder'"/>
+                                                </div>
+                                                <img t-att-src="scenario.pp &amp;&amp; scenario.pp.logo_url ? scenario.pp.logo_url : '/digiit_ebios_rm/static/src/img/pp_icon.png'" class="pp-logo"/>
+                                                <span class="pp-score-circle">
+                                                    <t t-esc="scenario.pp ? scenario.pp.score.toFixed(2) : '?'"/>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Second segment (PP vers actif) -->
+                                        <div class="arrow-segment arrow-second pp-involved"
+                                             t-on-mouseover="() => this.showScenarioDetails(scenario)"
+                                             t-on-mouseout="() => this.hideScenarioDetails()">
+                                        </div>
+                                    </t>
+
+                                    <!-- Infobulle de détails -->
+                                    <div t-if="state.selectedScenario === scenario" class="scenario-details-tooltip">
+                                        <h3>Scénario <t t-esc="scenario.number"/></h3>
+                                        <div>
+                                            <strong>Description:</strong>
+                                            <div t-if="scenario.description" t-out="scenario.description"/>
+                                            <div t-else="">No description available</div>
+                                        </div>
+                                        <div style="margin-top: 10px;">
+                                            <strong>Dommage:</strong>
+                                            <div t-if="scenario.damage" t-out="scenario.damage"/>
+                                            <div t-else="">No damage information</div>
+                                        </div>
+                                        <div t-if="scenario.pp" style="margin-top: 10px;">
+                                            <strong>Partie Prenante:</strong>
+                                            <t t-esc="scenario.pp.name || 'Unknown'"/> (Score: <t t-esc="scenario.pp.score ? scenario.pp.score.toFixed(2) : '0'"/>)
+                                        </div>
+                                        <div style="margin-top: 10px;">
+                                            <strong>Type d'attaque:</strong>
+                                            <t t-if="scenario.is_direct_attack">Directe</t>
+                                            <t t-else="">Via partie prenante</t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="asset-container section-container">
+                            <div class="section-label">ORGANISATION</div>
+                            <div class="asset section-content">
+                                <img t-att-src="connection.asset ? connection.asset.icon_url : '/digiit_ebios_rm/static/src/img/asset_icon.png'" class="asset-icon"/>
+                                <span class="asset-name">
+                                    <t t-esc="connection.asset ? connection.asset.name : 'Unknown Asset'"/>
+                                </span>
+                            </div>
+                            <!-- Gravity indicator -->
+                            <div class="gravity-indicator" t-attf-style="background-color: #{connection.gravity_color}">
+                                Gravité : <t t-esc="connection.threat.gravity_level"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

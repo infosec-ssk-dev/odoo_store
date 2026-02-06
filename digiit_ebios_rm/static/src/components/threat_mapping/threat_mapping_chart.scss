@@ -1,0 +1,238 @@
+.o_threat_mapping_chart {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    overflow-y: auto;
+
+    .o_threat_mapping_header {
+        text-align: center;
+        position: sticky;
+    }
+
+    .o_threat_mapping_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 20px;
+        overflow: visible;
+        position: relative;
+    }
+
+    // Tooltip styles
+    .stakeholder-tooltip {
+        position: absolute;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 8px 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        pointer-events: none;
+        z-index: 1000;
+        font-size: 12px;
+        min-width: 200px;
+
+        .tooltip-title {
+            font-weight: bold;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 4px;
+        }
+
+        .tooltip-row {
+            margin: 3px 0;
+            display: flex;
+            justify-content: space-between;
+
+            .tooltip-label {
+                color: #666;
+                margin-right: 8px;
+            }
+
+            .tooltip-value {
+                font-weight: 500;
+            }
+        }
+    }
+
+    // Dual cartographies container
+    .o_dual_cartographies {
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+        width: 100%;
+        max-width: 1400px;
+    }
+
+    .o_cartography_panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .cartography-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+    }
+
+    // Horizontal legend
+    .o_threat_mapping_legend_horizontal {
+        display: flex;
+        gap: 50px;
+        justify-content: center;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background: #f9f9f9;
+        width: 70%;
+        max-width: 1400px;
+
+        .legend-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h4 {
+                font-size: 14px;
+                font-weight: 600;
+                margin-bottom: 10px;
+                color: #555;
+                border-bottom: 2px solid #e0e0e0;
+                padding-bottom: 5px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .legend-items {
+                display: flex;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .legend-item {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 13px;
+
+                svg, .color-marker, .zone-marker {
+                    flex-shrink: 0;
+                }
+            }
+
+            .exposure-marker {
+                fill: #808080;
+            }
+
+            .color-marker {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+
+                &.red { background-color: #B5182E; }
+                &.yellow { background-color: #F4AE3E; }
+                &.blue { background-color: #4EA6D8; }
+                &.green { background-color: #46D684; }
+            }
+
+            .zone-marker {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+
+                &.danger { background-color: rgba(255, 0, 0, 0.3); border: 2px solid #B7656E; }
+                &.control { background-color: rgba(255, 165, 0, 0.3); border: 2px solid #BE845D; }
+                &.veille { background-color: rgba(0, 255, 0, 0.3); border: 2px solid #71A585; }
+            }
+        }
+    }
+
+    .o_threat_mapping_stakeholders {
+        .stakeholder-marker {
+            transition: all 0.3s ease;
+            stroke: rgba(0,0,0,0.3);
+            stroke-width: 2;
+            cursor: pointer;
+
+            &:hover {
+                stroke: rgba(0,0,0,0.8);
+                stroke-width: 3;
+            }
+        }
+
+        .stakeholder-label {
+            font-size: 11px;
+            font-weight: bold;
+            fill: #444;
+        }
+    }
+
+    .o_threat_mapping_svg {
+        width: 100%;
+        max-width: 650px;
+        height: auto;
+    }
+
+    .grid-circle {
+        fill: none;
+        stroke: #e0e0e0;
+        stroke-width: 1;
+    }
+
+    .axis-line {
+        stroke: #c0c0c0;
+        stroke-width: 1;
+        stroke-dasharray: 5,5;
+    }
+
+    .o_threat_mapping_zones {
+        .zone-veille {
+            fill: rgba(0, 255, 0, 0.1);
+            stroke: #71A585;
+            stroke-width: 2;
+        }
+
+        .zone-control {
+            fill: rgba(255, 165, 0, 0.1);
+            stroke: #BE845D;
+            stroke-width: 2;
+        }
+
+        .zone-danger {
+            fill: rgba(255, 0, 0, 0.1);
+            stroke: #B7656E;
+            stroke-width: 2;
+        }
+    }
+
+    .category-label {
+        font-size: 12px;
+        font-weight: bold;
+        fill: #666;
+    }
+
+    .level-number {
+        font-size: 10px;
+        fill: #999;
+        text-anchor: middle;
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 1200px) {
+    .o_threat_mapping_chart {
+        .o_dual_cartographies {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .o_threat_mapping_legend_horizontal {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+}

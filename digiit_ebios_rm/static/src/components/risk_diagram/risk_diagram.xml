@@ -1,0 +1,186 @@
+<templates xml:space="preserve">
+    <t t-name="digiit_ebios_rm_risk_diagram.RiskDiagram" owl="1">
+        <div class="ebios-diagram-container container">
+            <div class="row mb-4 mt-4">
+                <div class="col-md-6">
+                    <h1>Ateliers de la méthode EBIOS Risk Manager</h1>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label">Sélectionner une étude:</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" t-on-change="(ev) => this.onStudyChange(ev)">
+                                <option value="">-- Choisir une étude --</option>
+                                <t t-foreach="state.studies" t-as="study" t-key="study.id">
+                                    <option t-att-value="study.id" t-att-selected="state.selectedStudyId === study.id">
+                                        <t t-esc="study.name"/> (<t t-esc="study.owner_company"/>)
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mb-4" />
+
+            <div class="ebios-diagram" t-if="state.selectedStudy">
+                <div class="ebios-diagram__flow-container">
+                    <div class="ebios-flow">
+                        <!-- Workshop 1 -->
+                        <div class="flow-branch left-branch">
+                            <div
+                                t-attf-class="workshop workshop-1 {{isWorkshopActive(state.workshops[0]) ? 'active' : ''}}"
+                                t-att-data-enabled="isWorkshopEnabled(state.workshops[0])"
+                                t-on-click="() => this.navigateToWorkshop(state.workshops[0])">
+                                <div class="workshop-content">
+                                    <div class="workshop-title">Atelier 1</div>
+                                    <div class="workshop-subtitle">Cadrage et socle de sécurité</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Risk Assessment Box -->
+                        <div class="flow-branch risk-assessment">
+                            <div class="risk-assessment-box">
+                                <div class="risk-assessment-title">APPRÉCIATION DES RISQUES</div>
+                                <div class="workshop-2-arrow"></div>
+                                <div class="workshop-2-arrow-tip"></div>
+
+                                <div class="top-middle-arrow"></div>
+                                <div class="top-middle-arrow-tip"></div>
+
+
+                                <!-- Workshop 2 - Now inside the risk assessment box -->
+                                <div class="workshop-2-wrapper">
+                                    <div
+                                        t-attf-class="workshop workshop-2 {{isWorkshopActive(state.workshops[1]) ? 'active' : ''}}"
+                                        t-att-data-enabled="isWorkshopEnabled(state.workshops[1])"
+                                        t-on-click="() => this.navigateToWorkshop(state.workshops[1])">
+                                        <div class="workshop-content">
+                                            <div class="workshop-title">Atelier 2</div>
+                                            <div class="workshop-subtitle">Sources de risque</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="middle-arrow"></div>
+
+                                <!-- Workshop 3 - Triangle pointing up -->
+                                <div class="workshop-3-wrapper">
+                                    <div
+                                        t-attf-class="triangle-workshop {{isWorkshopActive(state.workshops[2]) ? 'active' : ''}}"
+                                        t-att-data-enabled="isWorkshopEnabled(state.workshops[2])"
+                                        t-on-click="() => this.navigateToWorkshop(state.workshops[2])">
+                                        <!-- Triangle border for active state -->
+                                        <div t-if="isWorkshopActive(state.workshops[2])" class="triangle-up-border"></div>
+                                        <div class="triangle-up"></div>
+                                        <div class="triangle-content triangle-up-content">
+                                            <div class="workshop-title">Atelier 3</div>
+                                            <div class="workshop-subtitle">Scénarios stratégiques</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Workshop 4 - Triangle pointing down -->
+                                <div class="workshop-4-wrapper">
+                                    <div
+                                        t-attf-class="triangle-workshop {{isWorkshopActive(state.workshops[3]) ? 'active' : ''}}"
+                                        t-att-data-enabled="isWorkshopEnabled(state.workshops[3])"
+                                        t-on-click="() => this.navigateToWorkshop(state.workshops[3])">
+                                        <!-- Triangle border for active state -->
+                                        <div t-if="isWorkshopActive(state.workshops[3])" class="triangle-down-border"></div>
+                                        <div class="triangle-down"></div>
+                                        <div class="triangle-content triangle-down-content">
+                                            <div class="workshop-title">Atelier 4</div>
+                                            <div class="workshop-subtitle">Scénarios opérationnels</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Ecosystem and System icons -->
+                                <div class="system-icons">
+                                    <div class="icon-circle">
+                                        <i class="fa fa-globe"></i>
+                                        <div>ÉCOSYSTÈME</div>
+                                    </div>
+                                    <div class="icon-circle">
+                                        <i class="fa fa-sitemap"></i>
+                                        <div>SYSTÈME</div>
+                                    </div>
+                                </div>
+
+                                <!-- Replaced ecosystem arrow with arrow1 -->
+                                <svg class="curved-arrow ecosystem-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+                                    <g stroke-width="13" stroke="hsl(0, 0%, 0%)" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="matrix(0.656059028990507,-0.7547095802227722,0.7547095802227722,0.656059028990507,-195.30744368531168,449.4602204929061)">
+                                        <path d="M231 231.0359198898077Q546 226.0359198898077 569 569.0359198898077 " marker-end="url(#SvgjsMarker1827)"></path>
+                                    </g>
+                                    <defs>
+                                        <marker markerWidth="5.5" markerHeight="5.5" refX="2.75" refY="2.75" viewBox="0 0 5.5 5.5" orient="auto" id="SvgjsMarker1827">
+                                            <polygon points="0,5.5 1.8333333333333333,2.75 0,0 5.5,2.75" fill="hsl(0, 0%, 0%)"></polygon>
+                                        </marker>
+                                    </defs>
+                                </svg>
+
+                                <!-- Replaced system arrow with arrow2 -->
+                                <svg class="curved-arrow system-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+                                    <g stroke-width="13" stroke="hsl(0, 0%, 0%)" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="matrix(-0.6560590289905075,0.7547095802227718,-0.7547095802227718,-0.6560590289905075,933.3074436853117,370.5397795070943)">
+                                        <path d="M231 231.0359198898077Q546 226.0359198898077 569 569.0359198898077 " marker-end="url(#SvgjsMarker1769)"></path>
+                                    </g>
+                                    <defs>
+                                        <marker markerWidth="5.5" markerHeight="5.5" refX="2.75" refY="2.75" viewBox="0 0 5.5 5.5" orient="auto" id="SvgjsMarker1769">
+                                            <polygon points="0,5.5 1.8333333333333333,2.75 0,0 5.5,2.75" fill="hsl(0, 0%, 0%)"></polygon>
+                                        </marker>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Workshop 5 -->
+                        <div class="flow-branch">
+                            <div
+                                t-attf-class="workshop workshop-5 {{isWorkshopActive(state.workshops[4]) ? 'active' : ''}}"
+                                t-att-data-enabled="isWorkshopEnabled(state.workshops[4])"
+                                t-on-click="() => this.navigateToWorkshop(state.workshops[4])">
+                                <div class="workshop-content">
+                                    <div class="workshop-title">Atelier 5</div>
+                                    <div class="workshop-subtitle">Traitement du risque</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main flow line -->
+                    <div class="main-flow-line-ebios"></div>
+                    <div class="main-flow-arrow-tip-ebios"></div>
+
+
+
+                    <!-- Cycle lines and arrows -->
+                    <div class="cycle-lines">
+                        <div class="workshop5-to-cycle-arrow"></div>
+                        <div class="operational-cycle">
+                            <div class="cycle-text">
+                                <span class="cycle-label">CYCLE OPÉRATIONNEL</span>
+                                <span class="cycle-duration">1 an</span>
+                            </div>
+                            <div class="cycle-arrow-op"></div>
+                        </div>
+                        <div class="strategic-cycle">
+                            <div class="cycle-text">
+                                <span class="cycle-label">CYCLE STRATÉGIQUE</span>
+                                <span class="cycle-duration">3 ans</span>
+                            </div>
+                            <div class="strategic-scenario-vertical-line"></div>
+                            <div class="cycle-arrow-st"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-info" t-if="!state.selectedStudy">
+                Veuillez sélectionner une étude pour afficher le diagramme EBIOS Risk Manager.
+            </div>
+        </div>
+    </t>
+</templates>

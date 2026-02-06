@@ -1,0 +1,43 @@
+<odoo>
+    <record id="view_elementary_step_list" model="ir.ui.view">
+        <field name="model">digiit.ebios_rm.elementary.step</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="phase"/>
+                <field name="risk_level"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_elementary_step_form" model="ir.ui.view">
+        <field name="model">digiit.ebios_rm.elementary.step</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="phase"/>
+                    <field name="risk_level"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_elementary_step" model="ir.actions.act_window">
+        <field name="name">Elementary Steps</field>
+        <field name="res_model">digiit.ebios_rm.elementary.step</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p>Configure ebios_rm elementary steps here.</p>
+        </field>
+    </record>
+
+        <menuitem
+        id="elementary_step_menu_item"
+        name="Etapes élementaire"
+        parent="main_menu"
+        sequence="15"
+        action="action_elementary_step"
+        />
+</odoo>

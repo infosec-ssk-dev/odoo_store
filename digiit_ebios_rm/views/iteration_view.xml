@@ -1,0 +1,48 @@
+
+<odoo>
+    <record id="iteration_view_list" model="ir.ui.view">
+        <field name="name">Iteration list</field>
+        <field name="model">digiit.ebios_rm.iteration</field>
+        <field name="arch" type="xml">
+            <list class="list-custom">
+                <field name="operational_scenario" string="Sc. opérationnel"/>
+                <field name="likelihood_calculation_method" string="Méthode de calcul de vraisemblance"/>
+                <field name="pip_maturity_evaluation" string="Evaluation de la maturité PiP"/>
+                <field name="maturity_socle_evalutation" string="Évaluation du socle de maturité"/>
+                <field name="limit_date" string="Date limite"/>
+            </list>
+        </field>  
+    </record>
+    <record id="iteration_view_form" model="ir.ui.view">
+        <field name="name">iteration Form</field>
+        <field name="model">digiit.ebios_rm.iteration</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="operational_scenario" string="Déscription du scénario opérationnel"/>
+                        <field name="likelihood_calculation_method" string="Méthode de calcul de vraisemblance"/>
+                        <field name="pip_maturity_evaluation" string="Evaluation de la maturité PiP"/>
+                        <field name="maturity_socle_evalutation" string="Évaluation du socle de maturité"/>
+                        <field name="limit_date" string="Date limite"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>  
+    </record>
+
+    <record id="action_iteration_list_view" model="ir.actions.act_window">
+        <field name="name">Iterations</field>
+        <field name="res_model">digiit.ebios_rm.iteration</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="iteration_view_list"/>
+    </record>
+
+    
+    <!-- <menuitem
+        id="iteration_menu_item"
+        name="Iterations"
+        parent="main_menu"
+        action="action_iteration_list_view"
+        /> -->
+</odoo>

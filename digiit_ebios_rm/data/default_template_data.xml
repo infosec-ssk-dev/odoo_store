@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Default DdA EBIOS Template -->
+        <record id="default_dda_ebios_template" model="digiit.ebios_rm.report.template">
+            <field name="name">Template DdA EBIOS système</field>
+            <field name="report_type">dda_ebios</field>
+            <field name="template_file" type="base64" file="digiit_ebios_rm/static/templates/DdA-SMSI-v0.1.xlsx"/>
+            <field name="template_filename">DdA-SMSI-v0.1.xlsx</field>
+            <field name="description">Template système pour les rapports DdA EBIOS.
+Téléchargez ce fichier, personnalisez-le selon vos besoins, puis créez un nouveau template avec votre version personnalisée.</field>
+            <field name="is_default" eval="True"/>
+        </record>
+    </data>
+</odoo>

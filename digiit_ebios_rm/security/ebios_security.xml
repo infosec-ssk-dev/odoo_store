@@ -1,0 +1,49 @@
+<odoo>
+    <!-- Security Group Category -->
+    <record id="group_category_digiit_ebios_rm" model="ir.module.category">
+        <field name="name">Ebios</field>
+    </record>
+
+
+    <!-- Sub-group: Ebios / Utilisateur : mes documents seulement -->
+    <record id="group_ebios_user_own_docs" model="res.groups">
+        <field name="name">Ebios / Utilisateur : mes documents seulement</field>
+        <field name="category_id" ref="digiit_ebios_rm.group_category_digiit_ebios_rm"/>
+    </record>
+
+    <!-- Sub-group: Ebios / Utilisateur : tous les documents -->
+    <record id="group_ebios_user_all_docs" model="res.groups">
+        <field name="name">Ebios / Utilisateur : tous les documents</field>
+        <field name="category_id" ref="digiit_ebios_rm.group_category_digiit_ebios_rm"/>
+        <field name="implied_ids" eval="[(4, ref('digiit_ebios_rm.group_ebios_user_own_docs'))]"/>
+    </record>
+
+    <!-- Top-level: Ebios Admin -->
+    <record id="group_ebios_admin" model="res.groups">
+        <field name="name">Ebios / Admin</field>
+        <field name="category_id" ref="digiit_ebios_rm.group_category_digiit_ebios_rm"/>
+        <field name="implied_ids" eval="[(4, ref('digiit_ebios_rm.group_ebios_user_all_docs'))]"/>
+    </record>
+
+    <!-- Link STM / Admin to base.group_system if needed -->
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('digiit_ebios_rm.group_ebios_admin'))]"/>
+    </record>
+
+
+    <!-- Rule for Ebios / Utilisateur : mes documents seulement (own documents only) -->
+    <record id="rule_study_own_docs" model="ir.rule">
+        <field name="name">Study: Own Documents Only</field>
+        <field name="model_id" ref="model_digiit_ebios_rm_study"/>
+        <field name="groups" eval="[(4, ref('digiit_ebios_rm.group_ebios_user_own_docs'))]"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+    </record>
+
+    <!-- Rule for Ebios / Utilisateur : tous les documents (all documents) -->
+    <record id="rule_study_all_docs" model="ir.rule">
+        <field name="name">Study: All Documents</field>
+        <field name="model_id" ref="model_digiit_ebios_rm_study"/>
+        <field name="groups" eval="[(4, ref('digiit_ebios_rm.group_ebios_user_all_docs'))]"/>
+        <field name="domain_force">[]</field> <!-- always true, no restriction -->
+    </record>
+</odoo>

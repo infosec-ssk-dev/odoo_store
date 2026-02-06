@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- list View -->
+    <record id="study_referential_view_list" model="ir.ui.view">
+        <field name="name">Liste des référentiels de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.referential</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="referential_id" options="{'no_create': True}"/>
+                <field name="referential_version" readonly="1"/>
+                <field name="referential_chapter_count" readonly="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View with Chapters -->
+    <record id="study_referential_view_form" model="ir.ui.view">
+        <field name="name">Formulaire référentiel de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.referential</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                type="object"
+                                name="action_view_chapters"
+                                icon="fa-book">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Chapitres</span>
+                                <span class="o_stat_value">
+                                    <field name="referential_chapter_count"/>
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="referential_id" options="{'no_create': True}"/>
+                            <field name="referential_version" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="study_chapter_ids" string="Chapitres"
+                               context="{'default_study_id': study_id, 'default_study_referential_id': id}">
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="study_referential_view_search" model="ir.ui.view">
+        <field name="name">Recherche référentiels de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.referential</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="referential_id" string="Référentiel"/>
+                <field name="referential_version" string="Version"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_study_referential_list_view" model="ir.actions.act_window">
+        <field name="name">Référentiels de l'étude</field>
+        <field name="res_model">digiit.ebios_rm.study.referential</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="view_id" ref="study_referential_view_list"/>
+        <field name="context">{'default_study_id': active_id}</field>
+    </record>
+
+    <!-- STUDY CHAPTER VIEWS -->
+
+    <!-- List View -->
+    <record id="study_chapter_view_list" model="ir.ui.view">
+        <field name="name">Liste des chapitres de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.chapter</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="chapter_number" readonly="1"/>
+                <field name="chapter_title" readonly="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View with Measures -->
+    <record id="study_chapter_view_form" model="ir.ui.view">
+        <field name="name">Formulaire chapitre de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.chapter</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                type="object"
+                                name="action_view_measures"
+                                icon="fa-shield">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Mesures</span>
+                                <span class="o_stat_value">
+                                    <field name="measure_count"/>
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="chapter_number" string="Numero"/>
+                            <field name="chapter_title" string="Titre"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="study_measure_ids" string="Mesures"
+                               context="{'default_study_id': study_id, 'default_study_chapter_id': id}">
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Study Chapter Search View -->
+    <record id="study_chapter_view_search" model="ir.ui.view">
+        <field name="name">Recherche chapitres de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.chapter</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="chapter_id" string="Chapitre"/>
+                <field name="chapter_number" string="Numéro"/>
+                <field name="chapter_title" string="Titre"/>
+                <field name="study_referential_id" string="Référentiel"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_study_chapter_list_view" model="ir.actions.act_window">
+        <field name="name">Chapitres de l'étude</field>
+        <field name="res_model">digiit.ebios_rm.study.chapter</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="view_id" ref="study_chapter_view_list"/>
+    </record>
+
+    <!-- STUDY MEASURE VIEWS -->
+
+    <!-- List View -->
+    <record id="study_measure_view_list" model="ir.ui.view">
+        <field name="name">Liste des mesures de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.measure</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="measure_number" readonly="1"/>
+                <field name="measure_title" readonly="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View with Questions -->
+    <record id="study_measure_view_form" model="ir.ui.view">
+        <field name="name">Formulaire mesure de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.measure</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                type="object"
+                                name="action_view_questions"
+                                icon="fa-question-circle">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Questions</span>
+                                <span class="o_stat_value">
+                                    <field name="question_count"/>
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="measure_number" string="Numero"/>
+                            <field name="measure_title" string="Titre"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="study_question_ids" string="Questions"
+                               context="{'default_study_id': study_id, 'default_study_measure_id': id}">
+                            <list editable="bottom">
+                                <field name="question_number" readonly="1"/>
+                                <field name="question_text" readonly="1"/>
+                                <field name="system_domain_ids" widget="many2many_tags" optional="show" readonly="1"/>
+                                <!-- field name="application_status_id"/> -->
+                                <field name="response_application"/>
+                                <field name="justification"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Study Measure Search View -->
+    <record id="study_measure_view_search" model="ir.ui.view">
+        <field name="name">Recherche mesures de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.measure</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="measure_id" string="Mesure"/>
+                <field name="measure_number" string="Numéro"/>
+                <field name="measure_title" string="Titre"/>
+                <field name="study_chapter_id" string="Chapitre"/>
+                <separator/>
+                <group expand="0" string="Regrouper par">
+                    <filter name="group_by_chapter" string="Chapitre"
+                            context="{'group_by': 'study_chapter_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_study_measure_list_view" model="ir.actions.act_window">
+        <field name="name">Mesures de l'étude</field>
+        <field name="res_model">digiit.ebios_rm.study.measure</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="view_id" ref="study_measure_view_list"/>
+    </record>
+
+    <!-- STUDY QUESTION VIEWS -->
+
+    <!-- List View -->
+    <record id="study_question_view_list" model="ir.ui.view">
+        <field name="name">Liste des questions de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.question</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="study_referential_id" optional="show" readonly="1"/>
+                <field name="chapter_code" string="Chapitre" optional="show" readonly="1"/>
+                <field name="measure_code" string="Mesure" readonly="1"/>
+                <field name="question_number" readonly="1" optional="hide"/>
+                <field name="question_text" readonly="1"/>
+                <field name="system_domain_ids" widget="many2many_tags" optional="show" readonly="1"/>
+                <!-- <field name="application_status_id"/> -->
+                <field name="response_application"/>
+                <field name="status_color" widget="color" optional="hide"/>
+                <field name="justification"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="study_question_view_form" model="ir.ui.view">
+        <field name="name">Formulaire question de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.question</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Hiérarchie">
+                            <field name="study_referential_id" readonly="1"/>
+                            <field name="chapter_code" string="Chapitre" readonly="1"/>
+                            <field name="measure_code" string="Mesure" readonly="1"/>
+                            <field name="system_domain_ids" widget="many2many_tags" readonly="1"/>
+                        </group>
+                        <group string="Question">
+                            <field name="question_number" readonly="1" class="oe_inline"/>
+                            <field name="question_text" readonly="1"/>
+                            <field name="question_id" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <group string="Évaluation">
+                        <group>
+                            <field name="response_application"/>
+<!--                            <field name="application_status_id"/>-->
+<!--                            <field name="status_name" readonly="1" invisible="1"/>-->
+<!--                            <field name="status_color" invisible="1"/>-->
+                        </group>
+                        <group>
+                            <field name="justification" placeholder="Décrivez la justification de l'état d'application de la question..."/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Références du référentiel">
+                            <group>
+                                <field name="plan_action" readonly="1"/>
+                                <field name="bonne_pratique" readonly="1"/>
+                                <field name="vulnerabilite" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Study Question Search View -->
+    <record id="study_question_view_search" model="ir.ui.view">
+        <field name="name">Recherche questions de l'étude</field>
+        <field name="model">digiit.ebios_rm.study.question</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="question_id" string="Question"/>
+                <field name="question_number" string="Numéro"/>
+                <field name="question_text" string="Texte"/>
+                <field name="study_referential_id" string="Référentiel"/>
+                <field name="chapter_code" string="Chapitre"/>
+                <field name="measure_code" string="Mesure"/>
+                <field name="system_domain_ids" string="Domaines de sécurité"/>
+
+<!--                <filter name="filter_with_status" string="Avec statut"-->
+<!--                        domain="[('application_status_id', '!=', False)]"/>-->
+<!--                <filter name="filter_without_status" string="Sans statut"-->
+<!--                        domain="[('application_status_id', '=', False)]"/>-->
+                <filter name="filter_with_response_status" string="Réponse Oui"
+                        domain="[('response_application', '==', 'oui')]"/>
+                <filter name="filter_without-response_status" string="Réponse Non"
+                        domain="[('response_application', '==', 'non')]"/>
+                <separator/>
+                <group expand="0" string="Regrouper par">
+                    <filter name="group_by_referential" string="Référentiel"
+                            context="{'group_by': 'study_referential_id'}"/>
+                    <filter name="group_by_chapter" string="Chapitre"
+                            context="{'group_by': 'chapter_code'}"/>
+                    <filter name="group_by_measure" string="Mesure"
+                            context="{'group_by': 'measure_code'}"/>
+<!--                    <filter name="group_by_status" string="Statut d'application"-->
+<!--                            context="{'group_by': 'application_status_id'}"/>-->
+                    <filter name="group_by_response_status" string="Réponse"
+                            context="{'group_by': 'response_application'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <!-- Action -->
+    <record id="action_study_question_list_view" model="ir.actions.act_window">
+        <field name="name">Questions de l'étude</field>
+        <field name="res_model">digiit.ebios_rm.study.question</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="view_id" ref="study_question_view_list"/>
+    </record>
+</odoo>

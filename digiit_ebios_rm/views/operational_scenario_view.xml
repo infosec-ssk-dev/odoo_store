@@ -1,0 +1,149 @@
+<odoo>
+    <record id="operational_scenario_view_list" model="ir.ui.view">
+        <field name="name">Operational Scenario list</field>
+        <field name="model">digiit.ebios_rm.operational.scenario</field>
+        <field name="arch" type="xml">
+            <list class="list-custom" editable="bottom" delete="0">
+                <field name="prefixed_identifier" string="Idetifiant" optional="show"/>
+                <field name="risk_source_id" string="Source de risque / Objectif visé" options="{'no_create': True}" optional="show"/>
+                <field name="dreaded_event_id" string="Evénement redouté" options="{'no_create': True}" optional="show"/>
+                <field name="direct_attack" string="Attaque direct ou à travers PiP" optional="show"/>
+                <field name="stakeholder_id" readonly="direct_attack" optional="show"/>
+                <field name="attack_path" string="Description du chemin d'attaque" optional="hide"/>
+                <field name="mode_operatoire_count" string="Nb modes" class="o_centered_column"/>
+                <field name="seriousness" string="Gravité" optional="show" class="o_centered_column"/>
+                <field name="likelihood" string="Vraisemblance" optional="show" class="o_centered_column"/>
+                <field name="risk_identifier" string="Identifiant du risque" optional="hide"/>
+                <field name="risk_source_id_ref" string="Réf. source de risque" optional="hide"/>
+                <field name="risk_treatment_id" string="Traitement de risque" optional="hide"/>
+                <field name="strategic_sc_id" string="Scénario stratégique" optional="hide"/>
+                <field name="removed" string="Supprimé?" optional="hide"/>
+                <field name="scenario_data" string="Données du scénario" optional="hide"/>
+                <field name="phase_ids" string="Phases" optional="hide"/>
+                <field name="connection_ids" string="Connexions" optional="hide"/>
+                <button name="action_open_modes"
+                    type="object"
+                    string="Modes"
+                    class="btn-secondary btn-sm"/>
+                <button name="action_open_builder"
+                        string="Voir en visuel"
+                        type="object"
+                        class="btn-primary btn-sm o_list_button_visual"/>
+                <button name="action_delete_sc_op_with_confirmation"
+                        type="object"
+                        class="btn-outline-secondary"
+                        icon="fa-trash" title="Delete record"
+                        confirm="Êtes-vous sûr de vouloir supprimer ce scénario opérationnel ? Cette action supprimera également et immédiatement les traitements de risque associés (Atelier 5)!"/>
+
+            </list>
+        </field>
+    </record>
+    <record id="operational_scenario_view_form" model="ir.ui.view">
+        <field name="name">operational_scenario Form</field>
+        <field name="model">digiit.ebios_rm.operational.scenario</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="risk_identifier" string="Idetifiant"/>
+                        </group>
+                        <group>
+                            <field name="risk_source_id" string="Source de risque / Objectif visé"/>
+                        </group>
+                        <group>
+                            <field name="dreaded_event_id" string="Evénement redouté"/>
+                        </group>
+                        <group>
+                            <field name="direct_attack" string="Attaque direct ou à travers PiP"/>
+                        </group>
+                        <group>
+                            <field name="stakeholder_id" readonly="direct_attack"/>
+                        </group>
+                        <group>
+                            <field name="attack_path" string="Description du chemin d'attaque"/>
+                            <field name="mode_operatoire_ids"/>
+                        </group>
+                        <group>
+                            <field name="seriousness" string="Gravité"/>
+                        </group>
+                        <group>
+                            <field name="likelihood" string="Vraisemblance"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="operational_scenario_search_view" model="ir.ui.view">
+        <field name="name">Operational Scenario Search</field>
+        <field name="model">digiit.ebios_rm.operational.scenario</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Basic Search Fields -->
+                <field name="prefixed_identifier" string="Identifiant"/>
+                <field name="risk_source_id" string="SR-OV"/>
+                <field name="dreaded_event_id" string="Evénement redouté"/>
+                <field name="stakeholder_id" string="PiP"/>
+
+                <!-- Attack type -->
+                <filter name="direct_attack" string="Attaque directe"
+                        domain="[('direct_attack','=', True)]"/>
+                <filter name="indirect_attack" string="Via PiP"
+                        domain="[('direct_attack','=', False)]"/>
+
+                <!-- Hidden filter for the current study -->
+                <filter name="study_filter" string="Étude en cours"
+                        domain="[('study_id', '=', context.get('default_study_id'))]"
+                        invisible="1"/>
+
+                <separator/>
+
+                <!-- GROUP BY -->
+                <group expand="0" string="Group By">
+                    <filter name="group_by_risk_src" string="SR-OV"
+                            context="{'group_by':'risk_source_id'}"/>
+                    <filter name="group_by_er" string="Evénement redouté"
+                            context="{'group_by':'dreaded_event_id'}"/>
+                    <filter name="group_by_attack_type" string="Attaque directe?"
+                            context="{'group_by':'direct_attack'}"/>
+                    <filter name="group_by_gravity" string="Gravité"
+                            context="{'group_by':'seriousness'}"/>
+                    <filter name="group_by_likelihood" string="Vraisemblance"
+                            context="{'group_by':'likelihood'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <!-- MODE OPERATOIRE list view -->
+    <record id="operational_scenario_mode_view_list" model="ir.ui.view">
+        <field name="name">operational.scenario.mode.list</field>
+        <field name="model">digiit.ebios_rm.operational.scenario.mode</field>
+        <field name="arch" type="xml">
+            <list editable="bottom" delete="1">
+                <field name="scenario_identifier" string="Scénario" optional="show"/>
+                <field name="mode_level" optional="show"/>
+                <field name="description_html" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_operational_scenario_list_view" model="ir.actions.act_window">
+        <field name="name">Scénarios Opérationnels</field>
+        <field name="res_model">digiit.ebios_rm.operational.scenario</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="view_id" ref="operational_scenario_view_list"/>
+        <field name="domain">[('study_id', '=', active_id)]</field>
+        <field name="context">{'default_study_id': active_id}</field>
+    </record>
+
+
+    <!-- <menuitem
+        id="operational_scenario_menu_item"
+        name="Sc. opérationnels"
+        parent="main_menu"
+        action="action_operational_scenario_list_view"
+        /> -->
+</odoo>

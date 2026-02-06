@@ -1,0 +1,110 @@
+<odoo>
+    <record id="ecosystem_view_list" model="ir.ui.view">
+        <field name="name">Ecosystem list</field>
+        <field name="model">digiit.ebios_rm.ecosystem</field>
+        <field name="arch" type="xml">
+            <list class="list-custom" editable="bottom">
+                <field name="stakeholder_id" string="Parties prenantes" options="{'no_create': False, 'no_create_edit': False}" context="{'default_is_internal': False}" optional="show" />
+                <field name="category" string="Catégorie" optional="show" />
+                <field name="abbreviation" optional="show" />
+                <field name="dependance" string="Dépendence" optional="show" class="o_centered_column"/>
+                <field name="penetration" string="Penetration" optional="show" class="o_centered_column"/>
+                <field name="exposition" string="Exposition" optional="show" class="o_centered_column"/>
+                <field name="maturity" string="Maturité" optional="show" class="o_centered_column"/>
+                <field name="confidance" string="Confiance" optional="show" class="o_centered_column"/>
+                <field name="cyber_reliability" string="Fiabilité cyber" optional="show" class="o_centered_column"/>
+                <field name="threat_level" string="Niveau de menace" optional="show" class="o_centered_column"/>
+                <field name="security_measures" optional="show" />
+                <field name="equivalent_mesures_referentiel_to_implement" optional="show" widget="many2many_tags"/>
+                <field name="residual_threat_level" string="Niveau de menace résiduelle" optional="show" class="o_centered_column"/>
+<!--                <field name="critique" string="Critique" optional="show"/>-->
+                <field name="justification" string="Justification" optional="show"/>
+                <field name="description" string="Description" optional="hide" />
+            </list>
+        </field>
+    </record>
+    <record id="ecosystem_view_form" model="ir.ui.view">
+        <field name="name">ecosystem Form</field>
+        <field name="model">digiit.ebios_rm.ecosystem</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="stakeholder_id" string="Parties prenantes" options="{'no_create': False, 'no_create_edit': False}" context="{'default_is_internal': False}"/>
+                        <field name="category" string="Catégorie"/>
+                        <field name="abbreviation"/>
+                        <field name="dependance" string="Dépendence"/>
+                        <field name="penetration" string="Penetration"/>
+                        <field name="exposition" string="Exposition"/>
+                        <field name="cyber_reliability" string="Fiabilité cyber"/>
+                        <field name="maturity" string="Maturité"/>
+                        <field name="confidance" string="Confiance"/>
+                        <field name="threat_level" string="Niveau de menace"/>
+                        <field name="security_measures"/>
+                        <field name="equivalent_mesures_referentiel_to_implement"/>
+                        <field name="residual_threat_level" string="Niveau de menace résiduelle"/>
+<!--                        <field name="critique" string="Critique"/>-->
+                        <field name="justification" string="Justification"/>
+                        <field name="description" string="Description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ecosystem_view_search" model="ir.ui.view">
+        <field name="name">ecosystem.search</field>
+        <field name="model">digiit.ebios_rm.ecosystem</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Text/relational search fields -->
+                <field name="stakeholder_id" string="Partie prenante"/>
+                <field name="category" string="Catégorie"/>
+                <field name="description" string="Description"/>
+
+                <!-- Indicateurs calculés -->
+                <filter string="Niveau de menace élevé" name="filter_high_threat"
+                        domain="[('threat_level', '&gt;', 7)]"/>
+
+                <filter string="Niveau de menace moyen" name="filter_medium_threat"
+                        domain="[('threat_level', '&gt;=', 4), ('threat_level', '&lt;=', 7)]"/>
+
+                <filter string="Niveau de menace faible" name="filter_low_threat"
+                        domain="[('threat_level', '&lt;', 4)]"/>
+
+
+                <!-- Hidden contextual filter (study) -->
+                <filter name="study_filter" string="Étude en cours"
+                        domain="[('study_id','=',context.get('default_study_id'))]"
+                        invisible="1"/>
+
+                <separator/>
+
+                <!-- GROUP BY -->
+                <group expand="0" string="Group By">
+                    <filter name="group_by_category" string="Catégorie"
+                            context="{'group_by':'category'}"/>
+                    <filter name="group_by_threat" string="Niveau de menace"
+                            context="{'group_by':'threat_level'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ecosystem_list_view" model="ir.actions.act_window">
+        <field name="name">Écosystèmes</field>
+        <field name="res_model">digiit.ebios_rm.ecosystem</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="view_id" ref="ecosystem_view_list"/>
+        <field name="domain">[('study_id', '=', active_id)]</field>
+        <field name="context">{'default_study_id': active_id}</field>
+    </record>
+
+
+    <!-- <menuitem
+        id="ecosystem_menu_item"
+        name="Ecosystèmes"
+        parent="main_menu"
+        action="action_ecosystem_list_view"
+        /> -->
+</odoo>

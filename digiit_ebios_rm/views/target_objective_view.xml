@@ -1,0 +1,43 @@
+
+<odoo>
+    <record id="target_objective_view_list" model="ir.ui.view">
+        <field name="name">Target Objective list</field>
+        <field name="model">digiit.ebios_rm.target.objective</field>
+        <field name="arch" type="xml">
+            <list class="list-custom" editable="bottom">
+                <field name="name" string="Objectf visé"/>
+                <field name="description" string="Description"/>
+            </list>
+        </field>  
+    </record>
+    <record id="target_objective_view_form" model="ir.ui.view">
+        <field name="name">target_objective Form</field>
+        <field name="model">digiit.ebios_rm.target.objective</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" string="Objectf visé"/>
+                        <field name="description" string="Description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>  
+    </record>
+
+    <record id="action_target_objective_list_view" model="ir.actions.act_window">
+        <field name="name">Target Objectives</field>
+        <field name="res_model">digiit.ebios_rm.target.objective</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="target_objective_view_list"/>
+    </record>
+
+    
+    <menuitem
+        id="target_objective_menu_item"
+        name="Objectfs visés"
+        parent="sr_ov"
+        sequence="10"
+        action="action_target_objective_list_view"
+        />
+</odoo>

@@ -1,0 +1,50 @@
+
+<odoo>
+    <record id="visual_operational_view_list" model="ir.ui.view">
+        <field name="name">Liste des opérations visuelles</field>
+        <field name="model">visual.operational</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile my-custom-kanban another-class">
+                <field name="stage_id" options="{'group_by': 'stage_id'}"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click o_kanban_record my-custom-record record-highlight">
+                            <img src="{{record.image}}">
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>  
+    </record>
+    <record id="visual_operational_view_form" model="ir.ui.view">
+        <field name="name">Formulaire opération visuelle</field>
+        <field name="model">visual.operational</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        
+                    </group>
+                    <field name="dependency_ids" string="Dépendences"/>
+                </sheet>
+            </form>
+        </field>  
+    </record>
+
+    <record id="action_visual_operational_list_view" model="ir.actions.act_window">
+        <field name="name">Opérations visuelles</field>
+        <field name="res_model">visual.operational</field>
+        <field name="view_mode">custom_kanban,form</field>  <field name="view_ids" eval="[(5, 0, 0),
+                                   (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_your_model_kanban')}),
+                                   (0, 0, {'view_mode': 'forms'})]"/>
+        <field name="view_id" ref="visual_operational_view_list"/>
+    </record>
+
+    
+    <menuitem
+        id="visual_operational_menu_item"
+        name="Opérations visuelles"
+        parent="main_menu"
+        action="action_visual_operational_list_view"
+        />
+</odoo>

@@ -1,0 +1,349 @@
+<odoo>
+    <record id="study_view_list" model="ir.ui.view">
+        <field name="name">Liste des études</field>
+        <field name="model">digiit.ebios_rm.study</field>
+        <field name="arch" type="xml">
+            <list class="list-custom">
+                <field name="name" optional="show"/>
+                <field name="owner_company" optional="show"/>
+                <field name="is_for_partner" optional="hide"/>
+                <field name="partner" optional="hide"/>
+                <field name="study_date" optional="show"/>
+                <field name="perimeter" optional="hide"/>
+                <field name="strategic_cycle" optional="hide"/>
+                <field name="operational_cycle" optional="hide"/>
+                <field name="mission" optional="hide"/>
+                <field name="study_context" optional="hide"/>
+                <field name="participants" optional="hide"/>
+                <field name="constraints_hypotheses" optional="hide"/>
+                <field name="project_planning_elements" optional="hide"/>
+            </list>
+        </field>
+    </record>
+    <record id="study_view_form" model="ir.ui.view">
+        <field name="name">Formulaire d'étude</field>
+        <field name="model">digiit.ebios_rm.study</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="workshop1,workshop2,workshop3,workshop4,workshop5" readonly="0"
+                               options="{'clickable': True}"/>
+                    </header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" groups="base.group_user">
+                        <button class="oe_stat_button atelier1" type="object" name="action_view_business_values"
+                                icon="fa-star">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Valeurs métiers</span>
+                                <span class="o_stat_value">
+                                    <field name="business_values_count"/>
+                                </span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button atelier1" type="object" name="action_view_dreaded_events"
+                                icon="fa-warning">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Evénements redoutés</span>
+                                <span class="o_stat_value">
+                                    <field name="held_dreaded_events_count"/>/<field name="dreaded_events_count"/>
+                                </span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button atelier1" type="object" name="action_view_referentials"
+                                icon="fa-book">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Socle de sécurité</span>
+                                <span class="o_stat_value">
+                                    <field name="referentials_count"/>
+                                </span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button atelier2" type="object" name="action_view_risk_sources"
+                                icon="fa-exclamation-triangle">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Sources de risque</span>
+                                <span class="o_stat_value">
+                                    <field name="held_risk_sources_count"/>/<field name="risk_sources_count"/>
+                                </span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button atelier3" type="object" name="action_view_ecosystems"
+                                icon="fa-sitemap">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Écosystème</span>
+                                <span class="o_stat_value">
+                                    <field name="ecosystems_count"/>
+                                </span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button atelier3" type="object" name="action_view_sc_strategique"
+                                icon="fa-check">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Sc. Stratégie</span>
+                                <span class="o_stat_value">
+                                    <field name="strategic_scenarios_count"/>
+                                </span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button atelier4" type="object" name="action_operational_scenario_list_view"
+                                icon="fa-check">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Sc. Opérationnel</span>
+                                <span class="o_stat_value">
+                                    <field name="operational_scenarios_count"/>
+                                </span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button atelier5" type="object" name="action_risk_treatment_list_view"
+                                icon="fa-check">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Traitement des risques</span>
+                                <span class="o_stat_value">
+                                    <field name="risk_treatments_count"/>
+                                </span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button atelier5" type="object" name="action_view_pacs"
+                                icon="fa-list-alt">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">PACS</span>
+                                <span class="o_stat_value">
+                                    <field name="pacs_count"/>
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="oe_title" invisible="state!='workshop1'">
+                        <h1>
+                            <group>
+                                <field name="name" string="Nom de l'application"/>
+                            </group>
+                        </h1>
+                    </div>
+                    <group name="study_header">
+                        <notebook>
+                            <page string="Cadre de l'étude" invisible="state!='workshop1'">
+                                <!-- Section 1: Identification de l'étude -->
+                                <group string="Identification de l'étude">
+                                    <group>
+                                        <field name="perimeter"/>
+                                        <field name="study_date"/>
+                                    </group>
+                                    <group>
+                                        <field name="company_id" invisible="not select_company"/>
+                                        <field name="is_for_partner" string="Etude pour un partenaire?" widget="boolean_toggle"/>
+                                        <field name="partner" string="Partenaire" invisible="not is_for_partner" required="is_for_partner"/>
+                                    </group>
+                                </group>
+
+                                <!-- Section 2: Cycles -->
+                                <group string="Cadre temporel de l'étude">
+                                    <group>
+                                        <label for="strategic_cycle" string="Cycle stratégique"/>
+                                        <div class="o_row">
+                                            <field name="strategic_cycle" class="oe_inline"/>
+                                            <span>années</span>
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <label for="operational_cycle" string="Cycle opérationnel"/>
+                                        <div class="o_row">
+                                            <field name="operational_cycle" class="oe_inline"/>
+                                            <span>années</span>
+                                        </div>
+                                    </group>
+                                </group>
+
+                                <!-- Section 3: Contexte et Mission -->
+                                <group string="Contexte et Mission">
+                                    <group>
+                                        <label for="study_context" string="Contexte"/>
+                                        <div class="o_row">
+                                            <field name="study_context" class="oe_inline" placeholder="Décrivez le contexte de l'étude..."/>
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <label for="mission" string="Mission"/>
+                                        <div class="o_row">
+                                            <field name="mission" class="oe_inline" placeholder="Définissez la mission..."/>
+                                        </div>
+                                    </group>
+                                </group>
+
+                                <!-- Section 4: Participants -->
+                                <group string="Participants">
+                                    <field name="participants" widget="html" placeholder="Liste des participants à l'étude..." nolabel="1"/>
+                                </group>
+
+                                <!-- Section 5: Contraintes et Hypothèses -->
+                                <group string="Contraintes et Hypothèses">
+                                    <field name="constraints_hypotheses" placeholder="Listez les contraintes et hypothèses..." nolabel="1"/>
+                                </group>
+
+                                <!-- Section 6: Planning Projet -->
+                                <group string="Planning des ateliers de l'étude">
+                                    <field name="project_planning_elements" widget="html" placeholder="Planning et jalons du projet..." nolabel="1"/>
+                                </group>
+                            </page>
+                            <page string="Methodologie de cycle" name="methodology_cycle" invisible="1">
+                                <field name="iterations" widget="one2many_list" string="Iterations"/>
+                            </page>
+                            <page invisible="state!='workshop1'" string="Valeurs métiers">
+                                <group>
+                                    <field name="business_value_ids" string=""/>
+                                </group>
+                            </page>
+                            <page string="Evénements redoutés" invisible="state!='workshop1'">
+                                <group>
+                                    <field name="dreaded_event_ids" string=""/>
+                                </group>
+                            </page>
+
+                            <page string="Socle de sécurité" invisible="state!='workshop1'">
+                                <group>
+                                    <field name="study_referential_ids" nolabel="1" context="{'default_study_id': id}"/>
+                                </group>
+                            </page>
+
+
+                            <page invisible="state!='workshop2'" string="Sources de risque">
+                                <header>
+                                    <button name="action_populate_risk_sources"
+                                            string="Remplir"
+                                            type="object"
+                                            class="btn btn-primary"/>
+                                    <button name="action_open_roto_radar_cartography"
+                                            string="Voir en visuel"
+                                            type="object"
+                                            class="btn btn-primary"/>
+                                </header>
+
+                                <field name="risk_source_ids" string="" widget="one2many_list"/>
+                            </page>
+                            <page invisible="state!='workshop3'" string="Ecosystème">
+                                <header>
+                                    <button name="populate_pip" string="Remplir" type="object" class="btn-primary"/>
+                                    <button name="display_visual_pip" string="Voir en visuel" type="object"
+                                            class="btn-primary"/>
+                                </header>
+                                <group>
+                                    <field name="ecosystem_ids" string="" widget="one2many_list"/>
+                                </group>
+
+                            </page>
+                            <page invisible="state!='workshop3'" string="Scénario stratégique">
+                                <header>
+                                    <button name="populate" string="Remplir" type="object" class="btn-primary"/>
+                                    <button name="display_visual" string="Voir en visuel" type="object"
+                                            class="btn-primary"/>
+                                </header>
+                                <!-- <group>
+                                    <field name="strategic_scenario_ids" string="" />
+                                </group> -->
+                                <group>
+                                    <field name="visual_strategic_scenario_ids" widget="one2many_list" string=""/>
+                                </group>
+                            </page>
+                            <page invisible="state!='workshop4'" string="Sc. opérationnels">
+                                <header>
+                                    <button type="object" name="populate_operational_sc" string="Remplir"
+                                            class="btn-primary"/>
+                                </header>
+                                <group>
+                                    <field name="operational_scenario_ids" widget="one2many_list" string=""/>
+                                </group>
+                            </page>
+                            <page invisible="state!='workshop5'" string="Traitement des risques">
+                                <header>
+                                    <button type="object" name="populate_risk_treatments" string="Remplir"
+                                            class="btn-primary"/>
+                                    <button name="display_visual_risk_matrix" string="Voir en visuel" type="object"
+                                            class="btn-primary"/>
+                                </header>
+                                <group>
+                                    <field name="risk_treatment_ids" widget="one2many_list" string=""/>
+                                </group>
+                            </page>
+                                <page invisible="state!='workshop5'" string="PACS">
+                                    <header>
+                                        <button type="object" name="populate_pacs" string="Remplir"
+                                                class="btn-primary"
+                                                help="Crée automatiquement des PACS pour toutes les mesures référencées dans les traitements de risques"/>
+                                    </header>
+                                    <group>
+                                        <field name="study_pacs_ids" widget="one2many_list" string=""/>
+                                    </group>
+                                </page>
+                            <page invisible="state!='workshop5'" string="Livrables">
+                                <group>
+                                    <group col="1">
+                                        <group string="Déclaration d'applicabilité DdA" col="1">
+                                            <group>
+                                                <div>
+                                                    <field name="is_applicable" nolabel="1"/>
+                                                    <span>Mettre tous les autres mesures comme applicables comme bonne pratique</span>
+                                                </div>
+                                            </group>
+                                            <group>
+                                                <div>
+                                                    <button name="dda_xlsx_report_ebios_rm"
+                                                        string="DdA Excel"
+                                                        type="object"
+                                                        class="btn btn-primary"
+                                                        icon="fa-download"/>
+                                                </div>
+                                            </group>
+                                        </group>
+                                        <group string="Rapport d'appréciation et traitement des risques" col="1">
+                                            <group>
+                                                <div>
+                                                    <button name="dda_docs_report_ebios_rm"
+                                                        string="SOON Format Word"
+                                                        type="object"
+                                                        class="btn-secondary text-muted"
+                                                        icon=""/>
+                                                </div>
+                                                <div>
+                                                    <button name="dda_ppt_report_ebios_rm"
+                                                        string="SOON Format PPT"
+                                                        type="object"
+                                                        class="btn-secondary text-muted"
+                                                        icon=""/>
+                                                </div>
+                                            </group>
+                                        </group>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                    <!--<div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>-->
+                    <chatter reload_on_follower="True" position="bottom" track_visibility="onchange"/>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="action_study_list_view" model="ir.actions.act_window">
+        <field name="name">Etudes Ebios RM</field>
+        <field name="res_model">digiit.ebios_rm.study</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="study_view_list"/>
+    </record>
+    <menuitem
+            id="study_menu_item"
+            name="Etude"
+            parent="ebios_risk_manager_root_menu"
+            action="action_study_list_view"
+            sequence="10"
+    />
+
+
+</odoo>

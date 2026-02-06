@@ -1,0 +1,168 @@
+
+<odoo>
+    <record id="business_value_view_list" model="ir.ui.view">
+        <field name="name">Digiit Business Value list</field>
+        <field name="model">digiit.ebios_rm.business.value</field>
+        <field name="arch" type="xml">
+            <list >
+                <field name="prefixed_identifier" string="ID"  optional="show"/>
+                <field name="name" string="Dénomination" optional="show"/>
+                <field name="type" string="Nature" optional="show"/>
+                <field name="classification" string="Classification" optional="show"/>
+                <field name="responsible_entity_person" string="Entité/ personne responsable" optional="show"/>
+                <field name="stakeholder_ids" string="PiP" widget="many2many_tags" optional="hide"/>
+                <field name="person_ids" string="Personnes" widget="many2many_tags" optional="hide"/>
+                <field name="bien_support_ids" string="Biens supports" optional="show"/>
+                <field name="description" string="Description" optional="hide"/>
+                <!--<field name="active_informational_ids" string="Actifs informationnel" optional="show"/>-->
+            </list>
+        </field>
+    </record>
+    <record id="business_value_view_form" model="ir.ui.view">
+        <field name="name">business_value Form</field>
+        <field name="model">digiit.ebios_rm.business.value</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <group>
+                                <field name="name" string="Dénomination"/>
+                            </group>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="prefixed_identifier" string="ID"/>
+                            <field name="type" string="Nature"/>
+                        </group>
+                        <group>
+                            <field name="classification" string="Classification" placeholder="D,C,I,T"/>
+                            <field name="responsible_entity_person" string="Entité/personne responsable"/>
+                            <!--<field name="employee_ids" string="" widget="many2many_tags" /> -->
+                        </group>
+                    </group>
+                    <group col="1">
+                        <group col="1">
+                            <field name="description" string="Description" widget="html" class="oe_inline"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <!-- NEW: Active Bien support page with NEW model -->
+                        <page string="Biens supports">
+                            <group>
+                                <field name="bien_support_ids" string="">
+                                    <list editable="bottom">
+                                        <field name="name" string="Nom du bien support"/>
+                                        <field name="classification" string="Classification"/>
+                                        <field name="description" string="Description"/>
+                                        <field name="personne_proprietaire" string="Entité/ Personne Propriétaire"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+
+                        <!-- OLD: Inactive page for OLD data - hidden but preserved -->
+                        <page string="Actifs informationnel" invisible="1">
+                            <group>
+                                <field name="active_informational_ids" string="" readonly="1">
+                                    <list editable="bottom">
+                                        <field name="name" string="Nom de l'actif"/>
+                                        <field name="classification" string="Classification"/>
+                                        <field name="description" string="Description"/>
+                                        <field name="personne_proprietaire" string="Personne Propriétaire"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Personnes">
+                            <!-- <group><field name="local_ids" string="Locals" widget="many2many_tags" editable="bottom" /></group>
+                            <group><field name="application_ids" string="Applications / Softwares"  widget="many2many_tags" editable="bottom"/></group>
+                            <group><field name="material_paper_ids" string="Matériels / Papiers" widget="many2many_tags" editable="bottom"/></group>
+                            <group><field name="network_ids" string="Réseaux" widget="many2many_tags" editable="bottom"/></group>                         -->
+                            <group>
+                                <field name="person_ids" string="">
+                                    <list editable="bottom">
+                                        <field name="id" readonly="1" />
+                                        <field name="name" string="Personne" />
+                                        <field name="employee_type" readonly="1" />
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Parties prenantes">
+                            <!-- <group><field name="local_ids" string="Locals" widget="many2many_tags" editable="bottom" /></group>
+                            <group><field name="application_ids" string="Applications / Softwares"  widget="many2many_tags" editable="bottom"/></group>
+                            <group><field name="material_paper_ids" string="Matériels / Papiers" widget="many2many_tags" editable="bottom"/></group>
+                            <group><field name="network_ids" string="Réseaux" widget="many2many_tags" editable="bottom"/></group>                         -->
+                            <group><field name="stakeholder_ids" string=""/></group>
+                        </page>
+                        <!--
+                        <page string="Description /Activités">
+                            <group>
+                                <field name="activities_description" string="">
+                                    <list editable="bottom">
+                                        <field name="name" string="Description"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                        -->
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="business_value_view_search" model="ir.ui.view">
+        <field name="name">business_value Search</field>
+        <field name="model">digiit.ebios_rm.business.value</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Searchable fields (NOT study_id to avoid duplicate filter) -->
+                <field name="name" string="Dénomination"/>
+                <field name="prefixed_identifier" string="ID"/>
+                <field name="description" string="Description"/>
+
+                <!-- Filters for Nature (Type) -->
+                <filter string="Processus" name="filter_process"
+                        domain="[('type', '=', 'process')]"/>
+                <filter string="Information" name="filter_information"
+                        domain="[('type', '=', 'information')]"/>
+
+                <separator/>
+
+                <!-- Hidden filter for study - activated by search_default_study_id -->
+                <filter string="Étude en cours" name="study_id"
+                        domain="[('study_id', '=', context.get('default_study_id'))]"
+                        invisible="1"/>
+
+                <!-- Group By section -->
+                <group expand="0" string="Group By">
+                    <filter string="Nature" name="group_by_type"
+                            context="{'group_by': 'type'}"/>
+                    <filter string="Classification" name="group_by_classification"
+                            context="{'group_by': 'classification'}"/>
+                    <filter string="Nombre d'ER" name="group_dreaded_event_count"
+                            context="{'group_by':'dreaded_event_count'}"/>
+                    <filter string="Nombre de Sc. Stratégiques" name="group_strategic_scenario_count"
+                            context="{'group_by':'strategic_scenario_count'}"/>
+                    <filter string="Étude" name="group_by_study"
+                            context="{'group_by': 'study_id'}"
+                            invisible="context.get('default_study_id', False)"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_business_value_list_view" model="ir.actions.act_window">
+        <field name="name">Valeurs Métiers</field>
+        <field name="res_model">digiit.ebios_rm.business.value</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="view_id" ref="business_value_view_list"/>
+        <!-- Add default domain based on context -->
+        <field name="domain">[('study_id', '=', active_id)]</field>
+        <field name="context">{'default_study_id': active_id}</field>
+    </record>
+
+</odoo>

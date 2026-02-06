@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="digiit_ebios_rm_risk_matrix.RiskMatrix" owl="1">
+        <div class="risk-matrix-container">
+            <!-- Header Panel -->
+            <div class="control-panel p-2 bg-light border-bottom d-flex align-items-center justify-content-between">
+                <button class="btn btn-secondary" t-on-click="goBack">
+                    <i class="fa fa-arrow-left me-1"></i>Retour
+                </button>
+
+                <span class="fw-bold fs-4">Matrice des Risques</span>
+
+                <button class="btn btn-primary" t-on-click="captureRiskMatrix"
+                        t-att-disabled="state.isCapturing">
+                    <i class="fa fa-camera me-1" t-if="!state.isCapturing"></i>
+                    <i class="fa fa-spinner fa-spin me-1" t-if="state.isCapturing"></i>
+                    <t t-if="!state.isCapturing">Capturer</t>
+                    <t t-if="state.isCapturing">Capture...</t>
+                </button>
+            </div>
+
+            <div t-if="state.isLoading" class="text-center p-4">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <div t-else="" id="risk-matrix-capture-area" class="flex flex-row space-x-8 my-4">
+                <!-- Current Risk Matrix -->
+                <div class="flex-1">
+                    <h2 class="text-xl font-bold text-center text-red-500 mb-2">Risque actuel</h2>
+                    <div class="relative">
+                        <!-- Y-axis label -->
+                        <div class="absolute -left-8 top-1/2 transform -rotate-90 -translate-y-1/2 text-blue-500 font-bold">GRAVITÉ</div>
+
+                        <table class="w-full border-collapse">
+                            <tbody>
+                                <!-- Row 4 -->
+                                <tr>
+                                    <td class="w-8 text-center text-blue-500 font-bold">4</td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('4', '1')}}">
+                                        <span t-esc="getCellContent('4', '1', 'current')" t-att-title="renderTooltipContent('4', '1', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('4', '2')}}">
+                                        <span t-esc="getCellContent('4', '2', 'current')" t-att-title="renderTooltipContent('4', '2', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('4', '3')}}">
+                                        <span t-esc="getCellContent('4', '3', 'current')" t-att-title="renderTooltipContent('4', '3', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('4', '4')}}">
+                                        <span t-esc="getCellContent('4', '4', 'current')" t-att-title="renderTooltipContent('4', '4', 'current')"/>
+                                    </td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr>
+                                    <td class="w-8 text-center text-blue-500 font-bold">3</td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('3', '1')}}">
+                                        <span t-esc="getCellContent('3', '1', 'current')" t-att-title="renderTooltipContent('3', '1', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('3', '2')}}">
+                                        <span t-esc="getCellContent('3', '2', 'current')" t-att-title="renderTooltipContent('3', '2', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('3', '3')}}">
+                                        <span t-esc="getCellContent('3', '3', 'current')" t-att-title="renderTooltipContent('3', '3', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('3', '4')}}">
+                                        <span t-esc="getCellContent('3', '4', 'current')" t-att-title="renderTooltipContent('3', '4', 'current')"/>
+                                    </td>
+                                </tr>
+                                <!-- Row 2 -->
+                                <tr>
+                                    <td class="w-8 text-center text-blue-500 font-bold">2</td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('2', '1')}}">
+                                        <span t-esc="getCellContent('2', '1', 'current')" t-att-title="renderTooltipContent('2', '1', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('2', '2')}}">
+                                        <span t-esc="getCellContent('2', '2', 'current')" t-att-title="renderTooltipContent('2', '2', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('2', '3')}}">
+                                        <span t-esc="getCellContent('2', '3', 'current')" t-att-title="renderTooltipContent('2', '3', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('2', '4')}}">
+                                        <span t-esc="getCellContent('2', '4', 'current')" t-att-title="renderTooltipContent('2', '4', 'current')"/>
+                                    </td>
+                                </tr>
+                                <!-- Row 1 -->
+                                <tr>
+                                    <td class="w-8 text-center text-blue-500 font-bold">1</td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('1', '1')}}">
+                                        <span t-esc="getCellContent('1', '1', 'current')" t-att-title="renderTooltipContent('1', '1', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('1', '2')}}">
+                                        <span t-esc="getCellContent('1', '2', 'current')" t-att-title="renderTooltipContent('1', '2', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('1', '3')}}">
+                                        <span t-esc="getCellContent('1', '3', 'current')" t-att-title="renderTooltipContent('1', '3', 'current')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('1', '4')}}">
+                                        <span t-esc="getCellContent('1', '4', 'current')" t-att-title="renderTooltipContent('1', '4', 'current')"/>
+                                    </td>
+                                </tr>
+                                <!-- X-axis numbers -->
+                                <tr>
+                                    <td></td>
+                                    <td class="text-center text-blue-500 font-bold">1</td>
+                                    <td class="text-center text-blue-500 font-bold">2</td>
+                                    <td class="text-center text-blue-500 font-bold">3</td>
+                                    <td class="text-center text-blue-500 font-bold">4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- X-axis label -->
+                        <div class="text-center text-blue-500 font-bold mt-1">VRAISEMBLANCE</div>
+                    </div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="30" viewBox="0 0 100 30">
+                        <line x1="10" y1="15" x2="90" y2="15"
+                              stroke="#4a4a4a"
+                              stroke-width="3"
+                              marker-end="url(#arrowhead)" />
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7"
+                                    refX="10" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#4a4a4a"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+
+                <!-- Residual Risk Matrix -->
+                <div class="flex-1">
+                    <h2 class="text-xl font-bold text-center text-red-500 mb-2">Risque résiduel</h2>
+                    <div class="relative">
+                        <!-- Y-axis label -->
+                        <div class="absolute -left-8 top-1/2 transform -rotate-90 -translate-y-1/2 text-blue-500 font-bold">GRAVITÉ</div>
+
+                        <table class="w-full border-collapse">
+                            <tbody>
+                                <!-- Row 4 -->
+                                <tr>
+                                    <td class="w-8 text-center text-blue-500 font-bold">4</td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('4', '1')}}">
+                                        <span t-esc="getCellContent('4', '1', 'residual')" t-att-title="renderTooltipContent('4', '1', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('4', '2')}}">
+                                        <span t-esc="getCellContent('4', '2', 'residual')" t-att-title="renderTooltipContent('4', '2', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('4', '3')}}">
+                                        <span t-esc="getCellContent('4', '3', 'residual')" t-att-title="renderTooltipContent('4', '3', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('4', '4')}}">
+                                        <span t-esc="getCellContent('4', '4', 'residual')" t-att-title="renderTooltipContent('4', '4', 'residual')"/>
+                                    </td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr>
+                                    <td class="w-8 text-center text-blue-500 font-bold">3</td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('3', '1')}}">
+                                        <span t-esc="getCellContent('3', '1', 'residual')" t-att-title="renderTooltipContent('3', '1', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('3', '2')}}">
+                                        <span t-esc="getCellContent('3', '2', 'residual')" t-att-title="renderTooltipContent('3', '2', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('3', '3')}}">
+                                        <span t-esc="getCellContent('3', '3', 'residual')" t-att-title="renderTooltipContent('3', '3', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('3', '4')}}">
+                                        <span t-esc="getCellContent('3', '4', 'residual')" t-att-title="renderTooltipContent('3', '4', 'residual')"/>
+                                    </td>
+                                </tr>
+                                <!-- Row 2 -->
+                                <tr>
+                                    <td class="w-8 text-center text-blue-500 font-bold">2</td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('2', '1')}}">
+                                        <span t-esc="getCellContent('2', '1', 'residual')" t-att-title="renderTooltipContent('2', '1', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('2', '2')}}">
+                                        <span t-esc="getCellContent('2', '2', 'residual')" t-att-title="renderTooltipContent('2', '2', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('2', '3')}}">
+                                        <span t-esc="getCellContent('2', '3', 'residual')" t-att-title="renderTooltipContent('2', '3', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('2', '4')}}">
+                                        <span t-esc="getCellContent('2', '4', 'residual')" t-att-title="renderTooltipContent('2', '4', 'residual')"/>
+                                    </td>
+                                </tr>
+                                <!-- Row 1 -->
+                                <tr>
+                                    <td class="w-8 text-center text-blue-500 font-bold">1</td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('1', '1')}}">
+                                        <span t-esc="getCellContent('1', '1', 'residual')" t-att-title="renderTooltipContent('1', '1', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('1', '2')}}">
+                                        <span t-esc="getCellContent('1', '2', 'residual')" t-att-title="renderTooltipContent('1', '2', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('1', '3')}}">
+                                        <span t-esc="getCellContent('1', '3', 'residual')" t-att-title="renderTooltipContent('1', '3', 'residual')"/>
+                                    </td>
+                                    <td t-attf-class="border border-gray-600 p-3 text-center font-bold {{getCellClass('1', '4')}}">
+                                        <span t-esc="getCellContent('1', '4', 'residual')" t-att-title="renderTooltipContent('1', '4', 'residual')"/>
+                                    </td>
+                                </tr>
+                                <!-- X-axis numbers -->
+                                <tr>
+                                    <td></td>
+                                    <td class="text-center text-blue-500 font-bold">1</td>
+                                    <td class="text-center text-blue-500 font-bold">2</td>
+                                    <td class="text-center text-blue-500 font-bold">3</td>
+                                    <td class="text-center text-blue-500 font-bold">4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- X-axis label -->
+                        <div class="text-center text-blue-500 font-bold mt-1">VRAISEMBLANCE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

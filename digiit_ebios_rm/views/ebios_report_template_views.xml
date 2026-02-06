@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_digiit_report_template_list" model="ir.ui.view">
+        <field name="name">digiit.ebios_rm.report.template.list</field>
+        <field name="model">digiit.ebios_rm.report.template</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="report_type"/>
+                <field name="template_filename"/>
+                <field name="use_this_template" widget="boolean_toggle" optional="show"/>
+                <field name="is_default" column_invisible="1"/>
+                <button name="action_download_template"
+                        type="object"
+                        icon="fa-download"
+                        title="Télécharger le template"/>
+                <button name="action_duplicate_as_custom"
+                        type="object"
+                        icon="fa-copy"
+                        title="Dupliquer comme template personnalisé"
+                        invisible="is_default == False"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_digiit_report_template_form" model="ir.ui.view">
+        <field name="name">digiit.ebios_rm.report.template.form</field>
+        <field name="model">digiit.ebios_rm.report.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_download_template"
+                            string="Télécharger"
+                            type="object"
+                            class="oe_highlight"/>
+                    <button name="action_duplicate_as_custom"
+                            string="Dupliquer comme personnalisé"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="is_default == False"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Système"
+                            bg_color="bg-info"
+                            invisible="is_default == False"/>
+                    <group>
+                        <group>
+                            <field name="name" readonly="is_default == True"/>
+                            <field name="report_type" readonly="is_default == True"/>
+                            <field name="use_this_template" widget="boolean_toggle" invisible="is_default == True"/>
+                        </group>
+                        <group>
+                            <field name="template_file"
+                                   filename="template_filename"
+                                   readonly="is_default == True"/>
+                            <field name="template_filename" invisible="1"/>
+                            <field name="is_default" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"
+                               placeholder="Instructions pour utiliser ce modèle"
+                               readonly="is_default == True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_digiit_report_template_search" model="ir.ui.view">
+        <field name="name">digiit.ebios_rm.report.template.search</field>
+        <field name="model">digiit.ebios_rm.report.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="report_type"/>
+                <separator/>
+                <filter string="Templates système"
+                        name="filter_default"
+                        domain="[('is_default', '=', True)]"/>
+                <filter string="Templates personnalisés"
+                        name="filter_custom"
+                        domain="[('is_default', '=', False)]"/>
+                <separator/>
+                <group expand="0" string="Grouper par">
+                    <filter string="Type de rapport"
+                            name="group_report_type"
+                            context="{'group_by': 'report_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_digiit_report_template" model="ir.actions.act_window">
+        <field name="name">Templates de Rapport</field>
+        <field name="res_model">digiit.ebios_rm.report.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créer votre premier template de rapport
+            </p>
+            <p>
+                Les templates système sont disponibles pour téléchargement.
+                Vous pouvez les personnaliser et créer vos propres versions.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_digiit_ebios_report_template"
+        name="Templates de rapport"
+        parent="main_menu"
+        sequence="16"
+        action="action_digiit_report_template"
+        />
+</odoo>

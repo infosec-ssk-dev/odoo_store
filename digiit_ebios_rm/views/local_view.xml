@@ -1,0 +1,40 @@
+
+<odoo>
+    <record id="local_view_list" model="ir.ui.view">
+        <field name="name">Digiit Local list</field>
+        <field name="model">digiit.ebios_rm.local</field>
+        <field name="arch" type="xml">
+            <list class="list-custom">
+                <field name="name" />
+            </list>
+        </field>  
+    </record>
+    <record id="local_view_form" model="ir.ui.view">
+        <field name="name">local Form</field>
+        <field name="model">digiit.ebios_rm.local</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </sheet>
+            </form>
+        </field>  
+    </record>
+
+    <record id="action_local_list_view" model="ir.actions.act_window">
+        <field name="name">Digiit Locals</field>
+        <field name="res_model">digiit.ebios_rm.local</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="local_view_list"/>
+    </record>
+
+    
+    <!-- <menuitem
+        id="local_menu_item"
+        name="Locals"
+        parent="ebios_risk_manager_root_menu"
+        action="action_local_list_view"
+        /> -->
+</odoo>

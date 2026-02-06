@@ -1,0 +1,402 @@
+.risk-dashboard-container {
+    padding: 2px;
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.risk-dashboard {
+    font-family: 'Open Sans', sans-serif;
+    color: #555;
+}
+
+// Header styles
+.connection-header {
+    background-color: #FFF2D1;
+    padding: 15px;
+    border-radius: 8px;
+    border-bottom: 1px solid #E6E6E6;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.connection-title {
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.connection-objective {
+    font-size: 15px;
+    color: #555;
+    flex: 1;
+    min-width: 250px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.connection-er {
+    flex: 1;
+    min-width: 250px;
+    text-align: right;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.threat-title {
+    color: #6F0A12;
+    font-weight: bold;
+}
+
+// Chaque connection menace-actif est une ligne
+.connection-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+    position: relative;
+    min-height: 150px;
+    padding: 20px;
+    margin-bottom: 15px;
+    overflow: visible; /* Allow tooltips to overflow */
+}
+
+// Sections with colored backgrounds
+.section-container {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: stretch;
+    border-radius: 8px;
+    overflow: visible; /* Allow tooltips to overflow */
+    padding-top: 30px; // Space for the label
+    position: relative;
+}
+
+.section-label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.threat-container {
+    background-color: #FFF2D1; // Light yellow for source de risque
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.asset-container {
+    background-color: #FFE5E5; // Light pink for organisation
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: relative;
+    padding-bottom: 40px; // Space for gravity indicator
+}
+
+.pp-container {
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 2;
+    min-width: 120px;
+}
+
+.section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px 10px;
+    height: auto;
+}
+
+.scenarios-container {
+    border-radius: 8px;
+    background-color: #E4F1FF;
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    padding: 40px 0;
+    min-height: 100%;
+    overflow: visible; /* Allow tooltip to overflow */
+}
+
+.threat,
+.asset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.threat-icon,
+.asset-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+.threat-name,
+.asset-name  {
+    font-weight: bold;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+// Gravity indicator
+.gravity-indicator {
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    right: 15px;
+    border-radius: 5px;
+    padding: 8px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+// Nouveau container pour la flèche complète
+.arrow-container {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.scenario {
+    position: relative;
+    overflow: visible; /* Allow tooltips to overflow */
+}
+
+// Style pour les segments de flèche
+.arrow-segment {
+    height: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.arrow-direct {
+    flex: 1;
+    width: 100%;
+}
+
+.arrow-first {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.arrow-second {
+    flex: 1;
+    margin-left: 10px;
+}
+
+// Partie prenante au milieu
+.pp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    min-height: 80px;
+}
+
+.pp-header {
+    font-weight: bold;
+    color: #4A89DC;
+    font-size: 12px;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+    max-width: 100%;
+}
+
+.pp-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.pp-score-circle, .scenario-score-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.pp-score-circle {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #4A89DC; // Blue for PP score
+}
+
+.scenario-score-circle {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+// Different colored circles for different scores like in the example
+.scenario-score-circle {
+    &:contains("0.5") {
+        background-color: #59D8C9; // Light teal
+    }
+    &:contains("1"), &:contains("2") {
+        background-color: #4A89DC; // Medium blue
+    }
+    &:contains("2.7") {
+        background-color: #F0B840; // Mustard
+    }
+    &:contains("3"), &:contains("4"), &:contains("5") {
+        background-color: #E64C3D; // Red
+    }
+}
+
+// Styles pour les types d'attaques
+.attack-type-indicator {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.attack-type {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+}
+
+.attack-type.direct {
+    background-color: #71639E;
+}
+
+.attack-type.indirect {
+    background-color: #71639E;
+}
+
+// Styles différents pour les flèches selon le type d'attaque
+.direct-attack {
+    background-color: #71639E;
+}
+
+.direct-attack:hover {
+    background-color: #685B92;
+    height: 3px;
+}
+
+.direct-attack::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -4px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid #71639E;
+}
+
+.direct-attack:hover::after {
+    border-left: 10px solid #685B92;
+}
+
+.pp-involved {
+    background-color: #71639E;
+}
+
+.pp-involved:hover {
+    background-color: #685B92;
+    height: 3px;
+}
+
+.pp-involved::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -4px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid #71639E;
+}
+
+.pp-involved:hover::after {
+    border-left: 10px solid #685B92;
+}
+
+.scenario-details-tooltip {
+    position: fixed; /* Changed from absolute to fixed */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the tooltip */
+    width: 400px;
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    z-index: 1000; /* Very high z-index to appear on top */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    border: 2px solid #ddd;
+}
+
+.scenario-details-tooltip h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+    color: #333;
+}
+
+.scenario-details-tooltip p {
+    margin: 10px 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+    .connection-header {
+        flex-direction: column;
+    }
+
+    .connection-er {
+        text-align: left;
+    }
+
+    .connection-row {
+        flex-wrap: wrap;
+    }
+
+    .section-container {
+        min-width: 150px;
+    }
+}

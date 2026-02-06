@@ -1,0 +1,35 @@
+.oe_stat_button.atelier1 .o_stat_text,
+.oe_stat_button.atelier1 .o_stat_value,
+.oe_stat_button.atelier1 .fa {
+    color: #f45d9f !important;  /* Darker pink */
+}
+
+.oe_stat_button.atelier2 .o_stat_text,
+.oe_stat_button.atelier2 .o_stat_value,
+.oe_stat_button.atelier2 .fa {
+    color: #ad56db !important;  /* Darker yellow/gold -->purple */
+}
+
+.oe_stat_button.atelier3 .o_stat_text,
+.oe_stat_button.atelier3 .o_stat_value,
+.oe_stat_button.atelier3 .fa {
+    color: #4aa8c7 !important;  /* Darker blue */
+}
+
+.oe_stat_button.atelier4 .o_stat_text,
+.oe_stat_button.atelier4 .o_stat_value,
+.oe_stat_button.atelier4 .fa {
+    color: #4db86a !important;  /* Darker green */
+}
+
+.oe_stat_button.atelier5 .o_stat_text,
+.oe_stat_button.atelier5 .o_stat_value,
+.oe_stat_button.atelier5 .fa {
+    color: #e3825b !important;  /* Darker orange */
+}
+
+/* Optional: Add font weight to make colored text stand out */
+.oe_stat_button .o_stat_text,
+.oe_stat_button .o_stat_value {
+    font-weight: 600;
+}

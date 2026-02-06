@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_stakeholder_list" model="ir.ui.view">
+        <field name="name">ebios.stakeholder.list</field>
+        <field name="model">digiit.ebios_rm.stakeholder</field>
+        <field name="arch" type="xml">
+            <list string="Stakeholders">
+                <field name="name"/>
+                <field name="category"/>
+                <field name="is_internal"/>
+                <field name="icon"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_stakeholder_form" model="ir.ui.view">
+        <field name="name">ebios.stakeholder.form</field>
+        <field name="model">digiit.ebios_rm.stakeholder</field>
+        <field name="arch" type="xml">
+            <form string="Stakeholder Details">
+                <sheet>
+                    <field name="icon" widget="image" class="oe_avatar"/>
+                    <group>
+                        <div class="oe_title">
+                            <label for="name" string="Partie intéressée"/>
+                            <h1>
+                                <field class="text-break" name="name" 
+                                       placeholder="Nom de la partie intéressée"/>
+                            </h1>
+                        </div>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="category"/>
+                            <field name="is_internal"/>
+                        </group>
+                        <group>
+                            <field name="power"/>
+                            <field name="interest"/>
+                            <field name="pertinence"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description" placeholder="Description de la partie intéressée..."/>
+                    </group>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_stakeholder_search" model="ir.ui.view">
+        <field name="name">ebios.stakeholder.search</field>
+        <field name="model">digiit.ebios_rm.stakeholder</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="power"/>
+                <field name="interest"/>
+                <field name="pertinence"/>
+                <separator/>
+                <filter string="Internal" name="filter_internal" 
+                        domain="[('is_internal', '=', True)]"/>
+                <filter string="External" name="filter_external" 
+                        domain="[('is_internal', '=', False)]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Category" name="group_category" 
+                            context="{'group_by': 'category'}"/>
+                    <filter string="Internal/External" name="group_internal" 
+                            context="{'group_by': 'is_internal'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_stakeholder" model="ir.actions.act_window">
+        <field name="name">Stakeholders</field>
+        <field name="res_model">digiit.ebios_rm.stakeholder</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_stakeholder_search"/>
+        <field name="context">{'default_is_internal': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Stakeholder
+            </p>
+            <p>
+                Stakeholders are parties interested in your EBIOS RM study.
+            </p>
+        </field>
+    </record>
+
+</odoo>

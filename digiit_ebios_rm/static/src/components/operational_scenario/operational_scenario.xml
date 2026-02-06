@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="digiit_ebios_rm_operational_scenario.Builder" owl="1">
+        <div class="scenario-builder h-100 d-flex flex-column" style="overflow: auto;">
+
+            <!-- Header Panel -->
+            <div class="control-panel p-2 bg-light border-bottom d-flex align-items-center">
+                <div style="flex: 1;">
+                    <button class="btn btn-secondary" t-on-click="goBack">
+                        <i class="fa fa-arrow-left me-1"></i>Retour
+                    </button>
+                </div>
+
+                <div class="scenario-name d-flex align-items-center justify-content-center" style="flex: 1;">
+                    <span class="me-2 fw-bold fs-4">Graphique du Scénario Opérationnel:</span>
+                    <span class="me-2 fw-bold" t-esc="state.currentScenarioName"/>
+                </div>
+
+                <div style="flex: 1;"></div>
+            </div>
+            <!-- Strategic Scenario Visualization -->
+            <div class="strategic-scenario-visualization border-bottom p-2">
+                <t t-if="state.strategicScId &amp;&amp; state.strategicConnections.length">
+                    <t t-set="connection" t-value="state.strategicConnections[0]"/>
+                    <t t-set="scenario" t-value="connection.scenarios[0]"/>
+                    <div t-if="connection &amp;&amp; scenario" class="risk-dashboard-container">
+                        <div class="risk-dashboard">
+                            <div t-att-class="'connection-container connection-' + connection.id">
+                                <div class="connection-header">
+                                    <div class="connection-title">
+                                        <span class="connection-objective">
+                                            Objectif: <t t-esc="connection.threat?.objectif || connection.objectif || 'Risk scenario'"/>
+                                        </span>
+                                        <div class="connection-er">
+                                            <span class="connection-objective">
+                                                <span class="threat-title">ER:</span> <t t-esc="connection.threat?.er || 'Unknown ER'"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="connection-row">
+                                    <div class="threat-container section-container">
+                                        <div class="section-label">MENACE</div>
+                                        <div class="threat section-content">
+                                            <img t-att-src="connection.threat?.icon_url || '/digiit_ebios_rm/static/src/img/threat_icon.png'" class="threat-icon"/>
+                                            <span class="threat-name">
+                                                <t t-esc="connection.threat?.name || 'Unknown Menace'"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="scenarios-container section-container">
+                                        <div class="section-label">ÉCOSYSTÈME</div>
+                                        <div t-att-class="'scenario scenario-' + scenario.id">
+                                            <div class="arrow-container">
+                                                <div t-if="scenario.is_direct_attack"
+                                                     class="arrow-segment arrow-direct direct-attack"
+                                                     t-on-mouseover="() => this.showScenarioDetails(scenario)"
+                                                     t-on-mouseout="() => this.hideScenarioDetails()">
+                                                    <div class="attack-type-indicator">
+                                                        <span class="attack-type direct">Direct</span>
+                                                    </div>
+                                                </div>
+                                                <t t-if="!scenario.is_direct_attack &amp;&amp; connection.stakeholder">
+                                                    <div class="arrow-segment arrow-first pp-involved"
+                                                         t-on-mouseover="() => this.showScenarioDetails(scenario)"
+                                                         t-on-mouseout="() => this.hideScenarioDetails()">
+                                                    </div>
+                                                    <div class="pp-container">
+                                                        <div class="pp section-content">
+                                                            <div class="pp-header">
+                                                                <t t-esc="connection.stakeholder.name || 'Unknown Stakeholder'"/>
+                                                            </div>
+                                                            <img t-att-src="connection.stakeholder.logo_url || '/digiit_ebios_rm/static/src/img/pp_icon.png'" class="pp-logo"/>
+                                                            <span class="pp-score-circle">
+                                                                <t t-esc="connection.stakeholder.score.toFixed(2) || '0'"/>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="arrow-segment arrow-second pp-involved"
+                                                         t-on-mouseover="() => this.showScenarioDetails(scenario)"
+                                                         t-on-mouseout="() => this.hideScenarioDetails()">
+                                                    </div>
+                                                </t>
+                                                <div t-if="state.selectedScenario === scenario" class="scenario-details-tooltip">
+                                                    <h3>Scénario <t t-esc="scenario.id"/></h3>
+                                                    <p><strong>Description:</strong> <t t-esc="scenario.description || 'No description available'"/></p>
+                                                    <p><strong>Dommage:</strong> <t t-esc="scenario.damage || 'No damage information'"/></p>
+                                                    <p><strong>Événement Redouté:</strong> <t t-esc="connection.threat?.er || 'No event information'"/></p>
+                                                    <p t-if="connection.stakeholder">
+                                                        <strong>Partie Prenante:</strong> <t t-esc="connection.stakeholder.name || 'Unknown'"/> (Score: <t t-esc="connection.stakeholder.score.toFixed(2) || '0'"/>)
+                                                    </p>
+                                                    <p><strong>Type d'attaque:</strong> <t t-if="scenario.is_direct_attack">Directe</t><t t-else="">Via partie prenante</t></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="asset-container section-container">
+                                        <div class="section-label">ACTIF</div>
+                                        <div class="asset section-content">
+                                            <img t-att-src="connection.asset?.icon_url || '/digiit_ebios_rm/static/src/img/asset_icon.png'" class="asset-icon"/>
+                                            <span class="asset-name">
+                                                <t t-esc="connection.asset?.name || 'Unknown Actif'"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="text-muted p-2">
+                        No strategic scenario visualization available (strategicScId: <t t-esc="state.strategicScId || 'None'"/>, connections: <t t-esc="state.strategicConnections.length"/>).
+                    </div>
+                </t>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="control-panel p-3 bg-light border-bottom d-flex justify-content-between align-items-center">
+                <!-- Left side: Delete Selected + Clear All -->
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-danger btn-sm" t-on-click="deleteSelectedConnections">
+                        <i class="fa fa-trash me-1"/>Supprimer la sélection
+                    </button>
+                    <button class="btn btn-outline-warning btn-sm" t-on-click="clearConnections">
+                        <i class="fa fa-ban me-1"/>Supprimer toutes les connexions
+                    </button>
+                </div>
+
+                <!-- Right side: Save Scenario -->
+                <div>
+                    <button class="btn btn-success btn-sm" t-on-click="saveScenario">
+                        <i class="fa fa-save me-1"/>Enregistrer le scénario
+                    </button>
+
+                    <button class="btn btn-primary" t-on-click="captureOperationalScenario"
+                            t-att-disabled="state.isCapturing">
+                        <i class="fa fa-camera me-1" t-if="!state.isCapturing"></i>
+                        <i class="fa fa-spinner fa-spin me-1" t-if="state.isCapturing"></i>
+                        <t t-if="!state.isCapturing">Capturer</t>
+                        <t t-if="state.isCapturing">Capture...</t>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Body Section -->
+            <div class="builder-body d-flex flex-grow-1">
+                <!-- Elementary Steps Column with Add and Delete Buttons -->
+                <div class="elementary-steps p-2 border-end" style="width: 210px; max-height: 100vh; overflow-y: auto;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="fw-bold mb-0">Étapes Élémentaire</h6>
+                        <button class="btn btn-sm btn-success"
+                                t-on-click="openAddStepModal"
+                                title="Add New Elementary Step">
+                            <i class="fa fa-plus"/>
+                        </button>
+                    </div>
+
+                    <div class="elementary-steps-list">
+                        <t t-foreach="['connaitre', 'rentrer', 'trouver', 'exploiter']" t-as="phase" t-key="phase">
+                            <div class="step-group mb-2">
+                                <div class="step-group-header d-flex align-items-center p-1 bg-light rounded"
+                                     t-on-click="() => this.togglePhaseGroup(phase)">
+                                    <i t-att-class="state.expandedGroups[phase] ? 'fa fa-caret-down me-2' : 'fa fa-caret-right me-2'"/>
+                                    <h6 class="m-0" t-esc="phase.toUpperCase()"/>
+                                </div>
+                                <div class="step-group-items" t-if="state.expandedGroups[phase]">
+                                    <t t-set="steps" t-value="state.groupedSteps[phase] || []"/>
+                                    <t t-foreach="steps" t-as="step" t-key="step.id">
+                                        <div class="elementary-step p-2 mb-1 border rounded bg-white d-flex justify-content-between align-items-center"
+                                             t-att-data-id="step.id"
+                                             draggable="true">
+                                            <span class="step-name flex-grow-1" t-esc="step.name"/>
+                                            <button class="btn btn-sm btn-link text-danger p-0 ms-1 delete-step-btn"
+                                                    t-on-click.stop="(ev) => this.confirmDeleteElementaryStep(step.id, step.name, ev)"
+                                                    title="Delete this step">
+                                                <i class="fa fa-trash"/>
+                                            </button>
+                                        </div>
+                                    </t>
+                                    <div t-if="steps.length === 0" class="text-muted small p-1">
+                                        No steps in this phase
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <div class="step-group mb-2">
+                            <div class="step-group-header d-flex align-items-center p-1 bg-light rounded"
+                                 t-on-click="() => this.togglePhaseGroup('none')">
+                                <i t-att-class="state.expandedGroups['none'] ? 'fa fa-caret-down me-2' : 'fa fa-caret-right me-2'"/>
+                                <h6 class="m-0">NO PHASE</h6>
+                            </div>
+                            <div class="step-group-items" t-if="state.expandedGroups['none']">
+                                <t t-set="steps" t-value="state.groupedSteps['none'] || []"/>
+                                <t t-foreach="steps" t-as="step" t-key="step.id">
+                                    <div class="elementary-step p-2 mb-1 border rounded bg-white d-flex justify-content-between align-items-center"
+                                         t-att-data-id="step.id"
+                                         draggable="true">
+                                        <span class="step-name flex-grow-1" t-esc="step.name"/>
+                                        <button class="btn btn-sm btn-link text-danger p-0 ms-1 delete-step-btn"
+                                                t-on-click.stop="(ev) => this.confirmDeleteElementaryStep(step.id, step.name, ev)"
+                                                title="Delete this step">
+                                            <i class="fa fa-trash"/>
+                                        </button>
+                                    </div>
+                                </t>
+                                <div t-if="steps.length === 0" class="text-muted small p-1">
+                                    No steps without a phase
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workspace -->
+                <div class="workspace flex-grow-1 p-3 position-relative" t-ref="workspace" style="overflow: auto; min-height: 500px;">
+                    <canvas id="connections-canvas" class="position-absolute top-0 left-0 w-100 h-100"></canvas>
+
+                    <!-- Added min-width: max-content to ensure full width is captured -->
+                    <div class="cyberkill-chain-container d-flex h-100" style="min-width: max-content;">
+                        <!-- Menace - Added min-width -->
+                        <div t-if="state.strategicScId &amp;&amp; connection"
+                             class="menace-label border-end d-flex justify-content-center align-items-center"
+                             style="min-width: 150px; min-height: 150px; height: 100%; background-color: #f8f9fa;">
+                            <div class="menace-instance rounded position-relative"
+                                 t-att-data-instance-id="'menace-' + state.strategicScId"
+                                 t-on-click="(ev) => this.selectStep('menace-' + state.strategicScId, ev)"
+                                 t-att-class="{
+                                    'bg-primary text-white': state.selectedStepId === ('menace-' + state.strategicScId),
+                                    'bg-light': state.selectedStepId !== ('menace-' + state.strategicScId)
+                                 }">
+
+                                <img t-att-src="connection.threat?.icon_url || '/digiit_ebios_rm/static/src/img/threat_icon.png'"
+                                     alt="Menace icon"
+                                     style="width:40px; height:40px; display:block; margin-bottom:4px;"/>
+
+                                <strong style="font-size: 11px; display: block; margin-bottom: 4px;">MENACE</strong>
+                                <span style="font-size: 12px; font-weight: 500;">
+                                    <t t-esc="connection.threat?.name || 'Unknown'"/>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Phases Workflow - Added min-width -->
+                        <div class="phases-workflow flex-grow-1 d-flex flex-column" style="min-width: 800px;">
+                            <div class="phases-header d-flex mb-2">
+                                <t t-foreach="state.phases" t-as="phase" t-key="phase.id">
+                                    <div class="phase-header flex-grow-1 text-center fw-bold border-bottom pb-2">
+                                        <t t-esc="phase.name"/>
+                                    </div>
+                                </t>
+                            </div>
+                            <div class="phases-content d-flex flex-grow-1" style="min-height: 500px;">
+                                <t t-foreach="state.phases" t-as="phase" t-key="phase.id">
+                                    <div class="phase-container flex-grow-1 border rounded p-2"
+                                         t-att-data-phase-id="phase.id"
+                                         style="min-height: 150px; height: 100%;">
+                                        <div class="phase-steps">
+                                            <t t-foreach="phase.steps" t-as="step" t-key="step.instanceId">
+                                                <div class="step-instance p-2 mb-2 border rounded position-relative"
+                                                     t-att-class="{'bg-primary text-white': state.selectedStepId === step.instanceId, 'bg-light': state.selectedStepId !== step.instanceId}"
+                                                     t-att-data-instance-id="step.instanceId"
+                                                     t-att-style="step.position ? `position: absolute; left: ${step.position.x}px; top: ${step.position.y}px;` : ''"
+                                                     t-on-click="(ev) => this.selectStep(step.instanceId, ev)">
+                                                    <t t-esc="step.name"/>
+                                                    <button class="btn btn-sm btn-link position-absolute top-0 end-0 py-0 px-1"
+                                                            t-att-class="{'text-white': state.selectedStepId === step.instanceId, 'text-danger': state.selectedStepId !== step.instanceId}"
+                                                            t-on-click.stop="(ev) => this.removeStep(phase.id, step.instanceId, ev)">
+                                                        <i class="fa fa-times"/>
+                                                    </button>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+
+                        <!-- Target (ER) - Using SVG for vertical text (FIXED) -->
+                        <div t-if="state.strategicScId &amp;&amp; scenario"
+                             class="strategic-target-vertical ms-3 d-flex justify-content-center align-items-center"
+                             style="min-width: 150px; min-height: 150px; height: 100%; background-color: #f8f9fa;">
+
+                            <div class="target-instance rounded position-relative"
+                                 t-att-data-instance-id="'target-' + state.strategicScId"
+                                 t-on-click="(ev) => this.selectStep('target-' + state.strategicScId, ev)"
+                                 t-att-class="{
+                                    'bg-primary text-white': state.selectedStepId === ('target-' + state.strategicScId),
+                                    'bg-light': state.selectedStepId !== ('target-' + state.strategicScId)
+                                 }"
+                                 style="display: flex; align-items: center; justify-content: center; padding: 10px; width: 100%; height: 100%;">
+
+                                <div class="vertical-wrapper">
+                                    <span class="vertical-text"
+                                          t-esc="connection?.threat?.er || ''"/>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Actif - Added min-width -->
+                        <div t-if="state.strategicScId &amp;&amp; connection"
+                             class="actif-label bg-light border-end d-flex justify-content-center align-items-center"
+                             style="min-width: 150px; min-height: 150px; height: 100%; background-color: #f8f9fa;">
+
+                            <div class="actif-instance rounded position-relative"
+                                 t-att-data-instance-id="'actif-' + state.strategicScId"
+                                 t-on-click="(ev) => this.selectStep('actif-' + state.strategicScId, ev)"
+                                 t-att-class="{
+                                    'bg-primary text-white': state.selectedStepId === ('actif-' + state.strategicScId),
+                                    'bg-light': state.selectedStepId !== ('actif-' + state.strategicScId)
+                                 }">
+
+                                <img t-att-src="connection.asset?.icon_url || '/digiit_ebios_rm/static/src/img/asset_icon.png'"
+                                     alt="Actif icon"
+                                     style="width:40px; height:40px; display:block; margin-bottom:4px;"/>
+
+                                <strong style="font-size: 11px; display: block; margin-bottom: 4px;">
+                                    ACTIF
+                                </strong>
+
+                                <span style="font-size: 12px; font-weight: 500;">
+                                    <t t-esc="connection.asset?.name || 'Unknown'"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for Adding Elementary Step -->
+            <div t-if="state.showAddStepModal" class="modal-backdrop fade show" style="display: block;"/>
+            <div t-if="state.showAddStepModal" class="modal fade show" style="display: block;" tabindex="-1">
+                <div class="modal-dialog-op">
+                    <div class="modal-content mt-5">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Ajouter une étape élémentaire</h5>
+                            <button type="button" class="btn-close" t-on-click="closeAddStepModal"/>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Nom de l’étape</label>
+                                <input type="text"
+                                       class="form-control"
+                                       t-model="state.newStepName"
+                                       placeholder="Saisir le nom de l’étape"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phase</label>
+                                <select class="form-select" t-model="state.newStepPhase">
+                                    <option value="">-- Sélectionner une phase --</option>
+                                    <option value="connaitre">CONNAÎTRE</option>
+                                    <option value="rentrer">RENTRER</option>
+                                    <option value="trouver">TROUVER</option>
+                                    <option value="exploiter">EXPLOITER</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Description (facultatif)</label>
+                                <textarea class="form-control"
+                                          t-model="state.newStepDescription"
+                                          rows="3"
+                                          placeholder="Saisir la description de l’étape"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Niveau de risque</label>
+                                <select class="form-select" t-model="state.newStepRiskLevel">
+                                    <option value="low">Faible</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">Élevée</option>
+                                    <option value="critical">Critique</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                    class="btn btn-secondary"
+                                    t-on-click="closeAddStepModal">
+                                Annuler
+                            </button>
+                            <button type="button"
+                                    class="btn btn-success mx-2"
+                                    t-on-click="createElementaryStep">
+                                <i class="fa fa-save me-1"/>Créer l’étape
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confirmation Modal for Deleting Elementary Step -->
+            <div t-if="state.showDeleteConfirmModal" class="modal-backdrop fade show" style="display: block;"/>
+            <div t-if="state.showDeleteConfirmModal" class="modal fade show" style="display: block;" tabindex="-1">
+                <div class="modal-dialog-op">
+                    <div class="modal-content mt-5">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Confirmer la suppression</h5>
+                            <button type="button" class="btn-close btn-close-white" t-on-click="closeDeleteConfirmModal"/>
+                        </div>
+                        <div class="modal-body">
+                            <p class="mb-2">Êtes-vous sûr de vouloir supprimer cette étape élémentaire ?</p>
+                            <p class="fw-bold mb-2"><t t-esc="state.stepToDelete?.name"/></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                    class="btn btn-secondary"
+                                    t-on-click="closeDeleteConfirmModal">
+                                Annuler
+                            </button>
+                            <button type="button"
+                                    class="btn btn-danger mx-2"
+                                    t-on-click="deleteElementaryStep">
+                                <i class="fa fa-trash me-1"/>Confirmer la suppression
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </t>
+</templates>

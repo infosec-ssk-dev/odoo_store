@@ -1,0 +1,72 @@
+
+<odoo>
+    <record id="matrix_view_list" model="ir.ui.view">
+        <field name="name">Matrix list</field>
+        <field name="model">digiit.ebios_rm.matrix</field>
+        <field name="arch" type="xml">
+            <list class="list-custom" editable="bottom">
+                <field name="motivation_ids" string="Motivations"/>
+                <field name="ressource_ids" string="Ressources"/>
+                <field name="pertinence_ids" string="Pertinence"/>
+                <field name="pertinence_matrix" string="Matrices des pertinences"/>
+            </list>
+        </field>  
+    </record>
+    <record id="matrix_view_form" model="ir.ui.view">
+        <field name="name">matrix Form</field>
+        <field name="model">digiit.ebios_rm.matrix</field>
+        <field name="arch" type="xml">
+            <form>
+                <app data-string="Ebios RM" string="Ebios RM" name="settings_risk_source_pertinence">
+                    <block title="Pertinence des sources de risque" id="settings_risk_source_pertinence">
+                        <setting>
+                            <field name="motivation_ids" string="Motivations">
+                                <list class="list-custom" editable="bottom">
+                                    <field name="number" string="Niveau"/>
+                                    <field name="name" string="Nom"/>
+                                </list>
+                            </field>
+                        </setting>
+                    </block>
+                </app>
+                <sheet>
+                    <group string="Ressources">
+                        <field name="ressource_ids" string="Ressources">
+                            <list class="list-custom" editable="bottom">
+                                <field name="number" string="Niveau"/>
+                                <field name="name" string="Nom"/>
+                            </list>
+                            </field>
+                        </group>
+                        <group string="Pertinence">
+                            <field name="pertinence_ids" string="Pertinence">
+                                <list class="list-custom" editable="bottom">
+                                    <field name="number" string="Niveau"/>
+                                    <field name="name" string="Nom"/>
+                                    <field name="retenu" string="Retenu?"/>
+                                </list>
+                            </field>    
+                    </group>
+                    <group string="Matrices des pertinences">
+                        <field name="pertinence_matrix" string="Matrices des pertinences"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>  
+    </record>
+
+    <record id="action_matrix_list_view" model="ir.actions.act_window">
+        <field name="name">Matrixs</field>
+        <field name="res_model">digiit.ebios_rm.matrix</field>
+        <field name="view_mode">form</field>
+        <field name="res_id">1</field>
+        <field name="view_id" ref="matrix_view_list"/>
+    </record>
+    
+    <!-- <menuitem
+        id="matrix_menu_item"
+        name="Matrices"
+        parent="main_menu"
+        action="action_matrix_list_view"
+        /> -->
+</odoo>
