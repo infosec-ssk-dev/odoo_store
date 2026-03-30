@@ -8,6 +8,7 @@
     """,
     'author': 'Digi-IT',
     'website': 'https://digi-it.com.tn',
+    'license': 'LGPL-3',
     'depends': ['account'],
     'data': [
         'views/res_partner_views.xml',
