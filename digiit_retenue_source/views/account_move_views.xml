@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_inherit_retenu_source" model="ir.ui.view">
+        <field name="name">account.move.form.retenu.source</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Retenue a la source action button in header -->
+            <xpath expr="//header//button[@name='action_register_payment']" position="after">
+                <field name="digiit_has_retenu" invisible="1"/>
+                <button
+                    name="action_open_retenu_source_wizard"
+                    string="Retenue a la source"
+                    type="object"
+                    class="btn-secondary"
+                    invisible="move_type not in ('out_invoice', 'in_invoice') or state != 'posted' or payment_state == 'paid'"
+                    readonly="digiit_has_retenu"
+                />
+            </xpath>
+
+            <!-- Smart button: opens journal entry form directly -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_open_retenu_source_moves"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-book"
+                    invisible="move_type not in ('out_invoice', 'in_invoice') or digiit_retenu_source_count == 0"
+                >
+                    <field name="digiit_retenu_source_count" widget="statinfo" string="Retenue"/>
+                </button>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

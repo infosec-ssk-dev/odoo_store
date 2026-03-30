@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_retenu_source_record_sale" model="ir.sequence">
+        <field name="name">Retenue Source Record Customer</field>
+        <field name="code">digiit.retenu.source.record.sale</field>
+        <field name="prefix">RETV/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_retenu_source_record_purchase" model="ir.sequence">
+        <field name="name">Retenue Source Record Vendor</field>
+        <field name="code">digiit.retenu.source.record.purchase</field>
+        <field name="prefix">RETA/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

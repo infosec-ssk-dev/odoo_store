@@ -1,0 +1,199 @@
+<section class="container">
+
+    <!-- HEADER -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="mb-3" style="color:#714B67;font-size:2.5rem;font-weight:bold;">
+                Withholding Tax
+            </h1>
+            <h2 class="text-secondary mb-4" style="font-size:1.5rem;">
+                Withholding Tax Workflow for Odoo 19 - Customers &amp; Vendors
+            </h2>
+
+            <p class="lead mb-4">
+                This module allows you to manage <strong>withholding tax</strong> on your customer and vendor
+                invoices directly in Odoo. When a withholding is created, the module automatically generates a
+                <strong>dedicated journal entry</strong> and reconciles it with the invoice.
+            </p>
+
+            <p>
+                This module is compliant with <strong>Tunisian tax regulations</strong>
+                (Direction Générale des Impôts) and follows the local accounting standards in force.
+            </p>
+
+            <p>
+                Developed by <strong>Digi-IT</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- KEY FEATURES -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+                <h4 style="color:#714B67;">Main Objects</h4>
+                <ul class="list-unstyled">
+                    <li><strong>WHT Document:</strong> Withholding Tax record with draft / posted / cancel lifecycle.</li>
+                    <li><strong>Journal Entry:</strong> Withholding Entry automatically created and posted in the selected journal.</li>
+                    <li><strong>Reconciliation:</strong> The entry is automatically reconciled with the source invoice.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+                <h4 style="color:#714B67;">Key Highlights</h4>
+                <ul class="list-unstyled">
+                    <li><strong>Guided creation:</strong> Wizard launched from the invoice, lists filtered automatically.</li>
+                    <li><strong>Automatic calculation:</strong> Withholding base computed excluding the stamp duty.</li>
+                    <li><strong>Customers &amp; Vendors:</strong> Supports both flows (sale / purchase).</li>
+                    <li><strong>Dedicated sequences:</strong> Distinct references for customers and vendors.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIGURATION - JOURNALS -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <h3 style="color:#875A7B;">Configuration - Journals</h3>
+            <p>
+                In <em>Accounting &gt; Journals</em>, open the relevant journal and enable
+                <strong>Withholding Sales</strong> (customers) or <strong>Withholding Purchases</strong> (vendors)
+                depending on the desired flow.
+            </p>
+            <p>
+                The journal must also have a <strong>Default Account</strong>
+                so that the withholding entry can be generated.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="journal_ras.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- CONFIGURATION - TAXES -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6 order-md-2">
+            <h3 style="color:#875A7B;">Configuration - Taxes</h3>
+            <p>
+                In <em>Accounting &gt; Taxes</em>, enable <strong>Retenu Tax</strong> on the relevant tax
+                and verify that the <strong>Tax Type</strong> matches the flow:
+                <em>sale</em> for customers, <em>purchase</em> for vendors.
+            </p>
+            <p>
+                The calculation is designed for <strong>percentage</strong> taxes (amount_type = percent).
+            </p>
+        </div>
+        <div class="col-md-6 order-md-1 text-center">
+            <img src="tax_ras.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- WORKFLOW - INVOICE -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <h3 style="color:#875A7B;">Step 1 - Open the Invoice</h3>
+            <p>
+                Open a customer or vendor invoice that is <strong>posted and unpaid</strong>,
+                with no existing withholding. The <strong>Withholding Tax</strong> button is available
+                directly from the invoice header.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="ras_invoice.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- WORKFLOW - WIZARD -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6 order-md-2">
+            <h3 style="color:#875A7B;">Step 2 - Fill in the Wizard</h3>
+            <p>
+                The wizard displays <strong>automatically filtered</strong> lists based on the invoice type:
+                authorized journal, compatible tax.
+                Enter the withholding number, the payment date, and an optional memo.
+            </p>
+        </div>
+        <div class="col-md-6 order-md-1 text-center">
+            <img src="ras.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- WORKFLOW - RAS RECORD -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <h3 style="color:#875A7B;">Step 3 - WHT Document</h3>
+            <p>
+                After validation, the <strong>Withholding Tax</strong> document is created and set to
+                <em>posted</em>. It contains all withholding information along with
+                a link to the generated journal entry.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="ras_record.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- WORKFLOW - JOURNAL ENTRY -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6 order-md-2">
+            <h3 style="color:#875A7B;">Automatic Journal Entry</h3>
+            <p>
+                The <strong>Withholding Entry</strong> is created, posted, and reconciled with the invoice
+                in a single action. No additional manual input is required.
+            </p>
+        </div>
+        <div class="col-md-6 order-md-1 text-center">
+            <img src="ras_journal_entry.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- CONFIGURATION ALERT -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h4 class="alert-heading" style="color:#875A7B;">Quick Setup</h4>
+                <p class="mb-0">
+                    <strong>Before first use:</strong><br>
+                    1. Enable the <em>Withholding</em> flag on the relevant journals and verify the default account.<br>
+                    2. Enable <em>Retenu Tax</em> on withholding taxes and verify the tax type.<br>
+                    3. Create your first withholding from a posted and unpaid invoice.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPATIBILITY -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-3">
+            <div class="card p-3 bg-light h-100">
+                <h4>Supported Version</h4>
+                <p class="mb-0">Odoo 19.0</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card p-3 bg-light h-100">
+                <h4>Dependencies</h4>
+                <ul class="mb-0">
+                    <li>Account</li>
+                    <li>No external Python package required</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <p>
+                For any support, contact us:<br>
+                <a style="color:#714B67;" href="mailto:contact@digi-it.com.tn">
+                    contact@digi-it.com.tn
+                </a>
+            </p>
+        </div>
+    </div>
+
+</section>

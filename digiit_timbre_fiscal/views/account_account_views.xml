@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit Account Account Tree View -->
+    <record id="view_account_tree_timbre_fiscal" model="ir.ui.view">
+        <field name="name">account.account.tree.timbre.fiscal</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_list"/>
+        <field name="arch" type="xml">
+            <!-- Add Timbre Fiscal Account fields to tree view -->
+            <xpath expr="//field[@name='company_ids']" position="after">
+                <field name="digiit_is_timbre_fiscal_sale_account" optional="hide" widget="boolean_toggle"/>
+                <field name="digiit_is_timbre_fiscal_purchase_account" optional="hide" widget="boolean_toggle"/>
+                <field name="digiit_is_timbre_fiscal_account" optional="hide" widget="boolean_toggle"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,188 @@
+<section class="container">
+
+    <!-- HEADER -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="mb-3" style="color:#714B67;font-size:2.5rem;font-weight:bold;">
+                Timbre Fiscal
+            </h1>
+            <h2 class="text-secondary mb-4" style="font-size:1.5rem;">
+                Automatic Fiscal Stamp for Odoo 19 - Customers &amp; Vendors
+            </h2>
+
+            <p class="lead mb-4">
+                This module automatically applies the <strong>fiscal stamp (timbre fiscal)</strong>
+                on customer and vendor invoices in Odoo. As soon as an invoice is created,
+                the stamp line is added silently in the background, no manual action required.
+                The stamp amount is driven by a <strong>dedicated tax</strong> and posted
+                directly on the correct accounting account.
+            </p>
+
+            <p>
+                This module is compliant with <strong>Tunisian tax regulations</strong>
+                (Direction Générale des Impôts) and follows the local accounting standards in force.
+            </p>
+
+            <p>
+                Developed by <strong>Digi-IT</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- KEY FEATURES -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+                <h4 style="color:#714B67;">How It Works</h4>
+                <ul class="list-unstyled">
+                    <li><strong>Fully automatic:</strong> Stamp line created on invoice creation, no wizard, no manual step.</li>
+                    <li><strong>Tax-driven amount:</strong> The stamp value is defined on the timbre fiscal tax, not hardcoded.</li>
+                    <li><strong>Hidden from invoice lines:</strong> The stamp line is excluded from the invoice display but present in the accounting entries.</li>
+                    <li><strong>Toggle per invoice:</strong> A checkbox on the invoice lets you enable or disable the stamp for that specific document.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+                <h4 style="color:#714B67;">Key Highlights</h4>
+                <ul class="list-unstyled">
+                    <li><strong>Customers &amp; Vendors:</strong> Supports both sale and purchase flows with distinct tax and account configurations.</li>
+                    <li><strong>Partner exemption:</strong> Mark any partner as exempt, the stamp is automatically skipped for their invoices.</li>
+                    <li><strong>Flexible accounts:</strong> Configure a generic stamp account or separate sale/purchase accounts.</li>
+                    <li><strong>Odoo native:</strong> Built entirely on standard Odoo tax and account mechanisms.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIGURATION - TAX -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <h3 style="color:#875A7B;">Configuration - Fiscal Stamp Tax</h3>
+            <p>
+                In <em>Accounting &gt; Taxes</em>, open the relevant tax and enable
+                <strong>Est Taxe Timbre Fiscal</strong>. Set the <strong>Tax Type</strong>
+                to <em>Sale</em> for customers or <em>Purchase</em> for vendors.
+            </p>
+            <p>
+                The tax amount (fixed or percentage) defines the <strong>stamp value</strong>
+                that will be applied on every eligible invoice.
+                Make sure to configure the <strong>tax repartition account</strong>
+                so the stamp posts to the correct ledger.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="tax.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- CONFIGURATION - ACCOUNTS -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6 order-md-2">
+            <h3 style="color:#875A7B;">Configuration - Stamp Accounts</h3>
+            <p>
+                In <em>Accounting &gt; Chart of Accounts</em>, flag the relevant account(s):
+            </p>
+            <ul>
+                <li><strong>Timbre Fiscal Vente</strong>: used for customer invoices.</li>
+                <li><strong>Timbre Fiscal Achat</strong>: used for vendor invoices.</li>
+                <li><strong>Timbre Fiscal</strong>: generic fallback if no flow-specific account is set.</li>
+            </ul>
+            <p>
+                The module resolves the account automatically based on the invoice type,
+                falling back to the generic account when needed.
+            </p>
+        </div>
+        <div class="col-md-6 order-md-1 text-center">
+            <img src="account.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- PARTNER EXEMPTION -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <h3 style="color:#875A7B;">Partner Exemption</h3>
+            <p>
+                On any partner form, enable <strong>Exception du timbre fiscal</strong>
+                to permanently exclude that partner from the stamp.
+            </p>
+            <p>
+                When an invoice is created or the partner is changed on an existing invoice,
+                the module checks this flag and <strong>automatically removes</strong>
+                the stamp line if the partner is exempt, no manual cleanup required.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="partner.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- INVOICE TOGGLE -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6 order-md-2">
+            <h3 style="color:#875A7B;">Invoice-Level Toggle</h3>
+            <p>
+                Each invoice carries a <strong>Timbre Fiscal</strong> checkbox (enabled by default).
+                Unchecking it removes the stamp line immediately from the invoice,
+                without affecting other documents or the partner configuration.
+            </p>
+            <p>
+                Re-enabling the checkbox on a non-exempt partner's invoice
+                re-adds the stamp line automatically.
+            </p>
+        </div>
+        <div class="col-md-6 order-md-1 text-center">
+            <img src="fact.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- CONFIGURATION ALERT -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h4 class="alert-heading" style="color:#875A7B;">Quick Setup</h4>
+                <p class="mb-0">
+                    <strong>Before first use:</strong><br>
+                    1. Enable <em>Est Taxe Timbre Fiscal</em> on the stamp tax and set its amount and repartition account.<br>
+                    2. Flag the relevant account(s) as <em>Timbre Fiscal Vente</em> / <em>Timbre Fiscal Achat</em> in the chart of accounts.<br>
+                    3. Optionally mark exempt partners with <em>Exception du timbre fiscal</em> on their partner form.<br>
+                    4. Create invoices as usual, the stamp is applied automatically.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPATIBILITY -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-3">
+            <div class="card p-3 bg-light h-100">
+                <h4>Supported Version</h4>
+                <p class="mb-0">Odoo 19.0</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card p-3 bg-light h-100">
+                <h4>Dependencies</h4>
+                <ul class="mb-0">
+                    <li>Account</li>
+                    <li>No external Python package required</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <p>
+                For any support, contact us:<br>
+                <a style="color:#714B67;" href="mailto:contact@digi-it.com.tn">
+                    contact@digi-it.com.tn
+                </a>
+            </p>
+        </div>
+    </div>
+
+</section>

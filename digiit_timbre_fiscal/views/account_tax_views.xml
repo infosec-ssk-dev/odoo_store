@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add digiit_is_timbre_fiscal_tax field to tax form -->
+    <record id="view_tax_form_inherit_digiit_timbre" model="ir.ui.view">
+        <field name="name">account.tax.form.inherit.digiit.timbre</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <!-- Find the main form and add field -->
+            <xpath expr="//field[@name='active']" position="after">
+                <field name="digiit_is_timbre_fiscal_tax" widget="boolean_toggle"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Optional: Add field to tax tree view if you want to see it in list -->
+    <record id="view_tax_tree_inherit_digiit_timbre" model="ir.ui.view">
+        <field name="name">account.tax.tree.inherit.digiit.timbre</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list//field[@name='active']" position="after">
+                <field name="digiit_is_timbre_fiscal_tax" widget="boolean_toggle" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

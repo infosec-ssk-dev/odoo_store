@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_digiit_retenu_source_record_user,access.digiit.retenu.source.record.user,model_digiit_retenu_source_record,account.group_account_invoice,1,1,1,1
+access_digiit_retenu_source_wizard_user,access.digiit.retenu.source.wizard.user,model_digiit_retenu_source_wizard,account.group_account_invoice,1,1,1,1

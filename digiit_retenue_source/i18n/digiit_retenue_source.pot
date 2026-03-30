@@ -1,0 +1,502 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* digiit_retenue_source
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-04 12:39+0000\n"
+"PO-Revision-Date: 2026-03-04 12:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,help:digiit_retenue_source.field_account_payment__digiit_journal_type
+#: model:ir.model.fields,help:digiit_retenue_source.field_account_payment_register__digiit_journal_type
+msgid ""
+"\n"
+"        Select 'Sale' for customer invoices journals.\n"
+"        Select 'Purchase' for vendor bills journals.\n"
+"        Select 'Cash', 'Bank' or 'Credit Card' for journals that are used in customer or vendor payments.\n"
+"        Select 'General' for miscellaneous operations journals.\n"
+"        "
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_form
+msgid "<span class=\"o_stat_text\">Journal Entry</span>"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_form
+msgid ""
+"Are you sure you want to cancel this retenue? The withholding journal entry "
+"will be reversed."
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment__digiit_source_bank_id
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment_register__digiit_source_bank_id
+msgid "Banque source"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_form
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields.selection,name:digiit_retenue_source.selection__digiit_retenu_source_record__state__cancel
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_search
+msgid "Cancelled"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__company_id
+msgid "Company"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_form
+msgid "Confirm"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_wizard_form
+msgid "Create"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__create_uid
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__create_date
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__currency_id
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields.selection,name:digiit_retenue_source.selection__digiit_retenu_source_record__move_type__sale
+#: model:ir.model.fields.selection,name:digiit_retenue_source.selection__digiit_retenu_source_wizard__move_type__sale
+msgid "Customer"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_search
+msgid "Customers"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment__digiit_clearing_date
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment_register__digiit_clearing_date
+msgid "Date d'echeance"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__date_reglement
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__date_reglement
+msgid "Date de reglement"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__digiit_allowed_payment_journal_ids
+msgid "Digiit Allowed Payment Journal"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__digiit_allowed_withholding_tax_ids
+msgid "Digiit Allowed Withholding Tax"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_journal__display_name
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_move__display_name
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment__display_name
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment_register__display_name
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_tax__display_name
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__display_name
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields.selection,name:digiit_retenue_source.selection__digiit_retenu_source_record__state__draft
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_search
+msgid "Draft"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_form
+msgid "General"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_bank_statement_line__digiit_has_retenu
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_move__digiit_has_retenu
+msgid "Has Retenue"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_journal__id
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_move__id
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment__id
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment_register__id
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_tax__id
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__id
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__invoice_id
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__invoice_id
+msgid "Invoice"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model,name:digiit_retenue_source.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model,name:digiit_retenue_source.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment__digiit_journal_type
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment_register__digiit_journal_type
+msgid "Journal Type"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__write_uid
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__write_date
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__memo
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__memo
+msgid "Memo"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__payment_amount
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__payment_amount
+msgid "Montant du paiement"
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/wizard/retenu_source_wizard.py:0
+msgid "No open receivable/payable line found on the invoice."
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/retenu_source_record.py:0
+msgid "No withholding journal entry found. Cannot confirm."
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment__digiit_numero_document
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_payment_register__digiit_numero_document
+msgid "Numero de document"
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/account_payment.py:0
+#: code:addons/digiit_retenue_source/wizard/account_payment_register.py:0
+msgid ""
+"Numero de document, Date d'echeance, Banque source and Type de paiement are required when the "
+"journal type is Bank."
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/retenu_source_record.py:0
+msgid "Only cancelled retenue records can be reset to draft."
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/retenu_source_record.py:0
+msgid "Only draft retenue records can be confirmed."
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model,name:digiit_retenue_source.model_account_payment_register
+msgid "Pay"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__payment_journal_id
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__payment_journal_id
+msgid "Payment Journal"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model,name:digiit_retenue_source.model_account_payment
+msgid "Payments"
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/wizard/retenu_source_wizard.py:0
+msgid ""
+"Please configure a Default Account on journal %s to book retenue a la "
+"source."
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields.selection,name:digiit_retenue_source.selection__digiit_retenu_source_record__state__posted
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_search
+msgid "Posted"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__name
+msgid "Reference"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_form
+msgid "Reset to Draft"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_tax__digiit_retenu_tax
+msgid "Retenu Tax"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_move_form_inherit_retenu_source
+msgid "Retenue"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_bank_statement_line__digiit_retenu_source_count
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_move__digiit_retenu_source_count
+msgid "Retenue Count"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_bank_statement_line__digiit_retenu_source_record_ids
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_move__digiit_retenu_source_record_ids
+msgid "Retenue Records"
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/account_move.py:0
+#: code:addons/digiit_retenue_source/wizard/retenu_source_wizard.py:0
+#: model:ir.ui.menu,name:digiit_retenue_source.menu_retenu_source_purchases
+#: model:ir.ui.menu,name:digiit_retenue_source.menu_retenu_source_sales
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_account_journal_form_inherit_retenu_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_form
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_search
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_tree
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_wizard_form
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_tax_form_inherit_retenu_source
+msgid "Retenue a la Source"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.actions.act_window,name:digiit_retenue_source.action_retenu_source_sales
+msgid "Retenue a la Source Customers"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model,name:digiit_retenue_source.model_digiit_retenu_source_record
+msgid "Retenue a la Source Record"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.actions.act_window,name:digiit_retenue_source.action_retenu_source_purchases
+msgid "Retenue a la Source Vendors"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model,name:digiit_retenue_source.model_digiit_retenu_source_wizard
+msgid "Retenue a la Source Wizard"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_move_form_inherit_retenu_source
+msgid "Retenue a la source"
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/wizard/retenu_source_wizard.py:0
+msgid "Retenue a la source %s"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,help:digiit_retenue_source.field_digiit_retenu_source_wizard__payment_amount
+msgid "Retenue a la source amount (withheld from the invoice)"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,help:digiit_retenue_source.field_digiit_retenu_source_record__payment_amount
+msgid "Retenue a la source amount (withheld, deducted from base)"
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/account_move.py:0
+msgid ""
+"Retenue a la source is only available for customer and vendor invoices."
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/retenu_source_record.py:0
+msgid "Reversal of %s"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__state
+msgid "Status"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model,name:digiit_retenue_source.model_account_tax
+msgid "Tax"
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/account_move.py:0
+#: code:addons/digiit_retenue_source/wizard/retenu_source_wizard.py:0
+msgid "The invoice is already paid."
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/account_move.py:0
+msgid "This invoice already has a retenue a la source record."
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/retenu_source_record.py:0
+msgid "This retenue is already cancelled."
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__move_type
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__move_type
+msgid "Type"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields.selection,name:digiit_retenue_source.selection__digiit_retenu_source_record__move_type__purchase
+#: model:ir.model.fields.selection,name:digiit_retenue_source.selection__digiit_retenu_source_wizard__move_type__purchase
+msgid "Vendor"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_search
+msgid "Vendors"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model_terms:ir.ui.view,arch_db:digiit_retenue_source.view_retenu_source_record_form
+msgid "Withholding"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__withholding_tax_amount
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__withholding_tax_amount
+msgid "Withholding Amount"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__withholding_base_amount
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__withholding_base_amount
+msgid "Withholding Base Amount"
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/retenu_source_record.py:0
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__digiit_account_move_id
+msgid "Withholding Entry"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__withholding_number
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__withholding_number
+msgid "Withholding Number"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_journal__digiit_withholding_purchases
+msgid "Withholding Purchases"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_account_journal__digiit_withholding_sales
+msgid "Withholding Sales"
+msgstr ""
+
+#. module: digiit_retenue_source
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_record__withholding_tax_id
+#: model:ir.model.fields,field_description:digiit_retenue_source.field_digiit_retenu_source_wizard__withholding_tax_id
+msgid "Withholding Tax"
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/wizard/retenu_source_wizard.py:0
+msgid "Withholding amount converts to zero in company currency."
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/wizard/retenu_source_wizard.py:0
+msgid "Withholding amount must be greater than zero."
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/account_move.py:0
+msgid "You can only create retenue a la source from a posted invoice."
+msgstr ""
+
+#. module: digiit_retenue_source
+#. odoo-python
+#: code:addons/digiit_retenue_source/models/account_move.py:0
+msgid ""
+"You cannot delete invoice '%s' because it has a posted retenue a la source record.\n"
+"Please cancel and delete the retenue record first."
+msgstr ""

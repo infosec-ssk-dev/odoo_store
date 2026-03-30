@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_retenu_source_wizard_form" model="ir.ui.view">
+        <field name="name">retenu.source.wizard.form</field>
+        <field name="model">digiit.retenu.source.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Retenue a la Source">
+                <group>
+                    <group>
+                        <field name="invoice_id"/>
+                        <field name="move_type"/>
+                        <field name="digiit_allowed_payment_journal_ids" invisible="1"/>
+                        <field name="digiit_allowed_withholding_tax_ids" invisible="1"/>
+                        <field name="payment_journal_id" domain="[('id', 'in', digiit_allowed_payment_journal_ids)]"/>
+                        <field name="date_reglement"/>
+                        <field name="memo"/>
+                    </group>
+                    <group>
+                        <field
+                            name="withholding_tax_id"
+                            domain="[('id', 'in', digiit_allowed_withholding_tax_ids)]"
+                            invisible="not payment_journal_id"
+                            required="payment_journal_id"
+                        />
+                        <field name="currency_id" invisible="1"/>
+                        <field name="withholding_number" invisible="not payment_journal_id"/>
+                        <field name="withholding_base_amount" invisible="not payment_journal_id"/>
+                        <field name="withholding_tax_amount" invisible="1"/>
+                        <field name="payment_amount" invisible="not payment_journal_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_create_retenu_record" type="object" string="Create" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
