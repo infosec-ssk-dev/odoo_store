@@ -1,0 +1,274 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* digiit_elfatoora_ttn_digigo
+#
+msgid ""
+msgstr ""
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_digigo.view_elfatoora_submission_wizard_form_digigo
+msgid "<span class=\"text-muted\">Remember as default</span>"
+msgstr "<span class=\"text-muted\">Remember as default</span>"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model,name:digiit_elfatoora_ttn_digigo.model_digiit_model_digigo_signer
+msgid "Authorized DigiGo Signer"
+msgstr "Authorized DigiGo Signer"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_config__signer_ids
+msgid "Authorized Signers"
+msgstr "Authorized Signers"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_digigo.view_elfatoora_config_form_digigo
+msgid "Authorized Signers (Emails)"
+msgstr "Authorized Signers (Emails)"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_digigo_signer__company_id
+msgid "Company"
+msgstr "Company"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_digigo_signer__config_id
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_digigo_signer__create_uid
+msgid "Created by"
+msgstr "Created by"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_digigo_signer__create_date
+msgid "Created on"
+msgstr "Created on"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_res_users__digigo_default_signer_id
+msgid "Default DigiGo Signer"
+msgstr "Default DigiGo Signer"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_digigo.view_elfatoora_config_form_digigo
+msgid "DigiGo"
+msgstr "DigiGo"
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/services/digigo_api.py:0
+msgid "DigiGo API Error: HTTP %s"
+msgstr "DigiGo API Error: HTTP %s"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_config__digigo_api_url
+msgid "DigiGo API URL"
+msgstr "DigiGo API URL"
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/services/digigo_api.py:0
+msgid "DigiGo API URL is not configured."
+msgstr "DigiGo API URL is not configured."
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/services/digigo_api.py:0
+msgid "DigiGo Certificate Error (Status: %s)"
+msgstr "DigiGo Certificate Error (Status: %s)"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_config__digigo_client_id
+msgid "DigiGo Client ID"
+msgstr "DigiGo Client ID"
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/services/digigo_api.py:0
+msgid "DigiGo Client ID or Client Secret is not configured."
+msgstr "DigiGo Client ID or Client Secret is not configured."
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_config__digigo_client_secret
+msgid "DigiGo Client Secret"
+msgstr "DigiGo Client Secret"
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/services/digigo_api.py:0
+msgid "DigiGo Connection Error: %s"
+msgstr "DigiGo Connection Error: %s"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_config__digigo_redirect_uri
+msgid "DigiGo Redirect URI"
+msgstr "DigiGo Redirect URI"
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/services/digigo_api.py:0
+msgid "DigiGo Redirect URI is not configured."
+msgstr "DigiGo Redirect URI is not configured."
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_digigo.view_elfatoora_config_form_digigo
+msgid "DigiGo Settings"
+msgstr "DigiGo Settings"
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/services/digigo_api.py:0
+msgid "DigiGo Signing Failed: %s"
+msgstr "DigiGo Signing Failed: %s"
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/services/digigo_api.py:0
+msgid "DigiGo Token Exchange Failed (Status: %s)"
+msgstr "DigiGo Token Exchange Failed (Status: %s)"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_account_move__display_name
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_digigo_signer__display_name
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_config__display_name
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_submission_wizard__display_name
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_res_users__display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model,name:digiit_elfatoora_ttn_digigo.model_digiit_model_elfatoora_config
+msgid "Elfatoora Configuration"
+msgstr "Elfatoora Configuration"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model,name:digiit_elfatoora_ttn_digigo.model_digiit_model_elfatoora_submission_wizard
+msgid "Elfatoora Submission Wizard"
+msgstr "Elfatoora Submission Wizard"
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/models/account_move.py:0
+msgid "Elfatoora configuration not found for this company."
+msgstr "Elfatoora configuration not found for this company."
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_digigo_signer__name
+msgid "Email (Credential ID)"
+msgstr "Email (Credential ID)"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_digigo.view_elfatoora_config_form_digigo
+msgid "Email / Credential ID"
+msgstr "Email / Credential ID"
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/services/digigo_api.py:0
+msgid "Failed to retrieve DigiGo Certificate: %s"
+msgstr "Failed to retrieve DigiGo Certificate: %s"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_submission_wizard__has_multiple_signers
+msgid "Has Multiple Signers"
+msgstr "Has Multiple Signers"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_account_move__id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_digigo_signer__id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_config__id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_submission_wizard__id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_res_users__id
+msgid "ID"
+msgstr "ID"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model,name:digiit_elfatoora_ttn_digigo.model_account_move
+msgid "Journal Entry"
+msgstr "Journal Entry"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_digigo_signer__write_uid
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_digigo_signer__write_date
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/models/account_move.py:0
+msgid "No authorization data (Code) could be extracted."
+msgstr "No authorization data (Code) could be extracted."
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/models/account_move.py:0
+msgid ""
+"No email address found for DigiGo Signer. Please set a signer email or "
+"ensure your user has an email."
+msgstr "No email address found for DigiGo Signer. Please set a signer email or ensure your user has an email."
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/models/account_move.py:0
+msgid "No pending DigiGo transaction found for this invoice."
+msgstr "No pending DigiGo transaction found for this invoice."
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/models/account_move.py:0
+msgid "No signature value returned from DigiGo. API Response: %s"
+msgstr "No signature value returned from DigiGo. API Response: %s"
+
+#. module: digiit_elfatoora_ttn_digigo
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_digigo/models/elfatoora_submission_wizard.py:0
+msgid "Please select an authorized signer for DigiGo."
+msgstr "Please select an authorized signer for DigiGo."
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_submission_wizard__save_as_default
+msgid "Remember as default"
+msgstr "Remember as default"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_submission_wizard__digigo_signer_id
+msgid "Signer (Email)"
+msgstr "Signer (Email)"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_config__digigo_client_id
+msgid "The Client ID provided by Tuntrust for your application."
+msgstr "The Client ID provided by Tuntrust for your application."
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_config__digigo_client_secret
+msgid "The Client Secret provided by Tuntrust."
+msgstr "The Client Secret provided by Tuntrust."
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_digigo.field_digiit_model_elfatoora_config__digigo_redirect_uri
+msgid ""
+"The Redirect URI registered for your generic application (e.g., "
+"https://yourdomain.com/digigo/callback)."
+msgstr "The Redirect URI registered for your generic application (e.g., https://yourdomain.com/digigo/callback)."
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_digigo.field_res_users__digigo_default_signer_id
+msgid ""
+"The default DigiGo signer selected by this user for the current company."
+msgstr "The default DigiGo signer selected by this user for the current company."
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model.constraint,message:digiit_elfatoora_ttn_digigo.constraint_digiit_model_digigo_signer_email_company_uniq
+msgid "The email must be unique per company!"
+msgstr "The email must be unique per company!"
+
+#. module: digiit_elfatoora_ttn_digigo
+#: model:ir.model,name:digiit_elfatoora_ttn_digigo.model_res_users
+msgid "User"
+msgstr "User"

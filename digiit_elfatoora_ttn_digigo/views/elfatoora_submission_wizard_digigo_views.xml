@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_elfatoora_submission_wizard_form_digigo" model="ir.ui.view">
+        <field name="name">digiit_model_elfatoora.submission_wizard.form.digigo</field>
+        <field name="model">digiit_model_elfatoora.submission_wizard</field>
+        <field name="inherit_id" ref="digiit_elfatoora_ttn_base.view_elfatoora_submission_wizard_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='signing_method']" position="after">
+                <field name="has_multiple_signers" invisible="1"/>
+                <label for="digigo_signer_id" invisible="signing_method != 'digigo'"/>
+                <div class="o_row tw-flex tw-w-full tw-items-center" invisible="signing_method != 'digigo'">
+                    <field name="digigo_signer_id"
+                           required="signing_method == 'digigo'"
+                           options="{'no_create': True, 'no_open': True}"
+                           class="flex-grow-1"
+                           style="max-width: 400px;"/>
+                    <div invisible="not has_multiple_signers or not digigo_signer_id"
+                         class="d-flex align-items-center ms-3 text-nowrap"
+                         style="gap: 6px;">
+                        <span class="text-muted">Remember as default</span>
+                        <field name="save_as_default" class="mb-0"/>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

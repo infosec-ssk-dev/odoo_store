@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_elfatoora_root"
+              name="Elfatoora"
+              parent="account.menu_finance_configuration"
+              sequence="50"/>
+
+    <menuitem id="menu_elfatoora_config"
+              name="Settings"
+              parent="menu_elfatoora_root"
+              action="action_elfatoora_config"
+              sequence="10"/>
+
+    <menuitem id="menu_elfatoora_submissions"
+              name="Submission History"
+              parent="menu_elfatoora_root"
+              action="action_elfatoora_submission"
+              sequence="20"/>
+
+    <menuitem id="menu_standalone_signature_checker"
+              name="XML Signature Checker"
+              parent="account.menu_finance_receivables"
+              action="action_standalone_signature_checker"
+              sequence="120"
+              groups="account.group_account_invoice"/>
+</odoo>
+

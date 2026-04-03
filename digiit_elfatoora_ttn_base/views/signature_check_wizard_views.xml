@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_elfatoora_signature_check_wizard_form" model="ir.ui.view">
+        <field name="name">digiit_elfatoora.signature_check_wizard.form</field>
+        <field name="model">digiit_elfatoora.signature_check_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Signature Verification Results" class="o_form_view">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="source" widget="statusbar" statusbar_visible="signed,ttn" readonly="1"/>
+                    </div>
+                    <group>
+                        <group string="Document Information">
+                            <field name="invoice_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Verification Results">
+                        <field name="result_text" readonly="1" colspan="4"
+                               widget="html"
+                               nolabel="1"
+                               placeholder="Verification results will be displayed here..."/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
+

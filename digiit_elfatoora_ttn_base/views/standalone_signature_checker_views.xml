@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_standalone_signature_checker_form" model="ir.ui.view">
+        <field name="name">digiit_elfatoora.standalone_signature_checker.form</field>
+        <field name="model">digiit_elfatoora.standalone_signature_checker</field>
+        <field name="arch" type="xml">
+            <form string="XML Signature Checker">
+                <group>
+                    <group string="Upload XML File">
+                        <field name="xml_file" filename="xml_filename" widget="binary"/>
+                        <field name="xml_filename" invisible="1"/>
+                    </group>
+                </group>
+
+                <group string="Verification Result">
+                    <field name="result_text" widget="html" nolabel="1" colspan="4"
+                           placeholder="Upload an XML file and click 'Check Signature' to see results..."/>
+                </group>
+
+                <footer>
+                    <button string="Check Signature" name="action_check_signature" type="object" class="btn-primary"/>
+                    <button string="Clear" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_standalone_signature_checker" model="ir.actions.act_window">
+        <field name="name">XML Signature Checker</field>
+        <field name="res_model">digiit_elfatoora.standalone_signature_checker</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
+

@@ -1,0 +1,1316 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* digiit_elfatoora_ttn_base
+#
+msgid ""
+msgstr ""
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "<span class=\"o_stat_text\"><span>Submissions to TTN</span></span>"
+msgstr "<span class=\"o_stat_text\"><span>Soumissions à TTN</span></span>"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__api_password
+msgid "API Password"
+msgstr "Mot de passe API"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_config_form
+msgid "API Settings"
+msgstr "Paramètres API"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__api_username
+msgid "API Username (Login)"
+msgstr "Nom d'utilisateur API (Login)"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid ""
+"API Username and/or Password are not configured. Please set them in "
+"Elfatoora Settings."
+msgstr "Le nom d'utilisateur et/ou le mot de passe API ne sont pas configurés. Veuillez les définir dans les paramètres Elfatoora."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid "API WSDL URL is not configured. Please set it in Elfatoora Settings."
+msgstr "L'URL WSDL de l'API n'est pas configurée. Veuillez la définir dans les paramètres Elfatoora."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_needaction
+msgid "Action Needed"
+msgstr "Action requise"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/standalone_signature_checker.py:0
+msgid ""
+"An unexpected error occurred during signature verification:\n"
+"%s"
+msgstr "Une erreur inattendue s'est produite lors de la vérification de la signature :\n%s"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/teif_generator.py:0
+msgid ""
+"At least one invoice line is required to generate TEIF (LinSection/Lin)."
+msgstr "Au moins une ligne de facture est requise pour générer le TEIF (LinSection/Lin)."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nombre de pièces jointes"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__enable_enterprise
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_model_elfatoora_submission_wizard__signing_method__enterprise
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__res_users__last_signing_method__enterprise
+msgid "Cachet électronique Enterprise-ID"
+msgstr "Cachet électronique Enterprise-ID"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_submission_wizard_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__enable_token
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_model_elfatoora_submission_wizard__signing_method__token
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__res_users__last_signing_method__token
+msgid "Certificat ID-Trust (USB)"
+msgstr "Certificat ID-Trust (USB)"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Certificate subject:"
+msgstr "Sujet du certificat :"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Certificate validity period:"
+msgstr "Période de validité du certificat :"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Chain of trust:"
+msgstr "Chaîne de confiance :"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "Check Elfatoora Status"
+msgstr "Vérifier le statut Elfatoora"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_standalone_signature_checker_form
+msgid "Check Signature"
+msgstr "Vérifier la signature"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__soap_operation_check_status
+msgid "Check Status Operation Name"
+msgstr "Nom de l'opération de vérification du statut"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_standalone_signature_checker_form
+msgid "Clear"
+msgstr "Effacer"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_signature_check_wizard_form
+msgid "Close"
+msgstr "Fermer"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__company_id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__company_id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__company_id
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_config_search
+msgid "Company"
+msgstr "Société"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__company_vat
+msgid "Company VAT / Matricule Fiscale"
+msgstr "TVA / Matricule Fiscale de la Société"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/teif_generator.py:0
+msgid ""
+"Company VAT/Matricule Fiscale cannot be empty for MessageSenderIdentifier."
+msgstr "La TVA / le matricule fiscal de la société ne peut pas être vide pour MessageSenderIdentifier."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/teif_generator.py:0
+msgid ""
+"Company VAT/Matricule Fiscale is missing. Please set it in Elfatoora "
+"Configuration for company '%s'."
+msgstr "La TVA / le matricule fiscal de la société est manquant. Veuillez le renseigner dans la configuration Elfatoora pour la société '%s'."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid ""
+"Company VAT/Matricule Fiscale is missing. Please set it in Elfatoora "
+"Configuration."
+msgstr "La TVA / le matricule fiscal de la société est manquant. Veuillez le renseigner dans la configuration Elfatoora."
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_config_form
+msgid "Company and Environment"
+msgstr "Société et Environnement"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__company_vat
+msgid ""
+"Company's VAT/Matricule Fiscale number. Required for Elfatoora invoice "
+"submission."
+msgstr "Numéro de TVA / matricule fiscal de la société. Requis pour la soumission des factures Elfatoora."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_ttn_xml
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_ttn_xml
+msgid "Complete XML returned by TTN including both signatures and RefTtnVal"
+msgstr "XML complet renvoyé par TTN, incluant les deux signatures et RefTtnVal"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_config_form
+msgid "Configuration Name"
+msgstr "Nom de la configuration"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Could not extract key or certificate from P12 file"
+msgstr "Impossible d'extraire la clé ou le certificat du fichier P12"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_signature_check_wizard__create_uid
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_standalone_signature_checker__create_uid
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__create_uid
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__create_uid
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_signature_check_wizard__create_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_standalone_signature_checker__create_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__create_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__create_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Cryptographic signature:"
+msgstr "Signature cryptographique :"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid ""
+"Cryptographic verification of the signature failed. The signature is NOT "
+"valid."
+msgstr "La vérification cryptographique de la signature a échoué. La signature n'est PAS valide."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/teif_generator.py:0
+msgid ""
+"Customer VAT/Matricule is missing. It is required for TEIF "
+"PartnerIdentifier."
+msgstr "La TVA / le matricule fiscal du client est manquant. Il est requis pour le PartnerIdentifier TEIF."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/teif_generator.py:0
+msgid ""
+"Customer country is missing. It is required to determine the TEIF "
+"PartnerIdentifier type (I-01..I-04)."
+msgstr "Le pays du client est manquant. Il est nécessaire pour déterminer le type d'identifiant partenaire TEIF (I-01..I-04)."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_processing_date
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_processing_date
+msgid "Date of last status update from TTN"
+msgstr "Date de la dernière mise à jour du statut de TTN"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_validation_date
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_validation_date
+msgid "Date when the invoice became legally valid"
+msgstr "Date à laquelle la facture est devenue légalement valide"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__enable_digigo
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_model_elfatoora_submission_wizard__signing_method__digigo
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__res_users__last_signing_method__digigo
+msgid "DigiGo"
+msgstr "DigiGo"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/elfatoora_submission_wizard.py:0
+msgid ""
+"DigiGo provider is not installed. Please install addon "
+"'digiit_elfatoora_ttn_digigo'."
+msgstr "Le fournisseur DigiGo n'est pas installé. Veuillez installer le module 'digiit_elfatoora_ttn_digigo'."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__digigo_available
+msgid "Digigo Available"
+msgstr "DigiGo disponible"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__digigo_enabled_effective
+msgid "Digigo Enabled Effective"
+msgstr "DigiGo activé (effectif)"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__display_name
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_signature_check_wizard__display_name
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_standalone_signature_checker__display_name
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__display_name
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__display_name
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__display_name
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_res_users__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_signature_check_wizard_form
+msgid "Document Information"
+msgstr "Informations du document"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "Documents"
+msgstr "Documents"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "Download TTN XML"
+msgstr "Télécharger XML TTN"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid "Download Validated XML Failed: %s"
+msgstr "Échec du téléchargement du XML validé : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.ui.menu,name:digiit_elfatoora_ttn_base.menu_elfatoora_root
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "Elfatoora"
+msgstr "Elfatoora"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/elfatoora_config.py:0
+msgid "Elfatoora Config - %s"
+msgstr "Configuration Elfatoora - %s"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model,name:digiit_elfatoora_ttn_base.model_digiit_model_elfatoora_config
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_config_form
+msgid "Elfatoora Configuration"
+msgstr "Configuration Elfatoora"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.actions.act_window,name:digiit_elfatoora_ttn_base.action_elfatoora_config
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_config_search
+msgid "Elfatoora Configurations"
+msgstr "Configurations Elfatoora"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid "Elfatoora SOAP call failed: %s"
+msgstr "L'appel SOAP Elfatoora a échoué : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model,name:digiit_elfatoora_ttn_base.model_digiit_elfatoora_signature_check_wizard
+msgid "Elfatoora Signature Check"
+msgstr "Vérification de signature Elfatoora"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_status
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_status
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_account_invoice_filter_elfatoora_inherit
+msgid "Elfatoora Status"
+msgstr "Statut Elfatoora"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid "Elfatoora Submission Failed: %s"
+msgstr "Échec de l'envoi Elfatoora : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model,name:digiit_elfatoora_ttn_base.model_digiit_model_elfatoora_submission
+msgid "Elfatoora Submission History"
+msgstr "Historique des soumissions Elfatoora"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model,name:digiit_elfatoora_ttn_base.model_digiit_model_elfatoora_submission_wizard
+msgid "Elfatoora Submission Wizard"
+msgstr "Assistant d'envoi Elfatoora"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+msgid "Elfatoora configuration not found for this company."
+msgstr "Configuration Elfatoora non trouvée pour cette société."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+msgid "Elfatoora configuration not found."
+msgstr "Configuration Elfatoora non trouvée."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__enterprise_available
+msgid "Enterprise Available"
+msgstr "Enterprise disponible"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__enterprise_enabled_effective
+msgid "Enterprise Enabled Effective"
+msgstr "Enterprise activé (effectif)"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/elfatoora_submission_wizard.py:0
+msgid ""
+"Enterprise-ID provider is not installed. Please install addon "
+"'digiit_elfatoora_ttn_enterprise'."
+msgstr "Le fournisseur Enterprise-ID n'est pas installé. Veuillez installer le module 'digiit_elfatoora_ttn_enterprise'."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_error_message
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_error_message
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__error_message
+msgid "Error Message"
+msgstr "Message d'erreur"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Error:"
+msgstr "Erreur :"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "Errors"
+msgstr "Erreurs"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "FAILED:"
+msgstr "ÉCHEC :"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_model_elfatoora_config__submission_method__ftp
+msgid "FTP"
+msgstr "FTP"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_model_elfatoora_submission__submission_method__ftp
+msgid "FTP (Legacy)"
+msgstr "FTP (Ancien)"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Failed to canonicalize SignedInfo for verification: %s"
+msgstr "Échec de la canonisation de SignedInfo pour la vérification : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid ""
+"Failed to connect to Elfatoora service. Please check the API URL and your "
+"network connection."
+msgstr "Échec de la connexion au service Elfatoora. Veuillez vérifier l'URL de l'API et votre connexion réseau."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Failed to decode SignatureValue from XML: %s"
+msgstr "Échec du décodage de SignatureValue depuis le XML : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Failed to embed signature into XML: %s"
+msgstr "Échec de l'intégration de la signature dans le XML : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/teif_generator.py:0
+msgid "Failed to generate XML: %s"
+msgstr "Échec de génération du XML : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Failed to load X509 certificate from XML: %s"
+msgstr "Échec du chargement du certificat X509 depuis le XML : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Failed to load certificate: %s"
+msgstr "Échec du chargement du certificat : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Failed to parse XML for signature verification: %s"
+msgstr "Échec de l'analyse du XML pour la vérification de la signature : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Failed to prepare XML for remote signing: %s"
+msgstr "Échec de la préparation du XML pour la signature distante : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_standalone_signature_checker__xml_filename
+msgid "Filename"
+msgstr "Nom de fichier"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (partenaires)"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__has_message
+msgid "Has Message"
+msgstr "A un message"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_signature_check_wizard__id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_standalone_signature_checker__id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_res_users__id
+msgid "ID"
+msgstr "ID"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__idtrust_signing_trigger
+msgid "Idtrust Signing Trigger"
+msgstr "Déclencheur de signature ID-Trust"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si coché, de nouveaux messages nécessitent votre attention."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_has_error
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si coché, certains messages ont une erreur de livraison."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_signature_check_wizard__invoice_id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__invoice_id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__invoice_id
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_submission_search
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/teif_generator.py:0
+msgid ""
+"Invoice date is missing. It is required for TEIF DateText (functionCode "
+"I-31)."
+msgstr "La date de facture est manquante. Elle est requise pour TEIF DateText (functionCode I-31)."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+msgid "Invoice must be posted."
+msgstr "La facture doit être comptabilisée."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid "Invoice not found in TTN system."
+msgstr "Facture introuvable dans le système TTN."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/teif_generator.py:0
+msgid "Invoice number is missing. It is required for TEIF DocumentIdentifier."
+msgstr "Le numéro de facture est manquant. Il est requis pour TEIF DocumentIdentifier."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_is_follower
+msgid "Is Follower"
+msgstr "Est abonné"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Issuer:"
+msgstr "Émetteur :"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model,name:digiit_elfatoora_ttn_base.model_account_move
+msgid "Journal Entry"
+msgstr "Pièce comptable"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_submission_id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_submission_id
+msgid "Last Submission"
+msgstr "Dernier envoi"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_signature_check_wizard__write_uid
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_standalone_signature_checker__write_uid
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__write_uid
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__write_uid
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_signature_check_wizard__write_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_standalone_signature_checker__write_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__write_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__write_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_res_users__last_signing_method
+msgid "Last Used Signing Method"
+msgstr "Dernière méthode de signature utilisée"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_has_error
+msgid "Message Delivery error"
+msgstr "Erreur de distribution du message"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__submission_method
+msgid "Method"
+msgstr "Méthode"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/teif_generator.py:0
+msgid "Montant HT ligne"
+msgstr "Montant HT ligne"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+msgid "No TTN XML available. Please check the invoice status first."
+msgstr "Aucun XML TTN disponible. Veuillez d'abord vérifier le statut de la facture."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+msgid ""
+"No TTN XML is stored on this invoice. Please retrieve status from TTN first."
+msgstr "Aucun XML TTN n'est stocké sur cette facture. Veuillez d'abord récupérer le statut depuis TTN."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "No X509 certificate was found inside the XML signature."
+msgstr "Aucun certificat X509 n'a été trouvé dans la signature XML."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "No XML digital signature (ds:Signature) was found in the document."
+msgstr "Aucune signature numérique XML (ds:Signature) n'a été trouvée dans le document."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+msgid "No signed XML found on this invoice."
+msgstr "Aucun XML signé trouvé sur cette facture."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+msgid "No signed XML found. Please sign the invoice first."
+msgstr "Aucun XML signé trouvé. Veuillez d'abord signer la facture."
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_config_form
+msgid "No signing method available."
+msgstr "Aucune méthode de signature disponible."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+msgid ""
+"No signing method is available. Please enable at least one method in "
+"Elfatoora Configuration."
+msgstr "Aucune méthode de signature n'est disponible. Veuillez activer au moins une méthode dans la configuration Elfatoora."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "NotAfter:"
+msgstr "Valide jusqu'au :"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "NotBefore:"
+msgstr "Valide à partir du :"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nombre d'erreurs"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Nombre de messages nécessitant une action"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec erreur de distribution"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "OCSP/CRL"
+msgstr "OCSP/CRL"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.constraint,message:digiit_elfatoora_ttn_base.constraint_digiit_model_elfatoora_config_company_id_unique
+msgid "Only one Elfatoora Configuration is allowed per company."
+msgstr "Une seule configuration Elfatoora est autorisée par société."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__account_move__digiit_elfatoora_status__pending
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_model_elfatoora_submission__status__pending
+msgid "Pending"
+msgstr "En cours de traitement"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__pending_signing_credential_id
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__pending_signing_credential_id
+msgid "Pending Signing Credential ID"
+msgstr "ID d'identification en attente"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__pending_signing_hash
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__pending_signing_hash
+msgid "Pending Signing Hash"
+msgstr "Hash DigiGo en attente"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__pending_signing_xml
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__pending_signing_xml
+msgid "Pending Signing XML"
+msgstr "XML DigiGo en attente"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/elfatoora_submission_wizard.py:0
+msgid "Please select a signing method."
+msgstr "Veuillez sélectionner une méthode de signature."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/standalone_signature_checker.py:0
+msgid "Please upload an XML file first."
+msgstr "Veuillez d'abord télécharger un fichier XML."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_processing_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_processing_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__processing_date
+msgid "Processing Date"
+msgstr "Date de traitement"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_qr_code
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_qr_code
+msgid "QR Code"
+msgstr "Code QR"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__account_move__digiit_elfatoora_status__ack
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_model_elfatoora_submission__status__ack
+msgid "Received by TTN"
+msgstr "Reçu par TTN"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__name
+msgid "Reference"
+msgstr "Référence"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__account_move__digiit_elfatoora_status__rejected
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_model_elfatoora_submission__status__rejected
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_submission_search
+msgid "Rejected"
+msgstr "Rejeté"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+msgid "Rejected by TTN."
+msgstr "Rejeté par TTN."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__request_xml
+msgid "Request XML"
+msgstr "XML de la requête"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid ""
+"Request to Elfatoora timed out. Please check your network connection and try"
+" again."
+msgstr "La requête vers Elfatoora a expiré. Veuillez vérifier votre connexion réseau et réessayer."
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "Resign Invoice"
+msgstr "Resigner la facture"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__response_xml
+msgid "Response XML"
+msgstr "XML de la réponse"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__retry_count
+msgid "Retry Count"
+msgstr "Nombre d'essais"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Revocation status (%s):"
+msgstr "Statut de révocation (%s) :"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erreur de distribution SMS"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid "SOAP Client not initialized."
+msgstr "Client SOAP non initialisé."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid "SOAP Client not initialized. Check URL configuration."
+msgstr "Client SOAP non initialisé. Vérifiez la configuration de l'URL."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid ""
+"SOAP operation '%s' not found in WSDL. Please check the operation name in "
+"configuration."
+msgstr "L'opération SOAP '%s' n'a pas été trouvée dans le WSDL. Veuillez vérifier le nom de l'opération dans la configuration."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__soap_operation_check_status
+msgid ""
+"SOAP operation name for checking invoice status and downloading validated "
+"XML. Default: 'consultEfact' (from TTN WSDL)."
+msgstr "Nom de l'opération SOAP pour vérifier le statut de la facture et télécharger le XML validé. Par défaut : 'consultEfact' (depuis le WSDL TTN)."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid ""
+"SOAP operation name for checking status is not configured. Please set it in "
+"Elfatoora Configuration."
+msgstr "Le nom de l'opération SOAP pour vérifier le statut n'est pas configuré. Veuillez le définir dans la configuration Elfatoora."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid ""
+"SOAP operation name for checking status/downloading XML is not configured. "
+"Please set it in Elfatoora Configuration."
+msgstr "Le nom de l'opération SOAP pour vérifier le statut/télécharger le XML n'est pas configuré. Veuillez le définir dans la configuration Elfatoora."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid ""
+"SOAP operation name for submitting invoices is not configured. Please set it"
+" in Elfatoora Configuration."
+msgstr "Le nom de l'opération SOAP pour l'envoi de factures n'est pas configuré. Veuillez le définir dans la configuration Elfatoora."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__soap_operation_submit
+msgid ""
+"SOAP operation name for submitting invoices. Default: 'saveEfact' (from TTN "
+"WSDL)"
+msgstr "Nom de l'opération SOAP pour l'envoi de factures. Par défaut : 'saveEfact' (depuis le WSDL TTN)"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_submission_wizard_form
+msgid "Select Signing Method"
+msgstr "Sélectionner la méthode de signature"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.ui.menu,name:digiit_elfatoora_ttn_base.menu_elfatoora_config
+msgid "Settings"
+msgstr "Paramètres"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__show_digigo
+msgid "Show Digigo"
+msgstr "Afficher DigiGo"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__show_enterprise
+msgid "Show Enterprise"
+msgstr "Afficher Enterprise"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__show_token
+msgid "Show Token"
+msgstr "Afficher Token"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__show_unsigned_xml
+msgid "Show XML"
+msgstr "Afficher l'XML à signer"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+#: model:ir.actions.act_window,name:digiit_elfatoora_ttn_base.action_elfatoora_submission_wizard
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_submission_wizard_form
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "Sign Invoice"
+msgstr "Signer la facture"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__enable_digigo
+msgid "Sign using DigiGo Mobile/Cloud signature."
+msgstr "Signer avec la signature mobile/cloud DigiGo."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__enable_token
+msgid "Sign using Physical USB Token."
+msgstr "Signer avec un jeton USB physique."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__enable_enterprise
+msgid "Sign using Server-File Certificate (Cachet Entreprise)."
+msgstr "Signer avec un certificat serveur (Cachet Entreprise)."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Signature %s (%s)"
+msgstr "Signature %s (%s)"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+msgid "Signature Check (%s)"
+msgstr "Vérification de signature (%s)"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_signature_check_wizard_form
+msgid "Signature Verification Results"
+msgstr "Résultats de vérification de signature"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+#: code:addons/digiit_elfatoora_ttn_base/models/standalone_signature_checker.py:0
+msgid ""
+"Signature verification failed:\n"
+"%s"
+msgstr "La vérification de la signature a échoué :\n%s"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "SignatureValue element not found or empty in XML signature."
+msgstr "Élément SignatureValue introuvable ou vide dans la signature XML."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__account_move__digiit_elfatoora_status__signed
+msgid "Signed"
+msgstr "Signé"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_signed_xml
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_signed_xml
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_elfatoora_signature_check_wizard__source__signed
+msgid "Signed XML"
+msgstr "XML signé"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_signed_xml_filename
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_signed_xml_filename
+msgid "Signed XML Filename"
+msgstr "Nom du fichier XML Signé"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "SignedInfo element not found in XML signature."
+msgstr "Élément SignedInfo introuvable dans la signature XML."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__signing_method
+msgid "Signing Method"
+msgstr "Méthode de signature"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_config_form
+msgid "Signing Methods"
+msgstr "Méthodes de signature"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "Signing time is required for certificate validity verification"
+msgstr "L'heure de signature est requise pour vérifier la validité du certificat"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid ""
+"Signing time not found in signature. Cannot verify certificate validity "
+"period."
+msgstr "Heure de signature introuvable dans la signature. Impossible de vérifier la période de validité du certificat."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_signature_check_wizard__source
+msgid "Source"
+msgstr "Source"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model,name:digiit_elfatoora_ttn_base.model_digiit_elfatoora_standalone_signature_checker
+msgid "Standalone XML Signature Checker"
+msgstr "Vérificateur de signature XML autonome"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__status
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_submission_search
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "Status"
+msgstr "Statut"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+#: code:addons/digiit_elfatoora_ttn_base/services/elfatoora_api.py:0
+msgid "Status Check Failed: %s"
+msgstr "Échec de la vérification du statut : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_status
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_status
+msgid "Status of the invoice in the Elfatoora system"
+msgstr "Statut de la facture dans le système Elfatoora"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.actions.act_window,name:digiit_elfatoora_ttn_base.action_elfatoora_submission
+#: model:ir.ui.menu,name:digiit_elfatoora_ttn_base.menu_elfatoora_submissions
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_submission_form
+msgid "Submission History"
+msgstr "Historique des envois"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__submission_method
+msgid "Submission Method"
+msgstr "Méthode d'envoi"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_submission_count
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_submission_count
+msgid "Submissions"
+msgstr "Envois"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__soap_operation_submit
+msgid "Submit Operation Name"
+msgstr "Nom de l'opération d'envoi"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "Submit to TTN"
+msgstr "Envoyer à TTN"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__api_url
+msgid "TTN API WSDL URL"
+msgstr "URL WSDL API TTN"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_ttn_reference
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_ttn_reference
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__ttn_reference
+msgid "TTN Reference"
+msgstr "Référence TTN"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_ttn_xml
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_ttn_xml
+msgid "TTN Returned XML"
+msgstr "XML renvoyé par TTN"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/account_move.py:0
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_elfatoora_signature_check_wizard__source__ttn
+msgid "TTN XML"
+msgstr "XML TTN"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_ttn_xml_filename
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_ttn_xml_filename
+msgid "TTN XML Filename"
+msgstr "Nom du fichier XML TTN"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__api_password
+msgid "TTN password provided after subscription. Required for production."
+msgstr "Mot de passe TTN fourni après l'abonnement. Requis pour la production."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__api_username
+msgid ""
+"TTN username/login provided after subscription. Required for production."
+msgstr "Nom d'utilisateur/login TTN fourni après l'abonnement. Requis pour la production."
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_submission_form
+msgid "Technical Data"
+msgstr "Données Techniques"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_ttn_reference
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_ttn_reference
+msgid "The final official fiscal ReferenceTTN"
+msgstr "La référence fiscale officielle finale ReferenceTTN"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_tracking_number
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_tracking_number
+msgid "The initial receipt number (Numéro de Dépôt) from TTN"
+msgstr "Le numéro de récépissé initial (Numéro de Dépôt) de TTN"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_res_users__last_signing_method
+msgid ""
+"The last signing method used by this user for the current company. Pre-"
+"selected the next time the submission wizard is opened."
+msgstr "La dernière méthode de signature utilisée par cet utilisateur pour la société actuelle. Pré-sélectionnée lors de la prochaine ouverture de l'assistant de soumission."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "The signing certificate has expired (NotAfter: %s, signing time: %s)."
+msgstr "Le certificat de signature a expiré (NotAfter : %s, heure de signature : %s)."
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid ""
+"The signing certificate is not yet valid (NotBefore: %s, signing time: %s)."
+msgstr "Le certificat de signature n'est pas encore valide (NotBefore : %s, heure de signature : %s)."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__token_available
+msgid "Token Available"
+msgstr "Token disponible"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__token_enabled_effective
+msgid "Token Enabled Effective"
+msgstr "Token activé (effectif)"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_tracking_number
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_tracking_number
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__tracking_number
+msgid "Tracking Number"
+msgstr "Numéro de suivi"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "Télécharger XML Signé"
+msgstr "Télécharger XML Signé"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_move_form_elfatoora_inherit
+msgid "Télécharger XML non signé"
+msgstr "Télécharger XML non signé"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/standalone_signature_checker.py:0
+msgid "Unknown error occurred"
+msgstr "Une erreur inconnue s'est produite"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__account_move__digiit_elfatoora_status__draft
+msgid "Unsigned"
+msgstr "Non signé"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_standalone_signature_checker_form
+msgid "Upload XML File"
+msgstr "Télécharger un fichier XML"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_standalone_signature_checker_form
+msgid "Upload an XML file and click 'Check Signature' to see results..."
+msgstr "Téléchargez un fichier XML et cliquez sur 'Vérifier la signature' pour voir les résultats..."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_elfatoora_standalone_signature_checker__xml_file
+msgid "Upload an XML file to check its digital signature(s)"
+msgstr "Téléchargez un fichier XML pour vérifier sa ou ses signature(s) numérique(s)"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model,name:digiit_elfatoora_ttn_base.model_res_users
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__account_move__digiit_elfatoora_status__validated
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_model_elfatoora_submission__status__validated
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_submission_search
+msgid "Validated"
+msgstr "Validé"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_bank_statement_line__digiit_elfatoora_validation_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_account_move__digiit_elfatoora_validation_date
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission__validation_date
+msgid "Validation Date"
+msgstr "Date de validation"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_signature_check_wizard__result_text
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_standalone_signature_checker__result_text
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_standalone_signature_checker_form
+msgid "Verification Result"
+msgstr "Résultat de vérification"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_signature_check_wizard_form
+msgid "Verification Results"
+msgstr "Résultats de vérification"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_signature_check_wizard_form
+msgid "Verification results will be displayed here..."
+msgstr "Les résultats de vérification seront affichés ici..."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__api_url
+msgid "WSDL URL for Elfatoora web services."
+msgstr "URL WSDL des services web Elfatoora."
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_model_elfatoora_config__submission_method__webservice
+#: model:ir.model.fields.selection,name:digiit_elfatoora_ttn_base.selection__digiit_model_elfatoora_submission__submission_method__webservice
+msgid "Web Service (SOAP)"
+msgstr "Service Web (SOAP)"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__website_message_ids
+msgid "Website Messages"
+msgstr "Messages du site web"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,help:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_config__website_message_ids
+msgid "Website communication history"
+msgstr "Historique des communications du site web"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_elfatoora_standalone_signature_checker__xml_file
+msgid "XML File"
+msgstr "Fichier XML"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/models/standalone_signature_checker.py:0
+#: model:ir.actions.act_window,name:digiit_elfatoora_ttn_base.action_standalone_signature_checker
+#: model:ir.ui.menu,name:digiit_elfatoora_ttn_base.menu_standalone_signature_checker
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_standalone_signature_checker_form
+msgid "XML Signature Checker"
+msgstr "Vérificateur de signature XML"
+
+#. module: digiit_elfatoora_ttn_base
+#. odoo-python
+#: code:addons/digiit_elfatoora_ttn_base/services/digital_signature.py:0
+msgid "XML Signing failed: %s"
+msgstr "Signature XML échouée : %s"
+
+#. module: digiit_elfatoora_ttn_base
+#: model:ir.model.fields,field_description:digiit_elfatoora_ttn_base.field_digiit_model_elfatoora_submission_wizard__unsigned_xml
+msgid "XML to Sign"
+msgstr "XML à signer"
+
+#. module: digiit_elfatoora_ttn_base
+#: model_terms:ir.ui.view,arch_db:digiit_elfatoora_ttn_base.view_elfatoora_submission_wizard_form
+msgid "XML to sign will be displayed here..."
+msgstr "Le XML à signer sera affiché ici..."

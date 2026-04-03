@@ -1,0 +1,117 @@
+<section class="container">
+
+    <!-- HEADER -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="mb-3" style="color:#714B67;font-size:2.5rem;font-weight:bold;">
+                Elfatoora TTN — DigiGo
+            </h1>
+            <h2 class="text-secondary mb-4" style="font-size:1.5rem;">
+                DigiGo mobile / cloud signing for Elfatoora on Odoo 19
+            </h2>
+
+            <p class="lead mb-4">
+                This addon <strong>extends Elfatoora TTN - Base</strong> with the <strong>DigiGo</strong> signature
+                provider: OAuth2 authorization URL, authorization-code exchange, and API calls required to complete
+                signing from the Elfatoora wizards. It does not replace the base module — you must install
+                <strong>digiit_elfatoora_ttn_base</strong> first.
+            </p>
+
+            <p>
+                Developed by <strong>Digi-ERP</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- KEY FEATURES -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+                <h4 style="color:#714B67;">What this module adds</h4>
+                <ul class="list-unstyled">
+                    <li><strong>DigiGo fields</strong> on Elfatoora configuration (API URL, client id/secret, redirect URI, etc.).</li>
+                    <li><strong>OAuth callback controller</strong> to complete the authorize → token step.</li>
+                    <li><strong>Wizard integration</strong> so users can pick DigiGo as the signing path where applicable.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+                <h4 style="color:#714B67;">Requirements</h4>
+                <ul class="list-unstyled">
+                    <li><strong>Elfatoora TTN - Base</strong> must be installed and configured.</li>
+                    <li>Valid <strong>DigiGo</strong> credentials and a registered <strong>redirect URI</strong> matching your Odoo base URL.</li>
+                    <li>Network access from Odoo to the DigiGo API endpoints you configure.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIGURATION -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6 order-md-2">
+            <h3 style="color:#875A7B;">DigiGo configuration</h3>
+            <p>
+                With this module installed, Elfatoora settings include <strong>DigiGo</strong> parameters:
+                API URL, client id and secret, redirect URI, and related options for the OAuth and signing flow.
+            </p>
+            <p>
+                The redirect URI must match what you registered with DigiGo and must be reachable from the user’s browser.
+            </p>
+        </div>
+        <div class="col-md-6 order-md-1 text-center">
+            <div class="d-inline-block w-100" style="max-width: 100%; padding: 10px; background: #fff; border: 2px solid #875A7B; border-radius: 4px; box-shadow: 0 2px 8px rgba(113, 75, 103, 0.15), 0 0 0 1px rgba(135, 90, 123, 0.08) inset;">
+                <img src="conf.png" alt="Elfatoora DigiGo configuration" class="img-fluid rounded" style="display: block; width: 100%; border: 1px solid #e9ecef;">
+            </div>
+        </div>
+    </div>
+
+    <!-- SETUP -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h4 class="alert-heading" style="color:#875A7B;">Quick setup</h4>
+                <p class="mb-0">
+                    <strong>1.</strong> Install <em>digiit_elfatoora_ttn_base</em> and complete Elfatoora platform settings.<br>
+                    <strong>2.</strong> Install <em>digiit_elfatoora_ttn_digigo</em>.<br>
+                    <strong>3.</strong> Open Elfatoora settings again and fill <strong>DigiGo</strong> parameters (API URL, client id, client secret, redirect URI).<br>
+                    <strong>4.</strong> Run an end-to-end test on a copy of your database before production.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPATIBILITY -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-3">
+            <div class="card p-3 bg-light h-100">
+                <h4>Supported version</h4>
+                <p class="mb-0">Odoo 19.0</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card p-3 bg-light h-100">
+                <h4>Dependencies</h4>
+                <ul class="mb-0">
+                    <li><strong>digiit_elfatoora_ttn_base</strong> (required)</li>
+                    <li>Uses <em>requests</em> for HTTP calls (standard in most Odoo deployments)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <p>
+                For any support, contact us:<br>
+                <a style="color:#714B67;" href="mailto:contact@digi-it.com.tn">
+                    contact@digi-it.com.tn
+                </a>
+            </p>
+        </div>
+    </div>
+
+</section>

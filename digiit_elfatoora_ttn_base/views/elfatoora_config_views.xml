@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_elfatoora_config_form" model="ir.ui.view">
+        <field name="name">digiit_model_elfatoora.config.form</field>
+        <field name="model">digiit_model_elfatoora.config</field>
+        <field name="arch" type="xml">
+            <form string="Elfatoora Configuration">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Configuration Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Company and Environment">
+                            <field name="company_id"/>
+                            <field name="company_vat" required="1"/>
+                            <field name="submission_method"/>
+                        </group>
+                        <group string="Signing Methods">
+                            <field name="digigo_available" invisible="1"/>
+                            <field name="enterprise_available" invisible="1"/>
+                            <field name="token_available" invisible="1"/>
+                            <field name="digigo_enabled_effective" invisible="1"/>
+                            <field name="enterprise_enabled_effective" invisible="1"/>
+                            <field name="token_enabled_effective" invisible="1"/>
+                            <div class="alert alert-warning" role="alert" colspan="2"
+                                 invisible="digigo_available or token_available or enterprise_available">
+                                No signing method available.
+                            </div>
+                            <div colspan="2" class="d-flex align-items-center gap-2 mb-1" invisible="not digigo_available">
+                                <label for="enable_digigo" class="o_form_label mb-0"/>
+                                <div style="flex: 0 0 auto;">
+                                    <field name="enable_digigo" widget="boolean_toggle" nolabel="1"/>
+                                </div>
+                            </div>
+                            <div colspan="2" class="d-flex align-items-center gap-2 mb-1" invisible="not token_available">
+                                <label for="enable_token" class="o_form_label mb-0"/>
+                                <div style="flex: 0 0 auto;">
+                                    <field name="enable_token" widget="boolean_toggle" nolabel="1"/>
+                                </div>
+                            </div>
+                            <div colspan="2" class="d-flex align-items-center gap-2 mb-1" invisible="not enterprise_available">
+                                <label for="enable_enterprise" class="o_form_label mb-0"/>
+                                <div style="flex: 0 0 auto;">
+                                    <field name="enable_enterprise" widget="boolean_toggle" nolabel="1"/>
+                                </div>
+                            </div>
+                        </group>
+                        <group string="API Settings">
+                            <field name="api_url"/>
+                            <field name="api_username"/>
+                            <field name="api_password" password="True"/>
+                            <field name="soap_operation_submit" invisible="1"/>
+                            <field name="soap_operation_check_status" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <!-- Provider-specific pages (DigiGo / ID-Trust / Enterprise-ID) are injected by provider addons. -->
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_elfatoora_config_tree" model="ir.ui.view">
+        <field name="name">digiit_model_elfatoora.config.list</field>
+        <field name="model">digiit_model_elfatoora.config</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="company_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_elfatoora_config_search" model="ir.ui.view">
+        <field name="name">digiit_model_elfatoora.config.search</field>
+        <field name="model">digiit_model_elfatoora.config</field>
+        <field name="arch" type="xml">
+            <search string="Elfatoora Configurations">
+                <field name="name"/>
+                <field name="company_id"/>
+                <group>
+                    <filter string="Company" name="group_company" context="{'group_by': 'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_elfatoora_config" model="ir.actions.act_window">
+        <field name="name">Elfatoora Configurations</field>
+        <field name="res_model">digiit_model_elfatoora.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_elfatoora_config_search"/>
+    </record>
+</odoo>
+

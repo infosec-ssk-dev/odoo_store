@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="digiit_elfatoora_ttn_base.SigningMethodToggle">
+        <div class="d-flex flex-column gap-2">
+            <t t-foreach="visibleMethods" t-as="method" t-key="method.key">
+                <div class="form-check form-switch d-flex align-items-center"
+                     style="cursor: pointer; user-select: none;"
+                     t-on-click="() => this.select(method.key)">
+                    <input type="checkbox"
+                           class="form-check-input me-2"
+                           style="pointer-events: none;"
+                           t-att-checked="currentMethod === method.key"/>
+                    <label class="form-check-label fw-normal" style="cursor: pointer;">
+                        <t t-esc="method.label"/>
+                    </label>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>
+

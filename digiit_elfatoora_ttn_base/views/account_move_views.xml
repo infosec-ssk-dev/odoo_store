@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_elfatoora_inherit" model="ir.ui.view">
+        <field name="name">account.move.form.elfatoora</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="after">
+                <header invisible="move_type not in ('out_invoice', 'out_refund')" class="bg-light">
+                    <button name="action_submit_to_elfatoora"
+                            string="Sign Invoice"
+                            type="object"
+                            class="btn-info"
+                            invisible="state != 'posted' or digiit_elfatoora_status in ('signed', 'pending', 'ack', 'validated', 'rejected')"
+                            groups="account.group_account_invoice"/>
+
+                    <button name="action_submit_to_elfatoora"
+                            string="Resign Invoice"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state != 'posted' or digiit_elfatoora_status not in ('signed', 'rejected')"
+                            groups="account.group_account_invoice"/>
+
+                    <button name="action_submit_signed_xml"
+                            string="Submit to TTN"
+                            type="object"
+                            class="btn-info"
+                            invisible="state != 'posted' or digiit_elfatoora_status != 'signed'"
+                            groups="account.group_account_invoice"/>
+
+                    <button name="action_check_elfatoora_status"
+                            string="Check Elfatoora Status"
+                            type="object"
+                            invisible="state != 'posted' or digiit_elfatoora_status in ('draft', 'signed', 'validated', 'rejected')"
+                            groups="account.group_account_invoice"/>
+
+                    <field name="digiit_elfatoora_status" widget="statusbar"
+                           statusbar_visible="signed,ack,pending,validated"
+                           invisible="state != 'posted' or digiit_elfatoora_status in ('draft', 'rejected')"/>
+                    <field name="digiit_elfatoora_status" widget="statusbar"
+                           statusbar_visible="signed,ack,pending,rejected"
+                           invisible="state != 'posted' or digiit_elfatoora_status != 'rejected'"/>
+                </header>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(digiit_elfatoora_ttn_base.action_elfatoora_submission)d"
+                        type="action"
+                        class="oe_stat_button"
+                        icon="fa-exchange"
+                        invisible="state != 'posted' or digiit_elfatoora_submission_count == 0"
+                        context="{'search_default_invoice_id': id}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value"><field name="digiit_elfatoora_submission_count"/></span>
+                        <span class="o_stat_text"><span>Submissions to TTN</span></span>
+                    </div>
+                </button>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Elfatoora"
+                      invisible="move_type not in ('out_invoice', 'out_refund') or state != 'posted'">
+                    <group>
+                        <group string="Status" invisible="digiit_elfatoora_status == 'draft'">
+                            <field name="digiit_elfatoora_tracking_number"/>
+                            <field name="digiit_elfatoora_ttn_reference"/>
+                            <field name="digiit_elfatoora_processing_date" invisible="digiit_elfatoora_validation_date"/>
+                            <field name="digiit_elfatoora_validation_date" invisible="not digiit_elfatoora_validation_date"/>
+                        </group>
+                        <group string="Documents">
+                            <group col="2">
+                                <button name="action_download_unsigned_xml"
+                                        string="Télécharger XML non signé"
+                                        type="object"
+                                        icon="fa-download"
+                                        class="btn-primary btn-sm"
+                                        colspan="2"
+                                        invisible="state == 'draft'"/>
+
+                                <button name="action_download_signed_xml"
+                                        string="Télécharger XML Signé"
+                                        type="object"
+                                        icon="fa-download"
+                                        class="btn-primary btn-sm"
+                                        invisible="not digiit_elfatoora_signed_xml"/>
+
+                                <button name="action_check_signed_xml_signature"
+                                        string="Check Signature"
+                                        type="object"
+                                        icon="fa-check-circle"
+                                        class="btn-secondary btn-sm"
+                                        invisible="not digiit_elfatoora_signed_xml"/>
+
+                                <button name="action_download_ttn_xml"
+                                        string="Download TTN XML"
+                                        type="object"
+                                        icon="fa-download"
+                                        class="btn-primary btn-sm"
+                                        invisible="not digiit_elfatoora_ttn_xml"/>
+
+                                <button name="action_check_ttn_xml_signature"
+                                        string="Check Signature"
+                                        type="object"
+                                        icon="fa-check-circle"
+                                        class="btn-secondary btn-sm"
+                                        invisible="not digiit_elfatoora_ttn_xml"/>
+                            </group>
+                            <group>
+                                <field name="digiit_elfatoora_qr_code" widget="image" readonly="1" nolabel="1" invisible="not digiit_elfatoora_qr_code"/>
+                            </group>
+                        </group>
+                    </group>
+                    <group string="Errors" invisible="not digiit_elfatoora_error_message">
+                        <field name="digiit_elfatoora_error_message" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//button[@name='button_draft']" position="attributes">
+                <attribute name="invisible">not show_reset_to_draft_button or digiit_elfatoora_status in ('ack', 'pending', 'validated')</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_invoice_tree_elfatoora_inherit" model="ir.ui.view">
+        <field name="name">account.move.list.elfatoora</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='status_in_payment']" position="after">
+                <field name="digiit_elfatoora_status"
+                       widget="badge"
+                       optional="show"
+                       decoration-success="digiit_elfatoora_status == 'validated'"
+                       decoration-info="digiit_elfatoora_status in ('signed', 'ack', 'pending')"
+                       decoration-danger="digiit_elfatoora_status == 'rejected'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_filter_elfatoora_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.search.elfatoora</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='status']" position="after">
+                <filter string="Elfatoora Status"
+                        name="group_by_elfatoora_status"
+                        context="{'group_by': 'digiit_elfatoora_status'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

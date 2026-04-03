@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_elfatoora_config_form_digigo" model="ir.ui.view">
+        <field name="name">digiit_model_elfatoora.config.form.digigo</field>
+        <field name="model">digiit_model_elfatoora.config</field>
+        <field name="inherit_id" ref="digiit_elfatoora_ttn_base.view_elfatoora_config_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="DigiGo" invisible="not enable_digigo">
+                    <group string="DigiGo Settings">
+                        <field name="digigo_api_url" required="enable_digigo"/>
+                        <field name="digigo_client_id" required="enable_digigo"/>
+                        <field name="digigo_client_secret" password="True" required="enable_digigo"/>
+                        <field name="digigo_redirect_uri" required="enable_digigo"/>
+                    </group>
+                    <group string="Authorized Signers (Emails)">
+                        <field name="signer_ids" nolabel="1" colspan="4">
+                            <list editable="bottom">
+                                <field name="name" string="Email / Credential ID"/>
+                                <field name="company_id"/>
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

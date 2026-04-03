@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_elfatoora_submission_wizard_form" model="ir.ui.view">
+        <field name="name">digiit_model_elfatoora.submission_wizard.form</field>
+        <field name="model">digiit_model_elfatoora.submission_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sign Invoice">
+                <group col="1">
+                    <field name="company_id" invisible="1"/>
+
+                    <field name="show_digigo" invisible="1"/>
+                    <field name="show_enterprise" invisible="1"/>
+                    <field name="show_token" invisible="1"/>
+
+                    <group string="Select Signing Method">
+                        <field name="signing_method"
+                               widget="signing_method_toggle"
+                               nolabel="1"
+                               colspan="2"/>
+                    </group>
+
+                    <group>
+                        <field name="show_unsigned_xml" widget="boolean_toggle"/>
+                        <field name="unsigned_xml" widget="text" nolabel="1" colspan="4"
+                               invisible="not show_unsigned_xml"
+                               placeholder="XML to sign will be displayed here..."
+                               style="font-family: monospace; font-size: 12px; white-space: pre-wrap; max-height: 400px; overflow-y: auto;"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Sign Invoice" name="action_submit" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_elfatoora_submission_wizard" model="ir.actions.act_window">
+        <field name="name">Sign Invoice</field>
+        <field name="res_model">digiit_model_elfatoora.submission_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">form</field>
+    </record>
+</odoo>
+

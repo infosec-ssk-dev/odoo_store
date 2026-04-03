@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="rule_elfatoora_config_multi_company" model="ir.rule">
+            <field name="name">Elfatoora Config Multi-Company</field>
+            <field name="model_id" ref="model_digiit_model_elfatoora_config"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+</odoo>
+

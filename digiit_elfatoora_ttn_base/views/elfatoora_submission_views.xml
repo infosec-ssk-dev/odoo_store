@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_elfatoora_submission_form" model="ir.ui.view">
+        <field name="name">digiit_model_elfatoora.submission.form</field>
+        <field name="model">digiit_model_elfatoora.submission</field>
+        <field name="arch" type="xml">
+            <form string="Submission History" create="false" edit="false">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="ack,pending,validated" invisible="status == 'rejected'"/>
+                    <field name="status" widget="statusbar" statusbar_visible="ack,pending,rejected" invisible="status != 'rejected'"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="invoice_id"/>
+                            <field name="company_id"/>
+                            <field name="submission_method" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="processing_date" invisible="validation_date"/>
+                            <field name="validation_date" invisible="not validation_date"/>
+                            <field name="tracking_number"/>
+                            <field name="ttn_reference"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Technical Data">
+                            <group>
+                                <field name="request_xml"/>
+                                <field name="response_xml"/>
+                                <field name="error_message"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_elfatoora_submission_tree" model="ir.ui.view">
+        <field name="name">digiit_model_elfatoora.submission.list</field>
+        <field name="model">digiit_model_elfatoora.submission</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="status == 'rejected'"
+                  decoration-success="status == 'validated'"
+                  decoration-info="status in ('ack', 'pending')"
+                  create="false">
+                <field name="create_date"/>
+                <field name="invoice_id"/>
+                <field name="submission_method"/>
+                <field name="status" widget="badge"/>
+                <field name="tracking_number"/>
+                <field name="ttn_reference"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_elfatoora_submission_search" model="ir.ui.view">
+        <field name="name">digiit_model_elfatoora.submission.search</field>
+        <field name="model">digiit_model_elfatoora.submission</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="invoice_id"/>
+                <field name="ttn_reference"/>
+                <separator/>
+                <filter string="Validated" name="validated" domain="[('status', '=', 'validated')]"/>
+                <filter string="Rejected" name="rejected" domain="[('status', '=', 'rejected')]"/>
+                <group>
+                    <filter string="Invoice" name="group_by_invoice" context="{'group_by': 'invoice_id'}"/>
+                    <filter string="Status" name="group_by_status" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_elfatoora_submission" model="ir.actions.act_window">
+        <field name="name">Submission History</field>
+        <field name="res_model">digiit_model_elfatoora.submission</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
+

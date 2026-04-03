@@ -1,0 +1,125 @@
+<section class="container">
+
+    <!-- HEADER -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="mb-3" style="color:#714B67;font-size:2.5rem;font-weight:bold;">
+                Elfatoora TTN — Base
+            </h1>
+            <h2 class="text-secondary mb-4" style="font-size:1.5rem;">
+                Tunisian e-invoicing (TEIF) and TTN integration core for Odoo 19
+            </h2>
+
+            <p class="lead mb-4">
+                This module is the <strong>shared foundation</strong> for Elfatoora: it builds
+                <strong>TEIF XML</strong>, handles <strong>XAdES</strong> signature preparation and verification,
+                tracks <strong>submissions</strong> to the platform, and exposes invoice-level fields and menus
+                under Accounting. Signing is done through a <strong>pluggable provider</strong> pattern — install
+                a companion addon (for example DigiGo) to connect a concrete signature service.
+            </p>
+
+            <p>
+                Intended for environments that must align with <strong>Tunisian e-invoicing</strong> workflows
+                and TTN-related processes.
+            </p>
+
+            <p>
+                Developed by <strong>Digi-ERP</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- KEY FEATURES -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+                <h4 style="color:#714B67;">Core capabilities</h4>
+                <ul class="list-unstyled">
+                    <li><strong>TEIF generation:</strong> Produce TEIF XML from posted invoices (v1.8.8 oriented).</li>
+                    <li><strong>XAdES pipeline:</strong> Prepare, embed, and verify signatures on XML payloads.</li>
+                    <li><strong>TTN / API layer:</strong> Client for Elfatoora web services (SOAP) and submission lifecycle.</li>
+                    <li><strong>Submission history:</strong> Dedicated models and menus to review submission records.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+                <h4 style="color:#714B67;">Accounting integration</h4>
+                <ul class="list-unstyled">
+                    <li><strong>Invoice fields:</strong> Elfatoora-related data and actions on <em>account.move</em>.</li>
+                    <li><strong>Configuration:</strong> Central settings under <em>Accounting → Configuration → Elfatoora</em>.</li>
+                    <li><strong>Signing wizard:</strong> Framework extended by provider modules for the actual sign-in-browser or API flow.</li>
+                    <li><strong>Tools:</strong> Standalone XML signature checker for validation workflows.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIGURATION -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <h3 style="color:#875A7B;">Configuration</h3>
+            <p>
+                Open <em>Accounting → Configuration → Elfatoora → Settings</em> to enter platform credentials,
+                environment options, and signing-related defaults used by TEIF generation and TTN submission.
+            </p>
+            <p>
+                After installing a signing provider addon, additional fields may appear on the same form.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <div class="d-inline-block w-100" style="max-width: 100%; padding: 10px; background: #fff; border: 2px solid #875A7B; border-radius: 4px; box-shadow: 0 2px 8px rgba(113, 75, 103, 0.15), 0 0 0 1px rgba(135, 90, 123, 0.08) inset;">
+                <img src="conf.png" alt="Elfatoora configuration" class="img-fluid rounded" style="display: block; width: 100%; border: 1px solid #e9ecef;">
+            </div>
+        </div>
+    </div>
+
+    <!-- SETUP OVERVIEW -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h4 class="alert-heading" style="color:#875A7B;">Before first use</h4>
+                <p class="mb-0">
+                    <strong>1.</strong> Install this base module.<br>
+                    <strong>2.</strong> Open <em>Accounting → Configuration → Elfatoora → Settings</em> and fill platform credentials and options.<br>
+                    <strong>3.</strong> Install a <strong>signing provider</strong> addon (for example <em>Elfatoora TTN - DigiGo</em>) if you use DigiGo.<br>
+                    <strong>4.</strong> Configure signing and test on a non-production database first.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPATIBILITY -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-3">
+            <div class="card p-3 bg-light h-100">
+                <h4>Supported version</h4>
+                <p class="mb-0">Odoo 19.0</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card p-3 bg-light h-100">
+                <h4>Dependencies</h4>
+                <ul class="mb-0">
+                    <li>Account, Contacts, Barcodes (standard Odoo)</li>
+                    <li>Python libraries used by the implementation include <em>cryptography</em>, <em>lxml</em>, <em>requests</em>, and <em>zeep</em> (ensure they are available in your environment)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <p>
+                For any support, contact us:<br>
+                <a style="color:#714B67;" href="mailto:contact@digi-it.com.tn">
+                    contact@digi-it.com.tn
+                </a>
+            </p>
+        </div>
+    </div>
+
+</section>
