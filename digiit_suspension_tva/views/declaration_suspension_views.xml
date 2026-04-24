@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- List view -->
+    <record id="view_digiit_declaration_suspension_list" model="ir.ui.view">
+        <field name="name">digiit.declaration.suspension.list</field>
+        <field name="model">digiit.declaration.suspension</field>
+        <field name="arch" type="xml">
+            <list string="Déclarations Suspension TVA">
+                <field name="name"/>
+                <field name="trimestre"/>
+                <field name="annee_fiscale"/>
+                <field name="date"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form view -->
+    <record id="view_digiit_declaration_suspension_form" model="ir.ui.view">
+        <field name="name">digiit.declaration.suspension.form</field>
+        <field name="model">digiit.declaration.suspension</field>
+        <field name="arch" type="xml">
+            <form string="Déclaration Factures en Suspension sur CA">
+                <header>
+                    <button name="action_calculer"
+                            string="Calculer"
+                            type="object"
+                            class="btn-primary"/>
+                    <button name="action_generer_fichier"
+                            string="Générer Fichier Déclaration"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="not line_ids"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="trimestre"/>
+                            <field name="annee_fiscale"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="fichier_declaration" widget="binary"
+                                   filename="fichier_declaration_filename"
+                                   invisible="not fichier_declaration"/>
+                            <field name="fichier_declaration_filename" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Lignes de Déclaration">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="num_ordre" readonly="1"/>
+                                    <field name="num_facture" readonly="1"/>
+                                    <field name="date_facture" readonly="1"/>
+                                    <field name="type_identifiant"/>
+                                    <field name="identifiant" readonly="1"/>
+                                    <field name="nom_prenom_raison" readonly="1"/>
+                                    <field name="adresse" readonly="1"/>
+                                    <field name="num_autorisation" readonly="1"/>
+                                    <field name="date_autorisation" readonly="1"/>
+                                    <field name="prix_ht" readonly="1" sum="Total HT"/>
+                                    <field name="taux_fod"/>
+                                    <field name="montant_fod" sum="Total FOD"/>
+                                    <field name="taux_cons"/>
+                                    <field name="montant_cons" sum="Total Cons"/>
+                                    <field name="taux_tva"/>
+                                    <field name="montant_tva" sum="Total TVA"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_digiit_declaration_suspension" model="ir.actions.act_window">
+        <field name="name">Déclarations Suspension sur CA</field>
+        <field name="res_model">digiit.declaration.suspension</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Editable list view -->
+    <record id="view_digiit_bon_commande_vise_list" model="ir.ui.view">
+        <field name="name">digiit.bon.commande.vise.list</field>
+        <field name="model">digiit.bon.commande.vise</field>
+        <field name="arch" type="xml">
+            <list string="Bons de Commandes Visés Vente" editable="bottom">
+                <!-- From facture (read-only) -->
+                <field name="date_facture" readonly="1"/>
+                <field name="numero_facture" readonly="1"/>
+                <field name="partner_id" readonly="1"/>
+                <field name="montant_ht" readonly="1"/>
+                <!-- Editable by user -->
+                <field name="digiit_autorisation_id"
+                       domain="[('partner_id', '=', partner_id)]"
+                       options="{'no_create': True}"/>
+                <field name="digiit_num_bc"/>
+                <field name="digiit_date_bc"/>
+                <field name="digiit_attachment" widget="binary"
+                       filename="digiit_attachment_filename"/>
+                <field name="digiit_attachment_filename" column_invisible="1"/>
+                <field name="digiit_statut" widget="badge"
+                       decoration-warning="digiit_statut == 'en_cours'"
+                       decoration-success="digiit_statut == 'cloturee'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form view -->
+    <record id="view_digiit_bon_commande_vise_form" model="ir.ui.view">
+        <field name="name">digiit.bon.commande.vise.form</field>
+        <field name="model">digiit.bon.commande.vise</field>
+        <field name="arch" type="xml">
+            <form string="Bon de Commande Visé">
+                <sheet>
+                    <widget name="web_ribbon"
+                            title="Clôturée"
+                            bg_color="bg-success"
+                            invisible= "digiit_statut != 'cloturee'"/>
+                    <widget name="web_ribbon"
+                            title="En cours"
+                            bg_color="bg-warning"
+                            invisible= "digiit_statut != 'en_cours'"/>
+
+                    <group string="Informations Facture" col="2">
+                        <field name="move_id" options="{'no_create': True}"
+                               domain="[('move_type','=','out_invoice'),
+                                        ('fiscal_position_id.digiit_suspension_tva','=',True)]"/>
+                        <field name="date_facture" readonly="1"/>
+                        <field name="numero_facture" readonly="1"/>
+                        <field name="partner_id" readonly="1"/>
+                        <field name="montant_ht" readonly="1"/>
+                        <field name="currency_id" invisible="1"/>
+                    </group>
+
+                    <group string="Bon de Commande" col="2">
+                        <field name="digiit_autorisation_id"
+                               domain="[('partner_id', '=', partner_id)]"
+                               options="{'no_create': True}"/>
+                        <field name="digiit_num_bc"/>
+                        <field name="digiit_date_bc"/>
+                        <field name="digiit_statut" widget="badge"
+                               decoration-warning="digiit_statut == 'en_cours'"
+                               decoration-success="digiit_statut == 'cloturee'"/>
+                    </group>
+
+                    <group string="Pièce jointe BC">
+                        <field name="digiit_attachment" widget="binary"
+                               filename="digiit_attachment_filename"/>
+                        <field name="digiit_attachment_filename"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action - filter only invoices with suspension TVA fiscal position -->
+    <record id="action_digiit_bon_commande_vise" model="ir.actions.act_window">
+        <field name="name">Bons de Commandes Visés Vente</field>
+        <field name="res_model">digiit.bon.commande.vise</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{}</field>
+    </record>
+
+</odoo>

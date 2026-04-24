@@ -1,0 +1,205 @@
+<section class="container">
+
+    <!-- HEADER -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="mb-3" style="color:#714B67;font-size:2.5rem;font-weight:bold;">
+                Suspension TVA
+            </h1>
+            <h2 class="text-secondary mb-4" style="font-size:1.5rem;">
+                VAT Suspension Management for Odoo 19 - Authorizations, Stamped Customer Orders &amp; Declarations
+            </h2>
+
+            <p class="lead mb-4">
+                This module allows you to manage the <strong>VAT suspension regime</strong> on your
+                customer invoices directly in Odoo. It centralizes <strong>customer authorizations</strong>,
+                automatically generates the associated <strong>stamped purchase orders (bons de commandes visés)</strong>,
+                and produces the <strong>quarterly suspension declaration</strong> on sales,
+                ready to be transmitted
+                to the tax administration.
+            </p>
+
+            <p>
+                This module is compliant with <strong>Tunisian tax regulations</strong>
+                and follows the local accounting standards in force.
+            </p>
+
+            <p>
+                Developed by <strong>Digi-IT</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- KEY FEATURES -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+                <h4 style="color:#714B67;">Main Objects</h4>
+                <ul class="list-unstyled">
+                    <li><strong>Autorisation:</strong> Customer suspension authorization with unique number, type, validity dates and attachment.</li>
+                    <li><strong>Bon de Commande Visé Vente:</strong> Auto-created from each eligible customer invoice, tracks customer order number, date and supporting document.</li>
+                    <li><strong>Déclaration Suspension:</strong> Quarterly declaration with computed lines and exportable file for tax authorities.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 border-0 shadow-sm p-4">
+                <h4 style="color:#714B67;">Key Highlights</h4>
+                <ul class="list-unstyled">
+                    <li><strong>Fiscal position driven:</strong> Suspension TVA flag on the fiscal position activates the whole flow automatically.</li>
+                    <li><strong>Sale-side only:</strong> The whole flow targets customer invoices (<em>out_invoice</em>) - vendor bills are never touched.</li>
+                    <li><strong>Automatic tracking:</strong> A stamped customer order record is created silently for every customer invoice under suspension.</li>
+                    <li><strong>Live status:</strong> Record status switches to Clôturée as soon as number, date and attachment are provided.</li>
+                    <li><strong>One-click declaration:</strong> Quarterly lines computed from eligible sales, output file generated in the expected format.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIGURATION - FISCAL POSITION -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <h3 style="color:#875A7B;">Configuration - Fiscal Position</h3>
+            <p>
+                In <em>Accounting &gt; Fiscal Positions</em>, open the relevant fiscal position and enable
+                <strong>Suspension TVA</strong>.
+            </p>
+            <p>
+                Any customer invoice assigned to this fiscal position will automatically be flagged as being
+                under the <strong>VAT suspension regime</strong> and will generate a stamped customer order record.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="fiscal_position.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- CONFIGURATION - AUTORISATIONS -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6 order-md-2">
+            <h3 style="color:#875A7B;">Configuration - Customer Authorizations</h3>
+            <p>
+                On the customer form, a dedicated <strong>Autorisations Suspension TVA</strong> section
+                lets you register each authorization: unique number, type
+                (<em>Suspension TVA</em> or <em>Suspension TVA et FODEC</em>),
+                validity dates and official attachment.
+            </p>
+            <p>
+                Authorizations are then available on customer invoices and stamped customer orders,
+                filtered automatically by partner.
+            </p>
+        </div>
+        <div class="col-md-6 order-md-1 text-center">
+            <img src="autorisation.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- WORKFLOW - INVOICE -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <h3 style="color:#875A7B;">Step 1 - Customer Invoice</h3>
+            <p>
+                Create a customer invoice and set a <strong>fiscal position with Suspension TVA enabled</strong>.
+                The invoice automatically exposes the <strong>Num Autorisation</strong> field, filtered to
+                the customer's own authorizations.
+            </p>
+            <p>
+                On creation, the module silently generates the matching
+                <strong>Bon de Commande Visé</strong> record in the background.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="invoice.png" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- WORKFLOW - BON DE COMMANDE VISE -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6 order-md-2">
+            <h3 style="color:#875A7B;">Step 2 - Stamped Customer Order</h3>
+            <p>
+                Under <em>Accounting &gt; Customers &gt; Bons de Commandes Visés Vente</em>, each record
+                displays the linked customer invoice, customer, amount and fiscal position.
+                Fill in the <strong>customer order number</strong>, <strong>order date</strong> and
+                <strong>attached document</strong> to complete the file.
+            </p>
+            <p>
+                The <strong>status</strong> switches automatically from
+                <em>En cours</em> to <em>Clôturée</em> once all three fields are provided.
+            </p>
+        </div>
+        <div class="col-md-6 order-md-1 text-center">
+            <img src="bon_commande.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- WORKFLOW - DECLARATION -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6">
+            <h3 style="color:#875A7B;">Step 3 - Quarterly Declaration</h3>
+            <p>
+                Under <em>Accounting &gt; Customers &gt; Déclarations Suspension sur CA</em>,
+                create a declaration, pick the <strong>quarter</strong> and <strong>fiscal year</strong>,
+                then click <strong>Calculer</strong>: every eligible stamped customer order of the period
+                is pulled into the declaration lines.
+            </p>
+            <p>
+                Click <strong>Générer le fichier</strong> to produce the official text file
+                (header, detail and totals lines) ready to be submitted to the tax administration.
+            </p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="declaration.PNG" class="img-fluid rounded border shadow-sm">
+        </div>
+    </div>
+
+    <!-- CONFIGURATION ALERT -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h4 class="alert-heading" style="color:#875A7B;">Quick Setup</h4>
+                <p class="mb-0">
+                    <strong>Before first use:</strong><br>
+                    1. Enable <em>Suspension TVA</em> on the relevant fiscal position(s).<br>
+                    2. Register your customers' authorizations on their partner form (number, type, dates, attachment).<br>
+                    3. Create customer invoices with a Suspension TVA fiscal position - stamped customer orders are generated automatically.<br>
+                    4. At the end of each quarter, create a declaration, compute the lines and export the official file.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPATIBILITY -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-3">
+            <div class="card p-3 bg-light h-100">
+                <h4>Supported Version</h4>
+                <p class="mb-0">Odoo 19.0</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card p-3 bg-light h-100">
+                <h4>Dependencies</h4>
+                <ul class="mb-0">
+                    <li>Account</li>
+                    <li>No external Python package required</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <p>
+                For any support, contact us:<br>
+                <a style="color:#714B67;" href="mailto:contact@digi-it.com.tn">
+                    contact@digi-it.com.tn
+                </a>
+            </p>
+        </div>
+    </div>
+
+</section>

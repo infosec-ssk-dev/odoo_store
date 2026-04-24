@@ -1,0 +1,512 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * digiit_suspension_tva
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-02 13:44+0000\n"
+"PO-Revision-Date: 2026-04-02 13:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields.selection,name:digiit_suspension_tva.selection__digiit_declaration_suspension__trimestre__1
+msgid "1er Trimestre"
+msgstr "1st Quarter"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields.selection,name:digiit_suspension_tva.selection__digiit_declaration_suspension__trimestre__2
+msgid "2ème Trimestre"
+msgstr "2nd Quarter"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields.selection,name:digiit_suspension_tva.selection__digiit_declaration_suspension__trimestre__3
+msgid "3ème Trimestre"
+msgstr "3rd Quarter"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields.selection,name:digiit_suspension_tva.selection__digiit_declaration_suspension__trimestre__4
+msgid "4ème Trimestre"
+msgstr "4th Quarter"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__adresse
+msgid "Adresse"
+msgstr "Address"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__annee_fiscale
+msgid "Année Fiscale"
+msgstr "Fiscal Year"
+
+#. module: digiit_suspension_tva
+#. odoo-python
+#: code:addons/digiit_suspension_tva/models/declaration_suspension.py:0
+msgid "Aucun bon de commande visé trouvé pour ce trimestre."
+msgstr "No endorsed sale order found for this quarter."
+
+#. module: digiit_suspension_tva
+#: model:ir.model,name:digiit_suspension_tva.model_digiit_autorisation
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_autorisation_form
+msgid "Autorisation Suspension TVA"
+msgstr "VAT Suspension Authorization"
+
+#. module: digiit_suspension_tva
+#: model:ir.actions.act_window,name:digiit_suspension_tva.action_digiit_autorisation
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_res_partner__digiit_autorisation_ids
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_res_users__digiit_autorisation_ids
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_autorisation_list
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_partner_form_inherit_digiit
+msgid "Autorisations Suspension TVA"
+msgstr "VAT Suspension Authorizations"
+
+#. module: digiit_suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_bon_commande_vise_form
+msgid "Bon de Commande"
+msgstr "Sale Order"
+
+#. module: digiit_suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_bon_commande_vise_form
+msgid "Bon de Commande Visé"
+msgstr "Endorsed Sale Order"
+
+#. module: digiit_suspension_tva
+#: model:ir.model,name:digiit_suspension_tva.model_digiit_bon_commande_vise
+msgid "Bon de Commande Visé Vente"
+msgstr "Endorsed Sales Order"
+
+#. module: digiit_suspension_tva
+#: model:ir.actions.act_window,name:digiit_suspension_tva.action_digiit_bon_commande_vise
+#: model:ir.ui.menu,name:digiit_suspension_tva.menu_digiit_bon_commande_vise
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_bon_commande_vise_list
+msgid "Bons de Commandes Visés Vente"
+msgstr "Endorsed Sales Orders"
+
+#. module: digiit_suspension_tva
+#. odoo-python
+#: code:addons/digiit_suspension_tva/models/declaration_suspension.py:0
+msgid ""
+"Calcul effectué mais les partenaires suivants n'ont pas de Matricule Fiscale :\n"
+"%s"
+msgstr ""
+"Calculation performed but the following partners do not have a Tax Identification Number:\n"
+"%s"
+
+#. module: digiit_suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_declaration_suspension_form
+msgid "Calculer"
+msgstr "Calculate"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__partner_id
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__partner_id
+msgid "Client"
+msgstr "Customer"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields.selection,name:digiit_suspension_tva.selection__digiit_bon_commande_vise__digiit_statut__cloturee
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_bon_commande_vise_form
+msgid "Clôturée"
+msgstr "Closed"
+
+#. module: digiit_suspension_tva
+#: model:ir.model,name:digiit_suspension_tva.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__create_uid
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__create_uid
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__create_uid
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__create_uid
+msgid "Created by"
+msgstr "Created by"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__create_date
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__create_date
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__create_date
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__create_date
+msgid "Created on"
+msgstr "Created on"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__currency_id
+msgid "Currency"
+msgstr "Currency"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__date
+msgid "Date"
+msgstr "Date"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__date_autorisation
+msgid "Date Autorisation"
+msgstr "Authorization Date"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__digiit_date_bc
+msgid "Date BC"
+msgstr "PO Date"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__date_facture
+msgid "Date Facture"
+msgstr "Invoice Date"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__date_facture
+msgid "Date de Facturation"
+msgstr "Invoicing Date"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__date_debut
+msgid "Date début"
+msgstr "Start Date"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__date_effet
+msgid "Date effet"
+msgstr "Effective Date"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__date_fin
+msgid "Date fin"
+msgstr "End Date"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_account_move__display_name
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__display_name
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__display_name
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__display_name
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__display_name
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__declaration_id
+msgid "Déclaration"
+msgstr "Declaration"
+
+#. module: digiit_suspension_tva
+#: model:ir.model,name:digiit_suspension_tva.model_digiit_declaration_suspension
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_declaration_suspension_form
+msgid "Déclaration Factures en Suspension sur CA"
+msgstr "Declaration of Invoices under VAT Suspension on CA"
+
+#. module: digiit_suspension_tva
+#. odoo-python
+#: code:addons/digiit_suspension_tva/models/declaration_suspension.py:0
+msgid "Déclaration Suspension TVA %s %s %s"
+msgstr "VAT Suspension Declaration %s %s %s"
+
+#. module: digiit_suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_declaration_suspension_list
+msgid "Déclarations Suspension TVA"
+msgstr "VAT Suspension Declarations"
+
+#. module: digiit_suspension_tva
+#: model:ir.actions.act_window,name:digiit_suspension_tva.action_digiit_declaration_suspension
+#: model:ir.ui.menu,name:digiit_suspension_tva.menu_digiit_declaration_suspension
+msgid "Déclarations Suspension sur CA"
+msgstr "VAT Suspension Declarations on CA"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields.selection,name:digiit_suspension_tva.selection__digiit_bon_commande_vise__digiit_statut__en_cours
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_bon_commande_vise_form
+msgid "En cours"
+msgstr "In Progress"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_res_partner__digiit_fodec
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_res_users__digiit_fodec
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_partner_form_inherit_digiit
+msgid "FODEC"
+msgstr "FODEC"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__move_id
+msgid "Facture"
+msgstr "Invoice"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__fichier_declaration
+msgid "Fichier Déclaration"
+msgstr "Declaration File"
+
+#. module: digiit_suspension_tva
+#: model:ir.model,name:digiit_suspension_tva.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Fiscal Position"
+
+#. module: digiit_suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_declaration_suspension_form
+msgid "Générer Fichier Déclaration"
+msgstr "Generate Declaration File"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_account_move__id
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__id
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__id
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__id
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__id
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_res_partner__id
+msgid "ID"
+msgstr "ID"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__identifiant
+msgid "Identifiant"
+msgstr "Identifier"
+
+#. module: digiit_suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_bon_commande_vise_form
+msgid "Informations Facture"
+msgstr "Invoice Information"
+
+#. module: digiit_suspension_tva
+#: model:ir.model,name:digiit_suspension_tva.model_account_move
+msgid "Journal Entry"
+msgstr "Journal Entry"
+
+#. module: digiit_suspension_tva
+#. odoo-python
+#: code:addons/digiit_suspension_tva/models/declaration_suspension.py:0
+msgid "L'année fiscale doit être une année à 4 chiffres."
+msgstr "The fiscal year must be a 4-digit year."
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__write_uid
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__write_uid
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__write_uid
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__write_uid
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__write_date
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__write_date
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__write_date
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__write_date
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: digiit_suspension_tva
+#. odoo-python
+#: code:addons/digiit_suspension_tva/models/autorisation.py:0
+msgid "Le numéro d'autorisation doit être unique."
+msgstr "The authorization number must be unique."
+
+#. module: digiit_suspension_tva
+#: model:ir.model,name:digiit_suspension_tva.model_digiit_declaration_suspension_line
+msgid "Ligne Déclaration Suspension TVA"
+msgstr "VAT Suspension Declaration Line"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__line_ids
+msgid "Lignes"
+msgstr "Lines"
+
+#. module: digiit_suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_declaration_suspension_form
+msgid "Lignes de Déclaration"
+msgstr "Declaration Lines"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__montant_cons
+msgid "Montant Cons"
+msgstr "Cons Amount"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__montant_fod
+msgid "Montant FOD"
+msgstr "FOD Amount"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__montant_ht
+msgid "Montant HT"
+msgstr "Amount Excl. Tax"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__montant_tva
+msgid "Montant TVA"
+msgstr "VAT Amount"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__name
+msgid "Nom"
+msgstr "Name"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__attachment_filename
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__fichier_declaration_filename
+msgid "Nom du fichier"
+msgstr "File Name"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__digiit_attachment_filename
+msgid "Nom du fichier BC"
+msgstr "PO File Name"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__nom_prenom_raison
+msgid "Nom et Prénom / Raison Sociale"
+msgstr "Full Name / Company Name"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_account_bank_statement_line__digiit_autorisation_id
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_account_move__digiit_autorisation_id
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__num_autorisation
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_move_form_inherit_digiit
+msgid "Num Autorisation"
+msgstr "Authorization No."
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__digiit_num_bc
+msgid "Num BC"
+msgstr "PO Number"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__digiit_autorisation_id
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__num_autorisation
+msgid "Numéro Autorisation"
+msgstr "Authorization Number"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__numero_facture
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__num_facture
+msgid "Numéro Facture"
+msgstr "Invoice Number"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__num_ordre
+msgid "N° Ordre"
+msgstr "Order No."
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__attachment
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_autorisation_form
+msgid "Pièce jointe"
+msgstr "Attachment"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__digiit_attachment
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_bon_commande_vise_form
+msgid "Pièce jointe BC"
+msgstr "PO Attachment"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__prix_ht
+msgid "Prix (Hors Taxes)"
+msgstr "Price (Excluding Taxes)"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,help:digiit_suspension_tva.field_account_fiscal_position__digiit_suspension_tva
+msgid ""
+"Si activé, cette position fiscale déclenche la logique de suspension TVA."
+msgstr "If enabled, this fiscal position triggers the VAT suspension logic."
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__company_id
+msgid "Société"
+msgstr "Company"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__digiit_statut
+msgid "Statut"
+msgstr "Status"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_account_fiscal_position__digiit_suspension_tva
+#: model:ir.model.fields.selection,name:digiit_suspension_tva.selection__digiit_autorisation__type_autorisation__suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_account_fiscal_position_form_inherit_digiit
+msgid "Suspension TVA"
+msgstr "VAT Suspension"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_account_bank_statement_line__digiit_suspension_tva_active
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_account_move__digiit_suspension_tva_active
+msgid "Suspension TVA Active"
+msgstr "Active VAT Suspension"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields.selection,name:digiit_suspension_tva.selection__digiit_autorisation__type_autorisation__suspension_tva_fodec
+msgid "Suspension TVA et FODEC"
+msgstr "VAT and FODEC Suspension"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__taux_cons
+msgid "Taux Cons (%)"
+msgstr "Cons Rate (%)"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__taux_fod
+msgid "Taux FOD (%)"
+msgstr "FOD Rate (%)"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__taux_tva
+msgid "Taux TVA (%)"
+msgstr "VAT Rate (%)"
+
+#. module: digiit_suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_declaration_suspension_form
+msgid "Total Cons"
+msgstr "Total Cons"
+
+#. module: digiit_suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_declaration_suspension_form
+msgid "Total FOD"
+msgstr "Total FOD"
+
+#. module: digiit_suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_declaration_suspension_form
+msgid "Total HT"
+msgstr "Total HT"
+
+#. module: digiit_suspension_tva
+#: model_terms:ir.ui.view,arch_db:digiit_suspension_tva.view_digiit_declaration_suspension_form
+msgid "Total TVA"
+msgstr "Total VAT"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension__trimestre
+msgid "Trimestre"
+msgstr "Quarter"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_autorisation__type_autorisation
+msgid "Type"
+msgstr "Type"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_bon_commande_vise__digiit_fiscal_position_name
+msgid "Type (Position Fiscale)"
+msgstr "Type (Fiscal Position)"
+
+#. module: digiit_suspension_tva
+#: model:ir.model.fields,field_description:digiit_suspension_tva.field_digiit_declaration_suspension_line__type_identifiant
+msgid "Type Identifiant"
+msgstr "Identifier Type"
+
+#. module: digiit_suspension_tva
+#. odoo-python
+#: code:addons/digiit_suspension_tva/models/declaration_suspension.py:0
+msgid "Veuillez d'abord calculer les lignes."
+msgstr "Please calculate the lines first."
+
+#. module: digiit_suspension_tva
+#. odoo-python
+#: code:addons/digiit_suspension_tva/models/declaration_suspension.py:0
+msgid "declaration_suspension_%s_%s.txt"
+msgstr "declaration_suspension_%s_%s.txt"

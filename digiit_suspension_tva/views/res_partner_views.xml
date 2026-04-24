@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit partner form: add FODEC boolean in Position Fiscal section (Vente et Achat tab) -->
+    <record id="view_partner_form_inherit_digiit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.digiit.suspension.tva</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add FODEC boolean after the fiscal position field in Vente et Achat tab -->
+            <xpath expr="//field[@name='property_account_position_id']" position="after">
+                <field name="digiit_fodec" string="FODEC"
+                       invisible="not is_company"/>
+            </xpath>
+
+            <!-- Add Autorisations tab at the end of the notebook -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Autorisations Suspension TVA"
+                      invisible="not is_company or customer_rank == 0">
+                    <field name="digiit_autorisation_ids">
+                        <list editable="bottom">
+                            <field name="num_autorisation"/>
+                            <field name="type_autorisation"/>
+                            <field name="date_debut"/>
+                            <field name="date_effet"/>
+                            <field name="date_fin"/>
+                            <field name="attachment" widget="binary"
+                                   filename="attachment_filename"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

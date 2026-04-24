@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         FACTURATION — Clients sub-menu
+         ============================================================ -->
+
+    <!-- Bons de Commandes Visés Vente under Clients -->
+    <menuitem id="menu_digiit_bon_commande_vise"
+              name="Bons de Commandes Visés Vente"
+              parent="account.menu_finance_receivables"
+              action="action_digiit_bon_commande_vise"
+              sequence="30"
+              groups="account.group_account_invoice"/>
+
+    <!-- Déclarations Suspension sur CA under Clients -->
+    <menuitem id="menu_digiit_declaration_suspension"
+              name="Déclarations Suspension sur CA"
+              parent="account.menu_finance_receivables"
+              action="action_digiit_declaration_suspension"
+              sequence="40"
+              groups="account.group_account_invoice"/>
+
+
+</odoo>
