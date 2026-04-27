@@ -3,7 +3,7 @@
     "version": "19.0.1.0.0",
     "summary": "Customer and vendor withholding workflow",
     "category": "Accounting",
-    "author": "Digi-IT",
+    "author": "Digi-ERP",
     "website": "https://digi-it.com.tn",
     "license": "LGPL-3",
     "depends": ["account"],

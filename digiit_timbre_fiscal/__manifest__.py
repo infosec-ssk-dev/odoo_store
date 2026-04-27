@@ -6,7 +6,7 @@
     'description': """
         This module adds timbre fiscal functionality to account moves.
     """,
-    'author': 'Digi-IT',
+    'author': 'Digi-ERP',
     'website': 'https://digi-it.com.tn',
     'license': 'LGPL-3',
     'depends': ['account'],

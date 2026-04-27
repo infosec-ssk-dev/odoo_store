@@ -4,7 +4,7 @@
     'version': '19.0.1.0.0',
     'category': 'Accounting/Accounting',
     'summary': 'Gestion de la suspension TVA, autorisations, bons de commandes visés et déclarations',
-    'author': 'Digi-IT',
+    'author': 'Digi-ERP',
     'website': 'https://digi-it.com.tn',
     'depends': [
         'account',
