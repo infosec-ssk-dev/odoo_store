@@ -17,7 +17,7 @@
             <!-- Add Autorisations tab at the end of the notebook -->
             <xpath expr="//notebook" position="inside">
                 <page string="Autorisations Suspension TVA"
-                      invisible="not is_company or customer_rank == 0">
+                      invisible="customer_rank == 0">
                     <field name="digiit_autorisation_ids">
                         <list editable="bottom">
                             <field name="num_autorisation"/>
