@@ -1,0 +1,602 @@
+/* ═══════════════════════════════════════════════════════════════
+   DIGI-ERP AI — embedded context-aware sidebar (backend).
+   Brand: Digi Erp teal primary + pink/orange/purple accents.
+   Scoped under .dai-* so it never leaks into Odoo's own UI.
+   ═══════════════════════════════════════════════════════════════ */
+
+.dai-systray {
+    --dai-acc:        #17A2B8;
+    --dai-acc-600:    #128298;
+    --dai-acc-soft:   #e6f7fa;
+    --dai-pink:       #EC297B;
+    --dai-orange:     #F58220;
+    --dai-purple:     #7B3F98;
+    --dai-teal:       #2BB3C0;
+    --dai-bg:         #f7f8fa;
+    --dai-surface:    #ffffff;
+    --dai-surface-2:  #f2f4f7;
+    --dai-border:     #e6e8ec;
+    --dai-text:       #2B2B3A;
+    --dai-text-2:     #5b6570;
+    --dai-text-3:     #8a939d;
+    display: flex;
+    align-items: center;
+}
+
+/* ── Systray trigger bubble ─────────────────────────────────── */
+.dai-systray-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+    transition: background 0.12s ease;
+}
+.dai-systray-btn:hover { background: rgba(255,255,255,0.14); }
+.dai-systray-btn--active { background: rgba(255,255,255,0.2); }
+/* Slightly smaller brand mark on the navbar systray trigger only
+   (the panel-header mark keeps its default 24px). */
+.dai-systray-btn .dai-brand-mark { width: 20px; height: 20px; border-radius: 6px; }
+
+/* Digi Erp brand mark — four colour quadrants with a small centre square,
+   identical to the general chat's .dai-chat-brand-logo. Reused on the systray
+   trigger and the panel header. */
+.dai-brand-mark {
+    width: 24px; height: 24px;
+    border-radius: 7px;
+    background: conic-gradient(from 0deg at 50% 50%,
+        var(--dai-pink)   0deg   90deg,
+        var(--dai-orange) 90deg  180deg,
+        var(--dai-purple) 180deg 270deg,
+        var(--dai-teal)   270deg 360deg);
+    position: relative;
+    flex: 0 0 auto;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.18);
+}
+.dai-brand-mark::after {
+    content: "";
+    position: absolute;
+    inset: 38%;
+    border-radius: 2px;
+    background: var(--dai-surface);
+}
+
+/* ── Slide-in panel ─────────────────────────────────────────── */
+.dai-panel {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: 400px;
+    max-width: 96vw;
+    background: var(--dai-bg);
+    border-left: 1px solid var(--dai-border);
+    box-shadow: -12px 0 40px rgba(16, 24, 40, 0.14);
+    transform: translateX(100%);
+    transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s ease;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.dai-panel--open { transform: translateX(0); }
+.dai-panel--expanded { width: 680px; }
+
+/* ── Header ─────────────────────────────────────────────────── */
+.dai-panel-head {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 0.85rem;
+    background: var(--dai-surface);
+    border-bottom: 1px solid var(--dai-border);
+    flex: 0 0 auto;
+}
+/* four-colour brand strip */
+.dai-panel-head::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px; height: 2px;
+    background: linear-gradient(90deg,
+        var(--dai-pink) 0 25%, var(--dai-orange) 25% 50%,
+        var(--dai-purple) 50% 75%, var(--dai-teal) 75% 100%);
+}
+.dai-panel-brand { display: flex; align-items: center; gap: 0.55rem; min-width: 0; }
+.dai-panel-logo {
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    flex: 0 0 auto;
+    position: relative;
+}
+.dai-panel-titles { display: flex; flex-direction: column; min-width: 0; }
+.dai-panel-title {
+    font-weight: 650; font-size: 0.92rem; color: var(--dai-text);
+    line-height: 1.1;
+}
+.dai-panel-ctx {
+    font-size: 0.72rem; color: var(--dai-acc-600); font-weight: 550;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    max-width: 240px;
+}
+.dai-panel-ctx--none { color: var(--dai-text-3); font-weight: 400; font-style: italic; }
+
+.dai-panel-actions { display: flex; gap: 0.15rem; flex: 0 0 auto; }
+.dai-hbtn {
+    width: 30px; height: 30px;
+    border: 0; border-radius: 7px;
+    background: transparent; color: var(--dai-text-3);
+    cursor: pointer; font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.12s ease, color 0.12s ease;
+}
+.dai-hbtn:hover { background: var(--dai-surface-2); color: var(--dai-text); }
+
+/* ── Model picker bar ───────────────────────────────────────── */
+.dai-panel-modelbar {
+    flex: 0 0 auto;
+    padding: 0.4rem 0.85rem;
+    background: var(--dai-surface);
+    border-bottom: 1px solid var(--dai-border);
+}
+.dai-modelpicker { position: relative; display: inline-block; }
+.dai-modelpicker-trigger {
+    display: inline-flex; align-items: center;
+    border: 1px solid var(--dai-border); border-radius: 999px;
+    background: var(--dai-surface-2); color: var(--dai-text-2);
+    font-size: 0.74rem; font-weight: 550;
+    padding: 0.2rem 0.6rem; cursor: pointer;
+    transition: background 0.12s ease, border-color 0.12s ease;
+}
+.dai-modelpicker-trigger:hover { background: var(--dai-acc-soft); border-color: var(--dai-acc); }
+.dai-modelpicker-label {
+    max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.dai-modelpicker-menu {
+    position: absolute; top: calc(100% + 4px); left: 0; z-index: 20;
+    min-width: 220px; max-height: 260px; overflow-y: auto;
+    background: var(--dai-surface);
+    border: 1px solid var(--dai-border); border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    padding: 0.25rem;
+}
+.dai-modelpicker-item {
+    display: flex; flex-direction: column; align-items: flex-start;
+    width: 100%; text-align: left;
+    border: 0; background: transparent; cursor: pointer;
+    padding: 0.4rem 0.55rem; border-radius: 7px;
+}
+.dai-modelpicker-item:hover { background: var(--dai-surface-2); }
+.dai-modelpicker-item--active { background: var(--dai-acc-soft); }
+.dai-modelpicker-item-name { font-size: 0.8rem; font-weight: 600; color: var(--dai-text); }
+.dai-modelpicker-item-meta { font-size: 0.68rem; color: var(--dai-text-3); }
+
+/* ── Body ───────────────────────────────────────────────────── */
+.dai-panel-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 1rem 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+.dai-panel-body::-webkit-scrollbar { width: 8px; }
+.dai-panel-body::-webkit-scrollbar-thumb {
+    background: #dfe3e8; border-radius: 4px; border: 2px solid var(--dai-bg);
+}
+
+/* Empty state */
+.dai-empty {
+    margin: auto; text-align: center; color: var(--dai-text-2);
+    max-width: 280px; padding: 1rem 0;
+}
+.dai-empty-logo {
+    width: 46px; height: 46px; margin: 0 auto 0.75rem;
+    border-radius: 12px;
+    background: conic-gradient(from 0deg at 50% 50%,
+        var(--dai-pink) 0deg 90deg, var(--dai-orange) 90deg 180deg,
+        var(--dai-purple) 180deg 270deg, var(--dai-teal) 270deg 360deg);
+    position: relative;
+}
+.dai-empty-logo .fa { display: none; }
+.dai-empty-logo::after {
+    content: ""; position: absolute; inset: 36%;
+    border-radius: 3px; background: var(--dai-bg);
+}
+.dai-empty-title { font-weight: 600; color: var(--dai-text); margin: 0 0 0.35rem; }
+.dai-empty-sub { font-size: 0.85rem; line-height: 1.5; margin: 0; }
+.dai-empty-sub em { color: var(--dai-acc-600); font-style: normal; }
+
+/* Messages */
+.dai-msg { display: flex; gap: 0.5rem; align-items: flex-start; max-width: 100%; }
+.dai-msg--user { flex-direction: row-reverse; }
+.dai-msg-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--dai-acc); color: #fff; font-size: 0.75rem;
+}
+.dai-msg--error .dai-msg-avatar { background: #ef4444; }
+/* Column holding the bubble plus its footer (activity receipt, actions,
+   suggestions, time). The 86% cap lives here now — it used to be on the
+   bubble itself, but the bubble is no longer a direct flex child of .dai-msg. */
+.dai-msg-inner {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    max-width: 86%;
+}
+.dai-msg--user .dai-msg-inner { align-items: flex-end; }
+.dai-msg--assistant .dai-msg-inner,
+.dai-msg--error .dai-msg-inner { align-items: flex-start; }
+.dai-bubble {
+    padding: 0.6rem 0.8rem;
+    border-radius: 13px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--dai-text);
+    word-break: break-word;
+    max-width: 100%;
+}
+.dai-msg--user .dai-bubble {
+    background: var(--dai-acc); color: #fff;
+    border-bottom-right-radius: 4px;
+    white-space: pre-wrap;
+}
+.dai-msg--assistant .dai-bubble {
+    background: var(--dai-surface);
+    border: 1px solid var(--dai-border);
+    border-bottom-left-radius: 4px;
+}
+.dai-msg--error .dai-bubble {
+    background: #fef2f2; border: 1px solid #fecaca; color: #991b1b;
+}
+.dai-bubble p { margin: 0 0 0.5rem; }
+.dai-bubble p:last-child { margin-bottom: 0; }
+.dai-bubble a { color: var(--dai-acc-600); text-decoration: underline; }
+.dai-msg--user .dai-bubble a { color: #fff; }
+.dai-code {
+    background: var(--dai-surface-2); color: var(--dai-acc-600);
+    padding: 0.1rem 0.35rem; border-radius: 4px;
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85em;
+}
+.dai-msg--user .dai-code { background: rgba(255,255,255,0.2); color: #fff; }
+.dai-pre {
+    background: #0f172a; color: #e2e8f0;
+    padding: 0.7rem 0.85rem; border-radius: 10px;
+    overflow-x: auto; margin: 0.4rem 0; font-size: 0.82rem;
+}
+.dai-pre code { font-family: ui-monospace, Menlo, Consolas, monospace; white-space: pre; }
+.dai-ul { margin: 0.3rem 0 0.5rem; padding-left: 1.25rem; }
+.dai-ul li { margin: 0.15rem 0; }
+.dai-ul li::marker { color: var(--dai-pink); }
+
+/* ── Branded headings inside answers ─────────────────────────────────────── */
+.dai-h {
+    margin: 0.6rem 0 0.4rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--dai-purple);
+    letter-spacing: -0.01em;
+}
+.dai-bubble h2.dai-h { font-size: 1.02rem; }
+.dai-bubble h3.dai-h { font-size: 0.95rem; }
+.dai-bubble h4.dai-h { font-size: 0.9rem; color: var(--dai-acc-600); }
+.dai-h:first-child { margin-top: 0; }
+
+/* ── Branded tables ──────────────────────────────────────────────────────── */
+.dai-table-wrap {
+    margin: 0.55rem 0;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--dai-border);
+    box-shadow: 0 2px 10px rgba(43, 43, 58, 0.06);
+    -webkit-overflow-scrolling: touch;
+}
+.dai-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.82rem;
+    background: var(--dai-surface);
+    overflow: hidden;
+}
+.dai-table thead th {
+    background: linear-gradient(135deg,
+        var(--dai-purple) 0%, var(--dai-pink) 55%, var(--dai-orange) 100%);
+    color: #fff;
+    font-weight: 650;
+    text-align: left;
+    padding: 0.5rem 0.7rem;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+}
+.dai-table thead th:first-child { border-top-left-radius: 12px; }
+.dai-table thead th:last-child  { border-top-right-radius: 12px; }
+.dai-table tbody td {
+    padding: 0.45rem 0.7rem;
+    border-top: 1px solid var(--dai-border);
+    color: var(--dai-text);
+    vertical-align: top;
+}
+.dai-table tbody tr:nth-child(even) { background: var(--dai-acc-soft); }
+.dai-table tbody tr:hover { background: #fdf0f6; }
+.dai-table tbody td:first-child {
+    font-weight: 600;
+    color: var(--dai-acc-600);
+}
+/* Tables inside the user's own (teal) bubble stay readable */
+.dai-msg--user .dai-table { background: rgba(255,255,255,0.96); }
+.dai-msg--user .dai-table tbody td { color: var(--dai-text); }
+
+/* Typing */
+.dai-typing { display: flex; gap: 0.3rem; padding: 0.2rem 0.4rem; }
+.dai-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--dai-teal); animation: dai-bounce 1.2s infinite;
+}
+.dai-dot:nth-child(2) { animation-delay: 0.15s; }
+.dai-dot:nth-child(3) { animation-delay: 0.3s; }
+@keyframes dai-bounce {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* ── Composer ───────────────────────────────────────────────── */
+.dai-panel-foot {
+    flex: 0 0 auto;
+    padding: 0.7rem 0.85rem 0.9rem;
+    background: var(--dai-bg);
+    border-top: 1px solid var(--dai-border);
+}
+.dai-inputbar {
+    display: flex; align-items: flex-end; gap: 0.4rem;
+    background: var(--dai-surface);
+    border: 1px solid #d7dbe0;
+    border-radius: 13px;
+    padding: 0.35rem 0.4rem 0.35rem 0.6rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.dai-inputbar:focus-within {
+    border-color: var(--dai-acc);
+    box-shadow: 0 0 0 3px rgba(23,162,184,0.18);
+}
+.dai-textarea {
+    flex: 1; border: 0; outline: 0; resize: none;
+    background: transparent; color: var(--dai-text);
+    font-size: 0.88rem; line-height: 1.5; font-family: inherit;
+    padding: 0.35rem 0; max-height: 140px;
+}
+.dai-textarea::placeholder { color: var(--dai-text-3); }
+.dai-send {
+    width: 34px; height: 34px; flex: 0 0 auto;
+    border: 0; border-radius: 9px;
+    background: var(--dai-acc); color: #fff;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.12s ease;
+}
+.dai-send:hover:not(:disabled) { background: var(--dai-acc-600); }
+.dai-send:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .dai-panel, .dai-panel--expanded { width: 100vw; }
+}
+
+/* ── Confirmation card : review a write before it happens ───────────────── */
+.dai-confirm-card {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid var(--dai-acc);
+    border-radius: 12px;
+    background: var(--dai-surface);
+    box-shadow: 0 4px 12px rgba(16, 24, 40, 0.08);
+    overflow: hidden;
+}
+.dai-confirm-head {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--dai-acc) 0%, var(--dai-acc-600) 100%);
+}
+.dai-confirm-sub {
+    padding: 8px 14px 2px;
+    font-size: 12px;
+    color: var(--dai-text-2);
+}
+.dai-confirm-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0 2px;
+    font-size: 12.5px;
+}
+.dai-confirm-table th {
+    text-align: left;
+    padding: 5px 14px;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--dai-text-3);
+    border-bottom: 1px solid var(--dai-border);
+}
+.dai-confirm-table td {
+    padding: 6px 14px;
+    border-bottom: 1px solid var(--dai-border);
+    vertical-align: top;
+    word-break: break-word;
+}
+.dai-confirm-field { font-weight: 600; color: var(--dai-text); width: 34%; }
+.dai-confirm-before { color: var(--dai-text-3); text-decoration: line-through; }
+.dai-confirm-after  { color: var(--dai-acc-600); font-weight: 600; }
+.dai-confirm-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 8px 14px;
+    padding: 7px 10px;
+    font-size: 12px;
+    color: #8a5a00;
+    background: #fff7e6;
+    border: 1px solid #ffe2a8;
+    border-radius: 8px;
+}
+.dai-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 10px 14px;
+    border-top: 1px solid var(--dai-border);
+    background: var(--dai-surface-2);
+}
+.dai-confirm-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.dai-confirm-btn:disabled { opacity: 0.55; cursor: default; }
+.dai-confirm-cancel {
+    background: var(--dai-surface);
+    border-color: #d7dbe0;
+    color: var(--dai-text-2);
+}
+.dai-confirm-cancel:hover:not(:disabled) { background: var(--dai-surface-2); }
+.dai-confirm-ok { background: var(--dai-acc); color: #fff; }
+.dai-confirm-ok:hover:not(:disabled) { background: var(--dai-acc-600); }
+.dai-confirm-settled {
+    padding: 10px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--dai-text-2);
+    text-align: right;
+    border-top: 1px solid var(--dai-border);
+    background: var(--dai-surface-2);
+}
+
+/* ── Message footer: activity receipt, actions, suggestions, time ────────── */
+
+/* "What I did" — collapsible list of the tool calls behind an answer. */
+.dai-activity {
+    margin-top: 0.35rem;
+    width: 100%;
+}
+.dai-activity-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--dai-text-2);
+    background: var(--dai-surface-2);
+    border: 1px solid var(--dai-border);
+    border-radius: 999px;
+    cursor: pointer;
+}
+.dai-activity-summary:hover { color: var(--dai-text); }
+.dai-activity-spark { color: var(--dai-acc); font-size: 10px; }
+.dai-activity-caret { font-size: 10px; opacity: 0.7; }
+.dai-activity-steps {
+    margin-top: 5px;
+    padding: 7px 10px;
+    border: 1px solid var(--dai-border);
+    border-radius: 9px;
+    background: var(--dai-surface-2);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.dai-activity-step {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 11.5px;
+    color: var(--dai-text-2);
+}
+.dai-activity-step--fail { color: #b42318; }
+.dai-activity-step-icon { flex: 0 0 auto; }
+.dai-activity-step-label { font-weight: 500; }
+.dai-activity-step-detail { opacity: 0.75; word-break: break-word; }
+
+/* Copy / action row under a finished answer. */
+.dai-msg-actions {
+    display: flex;
+    gap: 4px;
+    margin-top: 0.3rem;
+}
+.dai-msg-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+    color: var(--dai-text-2);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.dai-msg-action:hover {
+    background: var(--dai-surface-2);
+    border-color: var(--dai-border);
+    color: var(--dai-text);
+}
+
+/* Tappable follow-up chips. */
+.dai-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 0.35rem;
+}
+.dai-suggestion-chip {
+    padding: 4px 10px;
+    font-size: 11.5px;
+    color: var(--dai-acc-600);
+    background: var(--dai-surface);
+    border: 1px solid var(--dai-acc);
+    border-radius: 999px;
+    cursor: pointer;
+    text-align: left;
+}
+.dai-suggestion-chip:hover:not(:disabled) {
+    background: var(--dai-acc);
+    color: #fff;
+}
+.dai-suggestion-chip:disabled { opacity: 0.5; cursor: default; }
+
+/* Time + "answered by <model>". */
+.dai-msg-time {
+    margin-top: 0.25rem;
+    padding: 0 0.15rem;
+    font-size: 10.5px;
+    color: var(--dai-text-2);
+    opacity: 0.85;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dai-msg-model {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 5px;
+    padding-left: 6px;
+    border-left: 1px solid var(--dai-border);
+}
+.dai-msg-model-icon { font-size: 9.5px; opacity: 0.75; }

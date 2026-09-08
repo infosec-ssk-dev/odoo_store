@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ── Application category ────────────────────────────────────────
+             Groups the two access levels below into ONE "DIGI-ERP AI" line in
+             Settings → Users, rendered as a single Off / User / Administrator
+             dropdown instead of two loose checkboxes.
+
+             Odoo 18 derives that dropdown from the category alone (see
+             res.users.get_groups_by_application → linearize): groups sharing a
+             category become a *selection* as soon as their implication order
+             is total, which `group_ai_manager implies group_ai_user` gives us.
+             There is no explicit sequence on res.groups at this version — the
+             order of the dropdown IS the implication chain. -->
+        <record id="module_category_digi_erp_ai" model="ir.module.category">
+            <field name="name">DIGI-ERP AI</field>
+            <field name="sequence">30</field>
+            <field name="parent_id" ref="base.module_category_productivity"/>
+            <field name="description">Access level to the AI assistant: chat, document import and AI model configuration.</field>
+        </record>
+
+        <!-- ── User ────────────────────────────────────────────────────────
+             Can use the assistant: chat, upload and import documents, and pick
+             among the AI models an administrator has configured. Read-only on
+             the AI model records — API keys are never editable at this level. -->
+        <record id="group_ai_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_category_digi_erp_ai"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Use the AI assistant: chat with company data, import documents, and choose among the configured AI models.</field>
+        </record>
+
+        <!-- ── Administrator ───────────────────────────────────────────────
+             Everything a User can do, plus: create/edit/delete AI models (and
+             therefore hold the API keys), reach the settings page, and review
+             every user's document imports. Private chats stay private — an
+             administrator does NOT get to read other people's conversations. -->
+        <record id="group_ai_manager" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="module_category_digi_erp_ai"/>
+            <field name="implied_ids" eval="[(4, ref('group_ai_user'))]"/>
+            <field name="comment">Configure the AI models and API keys, change the assistant settings, and review every user's document imports.</field>
+        </record>
+
+    </data>
+
+    <!-- Seed the database administrator as AI Administrator on install, so a
+         fresh install is usable straight away. noupdate="1": if you later
+         remove admin from the group, an upgrade will NOT put them back.
+
+         NB the field is `users` on Odoo 18 (it is `user_ids` from 19 on). -->
+    <data noupdate="1">
+        <record id="group_ai_manager" model="res.groups">
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- NOTE: the /my portal home entry that used to live here was removed.
+         The assistant is internal-users-only (auth='ai_user'), so a portal
+         user clicking that tile would only ever get a 403. -->
+
+    <!-- ── Main chat page (standalone HTML via web.layout) ───────────── -->
+    <template id="portal_ai_chat" name="DIGI-ERP AI">
+        <t t-call="web.layout">
+            <t t-set="title">DIGI-ERP AI · Odoo</t>
+            <t t-set="x_icon">/digi_erp_ai_solution/static/src/img/digi-erp-favicon.png</t>
+            <t t-set="body_classname" t-value="'dai-chat-page'"/>
+            <t t-set="html_data"
+                   t-value="{'class': 'dai-chat-html',
+                             'lang': (request.env.lang or 'en_US').replace('_', '-')}"/>
+            <t t-set="head">
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <!-- DIGI-ERP AI favicon: emitted AFTER the site-wide link (set by
+                     web.layout / website), so this is the one that wins — but only
+                     on this page. The ?v= busts the browser cache, which is very
+                     aggressive about favicons. -->
+                <link rel="icon" type="image/png"
+                      href="/digi_erp_ai_solution/static/src/img/digi-erp-favicon.png?v=6"/>
+                <link rel="shortcut icon" type="image/x-icon"
+                      href="/digi_erp_ai_solution/static/src/img/digi-erp-favicon.ico?v=6"/>
+                <t t-call-assets="web.assets_frontend" t-js="false"/>
+            </t>
+
+            <div class="dai-chat-app">
+
+                <!-- ── Topbar : marque + bouton retour Odoo ─────────── -->
+                <header class="dai-chat-topbar">
+                    <div class="dai-chat-brand">
+                        <span class="dai-chat-brand-logo">
+                            <i class="fa fa-bolt"/>
+                        </span>
+                        <span class="dai-chat-brand-name">DIGI-ERP AI</span>
+                    </div>
+                    <div class="dai-chat-topbar-actions">
+                        <!-- Company picker (multi-company). Hidden by chat.js
+                             for single-company users; lets the user scope the
+                             assistant's data tools to one/many of their
+                             allowed companies. -->
+                        <div id="dai-chat-company-picker"
+                             class="dai-chat-company-picker d-none">
+                            <button type="button" class="dai-chat-company-trigger"
+                                    aria-haspopup="listbox" aria-expanded="false"
+                                    title="Companies taken into account">
+                                <i class="fa fa-building-o"/>
+                                <span class="dai-chat-company-trigger-text">Companies</span>
+                                <svg class="dai-chat-model-trigger-caret"
+                                     width="10" height="10" viewBox="0 0 10 10"
+                                     fill="none" aria-hidden="true">
+                                    <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor"
+                                          stroke-width="1.4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="dai-chat-company-menu" role="listbox"
+                                 hidden="hidden">
+                                <div class="dai-chat-company-menu-head">
+                                    Data taken into account
+                                </div>
+                                <div class="dai-chat-company-list">
+                                    <!-- Items rendered by chat.js -->
+                                </div>
+                                <div class="dai-chat-company-menu-foot">
+                                    <button type="button"
+                                            class="dai-chat-company-all" >
+                                        Select all
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Model picker (custom dropdown) -->
+                        <div id="dai-chat-model-picker" class="dai-chat-model-picker">
+                            <button type="button" class="dai-chat-model-trigger"
+                                    aria-haspopup="listbox" aria-expanded="false">
+                                <span class="dai-chat-model-dot"></span>
+                                <span class="dai-chat-model-trigger-text">Loading…</span>
+                                <svg class="dai-chat-model-trigger-caret"
+                                     width="10" height="10" viewBox="0 0 10 10"
+                                     fill="none" aria-hidden="true">
+                                    <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor"
+                                          stroke-width="1.4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <div class="dai-chat-model-menu" role="listbox" hidden="hidden">
+                                <div class="dai-chat-model-list">
+                                    <!-- Items rendered by chat.js -->
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/odoo" class="dai-chat-back-btn" title="Open Odoo">
+                            <i class="fa fa-th-large me-2"/>
+                            <span>Open Odoo</span>
+                        </a>
+                    </div>
+                </header>
+
+                <!-- ── Coquille : sidebar + zone chat ────────────────── -->
+                <div class="dai-chat-shell">
+
+                    <aside id="dai-chat-sidebar" class="dai-chat-sidebar">
+                        <div class="dai-chat-sidebar-header">
+                            <button id="dai-chat-new-conv-btn" class="dai-chat-new-btn" type="button">
+                                <i class="fa fa-plus me-2"/> New conversation
+                            </button>
+                        </div>
+                        <ul id="dai-chat-conv-list" class="dai-chat-conv-list"></ul>
+                        <div class="dai-chat-sidebar-footer">
+                            <div class="dai-chat-user-pill">
+                                <div class="dai-chat-user-avatar">
+                                    <i class="fa fa-user"/>
+                                </div>
+                                <div class="dai-chat-user-name" t-esc="user_name"/>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <main class="dai-chat-chat-main">
+
+                        <div id="dai-chat-messages" class="dai-chat-messages">
+                            <div class="dai-chat-msg dai-chat-msg--bot">
+                                <div class="dai-chat-avatar">
+                                    <img class="dai-chat-avatar-logo"
+                                         src="/digi_erp_ai_solution/static/src/img/digi-erp.png"
+                                         alt="DIGI-ERP AI"/>
+                                </div>
+                                <div class="dai-chat-bubble">
+                                    Hello <strong t-esc="user_name"/>.
+                                    I am <strong>DIGI-ERP AI</strong>.
+                                    Ask me anything about your Odoo — I build the
+                                    query myself and Odoo answers, always within
+                                    the limits of your own permissions.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="dai-chat-typing" class="dai-chat-typing d-none">
+                            <span class="dai-chat-pinwheel" aria-hidden="true">
+                                <span class="dai-chat-pw-piece dai-chat-pw-w"/>
+                                <span class="dai-chat-pw-piece dai-chat-pw-n"/>
+                                <span class="dai-chat-pw-piece dai-chat-pw-e"/>
+                                <span class="dai-chat-pw-piece dai-chat-pw-s"/>
+                                <span class="dai-chat-pw-spark"/>
+                            </span>
+                            <small id="dai-chat-typing-text" class="ms-2">DIGI-ERP AI is thinking…</small>
+                        </div>
+
+                        <div class="dai-chat-input-area">
+
+                            <div id="dai-chat-file-chip" class="dai-chat-file-chip d-none">
+                                <i class="fa fa-paperclip me-2"/>
+                                <span id="dai-chat-file-name" class="dai-chat-file-name"/>
+                                <span id="dai-chat-file-size" class="dai-chat-file-size ms-2"/>
+                                <button id="dai-chat-file-remove" type="button"
+                                        class="dai-chat-file-remove" title="Remove the file">
+                                    <i class="fa fa-times"/>
+                                </button>
+                            </div>
+
+                            <input id="dai-chat-file-input" type="file" class="d-none"
+                                   accept=".txt,.md,.csv,.tsv,.json,.log,.xml,.html,.htm,.py,.js,.css,.yml,.yaml,.pdf,.docx,.xlsx,.xlsm,.xls,.pptx,.zip,.jpg,.jpeg,.png,.gif,.webp,.bmp,.tiff,.tif,image/*"/>
+
+                            <div class="dai-chat-input-bar">
+                                <button id="dai-chat-attach-btn" type="button"
+                                        class="dai-chat-icon-btn" title="Attach a document">
+                                    <i class="fa fa-paperclip"/>
+                                </button>
+                                <textarea id="dai-chat-input" class="dai-chat-textarea"
+                                          placeholder="Ask your question…"
+                                          rows="1"></textarea>
+                                <button id="dai-chat-clear-btn" type="button"
+                                        class="dai-chat-icon-btn" title="Start a new conversation">
+                                    <i class="fa fa-eraser"/>
+                                </button>
+                                <button id="dai-chat-send-btn" type="button"
+                                        class="dai-chat-send-btn" title="Send">
+                                    <i class="fa fa-paper-plane"/>
+                                </button>
+                            </div>
+
+                            <div class="dai-chat-input-hint">
+                                Enter = send · Shift+Enter = new line · Paperclip = attach a document
+                            </div>
+
+                        </div>
+
+                    </main>
+
+                </div>
+
+            </div>
+
+            <t t-call-assets="web.assets_frontend" t-css="false"/>
+        </t>
+    </template>
+
+</odoo>

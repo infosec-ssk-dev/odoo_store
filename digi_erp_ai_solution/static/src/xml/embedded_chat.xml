@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="digi_erp_ai_solution.EmbeddedChat">
+        <div class="dai-systray">
+            <!-- Systray trigger bubble -->
+            <button type="button"
+                    class="dai-systray-btn"
+                    t-att-class="{ 'dai-systray-btn--active': state.open }"
+                    t-on-click="() => this.toggle()"
+                    title="DIGI-ERP AI">
+                <span class="dai-brand-mark"/>
+            </button>
+
+            <!-- Slide-in panel -->
+            <div class="dai-panel"
+                 t-att-class="{ 'dai-panel--open': state.open, 'dai-panel--expanded': state.expanded }">
+
+                <!-- Header -->
+                <div class="dai-panel-head">
+                    <div class="dai-panel-brand">
+                        <span class="dai-panel-logo"><span class="dai-brand-mark"/></span>
+                        <div class="dai-panel-titles">
+                            <span class="dai-panel-title">DIGI-ERP AI</span>
+                            <span class="dai-panel-ctx" t-if="state.ctxLabel">
+                                <i class="fa fa-crosshairs me-1"/><t t-esc="state.ctxLabel"/>
+                            </span>
+                            <span class="dai-panel-ctx dai-panel-ctx--none" t-else="">
+                                No record in focus
+                            </span>
+                        </div>
+                    </div>
+                    <div class="dai-panel-actions">
+                        <button class="dai-hbtn" title="New conversation"
+                                t-on-click="() => this.newConversation()">
+                            <i class="fa fa-plus"/>
+                        </button>
+                        <button class="dai-hbtn" title="Expand / shrink"
+                                t-on-click="() => this.toggleExpand()">
+                            <i t-att-class="state.expanded ? 'fa fa-compress' : 'fa fa-expand'"/>
+                        </button>
+                        <button class="dai-hbtn" title="Close"
+                                t-on-click="() => this.toggle()">
+                            <i class="fa fa-times"/>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Model picker: choose which LLM answers in this panel -->
+                <div class="dai-panel-modelbar">
+                    <div class="dai-modelpicker"
+                         t-att-class="{ 'dai-modelpicker--open': state.pickerOpen }">
+                        <button type="button" class="dai-modelpicker-trigger"
+                                t-on-click="() => this.togglePicker()"
+                                aria-haspopup="listbox"
+                                t-att-aria-expanded="state.pickerOpen ? 'true' : 'false'">
+                            <i class="fa fa-microchip me-1"/>
+                            <span class="dai-modelpicker-label" t-esc="currentModelLabel"/>
+                            <i class="fa fa-caret-down ms-1"/>
+                        </button>
+                        <div class="dai-modelpicker-menu" role="listbox"
+                             t-if="state.pickerOpen">
+                            <button type="button" class="dai-modelpicker-item"
+                                    t-att-class="{ 'dai-modelpicker-item--active': state.providerId === 'auto' }"
+                                    t-on-click="() => this.selectProvider('auto')">
+                                <span class="dai-modelpicker-item-name">Auto</span>
+                                <span class="dai-modelpicker-item-meta">Best model per question</span>
+                            </button>
+                            <button type="button" class="dai-modelpicker-item"
+                                    t-foreach="state.providers" t-as="prov" t-key="prov.id"
+                                    t-att-class="{ 'dai-modelpicker-item--active': this.isCurrentProvider(prov.id) }"
+                                    t-on-click="() => this.selectProvider(prov.id)">
+                                <span class="dai-modelpicker-item-name" t-esc="prov.name"/>
+                                <span class="dai-modelpicker-item-meta" t-if="prov.model_name" t-esc="prov.model_name"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages -->
+                <div class="dai-panel-body" t-ref="scroll">
+                    <div class="dai-empty" t-if="!state.messages.length">
+                        <div class="dai-empty-logo"><i class="fa fa-bolt"/></div>
+                        <p class="dai-empty-title">Ask about what you're viewing</p>
+                        <p class="dai-empty-sub">
+                            I already know the screen you're on. Try
+                            <em>"summarize this record"</em>,
+                            <em>"what's missing here?"</em>, or
+                            <em>"list the related tasks"</em>.
+                        </p>
+                    </div>
+
+                    <t t-foreach="state.messages" t-as="msg" t-key="msg_index">
+                        <!-- Confirmation card: a write awaiting the user's OK -->
+                        <div t-if="msg.role === 'pending'" class="dai-msg dai-msg--bot">
+                            <div class="dai-msg-avatar"><i class="fa fa-bolt"/></div>
+                            <div class="dai-confirm-card">
+                                <div class="dai-confirm-head">
+                                    <i class="fa fa-shield me-1"/>
+                                    <t t-esc="msg.preview.summary || 'Action to confirm'"/>
+                                </div>
+                                <div class="dai-confirm-sub">
+                                    Review the changes. Nothing is saved until you confirm.
+                                </div>
+                                <table class="dai-confirm-table" t-if="msg.preview.changes and msg.preview.changes.length">
+                                    <thead><tr><th>Field</th><th>Before</th><th>After</th></tr></thead>
+                                    <tbody>
+                                        <tr t-foreach="msg.preview.changes" t-as="ch" t-key="ch_index">
+                                            <td class="dai-confirm-field" t-esc="ch.label"/>
+                                            <td class="dai-confirm-before" t-esc="(ch.before === '' or ch.before === null or ch.before === undefined) ? '—' : ch.before"/>
+                                            <td class="dai-confirm-after" t-esc="(ch.after === '' or ch.after === null or ch.after === undefined) ? '—' : ch.after"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="dai-confirm-note" t-if="msg.preview.note">
+                                    <i class="fa fa-exclamation-triangle me-1"/><t t-esc="msg.preview.note"/>
+                                </div>
+                                <div class="dai-confirm-settled" t-if="msg.settled" t-esc="msg.settled"/>
+                                <div class="dai-confirm-actions" t-else="">
+                                    <button type="button" class="dai-confirm-btn dai-confirm-cancel"
+                                            t-att-disabled="msg.busy"
+                                            t-on-click="() => this.resolvePending(msg, false)">
+                                        <i class="fa fa-times me-1"/>Cancel
+                                    </button>
+                                    <button type="button" class="dai-confirm-btn dai-confirm-ok"
+                                            t-att-disabled="msg.busy"
+                                            t-on-click="() => this.resolvePending(msg, true)">
+                                        <i t-att-class="msg.busy ? 'fa fa-spinner fa-spin me-1' : 'fa fa-check me-1'"/>Confirm
+                                    </button>
+                                </div>
+                                <span class="dai-msg-time" t-if="msg.ts" t-esc="msg.ts"/>
+                            </div>
+                        </div>
+                        <div t-else="" t-att-class="'dai-msg dai-msg--' + msg.role">
+                            <div class="dai-msg-avatar" t-if="msg.role !== 'user'">
+                                <i t-att-class="msg.role === 'error' ? 'fa fa-exclamation-triangle' : 'fa fa-bolt'"/>
+                            </div>
+                            <div class="dai-msg-inner">
+                                <div class="dai-bubble">
+                                    <t t-if="msg.html" t-out="msg.html"/>
+                                    <t t-else="" t-esc="msg.text"/>
+                                </div>
+
+                                <!-- "What I did": the tool calls behind this
+                                     answer, folded away by default. -->
+                                <div class="dai-activity"
+                                     t-if="msg.activity and msg.activity.length">
+                                    <button type="button" class="dai-activity-summary"
+                                            t-on-click="() => this.toggleActivity(msg)">
+                                        <i class="fa fa-bolt dai-activity-spark"/>
+                                        <span>
+                                            <t t-esc="msg.activity.length"/>
+                                            action<t t-if="msg.activity.length > 1">s</t> performed
+                                        </span>
+                                        <i t-att-class="'fa dai-activity-caret ' + (msg.activityOpen ? 'fa-angle-up' : 'fa-angle-down')"/>
+                                    </button>
+                                    <div class="dai-activity-steps" t-if="msg.activityOpen">
+                                        <div t-foreach="msg.activity" t-as="step" t-key="step_index"
+                                             t-att-class="'dai-activity-step' + (step.ok === false ? ' dai-activity-step--fail' : '')">
+                                            <span class="dai-activity-step-icon" t-esc="step.icon || '•'"/>
+                                            <span class="dai-activity-step-label" t-esc="step.label || ''"/>
+                                            <span class="dai-activity-step-detail"
+                                                  t-if="step.detail" t-esc="step.detail"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Copy / regenerate row on finished answers -->
+                                <div class="dai-msg-actions" t-if="msg.role === 'assistant'">
+                                    <button type="button" class="dai-msg-action"
+                                            title="Copy"
+                                            t-on-click="() => this.copyMessage(msg)">
+                                        <i t-att-class="msg.copied ? 'fa fa-check' : 'fa fa-clone'"/>
+                                    </button>
+                                </div>
+
+                                <!-- Tappable follow-up chips -->
+                                <div class="dai-suggestions"
+                                     t-if="msg.suggestions and msg.suggestions.length">
+                                    <button type="button" class="dai-suggestion-chip"
+                                            t-foreach="msg.suggestions" t-as="sug" t-key="sug_index"
+                                            t-att-disabled="state.sending"
+                                            t-on-click="() => this.useSuggestion(sug)"
+                                            t-esc="sug"/>
+                                </div>
+
+                                <!-- Time + which model answered -->
+                                <span class="dai-msg-time" t-if="msg.ts">
+                                    <t t-esc="msg.ts"/>
+                                    <span class="dai-msg-model" t-if="msg.modelLabel"
+                                          t-att-title="'Answered by ' + msg.modelLabel">
+                                        <i class="fa fa-microchip dai-msg-model-icon"/>
+                                        <span t-esc="msg.modelLabel"/>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+
+                    <div class="dai-typing" t-if="state.sending">
+                        <span class="dai-dot"/><span class="dai-dot"/><span class="dai-dot"/>
+                    </div>
+                </div>
+
+                <!-- Composer -->
+                <div class="dai-panel-foot">
+                    <div class="dai-inputbar">
+                        <textarea t-ref="input"
+                                  class="dai-textarea"
+                                  rows="1"
+                                  placeholder="Ask about this screen…"
+                                  t-model="state.input"
+                                  t-on-keydown="(ev) => this.onKeydown(ev)"/>
+                        <button class="dai-send"
+                                t-att-disabled="state.sending || !state.input.trim()"
+                                t-on-click="() => this.send()"
+                                title="Send">
+                            <i class="fa fa-paper-plane"/>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </t>
+
+</templates>

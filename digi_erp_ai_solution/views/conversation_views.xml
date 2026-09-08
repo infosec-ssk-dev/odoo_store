@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         Conversations — administrator oversight, WITHOUT reading the chats.
+
+         The privacy promise (manifest, ai_groups.xml, conversation_rules.xml)
+         is that an administrator does not read other people's conversations.
+         That promise is kept here, and it is the ORM that keeps it, not this
+         view: `rule_ai_conversation_manager` widens READ on the CONVERSATION
+         rows only. `rule_ai_message_own` is left untouched, so the message
+         records themselves stay owner-only — open somebody else's thread and
+         the Messages list comes back empty, because the server filtered it.
+
+         So an administrator can answer "how much is this being used, and by
+         whom, and can I purge the old ones?" and still cannot answer "what did
+         they ask it?". Hence: no `content` field anywhere below, and the form
+         is read-only apart from the delete button.
+         ═══════════════════════════════════════════════════════════════════ -->
+
+    <record id="view_ai_conversation_tree" model="ir.ui.view">
+        <field name="name">digi_erp.model.chat.conversation.list</field>
+        <field name="model">digi_erp.model.chat.conversation</field>
+        <field name="arch" type="xml">
+            <list string="Conversations" create="false" sample="1">
+                <field name="last_message_at" string="Last activity"/>
+                <field name="user_id"/>
+                <field name="name" string="Title"/>
+                <field name="source"/>
+                <field name="message_count" string="Messages"/>
+                <field name="auto_tier_ceiling" string="Auto tier"
+                       optional="hide"/>
+                <field name="create_date" string="Started" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ai_conversation_form" model="ir.ui.view">
+        <field name="name">digi_erp.model.chat.conversation.form</field>
+        <field name="model">digi_erp.model.chat.conversation</field>
+        <field name="arch" type="xml">
+            <!-- edit="false": an administrator is here to count and to purge,
+                 not to rewrite somebody's thread. Delete stays available
+                 through the cog menu / list selection. -->
+            <form string="Conversation" create="false" edit="false">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="source"/>
+                        </group>
+                        <group>
+                            <field name="message_count"/>
+                            <field name="last_message_at"/>
+                            <field name="create_date" string="Started"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="status">
+                        <i class="fa fa-lock me-1"/>
+                        Message content is private to
+                        <field name="user_id" readonly="1" nolabel="1"
+                               class="oe_inline"/>.
+                        You can see that this conversation exists and how big
+                        it is, and you can delete it — you cannot read it.
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_conversation_search" model="ir.ui.view">
+        <field name="name">digi_erp.model.chat.conversation.search</field>
+        <field name="model">digi_erp.model.chat.conversation</field>
+        <field name="arch" type="xml">
+            <search string="Conversations">
+                <field name="name"/>
+                <field name="user_id"/>
+                <separator/>
+                <filter name="filter_portal" string="Full-page chat"
+                        domain="[('source', '=', 'portal')]"/>
+                <filter name="filter_embedded" string="Embedded sidebar"
+                        domain="[('source', '=', 'embedded')]"/>
+                <separator/>
+                <!-- The purge shortlist: nothing said for over a month. -->
+                <filter name="filter_stale" string="Idle over 30 days"
+                        domain="[('last_message_at', '&lt;',
+                                  (context_today() - datetime.timedelta(days=30))
+                                  .strftime('%Y-%m-%d'))]"/>
+                <group>
+                    <filter name="group_user" string="User"
+                            context="{'group_by': 'user_id'}"/>
+                    <filter name="group_source" string="Started from"
+                            context="{'group_by': 'source'}"/>
+                    <filter name="group_month" string="Last activity"
+                            context="{'group_by': 'last_message_at:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ai_conversation" model="ir.actions.act_window">
+        <field name="name">Conversations</field>
+        <field name="res_model">digi_erp.model.chat.conversation</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_ai_conversation_search"/>
+        <field name="context">{'create': False}</field>
+        <!-- No `group_ids` here on purpose. It looks like the way to gate an
+             action, but core only consults it in ir.actions.actions.get_bindings
+             — the "Action" cog menu — and never when an action is loaded by id,
+             so it would be inert for this one (no binding_model_id) and would
+             imply a protection it does not give.
+
+             What actually protects this view is the record rules: a plain user
+             who guessed /odoo/action-<id> would get their OWN conversations and
+             nothing else (rule_ai_conversation_own), which is the same data the
+             chat sidebar already shows them. The manager-only widening lives in
+             rule_ai_conversation_manager. -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No conversations yet
+            </p>
+            <p>
+                Every chat your team has with DIGI-ERP AI is listed here so you
+                can see how much it is used and clean up old threads.
+                <br/>
+                What people actually said stays private: you see the thread,
+                its owner and its size — never its content.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_ai_conversation"
+              name="Conversations"
+              parent="menu_ai_root"
+              sequence="5"
+              action="action_ai_conversation"
+              groups="digi_erp_ai_solution.group_ai_manager"/>
+
+</odoo>

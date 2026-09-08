@@ -1,0 +1,87 @@
+/* DIGI-ERP AI — inline chat charts.
+   Shared by the full-page chat (.dai-chat-*) and the embedded sidebar (.dai-*).
+   The chart card is theme-agnostic; the canvas ink adapts via --dai-chart-ink. */
+
+:root {
+    --dai-chart-ink: #1c2733;
+}
+
+.dai-chart {
+    margin: 14px 0;
+    padding: 14px 16px 12px;
+    border: 1px solid rgba(120, 130, 145, 0.18);
+    border-radius: 12px;
+    background:
+        linear-gradient(180deg,
+            rgba(47, 84, 150, 0.04) 0%,
+            rgba(47, 84, 150, 0.0) 60%),
+        var(--dai-chart-bg, #ffffff);
+    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+    overflow: hidden;
+}
+
+.dai-chart-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--dai-chart-ink);
+    margin-bottom: 8px;
+}
+
+.dai-chart-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-bottom: 8px;
+}
+
+.dai-chart-legend-item {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11.5px;
+    color: var(--dai-chart-ink);
+    opacity: 0.85;
+}
+
+.dai-chart-swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    margin-right: 6px;
+    flex: 0 0 auto;
+}
+
+.dai-chart-canvas {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Dark theme — Odoo backend sets a dark body; the frontend chat may too. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dai-chart-ink: #e6ebf2;
+    }
+    .dai-chart {
+        --dai-chart-bg: #1b2735;
+        border-color: rgba(160, 175, 195, 0.16);
+        background:
+            linear-gradient(180deg,
+                rgba(91, 155, 213, 0.08) 0%,
+                rgba(91, 155, 213, 0.0) 60%),
+            var(--dai-chart-bg);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    }
+}
+
+/* Odoo explicit dark class hooks (backend web client). */
+.o_web_client.o_dark_mode .dai-chart,
+body.o_dark_mode .dai-chart {
+    --dai-chart-ink: #e6ebf2;
+    --dai-chart-bg: #1b2735;
+    border-color: rgba(160, 175, 195, 0.16);
+}
+.o_web_client.o_dark_mode,
+body.o_dark_mode {
+    --dai-chart-ink: #e6ebf2;
+}

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ───────────────────────────────────────────────────────────────────
+         LLM provider (per-user API keys for OpenAI / Claude / Gemini / …)
+         ─────────────────────────────────────────────────────────────────── -->
+
+    <!-- Kanban: the friendly default for normal users — one card per AI model. -->
+    <record id="view_ai_model_kanban" model="ir.ui.view">
+        <field name="name">digi_erp.model.llm.provider.kanban</field>
+        <field name="model">digi_erp.model.llm.provider</field>
+        <field name="arch" type="xml">
+            <kanban sample="1" class="dai-provider-kanban">
+                <field name="name"/>
+                <field name="is_local"/>
+                <field name="provider_type"/>
+                <field name="model_name"/>
+                <field name="auto_route_tier"/>
+                <field name="supports_tools"/>
+                <field name="supports_vision"/>
+                <field name="local_url"/>
+                <field name="active"/>
+                <templates>
+                    <!-- 'card' is the 18.0+ template name; 'kanban-box'
+                         is the legacy one and only logs a deprecation
+                         warning here (it hard-errors from 19 on). The
+                         wrapper Odoo renders around it already handles the
+                         click, so the former oe_kanban_global_click class is
+                         gone too. -->
+                    <t t-name="card">
+                        <div class="dai-prov-card"
+                             t-att-class="{'dai-prov-card--inactive': !record.active.raw_value,
+                                           'dai-prov-card--local': record.is_local.raw_value}">
+
+                            <!-- Accent stripe: local vs cloud -->
+                            <div class="dai-prov-accent"/>
+
+                            <div class="dai-prov-main">
+                                <!-- Header: icon + name + kind badge -->
+                                <div class="dai-prov-head">
+                                    <span class="dai-prov-icon">
+                                        <i t-att-class="record.is_local.raw_value ? 'fa fa-microchip' : 'fa fa-cloud'"
+                                           t-att-title="record.is_local.raw_value ? 'Local model' : 'Cloud model'"
+                                           role="img"
+                                           t-att-aria-label="record.is_local.raw_value ? 'Local model' : 'Cloud model'"/>
+                                    </span>
+                                    <div class="dai-prov-heading">
+                                        <strong class="dai-prov-name">
+                                            <field name="name"/>
+                                        </strong>
+                                        <span class="dai-prov-kind">
+                                            <t t-if="record.is_local.raw_value">Local model</t>
+                                            <t t-else="">
+                                                <field name="provider_type"/>
+                                            </t>
+                                        </span>
+                                    </div>
+                                    <span t-if="record.is_local.raw_value"
+                                          class="badge rounded-pill text-bg-secondary">Local</span>
+                                    <span t-else="" class="badge rounded-pill text-bg-info">Cloud</span>
+                                </div>
+
+                                <!-- Info rows -->
+                                <div class="dai-prov-rows">
+                                    <div class="dai-prov-row" t-if="record.model_name.raw_value">
+                                        <span class="dai-prov-label">
+                                            <i class="fa fa-cube me-1"/>Model
+                                        </span>
+                                        <span class="dai-prov-value">
+                                            <field name="model_name"/>
+                                        </span>
+                                    </div>
+                                    <div class="dai-prov-row" t-if="record.auto_route_tier.raw_value">
+                                        <span class="dai-prov-label">
+                                            <i class="fa fa-random me-1"/>Auto tier
+                                        </span>
+                                        <span class="dai-prov-value">
+                                            <field name="auto_route_tier"/>
+                                        </span>
+                                    </div>
+                                    <!-- Local models: the endpoint they
+                                         answer on, opened in a new tab. A raw
+                                         host:port URL means nothing to a
+                                         business user, so the row is developer
+                                         mode only. The inline stopPropagation
+                                         keeps the card's global click from
+                                         opening the form instead of following
+                                         the link (t-on-click.stop is forbidden
+                                         in view arch). -->
+                                    <div class="dai-prov-row"
+                                         groups="base.group_no_one"
+                                         t-if="record.is_local.raw_value and record.local_url.value">
+                                        <span class="dai-prov-label">
+                                            <i class="fa fa-link me-1"/>Endpoint
+                                        </span>
+                                        <span class="dai-prov-value">
+                                            <a t-att-href="record.local_url.value"
+                                               target="_blank"
+                                               rel="noopener noreferrer"
+                                               class="dai-prov-link"
+                                               onclick="event.stopPropagation()"
+                                               t-esc="record.local_url.value"/>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Footer: capability + state chips -->
+                                <div class="dai-prov-foot">
+                                    <!-- "Tools" = the model can call Odoo
+                                         functions. Meaningful to a developer,
+                                         jargon to everyone else. -->
+                                    <span t-if="record.supports_tools.raw_value"
+                                          groups="base.group_no_one"
+                                          class="badge rounded-pill text-bg-light dai-prov-chip">
+                                        <i class="fa fa-wrench me-1" title="Supports tools"/>Tools
+                                    </span>
+                                    <!-- Vision stays visible at every level: it
+                                         tells a normal user whether this model
+                                         can look at a scan or a photo. -->
+                                    <span t-if="record.supports_vision.raw_value"
+                                          class="badge rounded-pill text-bg-light dai-prov-chip">
+                                        <i class="fa fa-eye me-1" title="Can read images"/>Reads images
+                                    </span>
+                                    <span t-if="record.active.raw_value"
+                                          class="badge rounded-pill text-bg-success dai-prov-chip">
+                                        <i class="fa fa-check me-1"/>Active
+                                    </span>
+                                    <span t-else=""
+                                          class="badge rounded-pill text-bg-secondary dai-prov-chip">
+                                        <i class="fa fa-ban me-1"/>Inactive
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_ai_model_tree" model="ir.ui.view">
+        <field name="name">digi_erp.model.llm.provider.tree</field>
+        <field name="model">digi_erp.model.llm.provider</field>
+        <field name="arch" type="xml">
+            <list string="AI models" sample="1">
+                <field name="name"/>
+                <field name="is_local" string="Local" widget="boolean_toggle"/>
+                <field name="provider_type" string="Provider" optional="show"/>
+                <field name="model_name" string="Model"/>
+                <field name="auto_route_tier" string="Auto tier" optional="show"/>
+                <field name="supports_vision" string="Vision"
+                       widget="boolean_toggle" optional="show"/>
+                <field name="active" widget="boolean_toggle" optional="show"/>
+                <!-- Base URL stays available to a normal administrator: it
+                     is real setup (a remote self-hosted host, a custom
+                     OpenAI-compatible endpoint), not a tuning knob. -->
+                <field name="base_url" string="Base URL" optional="hide"/>
+                <!-- Everything below is a technical column — developer mode
+                     only, so the default list reads as a plain catalogue of
+                     models rather than a tuning console. -->
+                <field name="local_url" string="Local endpoint"
+                       optional="hide" groups="base.group_no_one"/>
+                <field name="temperature" optional="hide"
+                       groups="base.group_no_one"/>
+                <field name="max_tokens" string="Max tokens" optional="hide"
+                       groups="base.group_no_one"/>
+                <field name="timeout_seconds" string="Timeout (s)" optional="hide"
+                       groups="base.group_no_one"/>
+                <field name="num_ctx" string="Context window" optional="hide"
+                       groups="base.group_no_one"/>
+                <field name="keep_alive" string="Keep alive" optional="hide"
+                       groups="base.group_no_one"/>
+                <field name="supports_tools" widget="boolean_toggle"
+                       optional="hide" groups="base.group_no_one"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ai_model_form" model="ir.ui.view">
+        <field name="name">digi_erp.model.llm.provider.form</field>
+        <field name="model">digi_erp.model.llm.provider</field>
+        <field name="arch" type="xml">
+            <form string="AI model">
+                <header>
+                    <button name="action_test_connection" type="object"
+                            string="Test connection" class="btn-primary"
+                            icon="fa-plug"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Inactive"
+                            bg_color="text-bg-secondary"
+                            invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name" string="Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Fast, Best quality, On-premise…"/>
+                        </h1>
+                    </div>
+
+                    <!-- ── Full-width context banner (top, not inside a group) ── -->
+                    <div class="alert alert-info mb-3" role="status"
+                         invisible="not is_local">
+                        <strong>Self-hosted model.</strong> Runs on your own
+                        machine or server, so nothing leaves your network. No API
+                        key needed — just set the model name and, if the server is
+                        on another machine, its base URL.
+                    </div>
+                    <div class="alert alert-info mb-3" role="status"
+                         invisible="is_local">
+                        <strong>Cloud AI (external API).</strong> Connects to a
+                        provider like OpenAI, Anthropic, Google Gemini, DeepSeek or
+                        xAI. Pick the provider and paste your API key — the endpoint
+                        URL is filled in automatically.
+                    </div>
+
+                    <!-- ── Connection — model name FIRST ───────────────────── -->
+                    <group string="Connection">
+                        <group>
+                            <!-- What the user thinks of first: the model. -->
+                            <field name="model_name"
+                                   string="Model name"
+                                   placeholder="gpt-4o · claude-sonnet-4-6 · deepseek-chat · gemini-2.0-flash · llama3.2"/>
+                            <!-- Cloud only: pick the provider brand -->
+                            <field name="provider_type"
+                                   string="Provider"
+                                   invisible="is_local"
+                                   required="not is_local"/>
+                            <!-- `groups=` here mirrors the one on the field
+                                 definition (models/llm_provider.py). The
+                                 field-level group is what actually protects
+                                 the key — the ORM strips it server-side, so
+                                 it never reaches the browser. This one keeps
+                                 the arch itself honest: the node is removed
+                                 for a non-administrator, so the web client
+                                 never even asks for the field and the form
+                                 opens cleanly instead of hitting an
+                                 AccessError on read. Keep BOTH. -->
+                            <field name="api_key" password="True"
+                                   placeholder="sk-..."
+                                   groups="digi_erp_ai_solution.group_ai_manager"
+                                   invisible="is_local"
+                                   required="not is_local"/>
+                            <!-- Base URL: only shown when it's genuinely needed —
+                                 a local (self-hosted) endpoint, or a custom
+                                 OpenAI-compatible service. The 5 named cloud
+                                 providers auto-fill their standard URL, so we
+                                 hide the field for them to avoid confusion. -->
+                            <field name="base_url"
+                                   string="Base URL"
+                                   invisible="not is_local and provider_type != 'openai_compat'"
+                                   required="provider_type == 'openai_compat' and not is_local"
+                                   placeholder="e.g. http://localhost:11434 · https://api.groq.com/openai/v1"/>
+                        </group>
+                        <group>
+                            <field name="active" widget="boolean_toggle"/>
+                            <field name="is_local" widget="boolean_toggle"
+                                   string="Local model (no API key)"/>
+                        </group>
+                    </group>
+
+                    <!-- ── What this model is good at ──────────────────────
+                         Kept on the main sheet: both fields change what the
+                         assistant will actually do with the model, so they are
+                         a setup decision, not an expert knob. -->
+                    <group string="What this model can do">
+                        <field name="supports_vision"
+                               string="Can read images and scans"/>
+                        <div class="text-muted o_form_label ps-0 pt-1"
+                             colspan="2">
+                            Turn this on for a model that can look at a picture
+                            (GPT-4o, Claude, Gemini, qwen2.5vl…). Text-only
+                            models fall back to the built-in document reader.
+                        </div>
+                    </group>
+
+                    <group string="Automatic model choice">
+                        <field name="auto_route_tier"
+                               string="Use this model for"/>
+                        <div class="text-muted o_form_label ps-0 pt-1"
+                             colspan="2">
+                            When a user leaves the chat picker on
+                            <b>Auto</b>, the assistant picks a model by the
+                            kind of question asked. Leave empty to keep this
+                            model out of Auto — it stays selectable by hand.
+                        </div>
+                    </group>
+
+                    <!-- ── Advanced — DEVELOPER MODE ONLY ──────────────────
+                         Every field below is a tuning knob with a sane
+                         default; none of it is a decision a business user
+                         should have to make, and the vocabulary (sampling
+                         temperature, context window, keep-alive) is purely
+                         technical. The whole tab is therefore gated on
+                         base.group_no_one, so a normal administrator sees a
+                         form with nothing but the setup they actually need.
+
+                         NOTE: gating happens HERE, in the view, never with
+                         `groups=` on the field definitions. The chat reads
+                         temperature / max_tokens / timeout_seconds / num_ctx /
+                         supports_tools off the provider record AS THE CURRENT
+                         USER (see services/llm_providers.py); a field-level
+                         group would raise AccessError for every non-developer
+                         and break the chat outright. -->
+                    <notebook groups="base.group_no_one">
+                        <page string="Advanced" name="advanced">
+                            <group>
+                                <group string="Generation">
+                                    <field name="temperature"/>
+                                    <field name="max_tokens"/>
+                                    <field name="timeout_seconds"/>
+                                </group>
+                                <group string="Self-hosted model"
+                                       invisible="not is_local">
+                                    <field name="num_ctx"/>
+                                    <field name="keep_alive"
+                                           placeholder="30m · 1h · -1 (keep loaded) · 0 (unload)"/>
+                                </group>
+                            </group>
+                            <group string="Capabilities">
+                                <field name="supports_tools"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_model_search" model="ir.ui.view">
+        <field name="name">digi_erp.model.llm.provider.search</field>
+        <field name="model">digi_erp.model.llm.provider</field>
+        <field name="arch" type="xml">
+            <search string="AI models">
+                <!-- Text search -->
+                <field name="name"
+                       string="Name / Model"
+                       filter_domain="['|', ('name', 'ilike', self), ('model_name', 'ilike', self)]"/>
+                <field name="provider_type"/>
+                <field name="model_name"/>
+
+                <!-- Deployment -->
+                <separator/>
+                <filter name="filter_local" string="Local"
+                        domain="[('is_local', '=', True)]"/>
+                <filter name="filter_cloud" string="Cloud (API)"
+                        domain="[('is_local', '=', False)]"/>
+
+                <!-- Capabilities -->
+                <separator/>
+                <filter name="filter_vision" string="Vision / OCR"
+                        domain="[('supports_vision', '=', True)]"/>
+                <filter name="filter_tools" string="Supports tools"
+                        domain="[('supports_tools', '=', True)]"
+                        groups="base.group_no_one"/>
+
+                <!-- Auto-routing -->
+                <separator/>
+                <filter name="filter_auto_routed" string="In Auto routing"
+                        domain="[('auto_route_tier', '!=', False)]"/>
+
+                <!-- Active / archived -->
+                <separator/>
+                <filter name="filter_active" string="Active"
+                        domain="[('active', '=', True)]"/>
+                <filter name="filter_archived" string="Archived"
+                        domain="[('active', '=', False)]"/>
+
+                <group>
+                    <filter name="group_deployment" string="Deployment"
+                            context="{'group_by': 'is_local'}"/>
+                    <filter name="group_provider_type" string="Provider"
+                            context="{'group_by': 'provider_type'}"/>
+                    <filter name="group_auto_route_tier" string="Auto-route tier"
+                            context="{'group_by': 'auto_route_tier'}"/>
+                    <filter name="group_active" string="Status"
+                            context="{'group_by': 'active'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ai_model" model="ir.actions.act_window">
+        <field name="name">AI Models</field>
+        <field name="res_model">digi_erp.model.llm.provider</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_ai_model_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first AI model
+            </p>
+            <p>
+                Connect DIGI-ERP AI to any AI: a model you <b>host
+                yourself</b>, or a <b>cloud</b> service — OpenAI, Anthropic
+                Claude, Google Gemini, DeepSeek, xAI Grok, or any compatible API.
+                Each model you add appears in the picker of the DIGI-ERP AI chat.
+            </p>
+        </field>
+    </record>
+
+    <!-- ───────────────────────────────────────────────────────────────────
+         Menus
+           DIGI-ERP AI
+           ├── AI Models          (User — read-only; Administrator edits)
+           ├── Conversations      (Administrator — metadata only, see below)
+           ├── Chat               (User)
+           ├── Document Imports   (User — added by digi_erp_ai_documents, if installed)
+           └── Configuration      (Administrator — opens the settings page directly;
+                                   declared in res_config_settings_views.xml, which
+                                   is where its action lives)
+
+         Both levels land on AI Models and both keep the chat. What separates
+         them is not visibility but what they may DO there: ir.model.access
+         gives User read only (1,0,0,0) and Administrator full rights, so the
+         views render without New/Edit for a plain user, and `api_key` never
+         reaches them — the field-level group strips it server-side and the
+         view-level one removes the node. What genuinely changes how the
+         assistant behaves stays Administrator-only: Conversations and
+         Configuration.
+
+         The ROOT MENU DELIBERATELY CARRIES NO ACTION. Odoo opens the first
+         child the current user may see (addons/web/models/ir_ui_menu.py,
+         load_web_menus), which is AI Models at sequence 1 for both levels.
+         Leave the root action-less: pinning `action_ai_model` on it would
+         hardcode what the sequence already says, and would keep pointing at
+         the models even if the menu order is ever revisited.
+
+         NOTE the two icons are independent, and both are needed:
+           • static/description/icon.png — the Apps-page tile. Odoo hardcodes
+             this filename; it cannot point anywhere else.
+           • web_icon below — the app-switcher / breadcrumb icon. Free to
+             point at any image in the module.
+         ─────────────────────────────────────────────────────────────────── -->
+
+    <record id="action_open_chat" model="ir.actions.act_url">
+        <field name="name">DIGI-ERP AI Chat</field>
+        <field name="url">/my/ai-solution</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_ai_root"
+              name="DIGI-ERP AI"
+              web_icon="digi_erp_ai_solution,static/description/digi-erp.png"
+              sequence="99"
+              groups="digi_erp_ai_solution.group_ai_user"/>
+
+    <!-- The first entry for BOTH levels, and what the app tile lands on.
+         Open to plain Users on purpose: they get the catalogue read-only
+         (see ir.model.access.csv) so they can see which models exist and run
+         "Test connection", but cannot add, edit, or read an API key.
+
+         The leading `-` on group_ai_manager is load-bearing on an UPGRADE.
+         `_tag_menuitem` writes @groups as Command.LINK per group, never
+         Command.SET (odoo/tools/convert.py:303), so changing the attribute
+         alone would ADD User and leave Administrator attached. Harmless in
+         itself — Administrator implies User, so the OR'ed result is the same
+         set — but it leaves the database disagreeing with this file. The `-`
+         emits Command.UNLINK; on a fresh install it unlinks a group that was
+         never linked, which is a no-op. -->
+    <menuitem id="menu_ai_model"
+              name="AI Models"
+              parent="menu_ai_root"
+              sequence="1"
+              action="action_ai_model"
+              groups="digi_erp_ai_solution.group_ai_user,-digi_erp_ai_solution.group_ai_manager"/>
+
+    <!-- Chat stays its own entry: the app tile opens the models, this is how
+         you get to the assistant itself. -->
+    <menuitem id="menu_ai_chat"
+              name="Chat"
+              parent="menu_ai_root"
+              sequence="2"
+              action="action_open_chat"
+              groups="digi_erp_ai_solution.group_ai_user"/>
+
+</odoo>

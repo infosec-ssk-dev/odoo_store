@@ -1,0 +1,14 @@
+# Python dependencies for DIGI-ERP AI (digi_erp_ai_solution)
+# Install with:  pip install -r requirements.txt
+#
+# Document ingestion / extraction:
+python-pptx>=0.6.21      # PowerPoint .pptx text extraction (and .ppt via LibreOffice)
+
+# Optional archive formats — the module degrades gracefully if these are
+# absent (it returns an "install X" message for that format only):
+py7zr>=0.20              # .7z archives
+rarfile>=4.0             # .rar archives (also needs the system `unrar` binary)
+
+# Legacy binary Office (.ppt / .doc) additionally requires the LibreOffice
+# `soffice` binary on the server PATH — install via the OS package manager,
+# e.g.  apt install libreoffice-impress libreoffice-writer

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── DIGI-ERP AI section inside the standard Settings page ───────────────
+         Extends the central Odoo Settings form by adding an `app_settings_block`
+         tagged with data-key="digi_erp_ai_solution". The user can find it from
+         Settings → DIGI-ERP AI in the left sidebar, or via the menu shortcut below. -->
+
+    <record id="view_ai_settings_form" model="ir.ui.view">
+        <field name="name">res.config.settings.digi.erp.ai</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <!-- `logo` overrides the settings sidebar icon, which
+                     otherwise hard-defaults to
+                     /<module>/static/description/icon.png (see
+                     web/static/src/webclient/settings_form_view/settings_form_compiler.js).
+                     Pointing it at digi-erp.png makes the sidebar match the
+                     app-switcher tile (menu_ai_root's web_icon) rather than
+                     the Apps-page module icon. -->
+                <app data-string="DIGI-ERP AI"
+                     string="DIGI-ERP AI"
+                     name="digi_erp_ai_solution"
+                     logo="/digi_erp_ai_solution/static/description/digi-erp.png"
+                     groups="digi_erp_ai_solution.group_ai_manager">
+
+                    <block title="Built-in local AI (optional)"
+                           help="An optional built-in path to a self-hosted model, so the assistant works out of the box with nothing leaving your network. You are not obliged to use it: any model you add under DIGI-ERP AI → Configuration → AI Models — OpenAI, Claude, Gemini, DeepSeek, Grok, or any compatible API — takes over from this. Note that the built-in path posts to /api/chat, /api/generate and /api/embed, so the server below must expose those endpoints.">
+                        <setting id="digi_erp_ai_local_base_url_setting"
+                                 string="Server address"
+                                 help="Where your local AI server answers. Use http://localhost:11434 when it runs on the same machine as Odoo, or the machine's address on your network. No trailing slash.">
+                            <field name="digi_erp_ai_local_base_url"
+                                   placeholder="http://localhost:11434"/>
+                        </setting>
+                        <setting id="digi_erp_ai_chat_model_setting"
+                                 string="Model"
+                                 help="Which model answers. It must already be downloaded on the server above.">
+                            <field name="digi_erp_ai_chat_model"
+                                   placeholder="llama3.2"/>
+                        </setting>
+                        <setting id="digi_erp_ai_request_timeout_setting"
+                                 string="Answer timeout (seconds)"
+                                 help="How long to wait for an answer before giving up. Raise it if long documents time out.">
+                            <field name="digi_erp_ai_request_timeout"/>
+                        </setting>
+                        <setting id="digi_erp_ai_num_ctx_setting"
+                                 string="Memory per answer (tokens)"
+                                 help="How much the model can hold in mind at once: your question, the data it looked up, and the conversation so far. Raise it if answers about large documents come back cut off.">
+                            <field name="digi_erp_ai_num_ctx"/>
+                        </setting>
+                    </block>
+
+                    <block title="Reading documents and images"
+                           help="How the assistant pulls text out of a scan, a photo or a PDF that a user uploads.">
+                        <setting id="digi_erp_ai_ocr_primary_setting"
+                                 string="Document reader"
+                                 help="Which reader is tried first; if it cannot run, the others are tried automatically. The AI vision model sends the page to a model that can look at images — cloud (GPT-4o, Claude, Gemini, Grok) or self-hosted — and needs nothing installed on your server. PaddleOCR, Surya and Tesseract run offline and are faster, but each has to be installed on your Odoo server before it will work.">
+                            <field name="digi_erp_ai_ocr_primary"/>
+                        </setting>
+                        <!-- Only meaningful when the reader above IS the AI
+                             vision model; the classic engines don't use a
+                             model at all, so the picker is hidden for them. -->
+                        <setting id="digi_erp_ai_ocr_provider_setting"
+                                 string="AI model for reading documents"
+                                 invisible="digi_erp_ai_ocr_primary != 'llm_vision'"
+                                 help="The model that turns uploaded pages into text. Cloud or self-hosted, both work — the list shows every model you have ticked &quot;Can read images&quot; on (GPT-4o, Claude, Gemini, qwen2.5vl…). Leave it empty and DIGI-ERP AI uses whichever model the chat is on when that one can see, and otherwise the first image-capable model you registered.">
+                            <field name="digi_erp_ai_ocr_provider_id"
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </setting>
+                    </block>
+
+                    <block title="Advanced"
+                           help="Sensible defaults ship for everything here. Change it only if you know why.">
+                        <setting id="digi_erp_ai_embed_model_setting"
+                                 string="Indexing model"
+                                 help="Used to index your Odoo data structure so the assistant only looks at the parts relevant to each question. Must be downloaded on the AI server.">
+                            <field name="digi_erp_ai_embed_model"
+                                   placeholder="nomic-embed-text"/>
+                        </setting>
+                        <setting id="digi_erp_ai_embed_base_url_setting"
+                                 string="Separate indexing server"
+                                 help="Only if indexing runs on a different machine than the chat. Leave blank to use the same server.">
+                            <field name="digi_erp_ai_embed_base_url_override"
+                                   placeholder="Leave blank to use the same server"/>
+                        </setting>
+                        <setting id="digi_erp_ai_rerank_enabled_setting"
+                                 string="Double-check which data to look at"
+                                 help="Adds a quick extra step where a small, cheap model narrows down what the main model is shown. Slightly slower, more precise on busy databases.">
+                            <field name="digi_erp_ai_rerank_enabled"/>
+                        </setting>
+                        <!-- Only meaningful while the step above is on. -->
+                        <setting id="digi_erp_ai_rerank_provider_setting"
+                                 string="Model used for the narrowing step"
+                                 invisible="not digi_erp_ai_rerank_enabled"
+                                 help="Which model runs that step. Leave empty to use the first active model set to 'Quick questions'. Pick a small, fast one — this runs before every data question, so a heavy model cancels out the speed the step is meant to buy. With nothing here and nothing tagged 'Quick questions', the step is skipped.">
+                            <field name="digi_erp_ai_rerank_provider_id"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   placeholder="First model set to 'Quick questions'"/>
+                        </setting>
+                    </block>
+
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Open the standard Settings page, scrolled/filtered to the DIGI-ERP AI section. -->
+    <record id="action_ai_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+        <field name="context">{'module': 'digi_erp_ai_solution'}</field>
+    </record>
+
+    <!-- Configuration is a LEAF: it opens the settings page itself rather than
+         holding a single "Settings" child. Declared here, not next to the other
+         menus in ai_model_views.xml, because that file loads first and could
+         not resolve `action_ai_settings` yet.
+
+         Gated on group_ai_manager, NOT on base.group_system. Listing both
+         would be worse than either alone: menuitem @groups is OR, never AND,
+         so it would show the entry to anyone holding EITHER — which is exactly
+         the leak this replaces, where an Odoo administrator who had only been
+         given AI *User* level still saw the AI configuration menu.
+
+         Residual to know about: res.config.settings is base.group_system in
+         core's own ACL (read included, odoo/addons/base/security/
+         ir.model.access.csv), so an AI Administrator WITHOUT Odoo Settings
+         rights sees this entry and Odoo refuses the page. A single flat
+         menuitem cannot express "both groups"; only nesting can, and that is
+         the two-level Configuration → Settings we deliberately removed.
+         Grant Settings rights alongside AI Administrator.
+
+         The leading `-` on base.group_system is load-bearing on an UPGRADE.
+         `_tag_menuitem` writes @groups as Command.LINK per group, never
+         Command.SET (odoo/tools/convert.py), so simply changing the attribute
+         ADDS the new group and leaves the old one attached — and since the
+         groups are OR'ed, the menu would still show to every Odoo
+         administrator. The `-` prefix emits Command.UNLINK, which drops it.
+         On a fresh install it unlinks a group that was never linked: a no-op.
+         Leave it in place; removing it would silently resurrect the leak on
+         any database that ever ran the earlier version. -->
+    <menuitem id="menu_ai_config"
+              name="Configuration"
+              parent="menu_ai_root"
+              sequence="90"
+              action="action_ai_settings"
+              groups="digi_erp_ai_solution.group_ai_manager,-base.group_system"/>
+
+</odoo>
