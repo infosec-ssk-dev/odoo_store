@@ -85,6 +85,17 @@ add-on, **DIGI-ERP AI — Documents**, which installs on top of this one.
             'digi_erp_ai_solution/static/src/xml/embedded_chat.xml',
         ],
     },
+    'images': [
+        # The FIRST entry is what the store uses as the cover picture at the
+        # top of the listing. It has to be a designed banner, not a
+        # screenshot, or the page opens on a wall of Odoo UI.
+        'static/description/banner.png',
+        'static/description/chat.png',
+        'static/description/sidebar.png',
+        'static/description/models.png',
+        'static/description/model-form.png',
+        'static/description/settings.png',
+    ],
     'installable': True,
     'application': True,
     'license': 'LGPL-3'
