@@ -1,6 +1,6 @@
 {
     "name": "Évaluation",
-    "author": "Digi-IT",
+    "author": "Digi-ERP",
     "summary": "Module personnalisé d’évaluation du personnel",
     "description": """
     Module de gestion des évaluations des employés
