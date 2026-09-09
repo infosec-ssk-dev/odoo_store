@@ -1,0 +1,1542 @@
+/* ═══════════════════════════════════════════════════════════════
+   DIGI-ERP AI — chat interface.
+   Clean, light, Linear/Notion-inspired.
+   Brand: Digi Erp — teal primary, with pink / orange / purple
+   as secondary brand accents (logo, dots, badges).
+   All colours flow from the design tokens in :root — rebrand by
+   editing --acc / the brand ramp / the neutral ramp only.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+    /* ── Primary accent (Digi Erp teal) ──────────────────────── */
+    --acc:         #17A2B8;   /* primary teal */
+    --acc-600:     #128298;   /* hover / pressed (darker) */
+    --acc-500:     #2BB3C0;   /* bright teal (logo) */
+    --acc-soft:    #e6f7fa;   /* tinted surfaces */
+    --acc-ring:    rgba(23, 162, 184, 0.18);
+
+    /* ── Secondary brand colours (from the logo) ─────────────── */
+    --brand-pink:   #EC297B;
+    --brand-orange: #F58220;
+    --brand-purple: #7B3F98;
+    --brand-teal:   #2BB3C0;
+
+    /* ── Neutral ramp ────────────────────────────────────────── */
+    --bg:          #f7f8fa;   /* app canvas */
+    --surface:     #ffffff;   /* panels, bubbles */
+    --surface-2:   #f2f4f7;   /* subtle fills, hovers */
+    --surface-3:   #e9edf2;
+    --border:      #e6e8ec;   /* hairlines */
+    --border-strong:#d7dbe0;
+
+    --text:        #2B2B3A;   /* primary text (brand navy) */
+    --text-2:      #5b6570;   /* secondary */
+    --text-3:      #8a939d;   /* muted / meta */
+
+    /* ── Shape & motion ──────────────────────────────────────── */
+    --r-sm: 8px;
+    --r-md: 12px;
+    --r-lg: 16px;
+    --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04),
+                 0 1px 3px rgba(16, 24, 40, 0.06);
+    --shadow-md: 0 4px 12px rgba(16, 24, 40, 0.08);
+    --shadow-lg: 0 12px 32px rgba(16, 24, 40, 0.12);
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset page ─────────────────────────────────────────────── */
+html.dai-chat-html,
+body.dai-chat-page {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* App container */
+.dai-chat-app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--bg);
+}
+
+/* ── Topbar ────────────────────────────────────────────────── */
+.dai-chat-topbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1.15rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+}
+/* Thin four-colour brand strip echoing the Digi Erp logo. */
+.dai-chat-topbar::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        var(--brand-pink) 0%,
+        var(--brand-pink) 25%,
+        var(--brand-orange) 25%,
+        var(--brand-orange) 50%,
+        var(--brand-purple) 50%,
+        var(--brand-purple) 75%,
+        var(--brand-teal) 75%,
+        var(--brand-teal) 100%
+    );
+    opacity: 0.9;
+}
+
+.dai-chat-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.dai-chat-brand-logo {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    /* Digi Erp brand mark: four colour quadrants echoing the logo. */
+    background:
+        conic-gradient(
+            from 0deg at 50% 50%,
+            var(--brand-pink)   0deg  90deg,
+            var(--brand-orange) 90deg 180deg,
+            var(--brand-purple) 180deg 270deg,
+            var(--brand-teal)   270deg 360deg
+        );
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+}
+/* Hide the fallback icon — the quadrants ARE the mark. A small white
+   centre dot mimics the logo's bracket gap. */
+.dai-chat-brand-logo .fa { display: none; }
+.dai-chat-brand-logo::after {
+    content: "";
+    position: absolute;
+    inset: 38%;
+    border-radius: 3px;
+    background: var(--surface);
+}
+.dai-chat-brand-name {
+    font-weight: 650;
+    font-size: 1.05rem;
+    color: var(--text);
+    letter-spacing: -0.01em;
+}
+.dai-chat-brand-sub {
+    font-size: 0.72rem;
+    color: var(--acc-600);
+    background: var(--acc-soft);
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+    font-weight: 550;
+}
+
+.dai-chat-back-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.48rem 0.95rem;
+    background: var(--surface);
+    color: var(--text-2) !important;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-md);
+    text-decoration: none !important;
+    font-weight: 550;
+    font-size: 0.88rem;
+    transition: background 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+.dai-chat-back-btn:hover {
+    background: var(--surface-2);
+    color: var(--text) !important;
+    border-color: var(--text-3);
+}
+
+/* ── Shell : sidebar + main ────────────────────────────────── */
+.dai-chat-shell {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+/* ── Sidebar ───────────────────────────────────────────────── */
+.dai-chat-sidebar {
+    flex: 0 0 264px;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    color: var(--text);
+    border-right: 1px solid var(--border);
+    overflow: hidden;
+}
+.dai-chat-sidebar-header {
+    padding: 0.85rem 0.85rem 0.6rem;
+}
+.dai-chat-new-btn {
+    width: 100%;
+    padding: 0.62rem 1rem;
+    border: 0;
+    border-radius: var(--r-md);
+    background: var(--acc);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s var(--ease), transform 0.1s var(--ease);
+}
+.dai-chat-new-btn:hover { background: var(--acc-600); }
+.dai-chat-new-btn:active { transform: scale(0.99); }
+
+.dai-chat-conv-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.35rem 0.5rem;
+    overflow-y: auto;
+    flex: 1;
+}
+.dai-chat-conv-list::-webkit-scrollbar { width: 8px; }
+.dai-chat-conv-list::-webkit-scrollbar-thumb {
+    background: var(--surface-3);
+    border-radius: 4px;
+    border: 2px solid var(--surface);
+}
+.dai-chat-conv-list::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+
+.dai-chat-conv-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.7rem;
+    margin-bottom: 0.12rem;
+    border-radius: var(--r-sm);
+    cursor: pointer;
+    color: var(--text-2);
+    font-size: 0.87rem;
+    transition: background 0.12s var(--ease), color 0.12s var(--ease);
+}
+.dai-chat-conv-item:hover {
+    background: var(--surface-2);
+    color: var(--text);
+}
+.dai-chat-conv-item.dai-chat-conv-active {
+    background: var(--acc-soft);
+    color: var(--acc-600);
+    font-weight: 550;
+}
+.dai-chat-conv-item.dai-chat-conv-active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    width: 3px;
+    border-radius: 0 2px 2px 0;
+    background: var(--acc);
+}
+.dai-chat-conv-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dai-chat-conv-actions {
+    display: none;
+    gap: 0.1rem;
+}
+.dai-chat-conv-item:hover .dai-chat-conv-actions { display: inline-flex; }
+.dai-chat-conv-actions .btn-link {
+    color: var(--text-3);
+    padding: 0 0.3rem;
+    font-size: 0.82rem;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+.dai-chat-conv-actions .btn-link:hover { color: var(--text); }
+
+.dai-chat-sidebar-footer {
+    padding: 0.75rem 0.85rem;
+    border-top: 1px solid var(--border);
+}
+.dai-chat-user-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-2);
+}
+.dai-chat-user-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--acc-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--acc-600);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+.dai-chat-user-name {
+    font-size: 0.85rem;
+    font-weight: 550;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── Main column ───────────────────────────────────────────── */
+.dai-chat-chat-main {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--bg);
+}
+
+/* ── Messages ──────────────────────────────────────────────── */
+.dai-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    scroll-behavior: smooth;
+    /* Stretch every row to the full width of the readable column so the
+       user/bot alignment (right/left) is visible. The column itself is
+       centered on wide screens via the max-width + auto margins below. */
+    align-items: stretch;
+}
+.dai-chat-messages::-webkit-scrollbar { width: 10px; }
+.dai-chat-messages::-webkit-scrollbar-thumb {
+    background: var(--surface-3);
+    border-radius: 5px;
+    border: 3px solid var(--bg);
+}
+.dai-chat-messages::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+
+/* Each message row spans the full readable column (centered on wide
+   screens via auto margins), so bubbles can hug the correct edge:
+   user → right, bot → left. This is the standard chat layout; the old
+   rule centered every row in a 760px strip, making both sides look
+   middle-aligned. */
+.dai-chat-msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    width: 100%;
+    /* No max-width cap: the chat column fills the full screen width so wide
+       monitors don't show empty side gutters (padding on .dai-chat-messages
+       still keeps content off the edges). */
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    animation: daiChatSlideIn 0.22s var(--ease);
+}
+@keyframes daiChatSlideIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+/* User: avatar + bubble hug the RIGHT edge. */
+.dai-chat-msg--user {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+/* Bot: avatar + bubble hug the LEFT edge. */
+.dai-chat-msg--bot {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.dai-chat-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.92rem;
+    flex-shrink: 0;
+}
+.dai-chat-msg--bot .dai-chat-avatar {
+    /* Branded with the DIGI-ERP logo — give it a light tile so the
+       coloured logo reads on both themes, and a hairline ring. */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: #fff;
+    overflow: hidden;
+    padding: 3px;
+}
+/* The logo is portrait (437×571); object-fit:contain keeps its true
+   aspect ratio inside the round avatar so it is never stretched. */
+.dai-chat-avatar-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+.dai-chat-msg--user .dai-chat-avatar {
+    background: var(--surface-3);
+    color: var(--text-2);
+}
+
+.dai-chat-bubble {
+    padding: 0.75rem 1.05rem;
+    border-radius: var(--r-lg);
+    line-height: 1.6;
+    font-size: 0.94rem;
+    word-break: break-word;
+}
+.dai-chat-msg--user .dai-chat-bubble {
+    background: var(--acc);
+    color: #fff;
+    border-bottom-right-radius: 5px;
+    white-space: pre-wrap;
+}
+.dai-chat-msg--bot .dai-chat-bubble {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 5px;
+    box-shadow: var(--shadow-sm);
+}
+.dai-chat-bubble--error {
+    background: #fef2f2 !important;
+    border-color: #fecaca !important;
+    color: #991b1b !important;
+}
+
+/* ── Typing indicator ──────────────────────────────────────── */
+.dai-chat-typing {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 1.5rem 0.15rem;
+    color: var(--text-3);
+    font-size: 0.8rem;
+    max-width: none;
+    width: 100%;
+    margin: 0 auto;
+}
+/* ── "Thinking" indicator : DIGI-ERP pinwheel ──────────────────
+   The four brand diamonds in a rotating pinwheel with a whip wave
+   and an orange spark that flings off once per turn. Built from CSS
+   shapes only (rounded squares rotated 45°), scaled down to sit
+   inline with the status text. The geometry keeps a thin plus-shaped
+   gap in the middle — corners kiss, pieces never overlap. */
+.dai-chat-pinwheel {
+    /* Brand palette (scoped to the loader). */
+    --pw-teal:   #12ab9e;
+    --pw-pink:   #ed1651;
+    --pw-orange: #f79521;
+    --pw-orange-deep: #e07d0e;
+    --pw-purple: #7c2d68;
+
+    /* Geometry: --u = diamond side; --gap = negative space;
+       --reach = half the rotated square's diagonal + half the gap,
+       so neighbours meet corner-to-corner. */
+    --u: 8px;
+    --gap: 2.2px;
+    --reach: calc(var(--u) * 0.7071 + var(--gap) / 2);
+    --sz: calc(2 * var(--reach) + var(--u));
+    --spin: 3.4s;
+
+    position: relative;
+    display: inline-block;
+    width: var(--sz);
+    height: var(--sz);
+    flex-shrink: 0;
+    animation: daiChatPinwheel var(--spin) cubic-bezier(.62,.02,.34,1) infinite;
+    will-change: transform;
+}
+.dai-chat-pw-piece {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: var(--u); height: var(--u);
+    margin: calc(var(--u) / -2) 0 0 calc(var(--u) / -2);
+    border-radius: 2.5px;
+    --throw: 0;
+    transform:
+        translate(
+            calc(var(--dx) * (var(--reach) + var(--throw) * 3px)),
+            calc(var(--dy) * (var(--reach) + var(--throw) * 3px)))
+        rotate(45deg) scale(calc(1 + var(--throw) * 0.06));
+    animation: daiChatPwWhip var(--spin) ease-in-out infinite;
+    will-change: transform;
+}
+.dai-chat-pw-n { --dx: 0;  --dy: -1; background: var(--pw-pink);
+              animation-delay: calc(var(--spin) * 0.00); }
+.dai-chat-pw-e { --dx: 1;  --dy: 0;
+              background: linear-gradient(135deg, var(--pw-orange), var(--pw-orange-deep));
+              animation-delay: calc(var(--spin) * 0.25); }
+.dai-chat-pw-s { --dx: 0;  --dy: 1;  background: var(--pw-purple);
+              animation-delay: calc(var(--spin) * 0.50); }
+.dai-chat-pw-w { --dx: -1; --dy: 0;  background: var(--pw-teal);
+              animation-delay: calc(var(--spin) * 0.75); }
+
+.dai-chat-pw-spark {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    animation: daiChatPwSpark var(--spin) linear infinite;
+    will-change: transform, opacity;
+}
+.dai-chat-pw-spark::before, .dai-chat-pw-spark::after {
+    content: "";
+    position: absolute;
+    background: var(--pw-orange);
+    border-radius: 999px;
+}
+.dai-chat-pw-spark::before { width: 5px; height: 2px; transform: rotate(-42deg);
+                          left: 0; top: -6px; }
+.dai-chat-pw-spark::after  { width: 2.4px; height: 2.4px; left: 5px; top: -9px; }
+
+@keyframes daiChatPinwheel { to { transform: rotate(360deg); } }
+@keyframes daiChatPwWhip {
+    0%, 100% { --throw: 0; }
+    8%       { --throw: 1; }
+    22%      { --throw: 0; }
+}
+@keyframes daiChatPwSpark {
+    0%   { transform: translate(calc(var(--reach) + 2px), calc(var(--reach) * -0.55)) scale(1); opacity: 0; }
+    6%   { opacity: 0; }
+    12%  { transform: translate(calc(var(--reach) + 7px), calc(var(--reach) * -0.9)) scale(1.15); opacity: 1; }
+    26%  { transform: translate(calc(var(--reach) + 12px), calc(var(--reach) * -1.2)) scale(.6); opacity: 0; }
+    100% { transform: translate(calc(var(--reach) + 2px), calc(var(--reach) * -0.55)) scale(1); opacity: 0; }
+}
+
+/* Makes --throw animatable where supported; degrades gracefully
+   (piece just holds formation) elsewhere. */
+@property --throw {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+
+/* Respect reduced motion: freeze the pinwheel in its assembled
+   logo formation, no spin / whip / spark flight. */
+@media (prefers-reduced-motion: reduce) {
+    .dai-chat-pinwheel, .dai-chat-pw-piece, .dai-chat-pw-spark { animation: none !important; }
+    .dai-chat-pw-piece {
+        transform: translate(calc(var(--dx) * var(--reach)),
+                             calc(var(--dy) * var(--reach))) rotate(45deg);
+    }
+    .dai-chat-pw-spark {
+        opacity: 1;
+        transform: translate(calc(var(--reach) + 2px), calc(var(--reach) * -0.55));
+    }
+}
+
+/* ── Input zone ────────────────────────────────────────────── */
+.dai-chat-input-area {
+    padding: 0.75rem 1.5rem 1.25rem;
+    background: transparent;
+}
+.dai-chat-input-area > * {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dai-chat-input-bar {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-lg);
+    padding: 0.4rem 0.55rem;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+.dai-chat-input-bar:focus-within {
+    border-color: var(--acc);
+    box-shadow: 0 0 0 3px var(--acc-ring);
+}
+
+.dai-chat-textarea {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    resize: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 0.94rem;
+    font-family: inherit;
+    line-height: 1.5;
+    padding: 0.45rem 0.35rem;
+    max-height: 180px;
+}
+.dai-chat-textarea::placeholder { color: var(--text-3); }
+.dai-chat-textarea:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.dai-chat-icon-btn {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: transparent;
+    border: 0;
+    color: var(--text-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.12s var(--ease), color 0.12s var(--ease);
+    flex-shrink: 0;
+}
+.dai-chat-icon-btn:hover {
+    background: var(--surface-2);
+    color: var(--text);
+}
+.dai-chat-icon-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.dai-chat-send-btn {
+    height: 36px;
+    min-width: 42px;
+    padding: 0 0.9rem;
+    border: 0;
+    border-radius: 10px;
+    background: var(--acc);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.12s var(--ease), transform 0.1s var(--ease), opacity 0.12s var(--ease);
+    flex-shrink: 0;
+}
+.dai-chat-send-btn:hover { background: var(--acc-600); }
+.dai-chat-send-btn:active { transform: scale(0.97); }
+.dai-chat-send-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.dai-chat-input-hint {
+    font-size: 0.72rem;
+    color: var(--text-3);
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* ── Attachment chip (composer) ────────────────────────────── */
+.dai-chat-file-chip {
+    display: flex;
+    align-items: center;
+    padding: 0.55rem 0.9rem;
+    margin-bottom: 0.55rem;
+    background: var(--acc-soft);
+    border: 1px solid var(--acc-ring);
+    border-radius: var(--r-md);
+    font-size: 0.85rem;
+    color: var(--acc-600);
+}
+.dai-chat-file-chip .dai-chat-file-name {
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 60%;
+}
+.dai-chat-file-chip .dai-chat-file-size {
+    color: var(--acc);
+    font-size: 0.76rem;
+}
+.dai-chat-file-remove {
+    margin-left: auto;
+    background: transparent;
+    border: 0;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    transition: background 0.12s var(--ease);
+}
+.dai-chat-file-remove:hover { background: rgba(239, 68, 68, 0.1); }
+
+/* ── Drag & drop ───────────────────────────────────────────── */
+.dai-chat-messages.dai-chat-dragover {
+    background: var(--acc-soft);
+    outline: 2px dashed var(--acc);
+    outline-offset: -10px;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .dai-chat-sidebar {
+        flex: 0 0 auto;
+        max-height: 30vh;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+    .dai-chat-shell { flex-direction: column; }
+    .dai-chat-msg { max-width: 100%; }
+    .dai-chat-msg-inner { max-width: 88%; }
+    .dai-chat-messages { padding: 1.25rem 1rem 0.5rem; }
+    .dai-chat-input-area { padding: 0.7rem 1rem 1rem; }
+    .dai-chat-brand-sub { display: none; }
+    .dai-chat-back-btn span { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Markdown rendered inside bot bubbles
+   ═══════════════════════════════════════════════════════════════ */
+.dai-chat-md > *:first-child { margin-top: 0; }
+.dai-chat-md > *:last-child  { margin-bottom: 0; }
+.dai-chat-md p { margin: 0 0 0.55rem; }
+
+.dai-chat-md-h1, .dai-chat-md-h2, .dai-chat-md-h3,
+.dai-chat-md-h4, .dai-chat-md-h5, .dai-chat-md-h6 {
+    margin: 0.9rem 0 0.4rem;
+    font-weight: 650;
+    line-height: 1.3;
+    color: var(--text);
+}
+.dai-chat-md-h1 { font-size: 1.28rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; }
+.dai-chat-md-h2 { font-size: 1.13rem; border-bottom: 1px solid var(--surface-2); padding-bottom: 0.2rem; }
+.dai-chat-md-h3 { font-size: 1.04rem; }
+.dai-chat-md-h4 { font-size: 1rem; }
+.dai-chat-md-h5 { font-size: 0.94rem; color: var(--text-2); }
+.dai-chat-md-h6 {
+    font-size: 0.82rem;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dai-chat-md strong { font-weight: 650; color: var(--text); }
+.dai-chat-md em     { font-style: italic; }
+
+.dai-chat-md-ul, .dai-chat-md-ol {
+    margin: 0.3rem 0 0.65rem;
+    padding-left: 1.4rem;
+}
+.dai-chat-md-ul li, .dai-chat-md-ol li { margin: 0.18rem 0; }
+.dai-chat-md-ul { list-style: disc; }
+.dai-chat-md-ol { list-style: decimal; }
+
+.dai-chat-md-hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 0.85rem 0;
+}
+
+.dai-chat-md a {
+    color: var(--acc-600);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.dai-chat-md a:hover { color: var(--acc); }
+
+.dai-chat-md-img {
+    display: block;
+    max-width: 100%;
+    max-height: 520px;
+    height: auto;
+    margin: 0.5rem 0;
+    border-radius: var(--r-md);
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    object-fit: contain;
+}
+
+.dai-chat-md-code {
+    background: var(--surface-2);
+    color: var(--acc-600);
+    padding: 0.12rem 0.42rem;
+    border-radius: 5px;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+                 "Liberation Mono", monospace;
+    font-size: 0.86em;
+}
+
+.dai-chat-md-pre {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 0.85rem 1rem;
+    border-radius: var(--r-md);
+    overflow-x: auto;
+    margin: 0.6rem 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+.dai-chat-md-pre .dai-chat-md-code-block {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+                 "Liberation Mono", monospace;
+    white-space: pre;
+}
+
+.dai-chat-md-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0.6rem 0;
+    font-size: 0.9rem;
+    background: var(--surface);
+    border-radius: var(--r-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+.dai-chat-md-table th,
+.dai-chat-md-table td {
+    border: 1px solid var(--border);
+    padding: 0.45rem 0.7rem;
+    text-align: left;
+    vertical-align: top;
+}
+.dai-chat-md-table th {
+    background: var(--surface-2);
+    font-weight: 600;
+    color: var(--text);
+}
+.dai-chat-md-table tbody tr:nth-child(even) td {
+    background: var(--bg);
+}
+
+/* ── Message timestamp ─────────────────────────────────────── */
+.dai-chat-msg-inner {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    /* Cap the bubble so a long message doesn't span the whole column —
+       this preserves the visible right/left offset between the two sides. */
+    max-width: 78%;
+}
+/* User bubbles are right-aligned inside their inner wrapper. */
+.dai-chat-msg--user .dai-chat-msg-inner { align-items: flex-end; }
+.dai-chat-msg--bot  .dai-chat-msg-inner { align-items: flex-start; }
+.dai-chat-msg-time {
+    font-size: 0.7rem;
+    color: var(--text-3);
+    margin-top: 0.25rem;
+    padding: 0 0.25rem;
+    white-space: nowrap;
+}
+.dai-chat-msg--user .dai-chat-msg-time { text-align: right; }
+.dai-chat-msg--bot  .dai-chat-msg-time { text-align: left; }
+
+/* "Answered by <model>" — sits inline right after the time, separated by a
+   thin divider so it reads as secondary metadata, not part of the answer. */
+.dai-chat-msg-model {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 0.4rem;
+    padding-left: 0.45rem;
+    border-left: 1px solid var(--border-1, rgba(0, 0, 0, 0.12));
+    max-width: 14rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+}
+.dai-chat-msg-model-icon {
+    font-size: 0.65rem;
+    opacity: 0.75;
+}
+
+/* ── Generated-file download button ────────────────────────── */
+.dai-chat-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 0.6rem;
+    padding: 0.45rem 1rem;
+    background: var(--acc);
+    color: #fff !important;
+    border-radius: var(--r-sm);
+    font-size: 0.86rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background 0.15s var(--ease), transform 0.1s var(--ease);
+}
+.dai-chat-download-btn:hover { background: var(--acc-600); transform: translateY(-1px); }
+.dai-chat-download-btn:active { transform: translateY(0); }
+
+/* ── Topbar actions wrapper ────────────────────────────────── */
+.dai-chat-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ── Model picker ──────────────────────────────────────────── */
+.dai-chat-model-picker {
+    position: relative;
+    display: inline-block;
+    --acc-dot: var(--acc);
+}
+/* Per-provider dot colours (brand-accurate, kept intentionally) */
+.dai-chat-model-picker[data-current="auto"]          { --acc-dot: #7B3F98; }
+.dai-chat-model-picker[data-current="local"]         { --acc-dot: #17A2B8; }
+.dai-chat-model-picker[data-current="openai"]        { --acc-dot: #10a37f; }
+.dai-chat-model-picker[data-current="anthropic"]     { --acc-dot: #d97757; }
+.dai-chat-model-picker[data-current="gemini"]        { --acc-dot: #4285f4; }
+.dai-chat-model-picker[data-current="deepseek"]      { --acc-dot: #4d6bfe; }
+.dai-chat-model-picker[data-current="xai"]           { --acc-dot: #1f2937; }
+.dai-chat-model-picker[data-current="openai_compat"] { --acc-dot: #64748b; }
+
+.dai-chat-model-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 6px 11px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1.2;
+    transition: background 0.12s var(--ease), border-color 0.12s var(--ease);
+}
+.dai-chat-model-trigger:hover {
+    background: var(--surface-2);
+    border-color: var(--text-3);
+}
+.dai-chat-model-picker[data-open="1"] .dai-chat-model-trigger {
+    background: var(--surface-2);
+    border-color: var(--acc);
+    box-shadow: 0 0 0 3px var(--acc-ring);
+}
+
+.dai-chat-model-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: var(--acc-dot);
+    flex: 0 0 auto;
+}
+
+.dai-chat-model-trigger-text {
+    color: var(--text);
+    font-weight: 650;
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dai-chat-model-trigger-caret {
+    color: var(--text-3);
+    flex: 0 0 auto;
+    transition: transform 0.18s var(--ease), color 0.12s var(--ease);
+}
+.dai-chat-model-picker[data-open="1"] .dai-chat-model-trigger-caret {
+    transform: rotate(180deg);
+    color: var(--text);
+}
+
+.dai-chat-model-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    width: 320px;
+    max-height: 420px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 1500;
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+    transform-origin: top right;
+    animation: dai-chat-menu-pop 0.12s var(--ease);
+}
+.dai-chat-model-menu[hidden] { display: none; }
+@keyframes dai-chat-menu-pop {
+    from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.dai-chat-model-list {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.dai-chat-model-item {
+    --i-acc: var(--acc);
+    --i-acc-soft: var(--acc-soft);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--r-sm);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.1s var(--ease);
+}
+.dai-chat-model-item[data-type="auto"]          { --i-acc: #7B3F98; --i-acc-soft: rgba(123,63,152,.10); }
+.dai-chat-model-item[data-type="local"]         { --i-acc: #17A2B8; --i-acc-soft: #e6f7fa; }
+.dai-chat-model-item[data-type="openai"]        { --i-acc: #10a37f; --i-acc-soft: rgba(16,163,127,.10); }
+.dai-chat-model-item[data-type="anthropic"]     { --i-acc: #d97757; --i-acc-soft: rgba(217,119,87,.12); }
+.dai-chat-model-item[data-type="gemini"]        { --i-acc: #4285f4; --i-acc-soft: rgba(66,133,244,.10); }
+.dai-chat-model-item[data-type="deepseek"]      { --i-acc: #4d6bfe; --i-acc-soft: rgba(77,107,254,.10); }
+.dai-chat-model-item[data-type="xai"]           { --i-acc: #1f2937; --i-acc-soft: rgba(31,41,55,.08); }
+.dai-chat-model-item[data-type="openai_compat"] { --i-acc: #64748b; --i-acc-soft: rgba(100,116,139,.10); }
+
+.dai-chat-model-item:hover { background: var(--surface-2); }
+.dai-chat-model-item[aria-selected="true"] { background: var(--i-acc-soft); }
+
+.dai-chat-model-item-body {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.dai-chat-model-item-name {
+    font-size: 13.5px;
+    font-weight: 650;
+    color: var(--text);
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dai-chat-model-item-meta {
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dai-chat-model-item-check {
+    flex: 0 0 auto;
+    color: var(--i-acc);
+    font-size: 12px;
+    visibility: hidden;
+}
+.dai-chat-model-item[aria-selected="true"] .dai-chat-model-item-check {
+    visibility: visible;
+}
+
+/* Small colour dot on each item, tinted to the provider */
+.dai-chat-model-item-body::before {
+    content: none;
+}
+
+/* ── Streaming caret ───────────────────────────────────────── */
+.dai-chat-bubble.dai-chat-streaming::after {
+    content: "▋";
+    display: inline-block;
+    margin-left: 2px;
+    color: rgba(255, 255, 255, 0.55);
+    animation: dai-chat-caret-blink 0.9s steps(1) infinite;
+    vertical-align: baseline;
+    font-weight: 600;
+}
+.dai-chat-msg--bot .dai-chat-bubble.dai-chat-streaming::after {
+    color: var(--text-3);
+}
+@keyframes dai-chat-caret-blink {
+    50% { opacity: 0; }
+}
+
+/* ── Attachment chip inside a user-message bubble ──────────── */
+.dai-chat-attach {
+    display: flex;
+    gap: 0.65rem;
+    align-items: flex-start;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.6rem;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: var(--r-sm);
+    max-width: 22rem;
+}
+.dai-chat-msg--bot .dai-chat-attach {
+    background: var(--surface-2);
+    border-color: var(--border);
+}
+.dai-chat-bubble--error .dai-chat-attach {
+    background: rgba(255, 255, 255, 0.30);
+}
+
+.dai-chat-attach-thumb {
+    display: block;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--surface-2);
+    flex: 0 0 auto;
+}
+.dai-chat-attach-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.dai-chat-attach-icon {
+    width: 3rem;
+    height: 3.6rem;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    color: var(--text-2);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+.dai-chat-attach-meta {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.85rem;
+}
+.dai-chat-attach-name {
+    font-weight: 600;
+    color: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dai-chat-attach-size {
+    color: inherit;
+    opacity: 0.75;
+    font-size: 0.75rem;
+}
+.dai-chat-attach-actions {
+    margin-top: 0.3rem;
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+.dai-chat-attach-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 4px;
+    transition: background 0.1s var(--ease);
+}
+.dai-chat-msg--bot .dai-chat-attach-btn {
+    color: var(--acc-600);
+    background: var(--acc-soft);
+}
+.dai-chat-attach-btn:hover { background: rgba(255, 255, 255, 0.35); }
+.dai-chat-msg--bot .dai-chat-attach-btn:hover { background: var(--acc-ring); }
+.dai-chat-attach-btn .fa { font-size: 0.85em; }
+
+.dai-chat-attach--ghost {
+    background: rgba(255, 255, 255, 0.12);
+    opacity: 0.85;
+    font-style: italic;
+}
+.dai-chat-msg--bot .dai-chat-attach--ghost {
+    background: var(--surface-2);
+    color: var(--text-3);
+}
+.dai-chat-attach--ghost .dai-chat-attach-icon {
+    color: var(--text-3);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Advanced-chat affordances : activity receipt, follow-up chips,
+   message actions (copy / regenerate), and the Stop button.
+   All derived from data the backend already returns — zero extra cost.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── Send button → Stop button while a turn is running ─────────────── */
+.dai-chat-send-btn--stop {
+    background: var(--error, #d64545);
+}
+.dai-chat-send-btn--stop:hover {
+    background: var(--error, #d64545);
+    filter: brightness(0.92);
+}
+
+/* ── Activity receipt (collapsible "what I did") ───────────────────── */
+.dai-chat-activity {
+    margin: 0.45rem 0 0;
+    max-width: 100%;
+    font-size: 0.8rem;
+}
+.dai-chat-activity-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    list-style: none;
+    cursor: pointer;
+    padding: 0.22rem 0.6rem;
+    border-radius: 999px;
+    color: var(--text-2);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    user-select: none;
+    transition: background 0.12s var(--ease), color 0.12s var(--ease);
+}
+.dai-chat-activity-summary::-webkit-details-marker { display: none; }
+.dai-chat-activity-summary:hover {
+    background: var(--surface-3);
+    color: var(--text);
+}
+.dai-chat-activity-spark { color: var(--acc); font-size: 0.82em; }
+.dai-chat-activity-caret {
+    font-size: 0.82em;
+    transition: transform 0.15s var(--ease);
+}
+.dai-chat-activity[open] .dai-chat-activity-caret { transform: rotate(180deg); }
+
+.dai-chat-activity-steps {
+    margin-top: 0.4rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: var(--r-md, 10px);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.32rem;
+}
+.dai-chat-activity-step {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    line-height: 1.35;
+}
+.dai-chat-activity-step-icon { flex-shrink: 0; }
+.dai-chat-activity-step-label { color: var(--text); font-weight: 500; }
+.dai-chat-activity-step-detail {
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+}
+.dai-chat-activity-step--fail .dai-chat-activity-step-label { color: var(--error, #d64545); }
+
+/* ── Follow-up suggestion chips ────────────────────────────────────── */
+.dai-chat-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.55rem 0 0.1rem;
+}
+.dai-chat-suggestion-chip {
+    border: 1px solid var(--border-strong, var(--border));
+    background: var(--surface);
+    color: var(--acc-600, var(--acc));
+    padding: 0.32rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background 0.12s var(--ease), border-color 0.12s var(--ease),
+                transform 0.1s var(--ease);
+}
+.dai-chat-suggestion-chip:hover {
+    background: var(--acc-soft);
+    border-color: var(--acc);
+}
+.dai-chat-suggestion-chip:active { transform: scale(0.97); }
+
+/* ── Message actions (copy / regenerate) ───────────────────────────── */
+.dai-chat-msg-actions {
+    display: flex;
+    gap: 0.15rem;
+    margin: 0.35rem 0 0;
+    opacity: 0;
+    transition: opacity 0.15s var(--ease);
+}
+.dai-chat-msg--bot:hover .dai-chat-msg-actions,
+.dai-chat-msg-actions:focus-within { opacity: 1; }
+.dai-chat-msg-action {
+    border: 0;
+    background: transparent;
+    color: var(--text-3);
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    transition: background 0.12s var(--ease), color 0.12s var(--ease);
+}
+.dai-chat-msg-action:hover {
+    background: var(--surface-2);
+    color: var(--text);
+}
+
+/* Touch devices have no hover — keep the actions visible there. */
+@media (hover: none) {
+    .dai-chat-msg-actions { opacity: 0.7; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Company picker (multi-company scope). Mirrors the model picker's look;
+   a checklist menu since several companies can be active at once.
+   ══════════════════════════════════════════════════════════════════════ */
+.dai-chat-company-picker {
+    position: relative;
+    display: inline-block;
+}
+.dai-chat-company-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 6px 11px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1.2;
+    transition: background 0.12s var(--ease), border-color 0.12s var(--ease);
+}
+.dai-chat-company-trigger > .fa-building-o { color: var(--text-3); }
+.dai-chat-company-trigger:hover {
+    background: var(--surface-2);
+    border-color: var(--text-3);
+}
+.dai-chat-company-picker[data-open="1"] .dai-chat-company-trigger {
+    background: var(--surface-2);
+    border-color: var(--acc);
+    box-shadow: 0 0 0 3px var(--acc-ring);
+}
+.dai-chat-company-trigger-text {
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dai-chat-company-picker[data-open="1"] .dai-chat-model-trigger-caret {
+    transform: rotate(180deg);
+    color: var(--text);
+}
+
+.dai-chat-company-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    width: 280px;
+    max-height: 400px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 1500;
+    display: flex;
+    flex-direction: column;
+    transform-origin: top right;
+    animation: dai-chat-menu-pop 0.12s var(--ease);
+}
+.dai-chat-company-menu-head {
+    padding: 10px 12px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-3);
+}
+.dai-chat-company-list {
+    overflow-y: auto;
+    padding: 2px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.dai-chat-company-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    border-radius: 9px;
+    padding: 9px 11px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: background 0.1s var(--ease), color 0.1s var(--ease);
+}
+.dai-chat-company-item:hover { background: var(--surface-2); }
+/* Selected state is carried by the whole row: a small accent dot on the
+   left + the name goes solid/accented. No boxy checkbox. */
+.dai-chat-company-check {
+    width: 8px; height: 8px;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: transparent;
+    box-shadow: inset 0 0 0 1.5px var(--border-strong);
+    transition: background 0.12s var(--ease), box-shadow 0.12s var(--ease);
+}
+.dai-chat-company-item.is-on {
+    color: var(--text);
+    font-weight: 600;
+}
+.dai-chat-company-item.is-on .dai-chat-company-check {
+    background: var(--acc);
+    box-shadow: inset 0 0 0 1.5px var(--acc),
+                0 0 0 3px var(--acc-ring);
+}
+.dai-chat-company-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dai-chat-company-menu-foot {
+    border-top: 1px solid var(--border);
+    padding: 6px;
+}
+.dai-chat-company-all {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px;
+    font: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--acc-600);
+    cursor: pointer;
+    transition: background 0.1s var(--ease);
+}
+.dai-chat-company-all:hover { background: var(--acc-soft); }
+
+/* ── Confirmation card : review a write before it happens ───────────────── */
+.dai-chat-confirm-card {
+    border: 1px solid var(--acc);
+    border-radius: var(--r-md);
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    max-width: 640px;
+}
+.dai-chat-confirm-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--acc) 0%, var(--acc-600) 100%);
+}
+.dai-chat-confirm-head i { opacity: 0.9; }
+.dai-chat-confirm-sub {
+    padding: 10px 16px 4px;
+    font-size: 12.5px;
+    color: var(--text-2);
+}
+.dai-chat-confirm-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 4px;
+    font-size: 13px;
+}
+.dai-chat-confirm-table th {
+    text-align: left;
+    padding: 6px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-3);
+    border-bottom: 1px solid var(--border);
+}
+.dai-chat-confirm-table td {
+    padding: 7px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    word-break: break-word;
+}
+.dai-chat-confirm-field { font-weight: 600; color: var(--text); width: 34%; }
+.dai-chat-confirm-before { color: var(--text-3); text-decoration: line-through; }
+.dai-chat-confirm-after  { color: var(--acc-600); font-weight: 600; }
+.dai-chat-confirm-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 8px 16px;
+    padding: 8px 12px;
+    font-size: 12.5px;
+    color: #8a5a00;
+    background: #fff7e6;
+    border: 1px solid #ffe2a8;
+    border-radius: var(--r-sm);
+}
+.dai-chat-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    background: var(--surface-2);
+}
+.dai-chat-confirm-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: var(--r-sm);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.12s var(--ease), opacity 0.12s var(--ease);
+}
+.dai-chat-confirm-btn:disabled { opacity: 0.55; cursor: default; }
+.dai-chat-confirm-cancel {
+    background: var(--surface);
+    border-color: var(--border-strong);
+    color: var(--text-2);
+}
+.dai-chat-confirm-cancel:hover:not(:disabled) { background: var(--surface-3); }
+.dai-chat-confirm-ok {
+    background: var(--acc);
+    color: #fff;
+}
+.dai-chat-confirm-ok:hover:not(:disabled) { background: var(--acc-600); }
+.dai-chat-confirm-settled {
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-2);
+    text-align: right;
+    border-top: 1px solid var(--border);
+    background: var(--surface-2);
+}

@@ -1,0 +1,190 @@
+/* ───────────────────────────────────────────────────────────────────────
+   LLM provider kanban — organized card layout.
+   Scoped to .dai-provider-kanban so it never leaks into other kanbans.
+   ─────────────────────────────────────────────────────────────────────── */
+
+.dai-provider-kanban .o_kanban_record {
+    padding: 0 !important;               /* card supplies its own padding */
+    width: 340px;
+}
+
+/* ── Card shell ─────────────────────────────────────────────────────── */
+.dai-provider-kanban .dai-prov-card {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    min-height: 148px;
+    background: var(--o-view-background-color, #fff);
+    border: 1px solid rgba(16, 24, 40, 0.10);
+    /* Square on every corner. The accent stripe below sits flush against the
+       left edge and `overflow: hidden` clips it to whatever radius this card
+       has — a radius here is what used to round the stripe's ends and pinch
+       it thinner top and bottom, so zeroing it is what actually squares the
+       stripe (`border-radius: 0` on the stripe alone does nothing against the
+       clip). `overflow: hidden` stays: it no longer rounds anything, but it
+       still keeps any over-long content inside the card's edges. */
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+    transition: box-shadow .15s ease, transform .15s ease, border-color .15s ease;
+}
+.dai-provider-kanban .dai-prov-card:hover {
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.12);
+    border-color: rgba(16, 24, 40, 0.18);
+    transform: translateY(-1px);
+}
+.dai-provider-kanban .dai-prov-card--inactive {
+    opacity: 0.62;
+    filter: grayscale(0.35);
+}
+
+/* ── Left accent stripe: cloud (info) vs local (secondary) ──────────── */
+.dai-provider-kanban .dai-prov-accent {
+    flex: 0 0 5px;
+    border-radius: 0;                     /* square ends, top to bottom */
+    background: #17a2b8;                  /* cloud = teal/info */
+}
+.dai-provider-kanban .dai-prov-card--local .dai-prov-accent {
+    background: #7d55c7;                  /* local = purple */
+}
+
+/* ── Body ───────────────────────────────────────────────────────────── */
+.dai-provider-kanban .dai-prov-main {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 14px;
+    min-width: 0;
+}
+
+/* Header */
+.dai-provider-kanban .dai-prov-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* Local/Cloud pill. Without this it keeps flexbox's default shrink of 1, so
+   a long model name in .dai-prov-heading squeezes the pill narrower than its
+   own text; the text is nowrap, so it spilled past the pill and got sliced by
+   the card's `overflow: hidden` — the half-covered "Cloud" badge. The heading
+   next to it truncates with an ellipsis, so it is the one that should give
+   way, never this. */
+.dai-provider-kanban .dai-prov-head .badge {
+    flex: 0 0 auto;
+}
+.dai-provider-kanban .dai-prov-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: rgba(23, 162, 184, 0.12);
+    color: #17a2b8;
+    font-size: 15px;
+}
+.dai-provider-kanban .dai-prov-card--local .dai-prov-icon {
+    background: rgba(125, 85, 199, 0.12);
+    color: #7d55c7;
+}
+.dai-provider-kanban .dai-prov-heading {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+.dai-provider-kanban .dai-prov-name {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dai-provider-kanban .dai-prov-kind {
+    font-size: 11px;
+    color: rgba(16, 24, 40, 0.55);
+    text-transform: capitalize;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Info rows */
+.dai-provider-kanban .dai-prov-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.dai-provider-kanban .dai-prov-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 12px;
+}
+.dai-provider-kanban .dai-prov-label {
+    flex: 0 0 74px;
+    color: rgba(16, 24, 40, 0.50);
+    font-weight: 500;
+}
+.dai-provider-kanban .dai-prov-value {
+    flex: 1 1 auto;
+    min-width: 0;
+    color: rgba(16, 24, 40, 0.85);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Endpoint link (local models). Inherits the truncation of .dai-prov-value
+   via display:block so a long URL ellipsises instead of widening the card. */
+.dai-provider-kanban .dai-prov-link {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #6366f1;
+    text-decoration: none;
+}
+.dai-provider-kanban .dai-prov-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer chips */
+.dai-provider-kanban .dai-prov-foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+}
+.dai-provider-kanban .dai-prov-chip {
+    font-weight: 500;
+    font-size: 10.5px;
+    padding: 4px 9px;
+}
+
+/* ── Dark mode ──────────────────────────────────────────────────────── */
+.o_web_client.o_dark_mode .dai-provider-kanban .dai-prov-card,
+:root[data-color-scheme="dark"] .dai-provider-kanban .dai-prov-card {
+    background: #1f2532;
+    border-color: rgba(255, 255, 255, 0.10);
+}
+.o_web_client.o_dark_mode .dai-provider-kanban .dai-prov-name,
+:root[data-color-scheme="dark"] .dai-provider-kanban .dai-prov-name {
+    color: #f2f4f8;
+}
+.o_web_client.o_dark_mode .dai-provider-kanban .dai-prov-value,
+:root[data-color-scheme="dark"] .dai-provider-kanban .dai-prov-value {
+    color: rgba(255, 255, 255, 0.85);
+}
+.o_web_client.o_dark_mode .dai-provider-kanban .dai-prov-label,
+.o_web_client.o_dark_mode .dai-provider-kanban .dai-prov-kind,
+:root[data-color-scheme="dark"] .dai-provider-kanban .dai-prov-label,
+:root[data-color-scheme="dark"] .dai-provider-kanban .dai-prov-kind {
+    color: rgba(255, 255, 255, 0.55);
+}
+.o_web_client.o_dark_mode .dai-provider-kanban .dai-prov-link,
+:root[data-color-scheme="dark"] .dai-provider-kanban .dai-prov-link {
+    color: #a5b4fc;
+}

@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_conversation_user,Conversation / AI user,model_digi_erp_model_chat_conversation,digi_erp_ai_solution.group_ai_user,1,1,1,1
+access_ai_message_user,Message / AI user,model_digi_erp_model_chat_message,digi_erp_ai_solution.group_ai_user,1,1,1,1
+access_ai_cancel_user,Cancel flag / AI user,model_digi_erp_model_chat_cancel,digi_erp_ai_solution.group_ai_user,1,1,1,1
+access_ai_model_user,AI model / AI user (read-only),model_digi_erp_model_llm_provider,digi_erp_ai_solution.group_ai_user,1,0,0,0
+access_ai_model_manager,AI model / AI administrator,model_digi_erp_model_llm_provider,digi_erp_ai_solution.group_ai_manager,1,1,1,1

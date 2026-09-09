@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- ── Chat is private ─────────────────────────────────────────────
+             Every user — administrators included — sees only their own
+             conversations and messages. There is deliberately NO manager
+             override here: an AI Administrator configures the models, they do
+             not get to read other people's chats. -->
+        <record id="rule_ai_conversation_own" model="ir.rule">
+            <field name="name">DIGI-ERP AI: own conversations only</field>
+            <field name="model_id" ref="model_digi_erp_model_chat_conversation"/>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(6, 0, [ref('group_ai_user')])]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- ── Administrator oversight, WITHOUT reading the chats ───────────
+             Widens READ (and UNLINK, so old threads can be purged) on the
+             CONVERSATION rows only — never on the messages. rule_ai_message_own
+             below has no manager counterpart on purpose, so opening someone
+             else's thread returns an empty message list: the ORM enforces the
+             privacy promise, the view merely reflects it.
+
+             perm_write is False deliberately: an administrator has no business
+             renaming another user's conversation.
+
+             Note ir.rule for different groups are OR'ed, so an administrator
+             (who also holds group_ai_user via implied_ids) gets own-only OR
+             all — i.e. all. That is the intended widening. -->
+        <record id="rule_ai_conversation_manager" model="ir.rule">
+            <field name="name">DIGI-ERP AI: administrators see all conversations (metadata)</field>
+            <field name="model_id" ref="model_digi_erp_model_chat_conversation"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(6, 0, [ref('group_ai_manager')])]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="rule_ai_message_own" model="ir.rule">
+            <field name="name">DIGI-ERP AI: own messages only</field>
+            <field name="model_id" ref="model_digi_erp_model_chat_message"/>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(6, 0, [ref('group_ai_user')])]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- ── Cancellation mailbox: only your own Stop notes ─────────────── -->
+        <record id="rule_ai_cancel_own" model="ir.rule">
+            <field name="name">DIGI-ERP AI: own cancellation signals only</field>
+            <field name="model_id" ref="model_digi_erp_model_chat_cancel"/>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(6, 0, [ref('group_ai_user')])]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- ── AI models are shared, but only administrators may edit them ──
+             The read/write split is enforced by ir.model.access (User = read
+             only, Administrator = full). This rule exists so BOTH levels see
+             the same shared catalogue, and so installs upgrading from an older
+             version get their per-owner domain replaced (same xml id). -->
+        <record id="rule_ai_model_shared" model="ir.rule">
+            <field name="name">DIGI-ERP AI: shared AI models</field>
+            <field name="model_id" ref="model_digi_erp_model_llm_provider"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(6, 0, [ref('group_ai_user')])]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

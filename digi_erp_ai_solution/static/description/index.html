@@ -1,0 +1,1173 @@
+<!--
+  DIGI-ERP AI — Odoo Apps store description page.
+
+  Conventions this file follows, and why:
+
+  • It is a FRAGMENT, not a document. apps.odoo.com injects it into its own
+    page, so there is no <html>, <head> or <body> here. Adding them breaks
+    the layout.
+  • Everything is scoped under `.dai-doc`. The Store page has its own CSS;
+    unscoped rules would bleed into it and get us rejected.
+  • No <script> anywhere. The Store strips JavaScript, so anything that
+    depended on it would silently not work.
+  • No external CSS, fonts or images. Only files that ship inside
+    static/description/ are guaranteed to resolve — hence the system font
+    stack and the single local icon.png.
+  • Colours are stated explicitly rather than inherited, because we do not
+    control the surrounding page.
+-->
+
+<style>
+.dai-doc {
+    --dai-ink:      #101828;
+    --dai-ink-soft: #475467;
+    --dai-line:     #e4e7ec;
+    --dai-bg-soft:  #f8fafc;
+    --dai-brand:    #6c4bd1;
+    --dai-brand-dk: #4c2fa8;
+    --dai-accent:   #0e9f8f;
+
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px 56px;
+    color: var(--dai-ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+}
+.dai-doc *, .dai-doc *::before, .dai-doc *::after { box-sizing: border-box; }
+.dai-doc p { margin: 0 0 14px; }
+.dai-doc h2, .dai-doc h3, .dai-doc h4 { color: var(--dai-ink); margin: 0; }
+.dai-doc strong { color: var(--dai-ink); font-weight: 650; }
+
+/* ── Hero ─────────────────────────────────────────────────────────── */
+.dai-doc .dai-hero {
+    text-align: center;
+    padding: 46px 24px 40px;
+    margin: 24px 0 40px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f3efff 0%, #eaf6f5 100%);
+    border: 1px solid #e6e0f7;
+}
+.dai-doc .dai-hero img {
+    width: 84px; height: 84px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 20px rgba(76, 47, 168, .18);
+}
+.dai-doc .dai-hero h2 {
+    font-size: 34px;
+    line-height: 1.22;
+    letter-spacing: -.02em;
+    margin-bottom: 12px;
+}
+.dai-doc .dai-hero .dai-sub {
+    font-size: 18px;
+    color: var(--dai-ink-soft);
+    max-width: 660px;
+    margin: 0 auto 22px;
+}
+.dai-doc .dai-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.dai-doc .dai-pill {
+    display: inline-block;
+    padding: 5px 13px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid #ddd4f5;
+    color: var(--dai-brand-dk);
+    font-size: 13.5px;
+    font-weight: 600;
+}
+
+/* ── Sections ─────────────────────────────────────────────────────── */
+.dai-doc .dai-sec { margin: 0 0 44px; }
+.dai-doc .dai-sec > h3 {
+    font-size: 24px;
+    letter-spacing: -.01em;
+    margin-bottom: 8px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--dai-line);
+}
+.dai-doc .dai-sec > h3 .dai-eyebrow {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--dai-brand);
+    margin-bottom: 4px;
+}
+.dai-doc .dai-lead { font-size: 17px; color: var(--dai-ink-soft); margin: 14px 0 22px; }
+
+/* ── Card grid ────────────────────────────────────────────────────── */
+.dai-doc .dai-grid { display: flex; flex-wrap: wrap; gap: 16px; }
+.dai-doc .dai-card {
+    flex: 1 1 300px;
+    min-width: 260px;
+    padding: 20px 22px;
+    border: 1px solid var(--dai-line);
+    border-radius: 12px;
+    background: #fff;
+}
+.dai-doc .dai-card h4 { font-size: 16.5px; margin-bottom: 6px; }
+.dai-doc .dai-card p { font-size: 15px; color: var(--dai-ink-soft); margin: 0; }
+.dai-doc .dai-card .dai-kicker {
+    display: block;
+    font-size: 22px;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+/* ── Callout ──────────────────────────────────────────────────────── */
+.dai-doc .dai-callout {
+    border: 1px solid #cfe9e5;
+    border-left: 4px solid var(--dai-accent);
+    background: #f2fbfa;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 22px 0;
+}
+.dai-doc .dai-callout h4 { font-size: 16.5px; margin-bottom: 6px; color: #0b5f56; }
+.dai-doc .dai-callout p { margin: 0; color: #2f4f4b; font-size: 15px; }
+.dai-doc .dai-callout p + p { margin-top: 10px; }
+
+/* ── Tables ───────────────────────────────────────────────────────── */
+.dai-doc .dai-tablewrap { overflow-x: auto; margin: 18px 0; }
+.dai-doc table {
+    width: 100%;
+    min-width: 520px;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+.dai-doc thead th {
+    text-align: left;
+    background: var(--dai-bg-soft);
+    color: var(--dai-ink);
+    font-weight: 650;
+    font-size: 13.5px;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    padding: 11px 14px;
+    border-bottom: 2px solid var(--dai-line);
+}
+.dai-doc tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--dai-line);
+    vertical-align: top;
+    color: var(--dai-ink-soft);
+}
+.dai-doc tbody td:first-child { color: var(--dai-ink); font-weight: 600; }
+.dai-doc tbody tr:last-child td { border-bottom: none; }
+.dai-doc .dai-yes { color: #0b8a5c; font-weight: 700; }
+.dai-doc .dai-no { color: #b42318; font-weight: 700; }
+
+/* ── Lists ────────────────────────────────────────────────────────── */
+.dai-doc ul.dai-list { list-style: none; margin: 0 0 14px; padding: 0; }
+.dai-doc ul.dai-list li {
+    position: relative;
+    padding: 4px 0 4px 26px;
+    color: var(--dai-ink-soft);
+}
+.dai-doc ul.dai-list li::before {
+    content: "";
+    position: absolute;
+    left: 4px; top: 14px;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--dai-brand);
+}
+.dai-doc ul.dai-list li strong { color: var(--dai-ink); }
+
+/* ── Two-column split ─────────────────────────────────────────────── */
+.dai-doc .dai-split { display: flex; flex-wrap: wrap; gap: 22px; }
+.dai-doc .dai-split > div { flex: 1 1 320px; min-width: 280px; }
+
+/* ── Quote / example ──────────────────────────────────────────────── */
+.dai-doc .dai-examples {
+    background: var(--dai-bg-soft);
+    border: 1px solid var(--dai-line);
+    border-radius: 12px;
+    padding: 20px 24px;
+}
+.dai-doc .dai-examples ul { list-style: none; margin: 0; padding: 0; }
+.dai-doc .dai-examples li {
+    padding: 9px 0;
+    border-bottom: 1px dashed #dfe3ea;
+    color: var(--dai-ink);
+    font-size: 15.5px;
+}
+.dai-doc .dai-examples li:last-child { border-bottom: none; }
+.dai-doc .dai-examples li::before { content: "“"; color: var(--dai-brand); font-weight: 700; }
+.dai-doc .dai-examples li::after { content: "”"; color: var(--dai-brand); font-weight: 700; }
+
+/* ── Screenshots ──────────────────────────────────────────────────── */
+.dai-doc .dai-shot {
+    margin: 22px 0 26px;
+}
+.dai-doc .dai-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--dai-line);
+    border-radius: 12px;
+    background: #fff;
+}
+.dai-doc .dai-shot figcaption {
+    margin-top: 10px;
+    font-size: 14.5px;
+    color: var(--dai-ink-soft);
+    line-height: 1.55;
+}
+.dai-doc .dai-shot figcaption strong { color: var(--dai-ink); }
+
+/* ── Settings reference ───────────────────────────────────────────── */
+.dai-doc .dai-ref {
+    border: 1px solid var(--dai-line);
+    border-radius: 12px;
+    background: #fff;
+    margin: 16px 0 24px;
+    overflow: hidden;
+}
+.dai-doc .dai-ref > h4 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--dai-brand-dk);
+    padding: 12px 20px;
+    background: var(--dai-bg-soft);
+    border-bottom: 1px solid var(--dai-line);
+}
+.dai-doc .dai-ref-item { padding: 15px 20px; border-bottom: 1px solid var(--dai-line); }
+.dai-doc .dai-ref-item:last-child { border-bottom: none; }
+.dai-doc .dai-ref-name { font-size: 15.5px; font-weight: 650; color: var(--dai-ink); margin-bottom: 3px; }
+.dai-doc .dai-ref-item p { font-size: 15px; color: var(--dai-ink-soft); margin: 0; }
+.dai-doc .dai-ref-item p + p { margin-top: 8px; }
+.dai-doc .dai-tag {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    vertical-align: 2px;
+    background: #f4f6f8;
+    color: var(--dai-ink-soft);
+    border: 1px solid var(--dai-line);
+}
+.dai-doc .dai-tag--dev { background: #f2f0fb; color: var(--dai-brand-dk); border-color: #ded6f6; }
+.dai-doc .dai-val {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    background: var(--dai-bg-soft);
+    border: 1px solid var(--dai-line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    color: var(--dai-ink);
+    white-space: nowrap;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────── */
+.dai-doc .dai-foot {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--dai-line);
+    text-align: center;
+    color: var(--dai-ink-soft);
+    font-size: 14.5px;
+}
+.dai-doc .dai-foot strong { display: block; font-size: 17px; margin-bottom: 4px; }
+.dai-doc .dai-foot .dai-contact { margin: 14px 0 0; font-size: 15px; }
+.dai-doc .dai-foot .dai-contact a {
+    color: var(--dai-brand-dk);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid #ded6f6;
+}
+.dai-doc .dai-foot .dai-contact a:hover { border-bottom-color: var(--dai-brand); }
+
+@media (max-width: 640px) {
+    .dai-doc .dai-hero { padding: 34px 18px 30px; }
+    .dai-doc .dai-hero h2 { font-size: 26px; }
+    .dai-doc .dai-hero .dai-sub { font-size: 16px; }
+    .dai-doc .dai-sec > h3 { font-size: 21px; }
+}</style>
+
+<div class="dai-doc">
+
+    <!-- ══ HERO ══════════════════════════════════════════════════════ -->
+    <div class="dai-hero">
+        <img src="icon.png" alt="DIGI-ERP AI"/>
+        <h2>Ask your Odoo a question. Get a real answer.</h2>
+        <p class="dai-sub">
+            DIGI-ERP AI is a chat inside Odoo that already knows your data.
+            Ask it the way you would ask a colleague. It looks things up for
+            you, gives you the figures, fills records in, reads the files you
+            send it and writes the report at the end — and it only ever shows
+            a person what that person is allowed to see anyway.
+        </p>
+        <div class="dai-pills">
+            <span class="dai-pill">Works with any AI</span>
+            <span class="dai-pill">Online, or on your own server</span>
+            <span class="dai-pill">Follows your Odoo rights</span>
+            <span class="dai-pill">Your chats stay yours</span>
+            <span class="dai-pill">English · Français · العربية</span>
+        </div>
+    </div>
+
+    <!-- ══ WHAT IT DOES ══════════════════════════════════════════════ -->
+    <div class="dai-sec">
+        <h3><span class="dai-eyebrow">What it does</span>One chat for the whole of your Odoo</h3>
+        <p class="dai-lead">
+            It is not a handful of buttons bolted onto a few screens. It works
+            out how your database is put together and takes it from there — so
+            it handles Sales, Invoicing, Stock, HR and everything else,
+            including the screens your own custom modules added.
+        </p>
+
+        <div class="dai-grid">
+            <div class="dai-card">
+                <span class="dai-kicker">🔍</span>
+                <h4>Real answers, real numbers</h4>
+                <p>
+                    Ask how many, how much, which ones. It goes and looks in
+                    your database every single time, so the figures are
+                    today's — never something it half-remembers.
+                </p>
+            </div>
+            <div class="dai-card">
+                <span class="dai-kicker">✍️</span>
+                <h4>Fills things in for you</h4>
+                <p>
+                    Ask it to create a quotation or update a customer and it
+                    will — after showing you exactly what it is about to
+                    change and waiting for your go-ahead.
+                </p>
+            </div>
+            <div class="dai-card">
+                <span class="dai-kicker">📄</span>
+                <h4>Reads what you send it</h4>
+                <p>
+                    A PDF, a photo of a receipt, a scanned contract, a
+                    spreadsheet. Attach it, ask your question about it, get
+                    your answer.
+                </p>
+            </div>
+            <div class="dai-card">
+                <span class="dai-kicker">📊</span>
+                <h4>Writes the report</h4>
+                <p>
+                    Ask for a report and you get a proper file — PDF, Excel,
+                    Word or PowerPoint — built from your real records, not
+                    retyped from memory.
+                </p>
+            </div>
+            <div class="dai-card">
+                <span class="dai-kicker">🖼️</span>
+                <h4>Translates without wrecking the layout</h4>
+                <p>
+                    Send a Word, Excel, PowerPoint or PDF file, ask for it in
+                    another language, and get the same document back looking
+                    exactly the same.
+                </p>
+            </div>
+            <div class="dai-card">
+                <span class="dai-kicker">📈</span>
+                <h4>Draws the chart</h4>
+                <p>
+                    Ask for a graph and one appears in the chat — and in the
+                    PDF too, drawn from the same figures, so the two can never
+                    tell you different things.
+                </p>
+            </div>
+        </div>
+
+        <div class="dai-examples" style="margin-top:22px;">
+            <ul>
+                <li>How many customer invoices are still unpaid this quarter?</li>
+                <li>Summarise this supplier contract and tell me the payment terms</li>
+                <li>Make me a 2025 sales report by salesperson, as a PDF with a chart</li>
+                <li>Translate this product sheet into Arabic and keep the layout</li>
+                <li>Which projects are running late, and who is in charge of them?</li>
+            </ul>
+        </div>
+
+        <figure class="dai-shot">
+            <img src="chat.png" alt="The DIGI-ERP AI chat page: conversation list on the left, the assistant's opening message in the middle, and the model picker open at the top right showing Auto and one registered model"/>
+            <figcaption>
+                <strong>The full chat page, with the model picker open.</strong>
+                Down the <em>left</em>: the <strong>New conversation</strong>
+                button and every conversation you have had, newest first &mdash;
+                each one names itself from your opening question. Your own name
+                sits at the bottom of that column.
+                In the <em>middle</em>: the assistant's opening line, with the
+                time underneath, and every question and answer stacking below it
+                as you go.
+                Across the <em>top right</em>, three controls. <strong>All
+                companies</strong> decides which company the question is about,
+                if you run more than one. The coloured button next to it is the
+                <strong>model picker</strong>, open here: <em>Auto</em> lets the
+                app choose an AI per question, and under it sits every model you
+                have added &mdash; the name you gave it in bold, and the brand
+                and technical model name in small grey type below
+                (<em>deepseek &middot; deepseek-v4-pro</em>). The tick marks the
+                one in use. <strong>Open Odoo</strong> takes you back to the
+                normal Odoo screens.
+                At the <em>bottom</em>: the box you type in, the paperclip that
+                attaches a document, the rubber that clears the conversation and
+                the send button &mdash; with the keyboard shortcuts spelled out
+                underneath, so nobody has to guess that Shift+Enter makes a new
+                line.
+            </figcaption>
+        </figure>
+    </div>
+
+    <!-- ══ SECURITY ══════════════════════════════════════════════════ -->
+    <div class="dai-sec">
+        <h3><span class="dai-eyebrow">Security</span>It only sees what the person asking can see</h3>
+        <p class="dai-lead">
+            When someone asks a question, the assistant looks things up
+            <em>as that person</em>. If they cannot open a record in Odoo
+            themselves, the assistant cannot read it for them either. There is
+            nothing to set up: it simply uses the access rights you have
+            already given your team.
+        </p>
+
+        <div class="dai-callout">
+            <h4>Your conversations are your own</h4>
+            <p>
+                The person who sets the assistant up looks after the AI models
+                and the account keys. They still cannot read your chats. They
+                can see who is using it and how often, and delete old
+                conversations to keep things tidy — but never what was
+                actually said. That is not just a hidden button: the database
+                itself refuses to hand the messages over.
+            </p>
+        </div>
+
+        <ul class="dai-list">
+            <li><strong>The account key stays with the administrator.</strong> Everyone else can use the AI happily without ever seeing it.</li>
+            <li><strong>It cannot delete anything.</strong> Deleting records is switched off completely. The most it can do is create or change something, and only once you have said yes.</li>
+            <li><strong>Passwords are hidden before anything is sent.</strong> If a field looks like a password or a key, it is blanked out before your question ever leaves Odoo.</li>
+            <li><strong>Members only.</strong> Anyone outside the two AI access levels cannot get to it at all, not even with a direct link.</li>
+        </ul>
+    </div>
+
+    <!-- ══ WRITE CONFIRMATION ════════════════════════════════════════ -->
+    <div class="dai-sec">
+        <h3><span class="dai-eyebrow">Safety</span>It always asks before it changes anything</h3>
+        <p class="dai-lead">
+            When what you asked for means changing data, it stops and shows
+            you a simple table: the field, what it says now, and what it would
+            say afterwards. Nothing is saved until you press Confirm.
+        </p>
+        <div class="dai-tablewrap">
+            <table>
+                <thead>
+                    <tr><th>Field</th><th>Before</th><th>After</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Customer</td><td>—</td><td>Deco Addict</td></tr>
+                    <tr><td>Invoice date</td><td>—</td><td>2026-03-14</td></tr>
+                    <tr><td>Payment terms</td><td>Immediate</td><td>30 days</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="font-size:14.5px;color:var(--dai-ink-soft);margin-top:-4px;">
+            Anything that is hard to undo — confirming, cancelling, posting —
+            comes with an extra warning on top.
+        </p>
+    </div>
+
+    <!-- ══ MODELS ════════════════════════════════════════════════════ -->
+    <div class="dai-sec">
+        <h3><span class="dai-eyebrow">Your choice of AI</span>Use whichever AI you like — including one of your own</h3>
+        <p class="dai-lead">
+            You are not tied to a single company. Run an AI on your own server
+            and nothing ever leaves your building. Or connect a well-known one
+            with an account key. Set up several, and let everyone pick which
+            one answers, conversation by conversation.
+        </p>
+
+        <div class="dai-tablewrap">
+            <table>
+                <thead>
+                    <tr><th style="width:34%">You can connect</th><th>What that means</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Your own server</td><td>An AI running on your machine or your network. No account, no key, and nothing sent outside your company.</td></tr>
+                    <tr><td>OpenAI</td><td>The ChatGPT models — GPT-4o and the rest.</td></tr>
+                    <tr><td>Anthropic</td><td>Claude.</td></tr>
+                    <tr><td>Google</td><td>Gemini.</td></tr>
+                    <tr><td>DeepSeek</td><td>DeepSeek — a low-cost option that works well for everyday questions.</td></tr>
+                    <tr><td>xAI</td><td>Grok.</td></tr>
+                    <tr><td>Anything else</td><td>Groq, Together, OpenRouter and similar services. Paste in the address they give you and it works.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <figure class="dai-shot">
+            <img src="models.png" alt="The AI Models screen: one card per connected AI, showing its name, brand, technical model name, Auto tier and its Reads images and Active pills"/>
+            <figcaption>
+                <strong>Your AI models, one card each.</strong> This is
+                <strong>DIGI-ERP AI &rarr; AI Models</strong>, and everything an
+                administrator needs to know about a connection is on the card
+                without opening it. Reading the card here: the cloud symbol and
+                the blue <strong>Cloud</strong> badge say this one is an online
+                service (a self-hosted model gets a chip symbol, a
+                <strong>Local</strong> badge and a different coloured stripe down
+                the left edge); <strong>Deepseek V4 Pro</strong> is the name
+                <em>you</em> chose, with the brand underneath;
+                <strong>Model</strong> is the technical name the provider uses;
+                and <strong>Auto tier</strong> is the kind of work this one gets
+                when a user leaves the picker on Auto.
+                The pills along the bottom are its state at a glance &mdash;
+                <em>Reads images</em> means it can be given a scan or a photo,
+                and <em>Active</em> means it shows up in the chat picker. (The
+                <em>Tools</em> pill next to them is a technical one; it is hidden
+                unless Odoo's developer mode is on.) Add as
+                many as you like with <strong>New</strong>; the button top right
+                swaps these cards for a plain list.
+            </figcaption>
+        </figure>
+
+        <figure class="dai-shot">
+            <img src="model-form.png" alt="The AI model form: Test connection button, name, connection details with a masked API key, the Can read images tick, the Auto tier, and the developer-mode Advanced tab"/>
+            <figcaption>
+                <strong>Adding or editing one AI, from top to bottom.</strong>
+                <strong>Test connection</strong> at the top calls the AI once and
+                tells you straight away whether the key, the address and the
+                model name are right. <strong>Name</strong> is your own label
+                &mdash; it is what your colleagues pick from in the chat, so
+                <em>"Fast"</em> or <em>"Best quality"</em> serves them better
+                than a model number. The blue bar under it changes by itself
+                depending on whether this is an online service or your own
+                server, and tells you what that means.
+                <strong>Connection</strong> holds the four things that make it
+                work: the exact <em>model name</em> the provider uses, which
+                <em>provider</em> it is (choosing one fills in the web address
+                for you), the <em>API key</em> &mdash; shown as dots, and
+                readable only by an administrator &mdash; and two switches:
+                <em>Active</em> takes a model in and out of the chat picker
+                without deleting it, and <em>Local model</em> flips the whole
+                form between an online service and one you host yourself.
+                <strong>What this model can do</strong> is the single tick that
+                decides whether uploaded scans and photos can go straight to it.
+                <strong>Automatic model choice</strong> is what <em>Auto</em>
+                sends here &mdash; this one is set to complex work.
+                The <strong>Advanced</strong> tab at the bottom only appears when
+                Odoo's developer mode is on, because none of it needs changing:
+                <em>Temperature</em> ships at 0.20 (steady rather than
+                imaginative), and the zeros in <em>Max output tokens</em> and
+                <em>Timeout</em> simply mean "use the normal value" &mdash; zero
+                is the do-nothing setting throughout this form, never a limit of
+                nothing.
+            </figcaption>
+        </figure>
+
+        <div class="dai-split">
+            <div>
+                <h4 style="font-size:17px;margin-bottom:8px;">Or let it choose for you</h4>
+                <p style="color:var(--dai-ink-soft);font-size:15px;">
+                    Say which AI suits which kind of work, then leave the
+                    picker on <strong>Auto</strong>. A quick "hello" goes to
+                    the small cheap one; a full report goes to the strong one.
+                    And once a conversation has started on the strong one it
+                    stays there, so a short follow-up never gets you a weaker
+                    answer.
+                </p>
+            </div>
+            <div>
+                <h4 style="font-size:17px;margin-bottom:8px;">It doesn't send your whole database</h4>
+                <p style="color:var(--dai-ink-soft);font-size:15px;">
+                    For each question it first works out which part of Odoo
+                    the question is really about, and only tells the AI about
+                    that part. Faster answers, and a much smaller bill at the
+                    end of the month — even on a big database.
+                </p>
+            </div>
+        </div>
+
+        <figure class="dai-shot">
+            <img src="settings-advanced.png" alt="The lower half of the DIGI-ERP AI settings page: the document reading options, and the Advanced block with the indexing model and the optional narrowing step"/>
+            <figcaption>
+                <strong>The lower half of the settings page.</strong>
+                At the top, the two document-reading options with values filled
+                in: the reader that is tried first, and the AI that does the
+                reading. Below the grey <strong>Advanced</strong> bar &mdash;
+                which says in one line that you can leave all of it alone
+                &mdash; sit four things.
+                <em>Indexing model</em> is what learns the shape of your Odoo, so
+                each question only shows the AI the handful of screens it is
+                really about; it reads the <em>names</em> of your models and
+                fields, never the records in them.
+                <em>Separate indexing server</em> is greyed-out placeholder text,
+                which is the normal state: blank means "same server as the chat".
+                <em>Double-check which data to look at</em> is ticked here, and
+                that tick is why the fourth box is visible at all &mdash;
+                <em>Model used for the narrowing step</em> appears only once the
+                option above it is on, so the page never shows you a setting that
+                would do nothing.
+            </figcaption>
+        </figure>
+    </div>
+
+    <!-- ══ TWO SURFACES ══════════════════════════════════════════════ -->
+    <div class="dai-sec">
+        <h3><span class="dai-eyebrow">Where you use it</span>A full page, and a panel that follows you around</h3>
+        <div class="dai-grid">
+            <div class="dai-card">
+                <span class="dai-kicker">💬</span>
+                <h4>The full chat page</h4>
+                <p>
+                    Its own screen, with all your past conversations down the
+                    side, a button to attach files and a picker to choose
+                    which AI answers. Conversations name themselves from your
+                    first question.
+                </p>
+            </div>
+            <div class="dai-card">
+                <span class="dai-kicker">🧭</span>
+                <h4>The side panel</h4>
+                <p>
+                    A small panel you can open on any screen in Odoo. It
+                    already knows which record you are looking at, so you can
+                    just ask "is anything missing here?" without having to
+                    explain which one you mean.
+                </p>
+            </div>
+        </div>
+
+        <figure class="dai-shot">
+            <img src="sidebar.png" alt="The DIGI-ERP AI side panel open beside an Odoo form, its subtitle naming the record it is looking at, with three suggested questions"/>
+            <figcaption>
+                <strong>The side panel, open on a record.</strong> On the left
+                is an ordinary Odoo form; on the right, the panel, and it stays
+                there while you carry on working. The line under the title
+                &mdash; <em>DIGI-ERP AI &mdash; AI Model &middot; Deepseek V4
+                P&hellip;</em> &mdash; is the panel telling you what it is
+                currently looking at, and it changes as you move around Odoo.
+                That is why the three suggestions it offers
+                (<em>"summarise this record"</em>, <em>"what's missing here?"</em>,
+                <em>"list the related tasks"</em>) work without you naming
+                anything: it already knows which record you mean.
+                The small <em>Auto</em> button at the top is the same model
+                picker as the full chat page, so you can still choose who
+                answers. The icons in the corner start a new conversation, widen
+                the panel, and close it. You type at the bottom, exactly as you
+                would in the full page.
+            </figcaption>
+        </figure>
+    </div>
+
+    <!-- ══ DOCUMENTS ═════════════════════════════════════════════════ -->
+    <div class="dai-sec">
+        <h3><span class="dai-eyebrow">Files</span>What you can send it, and what it gives you back</h3>
+        <div class="dai-split">
+            <div>
+                <h4 style="font-size:17px;margin-bottom:8px;">You can send it</h4>
+                <ul class="dai-list">
+                    <li><strong>Documents</strong> — PDF, Word, Excel and PowerPoint</li>
+                    <li><strong>Pictures</strong> — photos and scans, in any of the usual formats</li>
+                    <li><strong>Text and data</strong> — plain text, CSV and the like</li>
+                    <li><strong>ZIP files</strong> — it opens them and reads what is inside</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="font-size:17px;margin-bottom:8px;">It gives you back</h4>
+                <ul class="dai-list">
+                    <li><strong>PDF</strong> — a plain one, or a properly designed one</li>
+                    <li><strong>Excel</strong> — a real spreadsheet you can keep working in</li>
+                    <li><strong>Word</strong> and <strong>PowerPoint</strong></li>
+                    <li><strong>CSV</strong> — a straight export of whatever list you filtered</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="dai-callout">
+            <h4>Scans and photos</h4>
+            <p>
+                Take a photo of a delivery note, or scan an invoice, and it
+                reads it. Any AI that can look at pictures will do this —
+                GPT-4o, Claude, Gemini, or one on your own server — so most of
+                the time there is nothing extra to install. If you would
+                rather keep it completely offline, it can use free reading
+                software installed on your Odoo server instead, and it moves
+                on to the next option by itself if one is not available.
+            </p>
+        </div>
+    </div>
+
+    <!-- ══ ACCESS LEVELS ═════════════════════════════════════════════ -->
+    <div class="dai-sec">
+        <h3><span class="dai-eyebrow">Who can do what</span>Two access levels, and that is all</h3>
+        <div class="dai-tablewrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:52%">&nbsp;</th>
+                        <th style="width:24%">User</th>
+                        <th style="width:24%">Administrator</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Chat, send files, get reports</td><td class="dai-yes">Yes</td><td class="dai-yes">Yes</td></tr>
+                    <tr><td>Choose which AI answers</td><td class="dai-yes">Yes</td><td class="dai-yes">Yes</td></tr>
+                    <tr><td>See their own past conversations</td><td class="dai-yes">Yes</td><td class="dai-yes">Yes</td></tr>
+                    <tr><td>Add or change the AI models</td><td class="dai-no">No</td><td class="dai-yes">Yes</td></tr>
+                    <tr><td>See the account keys</td><td class="dai-no">No</td><td class="dai-yes">Yes</td></tr>
+                    <tr><td>Change the settings</td><td class="dai-no">No</td><td class="dai-yes">Yes</td></tr>
+                    <tr><td>See how much the team uses it, delete old chats</td><td class="dai-no">No</td><td class="dai-yes">Yes</td></tr>
+                    <tr><td>Read somebody else's conversation</td><td class="dai-no">No</td><td class="dai-no">No</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="font-size:14.5px;color:var(--dai-ink-soft);">
+            A normal user sees exactly one menu: the chat. Everything that
+            holds a key, or changes how the assistant behaves, is for
+            administrators only. Opening the settings also needs the usual
+            Odoo <em>Settings</em> access, just like every other app.
+        </p>
+    </div>
+
+    <!-- ══ SETUP ═════════════════════════════════════════════════════ -->
+    <div class="dai-sec">
+        <h3><span class="dai-eyebrow">Getting started</span>Install it, connect one AI, and you are done</h3>
+        <div class="dai-split">
+            <div>
+                <h4 style="font-size:17px;margin-bottom:8px;">Three steps</h4>
+                <ul class="dai-list">
+                    <li>Install the app. Whoever installs it becomes the DIGI-ERP AI administrator straight away.</li>
+                    <li>Open <strong>DIGI-ERP AI → AI Models</strong> and add one AI — an online one with its account key, or your own server.</li>
+                    <li>In <strong>Settings → Users</strong>, give your colleagues the <strong>DIGI-ERP AI / User</strong> access level.</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="font-size:17px;margin-bottom:8px;">What you need</h4>
+                <ul class="dai-list">
+                    <li><strong>Odoo 18 or 19</strong>, Community or Enterprise.</li>
+                    <li>An AI to connect to — your own, or an online one. None is included, so you stay in control of the cost.</li>
+                    <li>Three small add-ons for Odoo that let it write Word, Excel and PDF files. Most Odoo hosting already has them; if not, your IT person installs them in a minute.</li>
+                    <li>Two optional extras: one for PowerPoint files, one for very old <em>.doc</em> and <em>.ppt</em> files. Everything else carries on working without them.</li>
+                </ul>
+            </div>
+        </div>
+
+        <figure class="dai-shot">
+            <img src="settings.png" alt="The DIGI-ERP AI settings page inside Odoo Settings: the optional built-in local AI block and the document reading block, each option explained beneath its own label"/>
+            <figcaption>
+                <strong>The settings page, top half.</strong> It lives inside
+                Odoo's own <strong>Settings</strong>, with <strong>DIGI-ERP
+                AI</strong> in the list on the left, and it saves with the usual
+                Save / Discard buttons &mdash; nothing new to learn.
+                The first block, <strong>Built-in local AI</strong>, is marked
+                <em>optional</em> for a reason: it is only for people running an
+                AI on their own machine, and the paragraph under the heading says
+                so plainly. Its four boxes are the address of that server, which
+                model on it should answer, how long to wait before giving up
+                (500 seconds here) and how much the model may hold in mind at
+                once (32,768). If you connected an online AI instead, you can
+                walk past all four.
+                The second block, <strong>Reading documents and images</strong>,
+                is the one everybody uses: what should read an uploaded scan,
+                photo or PDF, and which AI does it.
+                Notice that every single option carries its own explanation
+                underneath it, in the same plain language &mdash; there is no
+                manual to go and find.
+            </figcaption>
+        </figure>
+    </div>
+
+    <!-- ══ SETTINGS REFERENCE ════════════════════════════════════════
+         Every field on the settings page and on the AI model form, in the
+         order they appear on screen. Kept in sync with
+         views/res_config_settings_views.xml and views/ai_model_views.xml. -->
+    <div class="dai-sec">
+        <h3><span class="dai-eyebrow">Reference</span>Every setting, one by one</h3>
+        <p class="dai-lead">
+            You will not need most of this. The app works after you connect
+            one AI, and everything below already has a sensible value. It is
+            here so that when you do open a screen and wonder "what does this
+            one actually do?", the answer is written down.
+        </p>
+
+        <h4 style="font-size:18px;margin:26px 0 4px;">Settings &rarr; DIGI-ERP AI</h4>
+        <p style="font-size:15px;color:var(--dai-ink-soft);">
+            Reached from <strong>DIGI-ERP AI &rarr; Configuration</strong>.
+            Only a DIGI-ERP AI administrator can open it.
+        </p>
+
+        <div class="dai-ref">
+            <h4>Built-in local AI &mdash; optional</h4>
+            <div class="dai-ref-item">
+                <p style="margin-bottom:6px;">
+                    This whole block is for people running an AI on their own
+                    machine. If you connected an online AI under
+                    <strong>AI Models</strong>, that one takes over and you can
+                    leave everything here as it is.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Server address</div>
+                <p>
+                    Where your own AI server answers. Use
+                    <span class="dai-val">http://localhost:11434</span> when it
+                    runs on the same machine as Odoo, or that machine's address
+                    on your network. No slash at the end.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Model</div>
+                <p>
+                    Which model on that server answers, by the name the server
+                    knows it by &mdash; for example
+                    <span class="dai-val">llama3.2</span>. It has to be
+                    downloaded there already; Odoo does not download it for you.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Answer timeout (seconds)</div>
+                <p>
+                    How long Odoo waits for an answer before giving up.
+                    Ships at <span class="dai-val">500</span>. Raise it if long
+                    documents stop with a timeout message; a computer without a
+                    graphics card can genuinely need several minutes.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Memory per answer (tokens)</div>
+                <p>
+                    How much the model can hold in mind at once: your question,
+                    the data it looked up, and the conversation so far. Ships at
+                    <span class="dai-val">32768</span>. Raise it if answers about
+                    long documents come back cut off &mdash; but it costs memory
+                    on your server, so raise it a step at a time.
+                </p>
+            </div>
+        </div>
+
+        <div class="dai-ref">
+            <h4>Reading documents and images</h4>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Document reader</div>
+                <p>
+                    Which reader is tried <em>first</em> on a scan, a photo or a
+                    PDF. If it cannot run, the others are tried automatically,
+                    so a wrong choice here slows things down but never breaks
+                    them.
+                </p>
+                <p>
+                    <strong>AI vision model</strong> (the default) sends the page
+                    to an AI that can look at pictures and needs nothing
+                    installed on your server.
+                    <strong>PaddleOCR</strong>, <strong>Surya</strong> and
+                    <strong>Tesseract</strong> read the page on your own machine
+                    &mdash; faster, free, and nothing leaves the building, but
+                    each one has to be installed on the Odoo server first.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">AI model for reading documents</div>
+                <p>
+                    Only appears when the reader above is <em>AI vision model</em>.
+                    It is the AI that turns uploaded pages into text. The list
+                    offers every model you have ticked
+                    <em>"Can read images and scans"</em> on &mdash; online or your
+                    own, both work.
+                </p>
+                <p>
+                    Leave it empty and the app works it out: it uses whichever AI
+                    the chat is on if that one can see pictures, and otherwise the
+                    first image-capable model you added.
+                </p>
+            </div>
+        </div>
+
+        <div class="dai-ref">
+            <h4>Advanced</h4>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Indexing model</div>
+                <p>
+                    Used to index the <em>shape</em> of your Odoo &mdash; which
+                    screens and fields exist &mdash; so that each question only
+                    shows the AI the part that matters. Ships as
+                    <span class="dai-val">nomic-embed-text</span> and must be
+                    downloaded on your AI server. It reads the <em>names</em>
+                    of your screens and fields, never the records inside them.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Separate indexing server</div>
+                <p>
+                    Only if that indexing runs on a different machine than the
+                    chat. Leave it blank and the same server is used.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Double-check which data to look at</div>
+                <p>
+                    Off by default. Turn it on and a small, cheap AI runs first
+                    and narrows down what the main AI is shown. Every question
+                    costs one extra quick call, and answers get noticeably
+                    sharper on a database with a lot of apps installed.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Model used for the narrowing step</div>
+                <p>
+                    Only appears while the option above is on. Pick a small, fast
+                    model &mdash; this runs before every question about your data,
+                    so a heavy one cancels out the speed the step is meant to buy.
+                </p>
+                <p>
+                    Leave it empty to use the first active model you set to
+                    <em>"Quick questions"</em>. With nothing here and nothing set
+                    to quick questions, the step is simply skipped.
+                </p>
+            </div>
+        </div>
+
+        <h4 style="font-size:18px;margin:34px 0 4px;">The AI model form</h4>
+        <p style="font-size:15px;color:var(--dai-ink-soft);">
+            One card per AI, under <strong>DIGI-ERP AI &rarr; AI Models</strong>.
+            Add as many as you like; each one shows up in the picker at the top
+            of the chat.
+        </p>
+
+        <div class="dai-ref">
+            <h4>The basics</h4>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Test connection</div>
+                <p>
+                    The button at the top. It calls the AI once and tells you in
+                    plain words whether the key, the address and the model name
+                    are right &mdash; so you find out here rather than in the
+                    middle of a conversation.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Name</div>
+                <p>
+                    Your own label, and the one your colleagues pick from in the
+                    chat. <em>"Fast"</em>, <em>"Best quality"</em>,
+                    <em>"On-premise"</em> are more useful to them than the
+                    manufacturer's model number.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Local model (no API key)</div>
+                <p>
+                    The switch that decides everything else on this form.
+                    <strong>On</strong>: the AI runs on your own machine or
+                    network, nothing leaves the building, no account needed.
+                    <strong>Off</strong>: you are connecting to an online
+                    service, so you pick the brand and paste a key.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Active</div>
+                <p>
+                    Switch it off to take a model out of the chat picker without
+                    deleting it &mdash; handy when a key expires or you want to
+                    stop the spending on one service for a while.
+                </p>
+            </div>
+        </div>
+
+        <div class="dai-ref">
+            <h4>Connection</h4>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Model name</div>
+                <p>
+                    The exact name your provider uses. For example
+                    <span class="dai-val">gpt-4o</span>,
+                    <span class="dai-val">claude-sonnet-4-6</span>,
+                    <span class="dai-val">gemini-2.0-flash</span>,
+                    <span class="dai-val">deepseek-chat</span>,
+                    <span class="dai-val">grok-2-latest</span>, or on your own
+                    server whatever it is called there, such as
+                    <span class="dai-val">llama3.2</span>.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Provider</div>
+                <p>
+                    Online models only. Which company you are connecting to:
+                    OpenAI, Anthropic (Claude), Google Gemini, DeepSeek, xAI
+                    (Grok), or <em>Other / OpenAI-compatible</em> for anything
+                    else that speaks the same language &mdash; Groq, Together,
+                    OpenRouter and so on. Picking one of the five named brands
+                    fills in the address for you.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">API key</div>
+                <p>
+                    Online models only: the key from your AI account. It is
+                    stored in your own database and <strong>only an
+                    administrator can read it</strong> &mdash; a normal user can
+                    pick this model in the chat, but the key is never sent to
+                    their browser, masked or otherwise.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Base URL</div>
+                <p>
+                    Only shown when it is genuinely needed: for a model on your
+                    own server, or when the provider is
+                    <em>Other / OpenAI-compatible</em>. The five named brands
+                    already know their own address, so the field stays hidden and
+                    you cannot get it wrong.
+                </p>
+            </div>
+        </div>
+
+        <div class="dai-ref">
+            <h4>What this model can do</h4>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Can read images and scans</div>
+                <p>
+                    Tick it for an AI that can look at a picture &mdash; GPT-4o,
+                    Claude, Gemini, qwen2.5vl and the like. When it is on, an
+                    uploaded photo or scan goes straight to that AI
+                    <em>together with</em> the question, and it reads the page
+                    and answers in one go.
+                </p>
+                <p>
+                    Leave it off for text-only models. Those cannot see a
+                    picture at all, so uploaded images are handed to the document
+                    reader from the settings page first, and the AI works on the
+                    text that comes out.
+                </p>
+            </div>
+        </div>
+
+        <div class="dai-ref">
+            <h4>Automatic model choice</h4>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Use this model for</div>
+                <p>
+                    What to send here when someone leaves the chat picker on
+                    <strong>Auto</strong>. Four kinds of work:
+                    <em>Quick questions</em> (greetings, short answers),
+                    <em>Everyday work</em> (questions about your data),
+                    <em>Complex work</em> (analysis, reports, creating records)
+                    and <em>Image generation</em>.
+                </p>
+                <p>
+                    You do <strong>not</strong> need one model per line. A model
+                    set to complex work also handles everyday work, and an
+                    everyday model also handles quick questions &mdash; so one
+                    good model can cover the lot. Leave it empty to keep a model
+                    out of Auto entirely; it stays selectable by hand.
+                </p>
+            </div>
+        </div>
+
+        <div class="dai-ref">
+            <h4>Advanced <span class="dai-tag dai-tag--dev">developer mode</span></h4>
+            <div class="dai-ref-item">
+                <p style="margin-bottom:6px;">
+                    This tab is hidden unless Odoo's developer mode is on, because
+                    every value in it already works. Change something here only if
+                    you know why you are changing it.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Temperature</div>
+                <p>
+                    How inventive the AI is allowed to be, from
+                    <span class="dai-val">0</span> (same answer every time) to
+                    <span class="dai-val">1</span> (creative). Ships at
+                    <span class="dai-val">0.2</span>, which is what you want for
+                    work with real figures in it.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Max output tokens</div>
+                <p>
+                    A ceiling on how long a single answer may be.
+                    <span class="dai-val">0</span> means "use whatever the
+                    provider does by default", which is normally what you want.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Timeout (s)</div>
+                <p>
+                    A waiting time just for this model, when it is slower or
+                    faster than the rest. <span class="dai-val">0</span> means it
+                    uses the one on the settings page.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Context window</div>
+                <p>
+                    Models on your own server only: how much this one can hold in
+                    mind, when it differs from the global figure.
+                    <span class="dai-val">0</span> means "use the settings page".
+                    Raise it on a model you keep for long documents.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Keep alive</div>
+                <p>
+                    Models on your own server only: how long the server keeps this
+                    model loaded after a question, so the next one comes back
+                    quickly. <span class="dai-val">30m</span>,
+                    <span class="dai-val">1h</span>,
+                    <span class="dai-val">-1</span> to keep it loaded for good, or
+                    <span class="dai-val">0</span> to free the memory at once.
+                    Blank leaves it to the server.
+                </p>
+            </div>
+            <div class="dai-ref-item">
+                <div class="dai-ref-name">Supports tools</div>
+                <p>
+                    On by default. This is what lets the AI actually look things
+                    up in Odoo and prepare changes. Switch it off for a
+                    conversation-only model that cannot do that &mdash; it will
+                    still chat, but it will not be able to answer questions about
+                    your data.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ LANGUAGES ═════════════════════════════════════════════════ -->
+    <div class="dai-sec">
+        <h3><span class="dai-eyebrow">Languages</span>It speaks your team's language</h3>
+        <p class="dai-lead">
+            The screens come in <strong>English</strong>, <strong>French</strong>
+            and <strong>Arabic</strong>. And whatever language you ask your
+            question in, that is the language you get the answer in — so a
+            French speaker and an English speaker can share the same Odoo and
+            each be answered properly.
+        </p>
+    </div>
+
+    <!-- ══ COMPANION ═════════════════════════════════════════════════ -->
+    <div class="dai-sec">
+        <h3><span class="dai-eyebrow">Going further</span>Turning a document into an Odoo record</h3>
+        <p class="dai-lead">
+            Reading a supplier invoice and <em>creating the bill from it</em>
+            is a separate add-on, <strong>DIGI-ERP AI — Documents</strong>,
+            which installs on top of this one. This app is the assistant
+            itself: the chat, the AI models, and the security everything else
+            is built on.
+        </p>
+    </div>
+
+    <div class="dai-foot">
+        <strong>DIGI-ERP AI</strong>
+        Built for Odoo 18 &amp; 19 · by DIGI-ERP
+        <p class="dai-contact">
+            Questions, or something not working?
+            <a href="mailto:helpdesk@digi-it.com.tn">helpdesk@digi-it.com.tn</a>
+        </p>
+    </div>
+
+</div>
