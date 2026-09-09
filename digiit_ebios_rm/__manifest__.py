@@ -3,7 +3,7 @@
     'author':"DIGI-IT",
     'category': 'Technical/Technical',
     'version' :'18.0.0.32',
-    'author': 'DIGI-IT',
+    'author': 'DIGI-ERP',
     'website': 'https://digi-it.com.tn',
     'summary': 'Etudiez la  sécurité de votre environement conformement à la methode ebios_rm',
     'depends': ['base', 'hr', 'web'],
