@@ -281,6 +281,14 @@
     font-size: 14.5px;
 }
 .dai-doc .dai-foot strong { display: block; font-size: 17px; margin-bottom: 4px; }
+.dai-doc .dai-foot .dai-contact { margin: 14px 0 0; font-size: 15px; }
+.dai-doc .dai-foot .dai-contact a {
+    color: var(--dai-brand-dk);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid #ded6f6;
+}
+.dai-doc .dai-foot .dai-contact a:hover { border-bottom-color: var(--dai-brand); }
 
 @media (max-width: 640px) {
     .dai-doc .dai-hero { padding: 34px 18px 30px; }
@@ -389,14 +397,31 @@
         </div>
 
         <figure class="dai-shot">
-            <img src="chat.png" alt="The DIGI-ERP AI chat page inside Odoo, with the conversation list on the left and the model picker open at the top right"/>
+            <img src="chat.png" alt="The DIGI-ERP AI chat page: conversation list on the left, the assistant's opening message in the middle, and the model picker open at the top right showing Auto and one registered model"/>
             <figcaption>
-                <strong>This is the whole thing.</strong> Your conversations are
-                listed down the left, you type at the bottom, and the paperclip
-                attaches a file. Top right you pick who answers: leave it on
-                <em>Auto</em> and it chooses for you, or name a model yourself.
-                If you run several companies, the selector next to it decides
-                which one the question is about.
+                <strong>The full chat page, with the model picker open.</strong>
+                Down the <em>left</em>: the <strong>New conversation</strong>
+                button and every conversation you have had, newest first &mdash;
+                each one names itself from your opening question. Your own name
+                sits at the bottom of that column.
+                In the <em>middle</em>: the assistant's opening line, with the
+                time underneath, and every question and answer stacking below it
+                as you go.
+                Across the <em>top right</em>, three controls. <strong>All
+                companies</strong> decides which company the question is about,
+                if you run more than one. The coloured button next to it is the
+                <strong>model picker</strong>, open here: <em>Auto</em> lets the
+                app choose an AI per question, and under it sits every model you
+                have added &mdash; the name you gave it in bold, and the brand
+                and technical model name in small grey type below
+                (<em>deepseek &middot; deepseek-v4-pro</em>). The tick marks the
+                one in use. <strong>Open Odoo</strong> takes you back to the
+                normal Odoo screens.
+                At the <em>bottom</em>: the box you type in, the paperclip that
+                attaches a document, the rubber that clears the conversation and
+                the send button &mdash; with the keyboard shortcuts spelled out
+                underneath, so nobody has to guess that Shift+Enter makes a new
+                line.
             </figcaption>
         </figure>
     </div>
@@ -486,26 +511,61 @@
         </div>
 
         <figure class="dai-shot">
-            <img src="models.png" alt="The AI Models screen listing one configured cloud model"/>
+            <img src="models.png" alt="The AI Models screen: one card per connected AI, showing its name, brand, technical model name, Auto tier and its Reads images and Active pills"/>
             <figcaption>
-                <strong>Every AI you have connected, on one screen.</strong>
-                Each card says at a glance whether it runs in the cloud or on
-                your own server, which model it is, what it is used for, and
-                what it can do — here, that this one can use Odoo and can read
-                images. Adding another is the <em>New</em> button.
+                <strong>Your AI models, one card each.</strong> This is
+                <strong>DIGI-ERP AI &rarr; AI Models</strong>, and everything an
+                administrator needs to know about a connection is on the card
+                without opening it. Reading the card here: the cloud symbol and
+                the blue <strong>Cloud</strong> badge say this one is an online
+                service (a self-hosted model gets a chip symbol, a
+                <strong>Local</strong> badge and a different coloured stripe down
+                the left edge); <strong>Deepseek V4 Pro</strong> is the name
+                <em>you</em> chose, with the brand underneath;
+                <strong>Model</strong> is the technical name the provider uses;
+                and <strong>Auto tier</strong> is the kind of work this one gets
+                when a user leaves the picker on Auto.
+                The pills along the bottom are its state at a glance &mdash;
+                <em>Reads images</em> means it can be given a scan or a photo,
+                and <em>Active</em> means it shows up in the chat picker. (The
+                <em>Tools</em> pill next to them is a technical one; it is hidden
+                unless Odoo's developer mode is on.) Add as
+                many as you like with <strong>New</strong>; the button top right
+                swaps these cards for a plain list.
             </figcaption>
         </figure>
 
         <figure class="dai-shot">
-            <img src="model-form.png" alt="Adding an AI model: name, provider, API key, and what the model can do"/>
+            <img src="model-form.png" alt="The AI model form: Test connection button, name, connection details with a masked API key, the Can read images tick, the Auto tier, and the developer-mode Advanced tab"/>
             <figcaption>
-                <strong>Adding one takes a minute.</strong> Give it a name your
-                team will recognise, choose the provider, paste the key — the
-                web address fills itself in. Then two questions in plain
-                English: can it look at pictures, and what kind of work should
-                it get. <strong>Test connection</strong> at the top tells you
-                straight away whether it works, so you are not finding out in
-                the middle of a conversation.
+                <strong>Adding or editing one AI, from top to bottom.</strong>
+                <strong>Test connection</strong> at the top calls the AI once and
+                tells you straight away whether the key, the address and the
+                model name are right. <strong>Name</strong> is your own label
+                &mdash; it is what your colleagues pick from in the chat, so
+                <em>"Fast"</em> or <em>"Best quality"</em> serves them better
+                than a model number. The blue bar under it changes by itself
+                depending on whether this is an online service or your own
+                server, and tells you what that means.
+                <strong>Connection</strong> holds the four things that make it
+                work: the exact <em>model name</em> the provider uses, which
+                <em>provider</em> it is (choosing one fills in the web address
+                for you), the <em>API key</em> &mdash; shown as dots, and
+                readable only by an administrator &mdash; and two switches:
+                <em>Active</em> takes a model in and out of the chat picker
+                without deleting it, and <em>Local model</em> flips the whole
+                form between an online service and one you host yourself.
+                <strong>What this model can do</strong> is the single tick that
+                decides whether uploaded scans and photos can go straight to it.
+                <strong>Automatic model choice</strong> is what <em>Auto</em>
+                sends here &mdash; this one is set to complex work.
+                The <strong>Advanced</strong> tab at the bottom only appears when
+                Odoo's developer mode is on, because none of it needs changing:
+                <em>Temperature</em> ships at 0.20 (steady rather than
+                imaginative), and the zeros in <em>Max output tokens</em> and
+                <em>Timeout</em> simply mean "use the normal value" &mdash; zero
+                is the do-nothing setting throughout this form, never a limit of
+                nothing.
             </figcaption>
         </figure>
 
@@ -533,13 +593,25 @@
         </div>
 
         <figure class="dai-shot">
-            <img src="settings-advanced.png" alt="The advanced settings: indexing model and the optional narrowing step"/>
+            <img src="settings-advanced.png" alt="The lower half of the DIGI-ERP AI settings page: the document reading options, and the Advanced block with the indexing model and the optional narrowing step"/>
             <figcaption>
-                <strong>You can leave all of this alone.</strong> It ships with
-                sensible values. If you do want to tune it, this is where you
-                turn on the extra check that works out which part of your Odoo
-                a question is about before the main AI is asked — a little
-                slower per question, noticeably sharper on a busy database.
+                <strong>The lower half of the settings page.</strong>
+                At the top, the two document-reading options with values filled
+                in: the reader that is tried first, and the AI that does the
+                reading. Below the grey <strong>Advanced</strong> bar &mdash;
+                which says in one line that you can leave all of it alone
+                &mdash; sit four things.
+                <em>Indexing model</em> is what learns the shape of your Odoo, so
+                each question only shows the AI the handful of screens it is
+                really about; it reads the <em>names</em> of your models and
+                fields, never the records in them.
+                <em>Separate indexing server</em> is greyed-out placeholder text,
+                which is the normal state: blank means "same server as the chat".
+                <em>Double-check which data to look at</em> is ticked here, and
+                that tick is why the fourth box is visible at all &mdash;
+                <em>Model used for the narrowing step</em> appears only once the
+                option above it is on, so the page never shows you a setting that
+                would do nothing.
             </figcaption>
         </figure>
     </div>
@@ -571,16 +643,23 @@
         </div>
 
         <figure class="dai-shot">
-            <img src="sidebar.png" alt="The DIGI-ERP AI side panel open next to an Odoo form, showing which record it is looking at"/>
+            <img src="sidebar.png" alt="The DIGI-ERP AI side panel open beside an Odoo form, its subtitle naming the record it is looking at, with three suggested questions"/>
             <figcaption>
-                <strong>The panel, open on a record.</strong> It stays on the
-                right while you carry on working, and the line under the title
-                shows what it is currently looking at — here, the AI model
-                being edited on the left. That is why you can ask
-                <em>"summarise this record"</em> or <em>"what's missing
-                here?"</em> without naming anything: it already knows. The
-                little picker at the top is the same one as on the full chat
-                page, so you can still choose which AI answers.
+                <strong>The side panel, open on a record.</strong> On the left
+                is an ordinary Odoo form; on the right, the panel, and it stays
+                there while you carry on working. The line under the title
+                &mdash; <em>DIGI-ERP AI &mdash; AI Model &middot; Deepseek V4
+                P&hellip;</em> &mdash; is the panel telling you what it is
+                currently looking at, and it changes as you move around Odoo.
+                That is why the three suggestions it offers
+                (<em>"summarise this record"</em>, <em>"what's missing here?"</em>,
+                <em>"list the related tasks"</em>) work without you naming
+                anything: it already knows which record you mean.
+                The small <em>Auto</em> button at the top is the same model
+                picker as the full chat page, so you can still choose who
+                answers. The icons in the corner start a new conversation, widen
+                the panel, and close it. You type at the bottom, exactly as you
+                would in the full page.
             </figcaption>
         </figure>
     </div>
@@ -679,14 +758,26 @@
         </div>
 
         <figure class="dai-shot">
-            <img src="settings.png" alt="The DIGI-ERP AI settings page: the optional built-in local AI, and how uploaded documents are read"/>
+            <img src="settings.png" alt="The DIGI-ERP AI settings page inside Odoo Settings: the optional built-in local AI block and the document reading block, each option explained beneath its own label"/>
             <figcaption>
-                <strong>One settings page, written in plain English.</strong>
-                Every option explains itself where it sits — no manual to go
-                and find. The top half is only for people running an AI on
-                their own machine; skip it entirely if you are using an online
-                one. Below it you choose what reads uploaded scans and photos,
-                and which model does the reading.
+                <strong>The settings page, top half.</strong> It lives inside
+                Odoo's own <strong>Settings</strong>, with <strong>DIGI-ERP
+                AI</strong> in the list on the left, and it saves with the usual
+                Save / Discard buttons &mdash; nothing new to learn.
+                The first block, <strong>Built-in local AI</strong>, is marked
+                <em>optional</em> for a reason: it is only for people running an
+                AI on their own machine, and the paragraph under the heading says
+                so plainly. Its four boxes are the address of that server, which
+                model on it should answer, how long to wait before giving up
+                (500 seconds here) and how much the model may hold in mind at
+                once (32,768). If you connected an online AI instead, you can
+                walk past all four.
+                The second block, <strong>Reading documents and images</strong>,
+                is the one everybody uses: what should read an uploaded scan,
+                photo or PDF, and which AI does it.
+                Notice that every single option carries its own explanation
+                underneath it, in the same plain language &mdash; there is no
+                manual to go and find.
             </figcaption>
         </figure>
     </div>
@@ -1073,6 +1164,10 @@
     <div class="dai-foot">
         <strong>DIGI-ERP AI</strong>
         Built for Odoo 18 &amp; 19 · by DIGI-ERP
+        <p class="dai-contact">
+            Questions, or something not working?
+            <a href="mailto:helpdesk@digi-it.com.tn">helpdesk@digi-it.com.tn</a>
+        </p>
     </div>
 
 </div>

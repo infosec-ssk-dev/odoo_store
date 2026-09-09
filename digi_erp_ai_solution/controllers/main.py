@@ -383,9 +383,8 @@ def _soffice_convert(blob, src_name, target_ext):
 
     soffice = shutil.which('soffice') or shutil.which('libreoffice')
     if not soffice:
-        return None, ("Lecture des anciens formats Office (.ppt/.doc) "
-                      "indisponible : installez LibreOffice (soffice) sur le "
-                      "serveur.")
+        return None, _("Legacy Office formats (.ppt/.doc) cannot be read: "
+                       "install LibreOffice (soffice) on the server.")
     fmt = target_ext.lstrip('.')          # 'pptx' / 'docx'
     src_base = os.path.basename(src_name) or f"input{os.path.splitext(src_name)[1]}"
     with tempfile.TemporaryDirectory() as tmp:
@@ -473,7 +472,7 @@ def _iter_archive_members(name, blob):
             try:
                 import py7zr
             except ImportError:
-                return [], ("Lecture .7z indisponible (installez `py7zr`).")
+                return [], _("Cannot read .7z archives: install `py7zr`.")
             out = []
             with py7zr.SevenZipFile(io.BytesIO(blob)) as z:
                 for inner_name, bio in (z.readall() or {}).items():
@@ -485,8 +484,8 @@ def _iter_archive_members(name, blob):
             try:
                 import rarfile
             except ImportError:
-                return [], ("Lecture .rar indisponible (installez `rarfile` "
-                            "et l'utilitaire `unrar`).")
+                return [], _("Cannot read .rar archives: install `rarfile` "
+                             "and the `unrar` utility.")
             out = []
             with rarfile.RarFile(io.BytesIO(blob)) as rf:
                 for info in rf.infolist():
@@ -500,9 +499,9 @@ def _iter_archive_members(name, blob):
 
     except Exception as e:
         _logger.warning("Archive read failed (%s): %s", name, e)
-        return [], f"Impossible de lire l'archive : {e}"
+        return [], _("Could not read the archive: %s", e)
 
-    return [], f"Format d'archive non pris en charge : {name}"
+    return [], _("Unsupported archive format: %s", name)
 
 
 def _extract_text_from_file(filename, blob, provider_id=None, want_layout=False,
@@ -530,7 +529,7 @@ def _extract_text_from_file(filename, blob, provider_id=None, want_layout=False,
         return (text, err, layout) if want_layout else (text, err)
 
     if not blob:
-        return _ret(None, "Fichier vide.")
+        return _ret(None, _("The file is empty."))
 
     # OCR engine order (primary first, others as fallbacks). An explicit
     # `ocr_chain` argument (e.g. a dedicated OCR model that must lead) wins;
@@ -573,7 +572,7 @@ def _extract_text_from_file(filename, blob, provider_id=None, want_layout=False,
             except ImportError:
                 from PyPDF2 import PdfReader
         except ImportError:
-            return _ret(None, "Lecture PDF indisponible (installez `pypdf` ou `PyPDF2`).")
+            return _ret(None, _("Cannot read PDF files: install `pypdf` or `PyPDF2`."))
         try:
             reader = PdfReader(io.BytesIO(blob))
             page_texts = []
@@ -632,7 +631,7 @@ def _extract_text_from_file(filename, blob, provider_id=None, want_layout=False,
                         f"{filename}  {len(reader.pages)} page(s) — "
                         f"all text-layer, OCR skipped")
                 text = '\n'.join(page_texts).strip()
-                return _ret(text or "(Aucun texte extractible.)", None)
+                return _ret(text or _("(No extractable text.)"), None)
 
             # Some pages have little/no text — OCR them. Lazy-render only
             # those page indices via pdf2image (we don't rasterise the whole
@@ -689,32 +688,33 @@ def _extract_text_from_file(filename, blob, provider_id=None, want_layout=False,
                 None, layout)
         except Exception as e:
             _logger.warning("PDF extraction failed (%s): %s", filename, e)
-            return _ret(None, f"Impossible de lire le PDF : {e}")
+            return _ret(None, _("Could not read the PDF: %s", e))
 
     # 4. DOCX
     if name.endswith('.docx'):
         try:
             import docx  # python-docx
         except ImportError:
-            return _ret(None, "Lecture DOCX indisponible (installez `python-docx`).")
+            return _ret(None, _("Cannot read DOCX files: install `python-docx`."))
         try:
             doc = docx.Document(io.BytesIO(blob))
             paragraphs = [p.text for p in doc.paragraphs if p.text]
             for table in doc.tables:
                 for row in table.rows:
                     paragraphs.append(' | '.join(cell.text for cell in row.cells))
-            return _ret('\n'.join(paragraphs).strip() or "(Document vide.)", None)
+            return _ret('\n'.join(paragraphs).strip()
+                        or _("(The document is empty.)"), None)
         except Exception as e:
             _logger.warning("DOCX extraction failed (%s): %s", filename, e)
-            return _ret(None, f"Impossible de lire le DOCX : {e}")
+            return _ret(None, _("Could not read the DOCX file: %s", e))
 
     # 5. Excel — .xlsx / .xlsm
     if name.endswith(('.xlsx', '.xlsm')):
         try:
             from openpyxl import load_workbook
         except ImportError:
-            return _ret(None, "Lecture Excel indisponible "
-                              "(installez `openpyxl`).")
+            return _ret(None, _("Cannot read Excel files: "
+                                "install `openpyxl`."))
         try:
             wb = load_workbook(io.BytesIO(blob),
                                read_only=True, data_only=True)
@@ -737,15 +737,15 @@ def _extract_text_from_file(filename, blob, provider_id=None, want_layout=False,
                         None)
         except Exception as e:
             _logger.warning("XLSX extraction failed (%s): %s", filename, e)
-            return _ret(None, f"Impossible de lire le fichier Excel : {e}")
+            return _ret(None, _("Could not read the Excel file: %s", e))
 
     # 6. Legacy Excel — .xls
     if name.endswith('.xls'):
         try:
             import xlrd
         except ImportError:
-            return _ret(None, "Lecture XLS (legacy) indisponible "
-                              "(installez `xlrd<2`).")
+            return _ret(None, _("Cannot read legacy XLS files: "
+                                "install `xlrd<2`."))
         try:
             book = xlrd.open_workbook(file_contents=blob)
             chunks = []
@@ -762,7 +762,7 @@ def _extract_text_from_file(filename, blob, provider_id=None, want_layout=False,
                         None)
         except Exception as e:
             _logger.warning("XLS extraction failed (%s): %s", filename, e)
-            return _ret(None, f"Impossible de lire le fichier XLS : {e}")
+            return _ret(None, _("Could not read the XLS file: %s", e))
 
     # 6b. Legacy Office — .ppt / .doc (binary 97-2003 formats).
     #     python-pptx / python-docx only read the modern XML formats, so we
@@ -790,8 +790,8 @@ def _extract_text_from_file(filename, blob, provider_id=None, want_layout=False,
         try:
             from pptx import Presentation
         except ImportError:
-            return _ret(None, "Lecture PPTX indisponible "
-                              "(installez `python-pptx`).")
+            return _ret(None, _("Cannot read PPTX files: "
+                                "install `python-pptx`."))
         try:
             prs = Presentation(io.BytesIO(blob))
             chunks = []
@@ -811,7 +811,7 @@ def _extract_text_from_file(filename, blob, provider_id=None, want_layout=False,
                         None)
         except Exception as e:
             _logger.warning("PPTX extraction failed (%s): %s", filename, e)
-            return _ret(None, f"Impossible de lire le PPTX : {e}")
+            return _ret(None, _("Could not read the PPTX file: %s", e))
 
     # 8. Archives — .zip, .tar(.gz/.bz2/.xz), .tgz, .gz, .bz2, .xz, .7z, .rar.
     #    Every member is extracted and run back through THIS function one by
@@ -844,10 +844,11 @@ def _extract_text_from_file(filename, blob, provider_id=None, want_layout=False,
                 chunks.append(f"=== {inner_name} ===\n{inner_text}\n")
                 n_files += 1
         if not chunks:
-            return _ret("(Archive vide ou aucun fichier lisible.)", None)
+            return _ret(_("(The archive is empty, or holds no readable "
+                          "file.)"), None)
         return _ret("\n".join(chunks), None)
 
-    return _ret(None, f"Type de fichier non pris en charge : {filename}")
+    return _ret(None, _("Unsupported file type: %s", filename))
 
 
 # A request is "pure text extraction" when the user explicitly wants the
@@ -1632,7 +1633,7 @@ def _call_local_chat(base_url, model, messages, tools=None, options=None,
         return {"ok": False,
                 "error": _("Cannot reach %s. Check the URL.", base_url)}
     except Exception as e:
-        _logger.exception("Local /api/chat erreur inattendue")
+        _logger.exception("Local /api/chat unexpected error")
         _cprint("red", "LOCAL /chat ERR", f"{type(e).__name__}: {e}")
         return {"ok": False, "error": str(e)}
 
@@ -3381,7 +3382,7 @@ def _diagnose_empty_response(env, provider_id, executed_calls, last_msg, iters_u
         )
 
     tool_recap = (
-        ", ".join(c["name"] for c in executed_calls) if executed_calls else "aucun"
+        ", ".join(c["name"] for c in executed_calls) if executed_calls else "none"
     )
 
     parts = [
@@ -4263,7 +4264,7 @@ class DigiErpAiChatController(http.Controller):
                   provider_id=None, company_ids=None, **kwargs):
         prompt = (prompt or '').strip()
         if not prompt:
-            return {'ok': False, 'error': 'Prompt vide.'}
+            return {'ok': False, 'error': _("The prompt is empty.")}
 
         # Multi-company: run the tool loop under the user's SELECTED companies
         # (validated against their allowed set). Defaults to all allowed.
@@ -4411,7 +4412,7 @@ class DigiErpAiChatController(http.Controller):
         Guarded to the caller's own conversation so a user can't cancel
         someone else's turn."""
         if not conversation_id:
-            return {"ok": False, "error": "conversation_id requis."}
+            return {"ok": False, "error": _("conversation_id is required.")}
         conv = self._get_conversation(conversation_id)
         if not conv:
             return {"ok": False, "error": _("Conversation not found.")}
@@ -4571,7 +4572,7 @@ class DigiErpAiChatController(http.Controller):
         the current-screen context injected into the system prompt."""
         prompt = (prompt or '').strip()
         if not prompt:
-            return {'ok': False, 'error': 'Prompt vide.'}
+            return {'ok': False, 'error': _("The prompt is empty.")}
 
         # Multi-company: prefer an explicit selection; otherwise inherit the
         # companies the user has active on the screen (the backend web client
@@ -4701,7 +4702,8 @@ class DigiErpAiChatController(http.Controller):
             _cprint("yellow", "FILE TOO LARGE", f"{len(blob)} bytes > {MAX_FILE_BYTES}")
             return _json({
                 'ok': False,
-                'error': f"Fichier trop volumineux (max {MAX_FILE_BYTES // (1024 * 1024)} Mo)."
+                'error': _("File too large (maximum %s MB).",
+                           MAX_FILE_BYTES // (1024 * 1024))
             }, 413)
 
         # ── OCR strategy: dedicated model / single-call / classic chain ───

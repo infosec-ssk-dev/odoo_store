@@ -265,8 +265,12 @@ def build_action_preview(env, params):
             })
         names = ", ".join(recs[:3].mapped("display_name")) if recs else ""
         n = len(ids)
-        summary = (f"Modifier {n} enregistrement(s) « {model_label} »"
-                   if n != 1 else f"Modifier « {model_label} » : {names or ('#' + str(ids[0]) if ids else '')}")
+        summary = (_("Update %(count)s \u201c%(model)s\u201d record(s)",
+                     count=n, model=model_label)
+                   if n != 1 else
+                   _("Update \u201c%(model)s\u201d: %(names)s",
+                     model=model_label,
+                     names=names or ('#' + str(ids[0]) if ids else '')))
         base.update({
             "kind": "write",
             "record_ids": ids,
@@ -1542,7 +1546,7 @@ def _generate_file(env, params):
       - content  : contenu (texte ou structure selon l'extension).
       - mimetype : optionnel ; deviné depuis l'extension si absent.
     """
-    filename = (params.get("filename") or "fichier.txt").strip()
+    filename = (params.get("filename") or "file.txt").strip()
     content  = params.get("content") or ""
     mimetype = (params.get("mimetype") or "").strip()
 
@@ -1568,9 +1572,9 @@ def _generate_file(env, params):
             "ok": False,
             "error": (
                 f"Cannot generate {filename} — missing dependency: "
-                f"{e}. Installez les paquets requis "
-                f"(python-docx pour .docx, openpyxl pour .xlsx, "
-                f"python-pptx pour .pptx, reportlab pour .pdf)."
+                f"{e}. Install the required packages "
+                f"(python-docx for .docx, openpyxl for .xlsx, "
+                f"python-pptx for .pptx, reportlab for .pdf)."
             ),
         }
     except Exception as e:
@@ -1819,19 +1823,19 @@ def _export_records_to_file(env, params):
         content = "\n".join(md)
     elif layout == "detailed":
         parts = [f"# {title}",
-                 f"Total : {len(rows)} enregistrement(s).", ""]
+                 _("Total: %s record(s).", len(rows)), ""]
         for r in rows:
             label = (_fmt_cell(r.get("name")) or _fmt_cell(r.get("display_name"))
                      or f"#{r.get('id')}")
             parts.append(f"## {label}")
-            parts.append("| Champ | Valeur |")
+            parts.append("| %s | %s |" % (_("Field"), _("Value")))
             parts.append("|-------|--------|")
             for c, h in zip(cols, headers):
                 parts.append(f"| {h} | {_fmt_cell(r.get(c))} |")
             parts.append("")
         content = "\n".join(parts)
     else:
-        parts = [f"# {title}", f"Total : {len(rows)} enregistrement(s).", "",
+        parts = [f"# {title}", _("Total: %s record(s).", len(rows)), "",
                  "| " + " | ".join(headers) + " |",
                  "|" + "|".join(["---"] * len(headers)) + "|"]
         for r in rows:
@@ -1869,8 +1873,8 @@ def _export_records_to_file(env, params):
         "record_count": len(rows),
         "download_url": f"/ai-solution/download/{attach.id}",
         "message": (
-            f"Le fichier **{filename}** ({len(rows)} enregistrement(s)) a "
-            f"was generated. [Download](/ai-solution/download/{attach.id})"
+            f"The file **{filename}** ({len(rows)} record(s)) was "
+            f"generated. [Download](/ai-solution/download/{attach.id})"
         ),
     }
 
@@ -2114,7 +2118,7 @@ def _modify_document(env, params):
             "ok": False,
             "error": (
                 "`source_attachment_id` is required. Take it from the "
-                "prompt sous la forme `ATTACHMENT_ID: <n>`."
+                "prompt, in the form `ATTACHMENT_ID: <n>`."
             ),
         }
 
@@ -2124,7 +2128,7 @@ def _modify_document(env, params):
             "ok": False,
             "error": (
                 "`new_marked` is empty. Return the modified content with "
-                "les marqueurs `[1] …` `[2] …` etc."
+                "the `[1] …` `[2] …` markers kept in place."
             ),
         }
 
@@ -2153,7 +2157,7 @@ def _modify_document(env, params):
         source_blob = base64.b64decode(attach.datas or b"")
     except Exception as e:
         return {"ok": False,
-                "error": f"Lecture du fichier source impossible : {e}"}
+                "error": f"Could not read the source file: {e}"}
 
     try:
         blob, mime, out_ext = _sd.apply_marked(
@@ -2164,7 +2168,7 @@ def _modify_document(env, params):
             "ok": False,
             "error": (
                 f"Missing Python dependency: {e}. "
-                f"Installe `python-docx` (.docx), `openpyxl` (.xlsx), "
+                f"Install `python-docx` (.docx), `openpyxl` (.xlsx), "
                 f"`python-pptx` (.pptx), `pypdf` (.pdf)."
             ),
         }
@@ -2212,7 +2216,7 @@ def _modify_document(env, params):
         "download_url": f"/ai-solution/download/{new_att.id}",
         "message": (
             f"The file **{filename}** was produced while preserving "
-            f"la mise en page d'origine. "
+            f"the original layout. "
             f"[Download](/ai-solution/download/{new_att.id})"
         ),
     }
@@ -2577,8 +2581,8 @@ _TOOL_PARAM_SCHEMAS = {
             "filename": {
                 "type": "string",
                 "description": (
-                    "Nom du fichier avec extension, ex: "
-                    "'translated.docx', 'rapport.xlsx', 'pitch.pptx', "
+                    "File name with its extension, e.g. "
+                    "'translated.docx', 'report.xlsx', 'pitch.pptx', "
                     "'export.json'."
                 ),
             },
@@ -2803,7 +2807,7 @@ def dispatch(env, name, params):
     tool = TOOLS.get(name)
     if not tool:
         _cprint("red", "TOOL ERROR", f"Unknown tool: {name}")
-        return {"error": f"Outil inconnu : {name}. Outils valides : {list(TOOLS)}"}
+        return {"error": f"Unknown tool: {name}. Valid tools: {list(TOOLS)}"}
     _cprint("cyan", "TOOL CALL", f"→ {name}  params={_truncate(str(params), 200)}")
     try:
         result = tool["fn"](env, params or {})
@@ -2820,7 +2824,7 @@ def dispatch(env, name, params):
         return {"error": f"Access denied: {_truncate(e)}"}
     except MissingError as e:
         _cprint("yellow", "TOOL MISSING", f"{name} → {_truncate(str(e))}")
-        return {"error": f"Enregistrement introuvable : {_truncate(e)}"}
+        return {"error": f"Record not found: {_truncate(e)}"}
     except (UserError, ValidationError) as e:
         _cprint("yellow", "TOOL BIZZ ERR", f"{name} → {_truncate(str(e))}")
         return {"error": f"Business error: {_truncate(e)}"}

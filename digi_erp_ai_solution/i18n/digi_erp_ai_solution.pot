@@ -1,0 +1,2772 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* digi_erp_ai_solution
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-09 09:08+0000\n"
+"PO-Revision-Date: 2026-09-09 09:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "\"list the related tasks\""
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "\"summarize this record\""
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "\"what's missing here?\""
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid ""
+"%(name)s cannot read images. Tick \"Can read images (OCR / vision)\" on that"
+" model if it supports vision, or choose an OCR AI model under Settings → "
+"DIGI-ERP AI."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "%(name)s could not read the image: %(err)s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/llm_providers.py:0
+msgid ""
+"%(name)s is not set up to read images. Tick \"Can read images (OCR / "
+"vision)\" on that model if it supports vision, or pick another one to read "
+"documents under Settings → DIGI-ERP AI."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/tools.py:0
+msgid "%(verb)s: %(count)s “%(model)s” record(s)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/tools.py:0
+msgid "%s item(s)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "%s result(s)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "(No extractable text — the PDF is probably scanned.)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "(No extractable text.)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "(No text detected in the image.)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "(The archive is empty, or holds no readable file.)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "(The document is empty.)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/models/llm_provider.py:0
+msgid "(empty)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid ", or"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid ""
+".\n"
+"                                    I am <strong>DIGI-ERP AI</strong>.\n"
+"                                    Ask me anything about your Odoo — I build the\n"
+"                                    query myself and Odoo answers, always within\n"
+"                                    the limits of your own permissions."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_form
+msgid ""
+".\n"
+"                        You can see that this conversation exists and how big\n"
+"                        it is, and you can delete it — you cannot read it."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "/digi_erp_ai_solution/static/src/img/digi-erp-favicon.png"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "30m · 1h · -1 (keep loaded) · 0 (unload)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_kanban
+msgid "<i class=\"fa fa-ban me-1\"/>Inactive"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid ""
+"<i class=\"fa fa-building-o\"/>\n"
+"                                <span class=\"dai-chat-company-trigger-text\">Companies</span>"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_kanban
+msgid "<i class=\"fa fa-check me-1\"/>Active"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_kanban
+msgid "<i class=\"fa fa-eye me-1\" title=\"Can read images\"/>Reads images"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_form
+msgid ""
+"<i class=\"fa fa-lock me-1\"/>\n"
+"                        Message content is private to"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "<i class=\"fa fa-plus me-2\"/> New conversation"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid ""
+"<i class=\"fa fa-th-large me-2\"/>\n"
+"                            <span>Open Odoo</span>"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_kanban
+msgid "<i class=\"fa fa-wrench me-1\" title=\"Supports tools\"/>Tools"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid ""
+"<span class=\"dai-chat-brand-logo\">\n"
+"                            <i class=\"fa fa-bolt\"/>\n"
+"                        </span>\n"
+"                        <span class=\"dai-chat-brand-name\">DIGI-ERP AI</span>"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid ""
+"<span class=\"dai-chat-model-dot\"/>\n"
+"                                <span class=\"dai-chat-model-trigger-text\">Loading…</span>"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid ""
+"<span class=\"dai-chat-pinwheel\" aria-hidden=\"true\">\n"
+"                                <span class=\"dai-chat-pw-piece dai-chat-pw-w\"/>\n"
+"                                <span class=\"dai-chat-pw-piece dai-chat-pw-n\"/>\n"
+"                                <span class=\"dai-chat-pw-piece dai-chat-pw-e\"/>\n"
+"                                <span class=\"dai-chat-pw-piece dai-chat-pw-s\"/>\n"
+"                                <span class=\"dai-chat-pw-spark\"/>\n"
+"                            </span>\n"
+"                            <small id=\"dai-chat-typing-text\" class=\"ms-2\">DIGI-ERP AI is thinking…</small>"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_kanban
+msgid ""
+"<span class=\"dai-prov-label\">\n"
+"                                            <i class=\"fa fa-cube me-1\"/>Model\n"
+"                                        </span>"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_kanban
+msgid ""
+"<span class=\"dai-prov-label\">\n"
+"                                            <i class=\"fa fa-link me-1\"/>Endpoint\n"
+"                                        </span>"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_kanban
+msgid ""
+"<span class=\"dai-prov-label\">\n"
+"                                            <i class=\"fa fa-random me-1\"/>Auto tier\n"
+"                                        </span>"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid ""
+"<strong>Cloud AI (external API).</strong> Connects to a\n"
+"                        provider like OpenAI, Anthropic, Google Gemini, DeepSeek or\n"
+"                        xAI. Pick the provider and paste your API key — the endpoint\n"
+"                        URL is filled in automatically."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid ""
+"<strong>Self-hosted model.</strong> Runs on your own\n"
+"                        machine or server, so nothing leaves your network. No API\n"
+"                        key needed — just set the model name and, if the server is\n"
+"                        on another machine, its base URL."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.constraint,message:digi_erp_ai_solution.constraint_digi_erp_model_chat_cancel_conversation_uniq
+msgid "A cancel signal already exists for this conversation."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "A different format"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_ocr_provider_id
+msgid ""
+"A model dedicated to reading uploaded documents and images — cloud (GPT-4o, "
+"Claude, Gemini) or self-hosted (e.g. qwen2.5vl). When set, it turns pages "
+"into text and the chat model then works on that text. Leave empty to let the"
+" chat model handle images itself when it can see them."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/models/llm_provider.py:0
+msgid ""
+"A model identifier is required (e.g. 'gpt-4o', 'llama3.2', 'qwen2.5vl:3b')."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.actions.act_window,name:digi_erp_ai_solution.action_ai_model
+#: model:ir.ui.menu,name:digi_erp_ai_solution.menu_ai_model
+msgid "AI Models"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "AI model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "AI model for reading documents"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+msgid "AI models"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__res_config_settings__digi_erp_ai_ocr_primary__llm_vision
+msgid ""
+"AI vision model — nothing to install, needs a model that can read images"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__base_url
+msgid ""
+"API endpoint. Leave blank to use the standard URL of the selected provider —"
+" you only need to fill it in for a custom / self-hosted endpoint (Groq, "
+"Together, OpenRouter, or a local self-hosted server on another machine, …)."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__api_key
+msgid "API key"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__provider_type
+msgid "API provider"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.module.category,description:digi_erp_ai_solution.module_category_digi_erp_ai
+msgid ""
+"Access level to the AI assistant: chat, document import and AI model "
+"configuration."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/embedded_chat.js:0
+msgid "Action cancelled."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Action cancelled. No data was changed."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Action to confirm"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__active
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+msgid "Active"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Active only"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__activity_json
+msgid "Activity receipt"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Add more detail"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.actions.act_window,help:digi_erp_ai_solution.action_ai_model
+msgid "Add your first AI model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"Adds a quick extra step where a small, cheap model narrows down what the "
+"main model is shown. Slightly slower, more precise on busy databases."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:res.groups,name:digi_erp_ai_solution.group_ai_manager
+msgid "Administrator"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Advanced"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "After"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "All companies"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.constraint,message:digi_erp_ai_solution.constraint_digi_erp_model_llm_provider_name_uniq
+msgid "An AI model with this name already exists."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/models/llm_provider.py:0
+msgid "An API key is required for remote API providers."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"An optional built-in path to a self-hosted model, so the assistant works out"
+" of the box with nothing leaving your network. You are not obliged to use "
+"it: any model you add under DIGI-ERP AI → Configuration → AI Models — "
+"OpenAI, Claude, Gemini, DeepSeek, Grok, or any compatible API — takes over "
+"from this. Note that the built-in path posts to /api/chat, /api/generate and"
+" /api/embed, so the server below must expose those endpoints."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Analysed"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Analysed %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Analysed the data"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Answer timeout (seconds)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__model_label
+msgid "Answered by"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Answered by %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_llm_provider__provider_type__anthropic
+msgid "Anthropic (Claude)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+msgid "Archived"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Ask a question about the document… (or leave empty for a summary)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Ask about this screen…"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Ask about what you're viewing"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "Ask your question…"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Ask your question… (Enter to send, Shift+Enter for a new line)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_chat_message__role__assistant
+msgid "Assistant"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "Attach a document"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__attachment_id
+msgid "Attached file"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__attachment_filename
+msgid "Attachment Filename"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Auto"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_tree
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+msgid "Auto tier"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__auto_tier_ceiling
+msgid "Auto tier ceiling"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+msgid "Auto-route tier"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Automatic model choice"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__is_unnamed
+msgid "Awaiting a title"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_chat_conversation__auto_tier_ceiling__balanced
+msgid "Balanced"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__base_url
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+msgid "Base URL"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Before"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_rerank_enabled
+msgid ""
+"Before the main call, ask a small, cheap model which of the retrieved Odoo "
+"models are actually relevant, and show only those to the main model. "
+"Slightly slower, more precise on busy databases. Pick the model below, or "
+"leave it empty to use the first active model set to 'Quick questions'; with "
+"neither, this toggle does nothing."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Best model per question"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Built-in local AI (optional)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "By category"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "By customer"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "By department"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "By employee"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "By manager"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "By salesperson"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "By stage"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "By vendor"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "By warehouse"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__schema_cache_models
+msgid "CSV of model names the cached schema block covers."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__schema_cache_block
+msgid "Cached schema block"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__schema_cache_models
+msgid "Cached schema models"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__supports_vision
+msgid "Can read images (OCR / vision)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Can read images and scans"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Cancel"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Cannot reach %s. Check the URL under DIGI-ERP AI → Settings."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Cannot reach %s. Check the URL."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Cannot read .7z archives: install `py7zr`."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Cannot read .rar archives: install `rarfile` and the `unrar` utility."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Cannot read DOCX files: install `python-docx`."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Cannot read Excel files: install `openpyxl`."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Cannot read PDF files: install `pypdf` or `PyPDF2`."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Cannot read PPTX files: install `python-pptx`."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Cannot read legacy XLS files: install `xlrd<2`."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Capabilities"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Change to confirm"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.ui.menu,name:digi_erp_ai_solution.menu_ai_chat
+msgid "Chat"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_chat_model
+msgid "Chat model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__supports_vision
+msgid ""
+"Check this for multimodal models that can look at an image (e.g. qwen2.5vl, "
+"gpt-4o, claude, gemini, glm-4v). When this model answers a chat and no "
+"dedicated OCR model is set in Settings, an uploaded image is sent straight "
+"to it WITH the question — it reads the image and answers in a single call, "
+"no separate OCR step. Leave unchecked for text-only models (e.g. deepseek-"
+"chat): those fall back to the classic OCR engine (PaddleOCR/Surya) to turn "
+"the image into text first."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Checked who you are"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/llm_providers.py:0
+msgid "Claude declined to answer (safety reason)%s."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Close"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_kanban
+msgid "Cloud"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+msgid "Cloud (API)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "Companies taken into account"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_llm_provider__auto_route_tier__heavy
+msgid "Complex work — analysis, reports, creating records"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model,name:digi_erp_ai_solution.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.ui.menu,name:digi_erp_ai_solution.menu_ai_config
+msgid "Configuration"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:res.groups,comment:digi_erp_ai_solution.group_ai_manager
+msgid ""
+"Configure the AI models and API keys, change the assistant settings, and "
+"review every user's document imports."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Confirm"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Confirmed only"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.actions.act_window,help:digi_erp_ai_solution.action_ai_model
+msgid ""
+"Connect DIGI-ERP AI to any AI: a model you <b>host\n"
+"                yourself</b>, or a <b>cloud</b> service — OpenAI, Anthropic\n"
+"                Claude, Google Gemini, DeepSeek, xAI Grok, or any compatible API.\n"
+"                Each model you add appears in the picker of the DIGI-ERP AI chat."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/models/llm_provider.py:0
+msgid "Connected. The model answered: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Connection"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__content
+msgid "Content"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__num_ctx
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+msgid "Context window"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_num_ctx
+msgid "Context window (tokens)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__num_ctx
+msgid ""
+"Context window in tokens for this self-hosted model. 0 = use the global "
+"value from Settings → DIGI-ERP AI. Override per model if you need more room "
+"for long documents — many models support 128k or more."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_cancel__conversation_id
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__conversation_id
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_form
+msgid "Conversation"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/models/conversation.py:0
+msgid "Conversation #%s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Conversation not found."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.actions.act_window,name:digi_erp_ai_solution.action_ai_conversation
+#: model:ir.ui.menu,name:digi_erp_ai_solution.menu_ai_conversation
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_search
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_tree
+msgid "Conversations"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Copy"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Copy the answer"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Could not read the DOCX file: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Could not read the Excel file: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Could not read the PDF: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Could not read the PPTX file: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Could not read the XLS file: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Could not read the archive: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Counted"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/tools.py:0
+msgid "Create %(count)s “%(model)s”"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/tools.py:0
+msgid "Create a new “%s”"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Created an image"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_cancel__create_uid
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__create_uid
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__create_uid
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_cancel__create_date
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__create_date
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__create_date
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Customers only"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+#: model:ir.module.category,name:digi_erp_ai_solution.module_category_digi_erp_ai
+#: model:ir.ui.menu,name:digi_erp_ai_solution.menu_ai_root
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "DIGI-ERP AI"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.actions.act_url,name:digi_erp_ai_solution.action_open_chat
+msgid "DIGI-ERP AI Chat"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "DIGI-ERP AI · Odoo"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model,name:digi_erp_ai_solution.model_digi_erp_model_llm_provider
+msgid "DIGI-ERP AI — AI Model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model,name:digi_erp_ai_solution.model_digi_erp_model_chat_cancel
+msgid "DIGI-ERP AI — Cancellation signal (cross-worker mailbox)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model,name:digi_erp_ai_solution.model_digi_erp_model_chat_conversation
+msgid "DIGI-ERP AI — Conversation"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model,name:digi_erp_ai_solution.model_digi_erp_model_chat_message
+msgid "DIGI-ERP AI — Message"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "Data taken into account"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_llm_provider__provider_type__deepseek
+msgid "DeepSeek (deepseek-chat, deepseek-reasoner)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Delete"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Delete the conversation “%s”?"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+msgid "Deployment"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_cancel__display_name
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__display_name
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__display_name
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_chat_message__model_label
+msgid "Display name of the AI model that generated this answer."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_ocr_primary
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Document reader"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+#: code:addons/digi_erp_ai_solution/static/src/js/embedded_chat.js:0
+msgid "Done. The action was carried out."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Double-check which data to look at"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_chat_conversation__source__embedded
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_search
+msgid "Embedded sidebar"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_embed_model
+msgid "Embedding model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_embed_base_url_override
+msgid "Embeddings base URL (optional)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "Enter = send · Shift+Enter = new line · Paperclip = attach a document"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Error"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.actions.act_window,help:digi_erp_ai_solution.action_ai_conversation
+msgid ""
+"Every chat your team has with DIGI-ERP AI is listed here so you\n"
+"                can see how much it is used and clean up old threads.\n"
+"                <br>\n"
+"                What people actually said stays private: you see the thread,\n"
+"                its owner and its size — never its content."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_llm_provider__auto_route_tier__balanced
+msgid "Everyday work — questions about your data"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Expand / shrink"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Export the list"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Export these results"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Export to Excel"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Export to PDF"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Exported"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/models/llm_provider.py:0
+msgid "Failed: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/tools.py:0
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Field"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "File not found, or access denied."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "File too large (%s). Maximum: %s."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "File too large (maximum %s MB)."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "First model set to 'Quick questions'"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_chat_conversation__source__portal
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_search
+msgid "Full-page chat"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Generation"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Generation interrupted by the user."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Generation interrupted."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_llm_provider__provider_type__gemini
+msgid "Google Gemini"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Group by account"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Group by customer"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Group by project"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model,name:digi_erp_ai_solution.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__timeout_seconds
+msgid ""
+"HTTP timeout for calls to this provider. 0 = use the global timeout from "
+"Settings → DIGI-ERP AI."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_chat_conversation__auto_tier_ceiling__heavy
+msgid "Heavy"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "Hello"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Here is the action to confirm."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__auto_tier_ceiling
+msgid ""
+"Highest auto-routed tier ever used in this conversation. The Auto picker "
+"never goes below this value on a follow-up turn — keeps a thread on the same"
+" (or stronger) model."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__keep_alive
+msgid ""
+"How long the local server keeps this model loaded in memory after a request."
+" Examples: '30m', '1h', '-1' to keep it loaded, '0' to unload immediately. "
+"Blank = the server's own default."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_request_timeout
+msgid ""
+"How long to wait for an answer before giving up. A local server can need 500"
+" s or more on big documents."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"How long to wait for an answer before giving up. Raise it if long documents "
+"time out."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_num_ctx
+msgid ""
+"How much the model can hold in mind at once: the question, the data it "
+"looked up, and the conversation so far. 32768 leaves room for a large data "
+"structure plus a long document without truncation; many models support far "
+"more. Raise it if answers come back cut off."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"How much the model can hold in mind at once: your question, the data it "
+"looked up, and the conversation so far. Raise it if answers about large "
+"documents come back cut off."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"How the assistant pulls text out of a scan, a photo or a PDF that a user "
+"uploads."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "I already know the screen you're on. Try"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_cancel__id
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__id
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__id
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__id
+msgid "ID"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_search
+msgid "Idle over 30 days"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__supports_tools
+msgid ""
+"If checked, Odoo tools (search, create records) will be sent to this "
+"provider. Uncheck for chat-only models."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_llm_provider__auto_route_tier__image
+msgid "Image generation"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+msgid "In Auto routing"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Inactive"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Indexing model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Invalid action parameters."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Iterations used: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__keep_alive
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+msgid "Keep alive"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_cancel__write_uid
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__write_uid
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__write_uid
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_cancel__write_date
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__write_date
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__write_date
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_search
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_tree
+msgid "Last activity"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__last_message_at
+msgid "Last message"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Late ones"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Late only"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Leave blank to use the same server"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid ""
+"Legacy Office formats (.ppt/.doc) cannot be read: install LibreOffice "
+"(soffice) on the server."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "LibreOffice conversion failed (%(fmt)s). %(err)s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "LibreOffice conversion failed: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "LibreOffice conversion timed out (file too large?)."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_chat_conversation__auto_tier_ceiling__lightweight
+msgid "Lightweight"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid ""
+"Likely cause: the AI server unloaded the model mid-request (out of memory, "
+"or unloaded after idling). Raise 'Keep alive' on the model."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid ""
+"Likely cause: the AI service blocked the answer (content filter). Rephrase "
+"the request."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid ""
+"Likely cause: the answer was cut off by the token limit. Raise 'Max output "
+"tokens' on the model, or ask for a shorter answer."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid ""
+"Likely cause: the model ran the tools but produced no final recap. Ask again"
+" ('summarise what you just did'), or switch to a more capable model."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_kanban
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+msgid "Local"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_local_base_url
+msgid "Local AI server URL"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__local_url
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+msgid "Local endpoint"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__is_local
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_kanban
+msgid "Local model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Local model (no API key)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Log in"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Looked at the detail of"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Looked for where the information lives"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Looked up"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__max_tokens
+msgid "Max output tokens"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+msgid "Max tokens"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__max_tokens
+msgid ""
+"Maximum number of tokens the model is allowed to generate. 0 = provider "
+"default (OpenAI/Anthropic typically cap at 4096; a self-hosted model "
+"generates until the context window is exhausted)."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Memory per answer (tokens)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__message_count
+msgid "Message count"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__message_ids
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_tree
+msgid "Messages"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Mine only"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__model_name
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Model name"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_rerank_provider_id
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Model used for the narrowing step"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_embed_model
+msgid ""
+"Model used to index your Odoo data structure, so the assistant only looks at"
+" the parts relevant to each question. It must be downloaded on the local AI "
+"server."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Model: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__name
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Name"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+msgid "Name / Model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_chat_model
+msgid ""
+"Name of the model that answers, as the local server knows it. It must "
+"already be downloaded there. Examples: llama3.2, qwen2.5:7b, qwen2.5vl:3b."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+#: code:addons/digi_erp_ai_solution/static/src/js/embedded_chat.js:0
+msgid "Network error: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/models/conversation.py:0
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "New conversation"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid ""
+"New conversation. Ask anything about Odoo — DIGI-ERP AI builds the query and"
+" Odoo answers within your own access rights."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "No conversation yet"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.actions.act_window,help:digi_erp_ai_solution.action_ai_conversation
+msgid "No conversations yet"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "No file received."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "No model configured"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "No record in focus"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid ""
+"No self-hosted AI server is answering at %s, so the AI vision reader could "
+"not run. Start it, or pick a different document reader under Settings → "
+"DIGI-ERP AI."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_ocr_provider_id
+msgid "OCR AI model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "OCR failed: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__is_local
+msgid ""
+"ON: connect to a model you host yourself, on this machine or on your network — no API key needed.\n"
+"OFF: use a provider's API — pick which one in the connection section below."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"Only if indexing runs on a different machine than the chat. Leave blank to "
+"use the same server."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "Open Odoo"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_llm_provider__provider_type__openai
+msgid "OpenAI (GPT-4o, GPT-4-turbo, …)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_llm_provider__provider_type__openai_compat
+msgid "Other / OpenAI-compatible (Groq, Together, OpenRouter, …)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Out of stock"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_embed_base_url_override
+msgid ""
+"Override only if your embedding server runs on a different host than the "
+"chat server. Leave blank to reuse the chat URL."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__res_config_settings__digi_erp_ai_ocr_primary__paddleocr
+msgid "PaddleOCR — fast on printed text (must be installed on your server)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Pending only"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid ""
+"Possible causes: the context is full (reduce the context window or shorten "
+"the history), the model was unloaded from memory, or the model is too small "
+"for the request. Check the Odoo log and the state of your AI server."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Prepared your file"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+msgid "Provider"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_llm_provider__auto_route_tier__lightweight
+msgid "Quick questions — greetings and short answers"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_rerank_enabled
+msgid "Re-rank retrieved models with a light model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Reading documents and images"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Refine the filter"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Regenerate the answer"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "Remove the file"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Rename"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Rename the conversation:"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_request_timeout
+msgid "Request timeout (seconds)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_cancel__requested_at
+msgid "Requested At"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Review the changes below. Nothing is saved until you confirm."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "Review the changes. Nothing is saved until you confirm."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Reviewed the information available on"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__role
+msgid "Role"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_local_base_url
+msgid ""
+"Root URL of the self-hosted AI server used by the built-in option. Examples:\n"
+"  • http://localhost:11434  (running on the Odoo host)\n"
+"  • http://192.168.1.42:11434  (another machine on the LAN)\n"
+"No trailing slash, no /api suffix.\n"
+"The built-in path posts to /api/chat, /api/generate and /api/embed on this server, so it must expose those endpoints. For any other service — OpenAI, Claude, Gemini, Groq, OpenRouter or any OpenAI-compatible API — leave this alone and add an entry under AI Models instead."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/tools.py:0
+msgid "Run the action"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__temperature
+msgid ""
+"Sampling temperature. 0.0 = deterministic, 1.0 = creative. 0.1–0.3 is "
+"recommended for structured extraction."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "See the detailed list"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "Select all"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Self-hosted model"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "Send"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"Sensible defaults ship for everything here. Change it only if you know why."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Separate indexing server"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_chat_message__activity_json
+msgid ""
+"Serialised compact summary of the tool calls behind this answer, shown as an"
+" activity chip in the chat UI."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__schema_cache_block
+msgid ""
+"Serialised schema-RAG block reused across turns while the conversation stays"
+" on the same models."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Server address"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/models/llm_provider.py:0
+msgid "Set a model identifier first."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__is_unnamed
+msgid ""
+"Set until the conversation has been named from its first message or renamed "
+"by the user."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.actions.act_window,name:digi_erp_ai_solution.action_ai_settings
+msgid "Settings"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__source
+msgid "Source"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.portal_ai_chat
+msgid "Start a new conversation"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_form
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_tree
+msgid "Started"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_search
+msgid "Started from"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+msgid "Status"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Stop"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__supports_tools
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+msgid "Supports tools"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__res_config_settings__digi_erp_ai_ocr_primary__surya
+msgid ""
+"Surya — best on tables and multi-column layouts (must be installed on your "
+"server)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_chat_message__role__system
+msgid "System"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__temperature
+msgid "Temperature"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__res_config_settings__digi_erp_ai_ocr_primary__tesseract
+msgid ""
+"Tesseract — classic OCR (must be installed on your server, with its language"
+" packs)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Test connection"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+#: code:addons/digi_erp_ai_solution/static/src/js/embedded_chat.js:0
+msgid "The action failed."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "The action failed: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__local_url
+msgid ""
+"The endpoint this self-hosted model actually answers on — either this "
+"record's Base URL or, when that is blank, the global one from Settings → "
+"DIGI-ERP AI."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "The file **%(name)s** was generated. [Download](%(url)s)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "The file is empty."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__api_key
+msgid ""
+"The key issued by your AI provider. Stored in the database and readable only"
+" by DIGI-ERP AI Administrators — a plain user can select this model in the "
+"chat but never sees or edits the key."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid ""
+"The model did not finish within %(n)s iterations (tool loop stopped). Tools "
+"already run: %(tools)s. Rephrase your request in smaller steps, or switch to"
+" a more capable model."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__model_name
+msgid ""
+"The model name given by your provider. Examples:\n"
+"• OpenAI: gpt-4o, gpt-4o-mini\n"
+"• Anthropic: claude-sonnet-4-6, claude-opus-4-8\n"
+"• Google: gemini-2.0-flash\n"
+"• DeepSeek: deepseek-chat, deepseek-reasoner\n"
+"• xAI: grok-2-latest\n"
+"• Self-hosted: the name your own server knows it by (e.g. llama3.2, qwen2.5:7b)."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "The model returned no text."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid ""
+"The model selected in the picker (`%s`) is not a chat model — the AI server "
+"refuses it. It is most likely an image model (e.g. `x/z-image-turbo`) added "
+"by mistake as a chat model. Go to DIGI-ERP AI → AI Models, archive that "
+"entry, and pick a real chat model instead (`llama3.2`, `qwen2.5`, …). Image "
+"generation works through the built-in tool — it does not need to be "
+"registered as a model."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"The model that turns uploaded pages into text. Cloud or self-hosted, both "
+"work — the list shows every model you have ticked \"Can read images\" on "
+"(GPT-4o, Claude, Gemini, qwen2.5vl…). Leave it empty and DIGI-ERP AI uses "
+"whichever model the chat is on when that one can see, and otherwise the "
+"first image-capable model you registered."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__name
+msgid ""
+"The name users pick from in the chat (e.g. 'Fast', 'Best quality', "
+"'Claude')."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "The prompt is empty."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid ""
+"The server returned an answer with no content and no diagnostic. Check the "
+"Odoo log (Settings → Technical → Logs) and the state of your AI server, then"
+" try again."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/tools.py:0
+msgid ""
+"This action changes the state of the record and may be hard to undo. Check "
+"it before confirming."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "This action is not a change awaiting confirmation."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "This month"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "This quarter"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/models/llm_provider.py:0
+msgid "This remote provider needs an API key."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__timeout_seconds
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+msgid "Timeout (s)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Timeout: no answer from %(url)s after %(secs)ss."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Timeout: the model took more than %ss to answer."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__name
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_tree
+msgid "Title"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "To do only"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__tool_name
+msgid "Tool Name"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_chat_message__role__tool_call
+msgid "Tool call"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_chat_message__role__tool_result
+msgid "Tool result"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Tools run: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Total amount"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Total revenue"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/tools.py:0
+msgid "Total: %s record(s)."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid ""
+"Turn this on for a model that can look at a picture\n"
+"                            (GPT-4o, Claude, Gemini, qwen2.5vl…). Text-only\n"
+"                            models fall back to the built-in document reader."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/models/llm_provider.py:0
+msgid "Unknown error"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+#: code:addons/digi_erp_ai_solution/static/src/js/embedded_chat.js:0
+msgid "Unknown error."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Unpaid only"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Unsupported archive format: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "Unsupported file type. Accepted formats: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Unsupported file type: %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/tools.py:0
+msgid "Update %(count)s “%(model)s” record(s)"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/tools.py:0
+msgid "Update “%(model)s”: %(names)s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Updated your document"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:res.groups,comment:digi_erp_ai_solution.group_ai_user
+msgid ""
+"Use the AI assistant: chat with company data, import documents, and choose "
+"among the configured AI models."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_llm_provider__auto_route_tier
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "Use this model for"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"Used to index your Odoo data structure so the assistant only looks at the "
+"parts relevant to each question. Must be downloaded on the AI server."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_cancel__user_id
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_conversation__user_id
+#: model:ir.model.fields,field_description:digi_erp_ai_solution.field_digi_erp_model_chat_message__user_id
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_chat_message__role__user
+#: model:res.groups,name:digi_erp_ai_solution.group_ai_user
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_conversation_search
+msgid "User"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/services/tools.py:0
+msgid "Value"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Vendors only"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_tree
+msgid "Vision"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_search
+msgid "Vision / OCR"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__auto_route_tier
+msgid ""
+"What the assistant should send to this model when a user leaves the chat "
+"picker on Auto. You do not need one model per line: a complex-work model "
+"also covers everyday work, and an everyday model also covers quick "
+"questions, so a single model can handle everything. Leave empty to keep this"
+" model out of Auto — it stays selectable by hand in the chat."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "What this model can do"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid ""
+"When a user leaves the chat picker on\n"
+"                            <b>Auto</b>, the assistant picks a model by the\n"
+"                            kind of question asked. Leave empty to keep this\n"
+"                            model out of Auto — it stays selectable by hand."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"Where your local AI server answers. Use http://localhost:11434 when it runs "
+"on the same machine as Odoo, or the machine's address on your network. No "
+"trailing slash."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"Which model answers. It must already be downloaded on the server above."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_rerank_provider_id
+msgid ""
+"Which model performs the narrowing pass. Leave empty to fall back on the "
+"first active model whose 'Use this model for' is 'Quick questions'. Pick a "
+"small, fast model: this runs before every data question, so a heavy one "
+"cancels out the speed the step is meant to buy."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"Which model runs that step. Leave empty to use the first active model set to"
+" 'Quick questions'. Pick a small, fast one — this runs before every data "
+"question, so a heavy model cancels out the speed the step is meant to buy. "
+"With nothing here and nothing tagged 'Quick questions', the step is skipped."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid ""
+"Which reader is tried first; if it cannot run, the others are tried "
+"automatically. The AI vision model sends the page to a model that can look "
+"at images — cloud (GPT-4o, Claude, Gemini, Grok) or self-hosted — and needs "
+"nothing installed on your server. PaddleOCR, Surya and Tesseract run offline"
+" and are faster, but each has to be installed on your Odoo server before it "
+"will work."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_res_config_settings__digi_erp_ai_ocr_primary
+msgid ""
+"Which reader turns uploaded documents and images into text FIRST. The others stay available as automatic fallbacks if the first one returns too little text, errors, or isn't installed.\n"
+"'AI vision model' sends the pages straight to a vision model and needs nothing installed on the server. The three classic engines are faster and run offline, but each has to be installed on the Odoo server before it can be selected here."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields,help:digi_erp_ai_solution.field_digi_erp_model_llm_provider__provider_type
+msgid ""
+"Which remote API to call when this provider is not local. Ignored when "
+"'Local model' is on."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "Won only"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "You must be logged in to use the chat."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "You must be logged in."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "action"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "building the Odoo query"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "conversation_id is required."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "e.g. Fast, Best quality, On-premise…"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "e.g. http://localhost:11434 · https://api.groq.com/openai/v1"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "failed"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "file"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "formatting the results"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "gathering the context"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "going through the content"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid ""
+"gpt-4o · claude-sonnet-4-6 · deepseek-chat · gemini-2.0-flash · llama3.2"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "http://localhost:11434"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "llama3.2"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "nomic-embed-text"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "none"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/xml/embedded_chat.xml:0
+msgid "performed"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "querying the database"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "reading the document"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/models/llm_provider.py:0
+msgid "self-hosted"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_model_form
+msgid "sk-..."
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "structuring the answer"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the %s"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the contacts"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the deliveries"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the departments"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the employees"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the invoice lines"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the invoices"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the manufacturing orders"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the opportunities"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the payments"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the point-of-sale orders"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the products"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the projects"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the purchase orders"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the purchase statistics"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the sales order lines"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the sales orders"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the sales statistics"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the stock moves"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the stock on hand"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the tasks"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the time off"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the timesheets"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "the users"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "thinking"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "understanding the question"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-python
+#: code:addons/digi_erp_ai_solution/controllers/main.py:0
+msgid "unknown error"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#. odoo-javascript
+#: code:addons/digi_erp_ai_solution/static/src/js/chat.js:0
+msgid "writing the answer"
+msgstr ""
+
+#. module: digi_erp_ai_solution
+#: model:ir.model.fields.selection,name:digi_erp_ai_solution.selection__digi_erp_model_llm_provider__provider_type__xai
+msgid "xAI (Grok)"
+msgstr ""
