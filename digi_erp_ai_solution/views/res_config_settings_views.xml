@@ -25,6 +25,25 @@
                      logo="/digi_erp_ai_solution/static/description/digi-erp.png"
                      groups="digi_erp_ai_solution.group_ai_manager">
 
+                    <!-- Optional server libraries: a plain notice with the
+                         install command instead of an install-time refusal
+                         or traceback. Hidden once everything is present. -->
+                    <field name="company_id" invisible="1"/>
+                    <field name="digi_erp_ai_deps_missing" invisible="1"/>
+                    <div class="alert alert-warning" role="alert"
+                         invisible="not digi_erp_ai_deps_missing">
+                        <p><strong>Some optional libraries are missing on this server.</strong> DIGI-ERP AI works without them, but a few features stay off until they are installed.</p>
+                        <div invisible="not digi_erp_ai_install_command">
+                            <p class="mb-1">Run this on the Odoo server, then restart Odoo:</p>
+                            <field name="digi_erp_ai_install_command" widget="CopyClipboardChar"/>
+                        </div>
+                        <div class="mt-2" invisible="not digi_erp_ai_libreoffice_command">
+                            <p class="mb-1">For .doc and .ppt files, install LibreOffice:</p>
+                            <field name="digi_erp_ai_libreoffice_command" widget="CopyClipboardChar"/>
+                        </div>
+                        <p class="mt-2 mb-0 small">On Odoo.sh, list the same library names in a requirements.txt file at the root of your repository instead.</p>
+                    </div>
+
                     <block title="Built-in local AI (optional)"
                            help="An optional built-in path to a self-hosted model, so the assistant works out of the box with nothing leaving your network. You are not obliged to use it: any model you add under DIGI-ERP AI → Configuration → AI Models — OpenAI, Claude, Gemini, DeepSeek, Grok, or any compatible API — takes over from this. Note that the built-in path posts to /api/chat, /api/generate and /api/embed, so the server below must expose those endpoints.">
                         <setting id="digi_erp_ai_local_base_url_setting"
