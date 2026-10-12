@@ -2,6 +2,8 @@
 # Install with:  pip install -r requirements.txt
 #
 # Document ingestion / extraction:
+numpy>=1.24              # semantic model shortlist (off without it; Settings shows a notice)
+python-docx>=0.8.11      # Word .docx read / generate / rewrite
 python-pptx>=0.6.21      # PowerPoint .pptx text extraction (and .ppt via LibreOffice)
 
 # Optional archive formats — the module degrades gracefully if these are

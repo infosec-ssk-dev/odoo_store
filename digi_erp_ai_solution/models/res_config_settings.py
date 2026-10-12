@@ -7,7 +7,9 @@ can change URL, model name, timeout, and context window without redeploying.
 The actual lookup happens through ``services.ai_config.get_ai_config(env)``,
 which is what the controller and services call at request time.
 """
-from odoo import fields, models
+from odoo import api, fields, models
+
+from ..services import optional_deps
 
 
 class DigiErpAiConfigSettings(models.TransientModel):
@@ -141,3 +143,29 @@ class DigiErpAiConfigSettings(models.TransientModel):
         help="Override only if your embedding server runs on a different "
              "host than the chat server. Leave blank to reuse the chat URL.",
     )
+
+    # ── Optional server libraries (notice at the top of the page) ───────────
+    # Nothing is a hard install requirement (see __manifest__.py); instead the
+    # page shows the exact command that installs what is missing on this
+    # server.
+    digi_erp_ai_deps_missing = fields.Boolean(
+        compute="_compute_digi_erp_ai_optional_deps")
+    digi_erp_ai_install_command = fields.Char(
+        compute="_compute_digi_erp_ai_optional_deps")
+    digi_erp_ai_libreoffice_command = fields.Char(
+        compute="_compute_digi_erp_ai_optional_deps")
+
+    # The settings form opens through onchange(), which leaves a computed
+    # field with no dependencies at False on Odoo 18. company_id gets a
+    # default there, so depending on it makes the notice compute.
+    @api.depends('company_id')
+    def _compute_digi_erp_ai_optional_deps(self):
+        missing = optional_deps.missing_libs()
+        pip_cmd = (optional_deps.pip_command([pip for pip, _key in missing])
+                   if missing else False)
+        soffice_cmd = (optional_deps.LIBREOFFICE_COMMAND
+                       if optional_deps.libreoffice_missing() else False)
+        for settings in self:
+            settings.digi_erp_ai_deps_missing = bool(pip_cmd or soffice_cmd)
+            settings.digi_erp_ai_install_command = pip_cmd
+            settings.digi_erp_ai_libreoffice_command = soffice_cmd

@@ -36,26 +36,25 @@ add-on, **DIGI-ERP AI — Documents**, which installs on top of this one.
     'category': 'Productivity',
     'author': 'DIGI-ERP',
     'depends': ['portal', 'web', 'mail'],
-    # Needed to read a file a user attaches to the chat, and by the
-    # `modify_document` tool that rewrites one while keeping its layout.
-    # NOTE: python-pptx is intentionally NOT gated here — the .pptx branch
-    # degrades gracefully with an "install python-pptx" message, so a prod
-    # without it still loads the module. Install it via requirements.txt.
-    # Legacy .ppt/.doc conversion needs the `soffice`/LibreOffice binary on
-    # PATH; .7z/.rar are optional (py7zr / rarfile) and degrade gracefully.
-    'external_dependencies': {
-        # PyPI distribution names (NOT import names): the 'docx' import comes
-        # from the 'python-docx' distribution.
-        #
-        # numpy is the one HARD requirement: services/schema_rag.py and
-        # services/orm_kb.py import it at module level and both are loaded
-        # through services/__init__.py at install time, so without it the
-        # module does not merely lose a feature — it fails to import at all.
-        # It is NOT part of Odoo's own requirements.txt, so it has to be
-        # declared here or a plain server gets a raw ImportError traceback
-        # instead of Odoo's clean "Unmet dependency" message.
-        'python': ['numpy', 'python-docx', 'openpyxl', 'pypdf'],
-    },
+    # NOTHING is declared in `external_dependencies` ON PURPOSE.
+    #
+    # Odoo refuses to install a module whose external dependency is missing,
+    # so each library declared here turned one optional feature into a hard
+    # blocker for the whole app — on a stock server or Odoo Online the
+    # install simply failed. Every library below is imported lazily (or
+    # guarded) and its absence only switches off the feature that needs it:
+    #
+    #   numpy         semantic model shortlist (schema_rag / orm_kb). Off
+    #                 without it; Settings shows a notice. Was imported at
+    #                 module level, which crashed the install with a raw
+    #                 ImportError.
+    #   python-docx (.docx)   openpyxl (.xlsx, ships with Odoo)
+    #   pypdf / PyPDF2 (.pdf — falls back to PyPDF2, which Odoo ships)
+    #   python-pptx (.pptx)   xlrd (.xls)   py7zr (.7z)   rarfile (.rar)
+    #
+    # A missing file-format library produces a plain "install X" message on
+    # the one upload that needed it. Legacy .doc/.ppt conversion needs the
+    # `soffice` (LibreOffice) binary. requirements.txt lists them all.
     'data': [
         # Groups FIRST: the ACL csv and the record rules both reference them.
         'security/ai_groups.xml',

@@ -28,10 +28,36 @@ import os
 import time
 from threading import Lock
 
-import numpy as np
 import requests
 
+# numpy is OPTIONAL. It is not part of Odoo's own requirements, so a stock
+# server (and Odoo Online) does not have it. Importing it at module level
+# made the whole add-on fail to load — the user got a raw ImportError
+# traceback ("Oops!") in the middle of the install. Without numpy the
+# semantic model shortlist is simply switched off: `ensure_index` reports
+# "unavailable", every retrieve_* returns empty, and the assistant falls
+# back to its `odoo_models_search` / `odoo_fields_get` tools. The settings
+# page lists it with the install command (services/optional_deps.py).
+try:
+    import numpy as np
+except ImportError:
+    np = None
+
 _logger = logging.getLogger(__name__)
+
+
+_numpy_warned = False
+
+
+def _warn_numpy_missing():
+    """Log the missing-numpy notice once per process, not on every chat."""
+    global _numpy_warned
+    if not _numpy_warned:
+        _numpy_warned = True
+        _logger.warning(
+            "DIGI-ERP AI: the Python library 'numpy' is not installed, so "
+            "the smart model shortlist is disabled. The assistant still "
+            "works. Run `pip install numpy` and restart Odoo to enable it.")
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 
@@ -453,6 +479,9 @@ def _build_index(env):
 
 def ensure_index(env):
     """Lazy build — first request after a fresh start pays the cost."""
+    if np is None:
+        _warn_numpy_missing()
+        return False
     if _index["embeddings"] is not None:
         return True
     with _index_lock:

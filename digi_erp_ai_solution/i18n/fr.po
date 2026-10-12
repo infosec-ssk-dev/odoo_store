@@ -2660,3 +2660,22 @@ msgstr "xAI (Grok)"
 msgid "file"
 msgstr "fichier"
 
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "<strong>Some optional libraries are missing on this server.</strong> DIGI-ERP AI works without them, but a few features stay off until they are installed."
+msgstr "<strong>Des bibliothèques optionnelles manquent sur ce serveur.</strong> DIGI-ERP AI fonctionne sans elles, mais quelques fonctionnalités restent désactivées tant qu'elles ne sont pas installées."
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "Run this on the Odoo server, then restart Odoo:"
+msgstr "Exécutez ceci sur le serveur Odoo, puis redémarrez Odoo :"
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "For .doc and .ppt files, install LibreOffice:"
+msgstr "Pour les fichiers .doc et .ppt, installez LibreOffice :"
+
+#. module: digi_erp_ai_solution
+#: model_terms:ir.ui.view,arch_db:digi_erp_ai_solution.view_ai_settings_form
+msgid "On Odoo.sh, list the same library names in a requirements.txt file at the root of your repository instead."
+msgstr "Sur Odoo.sh, indiquez plutôt ces mêmes noms de bibliothèques dans un fichier requirements.txt à la racine de votre dépôt."

@@ -32,9 +32,9 @@ import os
 import time
 from threading import Lock
 
-import numpy as np
-
-from .schema_rag import _embed, CACHE_DIR
+# numpy is optional — see the note in schema_rag.py. Without it this
+# index is never built and retrieve_relevant_orm returns "".
+from .schema_rag import np, _embed, _warn_numpy_missing, CACHE_DIR
 
 _logger = logging.getLogger(__name__)
 
@@ -375,6 +375,9 @@ def ensure_index(env):
     """Lazy build — first chat call after a fresh start pays the cost
     (~30 s for ~300 entries on nomic-embed-text). Returns True if the
     index is available."""
+    if np is None:
+        _warn_numpy_missing()
+        return False
     if _index["embeddings"] is not None:
         return True
     with _index_lock:
